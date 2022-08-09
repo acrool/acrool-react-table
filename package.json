@@ -1,0 +1,111 @@
+{
+  "name": "bear-react-table",
+  "version": "2.1.14",
+  "description": "Table library based for Reactjs",
+  "keywords": [
+    "react",
+    "typescript",
+    "table"
+  ],
+  "author": "imagine10255",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imagine10255/bear-react-table.git"
+  },
+  "homepage": "https://imagine10255.github.io/bear-react-table",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "run-s build:claer && microbundle-crl --no-compress --no-css-modules --format modern,cjs",
+    "build:claer": "rm -rf ./dist",
+    "dev": "cd example && yarn install && yarn run start",
+    "start": "run-s build:claer && microbundle-crl watch --no-compress --no-css-modules --format modern,cjs",
+    "prepublishOnly": "run-s build",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build",
+    "gitlog": "git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblueby %an %Cgreen(%cr)%Creset'",
+    "lint:fix": "eslint ./src --fix",
+    "cz": "git cz",
+    "release": "standard-version --release-as",
+    "release:major": "standard-version -r major",
+    "release:minor": "standard-version -r minor",
+    "release:patch": "standard-version -r patch",
+    "release:alpha": "standard-version --prerelease alpha"
+  },
+  "resolutions": {
+    "typescript": "4.7.4"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "bear-react-grid": "^2.0.0",
+    "eslint-config-react-app": "^7.0.1"
+  },
+  "dependencies": {
+    "bear-jsutils": "1.0.13"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^25.1.4",
+    "@types/node": "18.0.0",
+    "@types/react": "18.0.14",
+    "@types/react-dom": "18.0.5",
+    "@types/react-transition-group": "^4.4.4",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "3.3.0",
+    "cz-customizable": "6.3.0",
+    "dayjs": "1.11.1",
+    "microbundle-crl": "^0.13.10",
+    "npm-run-all": "^4.1.5",
+    "classnames": "^2.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.2",
+    "standard-version": "9.3.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ],
+    "rules": {
+      "quotes": [
+        "warn",
+        "single"
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "indent": [
+        "warn",
+        4
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "never"
+      ],
+      "no-useless-escape": "off",
+      "import/no-anonymous-default-export": "off",
+      "react-hooks/exhaustive-deps": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-mixed-operators": "off"
+    }
+  }
+}
