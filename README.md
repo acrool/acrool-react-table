@@ -35,7 +35,7 @@ then in your page
 import {Table} from 'bear-react-table';
 
 
-const BaseUsed = () => {
+const CheckedUsed = () => {
     const options1 = [
         {text: 'Jack Wu', value: '1'},
         {text: 'Imagine Chiu', value: '2'},

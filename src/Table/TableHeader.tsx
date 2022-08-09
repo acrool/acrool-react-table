@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 // Components
 import {IPaginateMeta, ITitle} from './types';
 import elClassNames from './el-class-names';
@@ -11,7 +11,7 @@ interface IProps {
     isNonLine?: boolean,
     isEnableChecked?: boolean,
     isVisibleActions?: boolean;
-    onCheckedAll: (isChecked: boolean) => void;
+    // onCheckedAll: (isChecked: boolean) => void;
     sortField?: string,
     sortBy?: 'DESC'|'ASC',
     onChangePage?: (meta: IPaginateMeta) => void;
@@ -23,10 +23,6 @@ interface IProps {
  */
 const TableHeader = ({
     title= [],
-    isNonLine= false,
-    isEnableChecked = true,
-    isVisibleActions = false ,
-    onCheckedAll = () => {},
     sortField,
     sortBy = 'DESC',
     onChangePage = () => {}
@@ -38,7 +34,8 @@ const TableHeader = ({
     // }>();
 
 
-    const memoTitle = () => {
+    const renderTitle = () => {
+        console.log('xxxx render');
         return title.map(titleRow => {
             return (
                 <div
@@ -55,15 +52,15 @@ const TableHeader = ({
                 >
                     {titleRow.isSort ? (
                         <button
-                        className={elClassNames.headerSortButton}
+                            className={elClassNames.headerSortButton}
                             onClick={() => {
                             // onChangePage(1, undefined, titleRow.field, sortBy === 'DESC' ? 'ASC':'DESC')
-                            onChangePage({
-                                currentPage: 1,
-                                pageLimit: 8,
-                                sortBy: sortBy === 'DESC' ? 'ASC':'DESC',
-                            });
-                        }}>
+                                onChangePage({
+                                    currentPage: 1,
+                                    pageLimit: 8,
+                                    sortBy: sortBy === 'DESC' ? 'ASC':'DESC',
+                                });
+                            }}>
                             {titleRow.text}
 
                             {sortField === titleRow.field ?
@@ -115,7 +112,7 @@ const TableHeader = ({
                     {/*    </HeaderColumn>*/}
                     {/*)}*/}
 
-                    {memoTitle()}
+                    {renderTitle()}
 
                     {/*{isVisibleActions && (*/}
                     {/*    <HeaderColumn col style={{width: 100, flex: '0 0 100px'}}>*/}

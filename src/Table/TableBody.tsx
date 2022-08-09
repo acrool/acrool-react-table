@@ -95,7 +95,7 @@ const TableBody = ({
                             data-align={titleRow.dataAlign}
                             data-vertical={titleRow.dataVertical}
                             style={titleRow.col === true ? {
-                              flex: 1,
+                                flex: 1,
                             }:{
                                 width: titleRow.width,
                                 flex: `0 0 ${titleRow.width}px`
@@ -185,7 +185,7 @@ const TableBody = ({
 
 
     return (<div
-    className={elClassNames.bodyInnerContent}>
+        className={elClassNames.bodyInnerContent}>
         <div className={elClassNames.bodySplitView}>
             <div className={elClassNames.bodySplitList}>
                 <ul className={elClassNames.itemUl}>

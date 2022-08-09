@@ -77,7 +77,7 @@ const TableFooter = ({
         for(let i = startPage; i <= endPage; i+=1){
             const isActive = i===meta?.currentPage;
             buttonPageDom.push(<button
-                className={cx(elClassNames.footerPaginateLi, {['is-active']: isActive})}
+                className={cx(elClassNames.footerPaginateLi, {'is-active': isActive})}
                 key={`table-page-button-${i}`}
                 type="button"
                 onClick={() => {

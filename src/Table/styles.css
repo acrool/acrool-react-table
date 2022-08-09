@@ -15,6 +15,9 @@
     --bg-active-color: #e6f7ff;
     --bg-hover-color: #f5f5f5;
     --border-color: #f0f0f0;
+
+    --row-margin: -5px;
+    --col-padding: 5px;
 }
 
 .bear-react-table__root.dark-theme {
@@ -186,7 +189,7 @@
 }
 
 .bear-react-table__item-ul{
-    margin: 0;
+    padding: 0 var(--col-padding);
 }
 
 .bear-react-table__item-li,
@@ -202,7 +205,7 @@
     justify-content: flex-start;
     border-bottom: 1px solid #585858;
 
-    /*padding: 0 -${config.padding}px;*/
+    margin: 0 var(--row-margin);
 }
 
 
@@ -216,11 +219,12 @@
 
     height: 100%;
     font-size: 14px;
-    padding: 0 10px;
     flex-wrap: nowrap;
 
     word-break: break-word;
     transition: color .1s;
+
+    padding: 0 var(--col-padding);
 }
 
 .bear-react-table__item-column[data-align="left"]{

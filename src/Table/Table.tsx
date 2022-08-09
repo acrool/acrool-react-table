@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 // Components
 import TableBody from './TableBody';
 import TableHeader from './TableHeader';
@@ -38,14 +38,14 @@ const Table = ({
     title,
     data= [],
     footerData= [],
-   paginateInfo = {
-       totalItems: 0,
-       totalPages: 1,
-   },
-   paginateMeta= {
-       currentPage: 1,
-       pageLimit: 8,
-   },
+    paginateInfo = {
+        totalItems: 0,
+        totalPages: 1,
+    },
+    paginateMeta= {
+        currentPage: 1,
+        pageLimit: 8,
+    },
     bodyHeight,
     mode = 'default',
     trColor,
@@ -60,7 +60,7 @@ const Table = ({
     onChangePage
 }: IProps) => {
 
-    const handleOnChangePage = useCallback((meta: IPaginateMeta) => {
+    const handleOnChangePage = (meta: IPaginateMeta) => {
 
         window.scrollTo(0, 70);
 
@@ -68,7 +68,7 @@ const Table = ({
             onChangePage(meta);
         }
 
-    }, [onChangePage]);
+    };
 
 
     return (
@@ -79,10 +79,10 @@ const Table = ({
                 <div className={elClassNames.content}>
                     {isVisibleHeader && (<TableHeader
                         title={title}
-                        isVisibleActions={isVisibleActions}
+                        // isVisibleActions={isVisibleActions}
                         // isEnableChecked={isEnableChecked && typeof hookForm !== 'undefined'}
-                        onCheckedAll={onCheckedAll}
-                        isNonLine={mode === 'nonLine'}
+                        // onCheckedAll={onCheckedAll}
+                        // isNonLine={mode === 'nonLine'}
 
                         sortField={sortField}
                         sortBy={sortBy}
