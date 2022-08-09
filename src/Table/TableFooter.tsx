@@ -2,7 +2,7 @@ import React, {useCallback, useMemo} from 'react';
 import {anyToNumber} from 'bear-jsutils/convert';
 import {isEmpty} from 'bear-jsutils/equal';
 import {formatCurrency} from 'bear-jsutils/number';
-import {AlignCenter} from './Icon';
+import {AlignCenterIcon} from './Icon';
 import elClassNames from './el-class-names';
 import cx from 'classnames';
 
@@ -37,16 +37,11 @@ const TableFooter = ({
     onChangePage,
 }: IProps) => {
 
-    const paginateInfo = useMemo(() => {
-
-        const end = meta.currentPage * meta.pageLimit;
-        return {
-            start: ((meta.currentPage-1) * meta?.pageLimit) + 1,
-            end: end > info.totalItems ? info.totalItems : end,
-        };
-
-
-    }, [meta]);
+    const end = meta.currentPage * meta.pageLimit;
+    const paginateInfo = {
+        start: ((meta.currentPage-1) * meta?.pageLimit) + 1,
+        end: end > info.totalItems ? info.totalItems : end,
+    };
 
 
     const handleConfirmPage = useCallback(() => {
@@ -96,7 +91,7 @@ const TableFooter = ({
 
 
 
-        return <>
+        return <React.Fragment>
             <button
                 className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
                 type="button"
@@ -124,24 +119,24 @@ const TableFooter = ({
                 disabled={totalPages <= 1}
                 onClick={handleConfirmPage}
             >
-                <AlignCenter/>
+                <AlignCenterIcon/>
             </button>
-        </>;
+        </React.Fragment>;
 
 
     };
 
 
     return (
-        <div className={elClassNames.footerInnerFooter}>
+        <div className={elClassNames.footerInner}>
             <div className={elClassNames.footerPaginateInfo}>
-                page
                 {/*{i18n('com.atom.table.showPage', {defaultMessage: 'show page..', params: {*/}
                 {/*    start: formatCurrency(paginateInfo.start),*/}
                 {/*    end: formatCurrency(paginateInfo.end),*/}
                 {/*    totalItem: formatCurrency(info.totalItems),*/}
                 {/*    totalPage: formatCurrency(info?.totalPages),*/}
                 {/*}})}*/}
+                Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item, Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
             </div>
 
             <div className={elClassNames.footerPageLimit}>

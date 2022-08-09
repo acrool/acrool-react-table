@@ -1,5 +1,4 @@
 import {ReactNode} from 'react';
-import {EColType} from 'bear-react-grid';
 
 export interface IData {
     id: number,
@@ -14,7 +13,7 @@ export type TFooterData = React.ReactElement;
 export interface ITitle {
     field: string,
     text: string|number|ReactNode,
-    col?: number|EColType|true,
+    col?: number|true,
     width?: number,
     titleAlign?: 'left'|'center'|'right',
     dataAlign?: 'left'|'center'|'right',
