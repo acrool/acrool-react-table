@@ -1,9 +1,9 @@
 import React from 'react';
 // Components
-import {IPaginateMeta, ITitle} from './types';
-import elClassNames from './el-class-names';
+import {IPaginateMeta, ITitle} from '../types';
+import elClassNames from '../el-class-names';
 // import {EColType} from 'bear-styled-grid';
-import {SortDownIcon, SortIcon, SortUpIcon} from './Icon';
+import {SortDownIcon, SortIcon, SortUpIcon} from '../Icon';
 
 
 interface IProps {

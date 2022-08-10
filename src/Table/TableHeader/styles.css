@@ -1,0 +1,21 @@
+/* =======================
+*        TableFooter
+* =======================*/
+.bear-react-table-header__sort-button{
+    color: #9aa0ac;
+    padding: 0;
+}
+
+.bear-react-table-header__inner{
+    color: #9aa0ac;
+
+    position: sticky;
+    top: 0;
+    background-color: #2b3035;
+    flex: 1 1 100%;
+    width: 100%;
+    z-index: 5;
+}
+
+
+

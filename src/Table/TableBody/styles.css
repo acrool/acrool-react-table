@@ -1,0 +1,61 @@
+/* =======================
+*        TableBody
+* =======================*/
+.bear-react-table-body__append-line {
+    height: 34px;
+    background-color: transparent;
+    font-size: 13px;
+    margin-bottom: 20px;
+    z-index: 0;
+}
+
+
+.bear-react-table-body__inner-content {
+    height: 100%;
+    margin-top: 0;
+    padding: 0;
+    flex: 1 1 100%;
+    width: 100%;
+}
+
+.bear-react-table-body__item-li {
+    border-collapse: collapse;
+    border-top: 1px solid #343a40;
+    border-bottom: none;
+    height: 57px;
+    opacity: 1;
+    z-index: 2;
+}
+.bear-react-table-body__item-li:first-child {
+    border-color: transparent;
+}
+.bear-react-table-body__item-li:nth-of-type(2n) {
+    background-color: rgba(0,0,0,.04);
+}
+
+
+.bear-react-table-body__item-li[data-disable=true] {
+    color: #6e6e6e;
+    background: #232323;
+}
+.bear-react-table-body__item-li[data-disable=true]:nth-of-type(2n) {
+    color: #939393;
+    background: #232323;
+}
+
+.bear-react-table-body__item-li[data-disable=true]:hover {
+    color: #fff;
+    background: rgb(45, 45, 45);
+}
+
+.bear-react-table-body__split-list {
+    height: 100%;
+    transition: all .5s ease;
+}
+
+.bear-react-table-body__split-view {
+    position: relative;
+    height: 100%;
+}
+
+

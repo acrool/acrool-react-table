@@ -4,9 +4,10 @@ import {isEmpty} from 'bear-jsutils/equal';
 // import {Icon, Button} from '@bearests/atom';
 // import {Checkbox} from '@bearests/form';
 // import {FormControl, HeaderLi, ItemColumn, ItemUl} from './Common';
-import {IData, TFooterData, ITitle} from './types';
-import elClassNames from './el-class-names';
+import {IData, TFooterData, ITitle} from '../types';
+import elClassNames from '../el-class-names';
 import cx from 'classnames';
+
 
 interface IProps {
     // hookFormControl?: Control<{ checkedId: { [key: string]: boolean; }; }>,

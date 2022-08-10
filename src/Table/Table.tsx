@@ -1,12 +1,16 @@
 import React from 'react';
 // Components
-import TableBody from './TableBody';
-import TableHeader from './TableHeader';
 import {IData, TFooterData, IPaginateMeta, ITitle, IPaginateInfo} from './types';
 import elClassNames from './el-class-names';
+import TableHeader from './TableHeader/TableHeader';
+import TableBody from './TableBody/TableBody';
+import TableFooter from './TableFooter/TableFooter';
 
 import './styles.css';
-import TableFooter from './TableFooter';
+import './TableHeader/styles.css';
+import './TableBody/styles.css';
+import './TableFooter/styles.css';
+
 
 interface IProps {
     isFetching?: boolean,
