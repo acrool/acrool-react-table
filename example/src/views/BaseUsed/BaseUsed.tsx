@@ -8,7 +8,7 @@ import {data, IPaginateData} from '../_components/data';
 const getPageData = (currentPage: number, pageLimit: number) => {
     const pageStart = (currentPage -1) * pageLimit;
     return data.slice(pageStart, pageStart + pageLimit );
-}
+};
 
 
 const BaseUsed = () => {

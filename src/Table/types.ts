@@ -3,13 +3,18 @@ import {ReactNode} from 'react';
 export type sizeUnit = 'px' | '%' | 'em';
 export type TCol = true|number|`${number}${sizeUnit}`;
 
-export interface IData {
+interface IField {
+    [field: string]: string | number | ReactNode
+}
+
+interface IBaseData {
     id: number,
-    [field: string]: any,
     appendData?: string|number|ReactNode,
     disabled?: boolean,
     onClickRow?: () => void,
 }
+
+export type IData = IBaseData & IField;
 
 export type TDataFooterContent = React.ReactElement;
 
@@ -42,9 +47,3 @@ export interface IPaginateMeta {
     pageLimit: number,
     sort?: {field: string, orderBy: 'DESC'|'ASC'}
 }
-
-
-// export interface ICardMeta extends IPaginateMeta {
-//     sortField?: string,
-//     sortBy?: 'DESC'|'ASC',
-// }
