@@ -1,29 +1,29 @@
 import React from 'react';
+import {isEmpty} from 'bear-jsutils/equal';
+
 // Components
-import TableBody from './TableBody';
-import TableHeader from './TableHeader';
-import {IData, TFooterData, IPaginateMeta, ITitle, IPaginateInfo} from './types';
+import {IData, TDataFooterContent, IPaginateMeta, ITitle, IPaginateInfo} from './types';
 import elClassNames from './el-class-names';
+import TableHeader from './TableHeader/TableHeader';
+import TableBody from './TableBody/TableBody';
+import TableFooter from './TableFooter/TableFooter';
+import config from './config';
 
 import './styles.css';
-import TableFooter from './TableFooter';
+import './TableHeader/styles.css';
+import './TableBody/styles.css';
+import './TableFooter/styles.css';
+
 
 interface IProps {
     isFetching?: boolean,
     title: ITitle[],
     data?: IData[],
+    dataFooterContent?: TDataFooterContent, // ex: total...
     paginateMeta?: IPaginateMeta,
     paginateInfo?: IPaginateInfo,
-    footerData?: TFooterData[]
-    bodyHeight?: number,
-    mode?: 'default'|'nonLine',
-    trColor?: string,
-    isEnableChecked?: boolean,
     isVisibleHeader?: boolean,
-    isVisibleActions?: boolean,
-    onEditRow?: (id: number, isOpen: boolean) => void;
-    onDeleteRow?: (id: number) => void;
-    onCheckedAll?: (isChecked: boolean) => void;
+
     sortField?: string,
     sortBy?: 'DESC'|'ASC',
     onChangePage?: (meta: IPaginateMeta) => void;
@@ -36,25 +36,18 @@ interface IProps {
 const Table = ({
     isFetching = false,
     title,
-    data= [],
-    footerData= [],
+    data = [],
+    dataFooterContent,
     paginateInfo = {
         totalItems: 0,
         totalPages: 1,
     },
-    paginateMeta= {
+    paginateMeta = {
         currentPage: 1,
-        pageLimit: 8,
+        pageLimit: config.pageLimit,
+        sort: {field: 'id', orderBy: 'DESC'},
     },
-    bodyHeight,
-    mode = 'default',
-    trColor,
-    isEnableChecked = true,
     isVisibleHeader = true,
-    isVisibleActions = false,
-    onEditRow,
-    onDeleteRow,
-    onCheckedAll= () => {},
     sortField,
     sortBy,
     onChangePage
@@ -71,6 +64,26 @@ const Table = ({
     };
 
 
+    /**
+     * 產生表格內容
+     */
+    const renderBody = () => {
+        if(isEmpty(data)){
+            return <div className={elClassNames.notData}>
+                {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}
+                <div className={elClassNames.notDataText}>Not Found</div>
+                <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
+            </div>;
+        }
+
+        return <TableBody
+            title={title}
+            data={data}
+            dataFooterContent={dataFooterContent}
+        />;
+    };
+
+
     return (
         <div className={elClassNames.root}>
 
@@ -79,36 +92,11 @@ const Table = ({
                 <div className={elClassNames.content}>
                     {isVisibleHeader && (<TableHeader
                         title={title}
-                        // isVisibleActions={isVisibleActions}
-                        // isEnableChecked={isEnableChecked && typeof hookForm !== 'undefined'}
-                        // onCheckedAll={onCheckedAll}
-                        // isNonLine={mode === 'nonLine'}
-
-                        sortField={sortField}
-                        sortBy={sortBy}
-                        onChangePage={onChangePage}
+                        onChangeSortField={onChangePage}
+                        paginateMeta={paginateMeta}
                     />)}
 
-                    {/* 表格內容 */}
-                    {data.length > 0 ? (
-                        <TableBody
-                            // hookFormControl={hookForm?.control}
-                            isVisibleActions={isVisibleActions}
-                            title={title}
-                            data={data}
-                            footerData={footerData}
-                            height={bodyHeight}
-                            trColor={trColor}
-                            isEnableChecked={isEnableChecked}
-                            onDeleteRow={onDeleteRow}
-                            onEditRow={onEditRow}
-                            isNonLine={mode === 'nonLine'}
-                        />
-                    ): (<div className={elClassNames.notData}>
-                        {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}
-                        <div className={elClassNames.notDataText}>Not Found</div>
-                        <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
-                    </div>)}
+                    {renderBody()}
                 </div>
 
                 <div className={elClassNames.loadingBox} data-visible={isFetching}>
