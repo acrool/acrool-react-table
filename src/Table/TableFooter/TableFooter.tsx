@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback} from 'react';
 import {anyToNumber} from 'bear-jsutils/convert';
 import {isEmpty} from 'bear-jsutils/equal';
 import {formatCurrency} from 'bear-jsutils/number';

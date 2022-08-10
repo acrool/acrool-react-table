@@ -1,5 +1,8 @@
 import {ReactNode} from 'react';
 
+export type sizeUnit = 'px' | '%' | 'em';
+export type TCol = true|number|`${number}${sizeUnit}`;
+
 export interface IData {
     id: number,
     [field: string]: any,
@@ -8,19 +11,18 @@ export interface IData {
     onClickRow?: () => void,
 }
 
-export type TFooterData = React.ReactElement;
+export type TDataFooterContent = React.ReactElement;
 
 export interface ITitle {
+    className?: string,
     field: string,
     text: string|number|ReactNode,
-    col?: number|true,
-    width?: number,
+    col: TCol,
     titleAlign?: 'left'|'center'|'right',
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
-    className?: string,
-    isSort?: boolean,
-    sortBy?: 'DESC'|'ASC',
+    isEnableSort?: boolean,
+    // sortBy?: 'DESC'|'ASC',
 }
 
 
@@ -39,12 +41,11 @@ export interface IPaginateInfo {
 export interface IPaginateMeta {
     currentPage: number,
     pageLimit: number,
-    sortField?: string,
-    sortBy?: 'DESC'|'ASC',
+    sort?: {field: string, orderBy: 'DESC'|'ASC'}
 }
 
 
-export interface ICardMeta extends IPaginateMeta {
-    sortField?: string,
-    sortBy?: 'DESC'|'ASC',
-}
+// export interface ICardMeta extends IPaginateMeta {
+//     sortField?: string,
+//     sortBy?: 'DESC'|'ASC',
+// }

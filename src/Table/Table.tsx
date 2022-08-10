@@ -1,10 +1,11 @@
 import React from 'react';
 // Components
-import {IData, TFooterData, IPaginateMeta, ITitle, IPaginateInfo} from './types';
+import {IData, TDataFooterContent, IPaginateMeta, ITitle, IPaginateInfo} from './types';
 import elClassNames from './el-class-names';
 import TableHeader from './TableHeader/TableHeader';
 import TableBody from './TableBody/TableBody';
 import TableFooter from './TableFooter/TableFooter';
+import config from './config';
 
 import './styles.css';
 import './TableHeader/styles.css';
@@ -16,18 +17,11 @@ interface IProps {
     isFetching?: boolean,
     title: ITitle[],
     data?: IData[],
+    dataFooterContent?: TDataFooterContent, // ex: total...
     paginateMeta?: IPaginateMeta,
     paginateInfo?: IPaginateInfo,
-    footerData?: TFooterData[]
-    bodyHeight?: number,
-    mode?: 'default'|'nonLine',
-    trColor?: string,
-    isEnableChecked?: boolean,
     isVisibleHeader?: boolean,
-    isVisibleActions?: boolean,
-    onEditRow?: (id: number, isOpen: boolean) => void;
-    onDeleteRow?: (id: number) => void;
-    onCheckedAll?: (isChecked: boolean) => void;
+
     sortField?: string,
     sortBy?: 'DESC'|'ASC',
     onChangePage?: (meta: IPaginateMeta) => void;
@@ -40,25 +34,18 @@ interface IProps {
 const Table = ({
     isFetching = false,
     title,
-    data= [],
-    footerData= [],
+    data = [],
+    dataFooterContent,
     paginateInfo = {
         totalItems: 0,
         totalPages: 1,
     },
-    paginateMeta= {
+    paginateMeta = {
         currentPage: 1,
-        pageLimit: 8,
+        pageLimit: config.pageLimit,
+        sort: {field: 'id', orderBy: 'DESC'},
     },
-    bodyHeight,
-    mode = 'default',
-    trColor,
-    isEnableChecked = true,
     isVisibleHeader = true,
-    isVisibleActions = false,
-    onEditRow,
-    onDeleteRow,
-    onCheckedAll= () => {},
     sortField,
     sortBy,
     onChangePage
@@ -88,25 +75,18 @@ const Table = ({
                         // onCheckedAll={onCheckedAll}
                         // isNonLine={mode === 'nonLine'}
 
-                        sortField={sortField}
-                        sortBy={sortBy}
-                        onChangePage={onChangePage}
+                        // sortField={sortField}
+                        // sortBy={sortBy}
+                        onChangeSortField={onChangePage}
+                        paginateMeta={paginateMeta}
                     />)}
 
                     {/* 表格內容 */}
                     {data.length > 0 ? (
                         <TableBody
-                            // hookFormControl={hookForm?.control}
-                            isVisibleActions={isVisibleActions}
                             title={title}
                             data={data}
-                            footerData={footerData}
-                            height={bodyHeight}
-                            trColor={trColor}
-                            isEnableChecked={isEnableChecked}
-                            onDeleteRow={onDeleteRow}
-                            onEditRow={onEditRow}
-                            isNonLine={mode === 'nonLine'}
+                            dataFooterContent={dataFooterContent}
                         />
                     ): (<div className={elClassNames.notData}>
                         {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}

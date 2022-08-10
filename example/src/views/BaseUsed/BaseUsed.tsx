@@ -78,6 +78,7 @@ const BaseUsed = () => {
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
+        sort: {field: 'name', orderBy: 'DESC'},
     });
     const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
         totalItems: dataTotal,
@@ -119,14 +120,16 @@ const BaseUsed = () => {
                     // hookForm={tableForm}
                     // isEnableChecked={isEnableChecked}
                     // isVisibleActions={isVisibleActions}
+                    // sortField="name"
+                    // sortBy="ASC"
                     title={[
-                        {text: '#', field: 'avatar', width: 60, titleAlign: 'center', dataAlign: 'center'},
-                        {text: 'Name',     field: 'name' , col: true},
-                        {text: 'Role',  field: 'role'        , width: 120  },
-                        {text: 'Crated',   field: 'createdAt',width: 110},
-                        {text: 'Joined',      field: 'isApplyJoin', dataAlign: 'center',width: 80},
-                        {text: 'Status',      field: 'isEnable', dataAlign: 'center',width: 80},
-                        {text: 'Actions',      field: 'actions', dataAlign: 'center',width: 80},
+                        {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
+                        {text: 'Name',       field: 'name',        col: true, isEnableSort: true},
+                        {text: 'Role',       field: 'role',        col: 120},
+                        {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
+                        {text: 'Joined',     field: 'isApplyJoin', col: 80, dataAlign: 'center'},
+                        {text: 'Status',     field: 'isEnable',    col: 80, dataAlign: 'center'},
+                        {text: 'Actions',    field: 'actions',     col: 80, dataAlign: 'center'},
                     ]}
                     data={paginateData.map(row => {
                         const createdAt = dayjs(row.createdAt);
@@ -147,6 +150,7 @@ const BaseUsed = () => {
                             </div>,
                         };
                     })}
+                    dataFooterContent={<div>join member is {paginateData.length}</div>}
                     // footerData={tableFooterData}
                     // onEditRow={(id) => onEditRow ? onEditRow(id) : navigate([baseRoutePath, id].join('/'))}
                     // onDeleteRow={isEnableDelete ? handleDeleteRow : undefined}

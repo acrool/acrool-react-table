@@ -151,14 +151,14 @@ const CheckedUsed = () => {
                     // isEnableChecked={isEnableChecked}
                     // isVisibleActions={isVisibleActions}
                     title={[
-                        {text: <Checkbox checked={isCheckedAll} onChange={handleCheckedAllId}/>, field: 'checked', width: 40, titleAlign: 'center', dataAlign: 'center'},
-                        {text: '#', field: 'avatar', width: 60, titleAlign: 'center', dataAlign: 'center'},
+                        {text: <Checkbox checked={isCheckedAll} onChange={handleCheckedAllId}/>, field: 'checked', col: '40px', titleAlign: 'center', dataAlign: 'center'},
+                        {text: '#', field: 'avatar', col: '60px', titleAlign: 'center', dataAlign: 'center'},
                         {text: 'Name',     field: 'name' , col: true},
-                        {text: 'Role',  field: 'role'        , width: 120  },
-                        {text: 'Crated',   field: 'createdAt',width: 110},
-                        {text: 'Joined',      field: 'isApplyJoin', dataAlign: 'center',width: 80},
-                        {text: 'Status',      field: 'isEnable', dataAlign: 'center',width: 80},
-                        {text: 'Actions',      field: 'actions', dataAlign: 'center',width: 80},
+                        {text: 'Role',  field: 'role'        , col: '120px'  },
+                        {text: 'Crated',   field: 'createdAt', col: '110px'},
+                        {text: 'Joined',      field: 'isApplyJoin', dataAlign: 'center', col: '80px'},
+                        {text: 'Status',      field: 'isEnable', dataAlign: 'center', col: '80px'},
+                        {text: 'Actions',      field: 'actions', dataAlign: 'center', col: '80px'},
                     ]}
                     data={paginateData.map(row => {
                         const createdAt = dayjs(row.createdAt);

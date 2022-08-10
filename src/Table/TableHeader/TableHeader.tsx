@@ -1,41 +1,29 @@
 import React from 'react';
+
 // Components
 import {IPaginateMeta, ITitle} from '../types';
 import elClassNames from '../el-class-names';
-// import {EColType} from 'bear-styled-grid';
 import {SortDownIcon, SortIcon, SortUpIcon} from '../Icon';
+import {getCol} from '../utils';
 
 
 interface IProps {
     title: ITitle[],
-    isNonLine?: boolean,
-    isEnableChecked?: boolean,
-    isVisibleActions?: boolean;
-    // onCheckedAll: (isChecked: boolean) => void;
-    sortField?: string,
-    sortBy?: 'DESC'|'ASC',
-    onChangePage?: (meta: IPaginateMeta) => void;
+    onChangeSortField?: (meta: IPaginateMeta) => void;
+    paginateMeta: IPaginateMeta,
 }
 
 
 /**
- * Table
+ * Table Header
  */
 const TableHeader = ({
     title= [],
-    sortField,
-    sortBy = 'DESC',
-    onChangePage = () => {}
+    paginateMeta,
+    onChangeSortField = () => {},
 }: IProps) => {
 
-    // const {i18n} = useLocale();
-    // const {control} = useForm<{
-    //     checkedAll: boolean
-    // }>();
-
-
     const renderTitle = () => {
-        console.log('xxxx render');
         return title.map(titleRow => {
             return (
                 <div
@@ -43,28 +31,22 @@ const TableHeader = ({
                     key={`columnTitle_${titleRow.field}`}
                     // data-col={titleRow.col || EColType.auto}
                     data-align={titleRow.titleAlign}
-                    style={titleRow.col === true ? {
-                        flex: 1,
-                    }:{
-                        width: titleRow.width,
-                        flex: `0 0 ${titleRow.width}px`
-                    }}
+                    style={getCol(titleRow.col)}
                 >
-                    {titleRow.isSort ? (
+                    {titleRow.isEnableSort ? (
                         <button
                             className={elClassNames.headerSortButton}
                             onClick={() => {
-                            // onChangePage(1, undefined, titleRow.field, sortBy === 'DESC' ? 'ASC':'DESC')
-                                onChangePage({
+                                onChangeSortField({
+                                    ...paginateMeta,
                                     currentPage: 1,
-                                    pageLimit: 8,
-                                    sortBy: sortBy === 'DESC' ? 'ASC':'DESC',
+                                    sort: {field: titleRow.field, orderBy: (paginateMeta.sort?.orderBy === 'DESC' && paginateMeta.sort?.field === titleRow.field) ? 'ASC':'DESC'},
                                 });
                             }}>
                             {titleRow.text}
 
-                            {sortField === titleRow.field ?
-                                sortBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
+                            {paginateMeta.sort?.field === titleRow.field ?
+                                paginateMeta.sort?.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
                                 <SortIcon/>
                             }
 
@@ -74,137 +56,16 @@ const TableHeader = ({
             );
         });
 
-
     };
 
 
-    return (<React.Fragment>
-
-        <div
-            className={elClassNames.headerInner}
-            // isNonLine={isNonLine}
-        >
-            <div className={elClassNames.itemUl}>
-                <li className={elClassNames.itemLi}>
-                    {/*/!* Checkbox 選取功能 *!/*/}
-                    {/*{isEnableChecked && (*/}
-                    {/*    <HeaderColumn */}
-                    {/*        style={{*/}
-                    {/*        width: 48,*/}
-                    {/*        flex: '0 0 48px'*/}
-                    {/*    }}>*/}
-                    {/*        <FormControl>*/}
-                    {/*            <Controller*/}
-                    {/*                name="checkedAll"*/}
-                    {/*                control={control}*/}
-                    {/*                render={({field}) => {*/}
-                    {/*                    // @ts-ignore*/}
-                    {/*                    return <Checkbox*/}
-                    {/*                        {...field}*/}
-                    {/*                        checked={field.value}*/}
-                    {/*                        onChange={isChecked =>{*/}
-                    {/*                            field.onChange(isChecked);*/}
-                    {/*                            onCheckedAll(isChecked);*/}
-                    {/*                        }}/>;*/}
-                    {/*                }}*/}
-                    {/*            />*/}
-                    {/*        </FormControl>*/}
-                    {/*    </HeaderColumn>*/}
-                    {/*)}*/}
-
-                    {renderTitle()}
-
-                    {/*{isVisibleActions && (*/}
-                    {/*    <HeaderColumn col style={{width: 100, flex: '0 0 100px'}}>*/}
-                    {/*        {i18n('com.atom.table.field.action', {defaultMessage: 'Action'})}*/}
-                    {/*    </HeaderColumn>*/}
-                    {/*)}*/}
-                </li>
-            </div>
+    return <div className={elClassNames.headerInner}>
+        <div className={elClassNames.itemUl}>
+            <li className={elClassNames.itemLi}>{renderTitle()}</li>
         </div>
-    </React.Fragment>);
+    </div>;
 };
 
 export default TableHeader;
-
-
-//
-// const SortButton = styled(Button)`
-//   color: #9aa0ac;
-//   padding: 0;
-// `;
-//
-// const InnerHeader = styled.div<{
-//     isNonLine ?: boolean,
-// }>`
-//     color: #9aa0ac;
-//
-//     position: sticky;
-//     top: 0;
-//     background-color: #2b3035;
-//     flex: 1 1 100%;
-//     width: 100%;
-//     z-index: 5;
-//
-//
-//     ${props => props.isNonLine && css`
-//         margin-bottom: 10px;
-//     `}
-// `;
-//
-//
-//
-// export const HeaderColumn = styled(Col)<{
-//     align?: 'left'|'center'|'right'
-//     vertical?: 'top'|'center'|'bottom'
-// }>`
-//    text-transform: uppercase;
-//     user-select: none;
-//
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: flex-start;
-//
-//     height: 100%;
-//     font-size: 14px;
-//     padding: 0 10px;
-//     flex-wrap: nowrap;
-//
-//     word-break: break-word;
-//     transition: color .1s;
-//     //overflow: hidden;
-//     //*{
-//     //  user-select: text;
-//     //}
-//
-//     ${props => props.align === 'right' && css`
-//         justify-content: flex-end;
-//
-//     `}
-//     ${props => props.align === 'left' && css`
-//         justify-content: flex-start;
-//
-//     `}
-//     ${props => props.align === 'center' && css`
-//         justify-content: center;
-//
-//     `}
-//
-//     ${props => props.vertical === 'top' && css`
-//         align-items: flex-start;
-//
-//     `}
-//     ${props => props.vertical === 'bottom' && css`
-//         align-items: flex-end;
-//
-//     `}
-//     ${props => props.vertical === 'center' && css`
-//         align-items: center;
-//
-//     `}
-// `;
-//
-
 
 

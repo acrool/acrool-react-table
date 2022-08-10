@@ -18,6 +18,8 @@
 
     --row-margin: -5px;
     --col-padding: 5px;
+    --body-li-height: 57px;
+    --header-li-height: 37px;
 }
 
 .bear-react-table__root.dark-theme {
@@ -192,9 +194,12 @@
     padding: 0 var(--col-padding);
 }
 
+.bear-react-table__item-li{
+    height: var(--header-li-height);
+}
+
 .bear-react-table__item-li,
 .bear-react-table-body__item-li{
-    height: 37px;
     list-style: none;
     color: #9aa0ac;
     font-size: 14px;

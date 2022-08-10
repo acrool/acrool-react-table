@@ -1,26 +1,16 @@
-import React, {Fragment, useMemo} from 'react';
-import {isEmpty} from 'bear-jsutils/equal';
-// Components
-// import {Icon, Button} from '@bearests/atom';
-// import {Checkbox} from '@bearests/form';
-// import {FormControl, HeaderLi, ItemColumn, ItemUl} from './Common';
-import {IData, TFooterData, ITitle} from '../types';
-import elClassNames from '../el-class-names';
+import React, {Fragment} from 'react';
 import cx from 'classnames';
+
+// Components
+import {IData, TDataFooterContent, ITitle} from '../types';
+import elClassNames from '../el-class-names';
+import {getCol} from '../utils';
 
 
 interface IProps {
-    // hookFormControl?: Control<{ checkedId: { [key: string]: boolean; }; }>,
     title: ITitle[],
     data: IData[],
-    footerData?: TFooterData[],
-    isEnableChecked?: boolean,
-    isVisibleActions: boolean;
-    height?: number;
-    isNonLine?: boolean;
-    trColor?: string;
-    onEditRow?: (id: number, isOpen: boolean) => void;
-    onDeleteRow?: (id: number) => void;
+    dataFooterContent?: TDataFooterContent,
 }
 
 
@@ -28,21 +18,16 @@ interface IProps {
  * Table
  */
 const TableBody = ({
-    // hookFormControl,
-    title= [],
-    data= [],
-    footerData= [],
-    isEnableChecked = true,
-    onEditRow,
-    onDeleteRow,
-    isVisibleActions,
-    height = 57,
-    isNonLine = false,
-    trColor,
+    title = [],
+    data = [],
+    dataFooterContent,
 }: IProps) => {
 
 
-    const bodyData = () => {
+    /**
+     * 產生表格內容
+     */
+    const renderBodyData = () => {
 
         return data.map(dataRow => {
             if(typeof dataRow?.id === 'undefined'){
@@ -55,86 +40,22 @@ const TableBody = ({
             >
                 <li
                     className={elClassNames.bodyItemLi}
-                    // noGutters
-                    // height={height}
-                    // isNonLine={isNonLine}
-                    // trColor={trColor}
                     // isAppendData={!isEmpty(dataRow.appendData)}
                     onClick={dataRow.onClickRow}
-                    // disabled={dataRow.disabled}
+                    data-disabled={dataRow.disabled}
                 >
-
-                    {/* Checkbox 選取功能 */}
-                    {/*{(isEnableChecked && hookFormControl) && (*/}
-                    {/*    <ItemColumn style={{*/}
-                    {/*        width: 48,*/}
-                    {/*        flex: '0 0 48px'*/}
-                    {/*    }}>*/}
-                    {/*        <FormControl>*/}
-                    {/*            <Controller*/}
-                    {/*                control={hookFormControl}*/}
-                    {/*                name={fieldKey}*/}
-                    {/*                render={({field}) => {*/}
-                    {/*                    return <Checkbox*/}
-                    {/*                        {...field}*/}
-                    {/*                        checked={field.value}*/}
-                    {/*                        value={String(dataRow.id)}*/}
-                    {/*                    />;*/}
-                    {/*                }}*/}
-                    {/*            />*/}
-                    {/*        </FormControl>*/}
-                    {/*    </ItemColumn>*/}
-                    {/*)}*/}
-
                     {/* 各欄位值 */}
                     {title.map(titleRow => {
-
                         return (<div
                             key={`tbodyTr_${dataRow.id}_${titleRow.field}`}
                             className={cx(elClassNames.itemColumn, titleRow.className)}
-                            // col={titleRow.col ?? EColType.auto}
                             data-align={titleRow.dataAlign}
                             data-vertical={titleRow.dataVertical}
-                            style={titleRow.col === true ? {
-                                flex: 1,
-                            }:{
-                                width: titleRow.width,
-                                flex: `0 0 ${titleRow.width}px`
-                            }}
+                            style={getCol(titleRow.col)}
                         >
                             {dataRow[titleRow.field] ?? ''}
                         </div>);
                     })}
-
-                    {/*{isVisibleActions && (*/}
-                    {/*    <ItemColumn*/}
-                    {/*        align="right"*/}
-                    {/*        style={{*/}
-                    {/*            width: 100,*/}
-                    {/*            flex: '0 0 100px'*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        <ActionGroup>*/}
-                    {/*            /!*編輯*!/*/}
-                    {/*            {onEditRow && (*/}
-                    {/*                <EditButton onClick={(event: any) => {*/}
-                    {/*                    // metaKey: mac, ctrlKey: windows*/}
-                    {/*                    onEditRow(dataRow.id, event.metaKey || event.ctrlKey);*/}
-                    {/*                }}>*/}
-                    {/*                    <Icon code="edit" color="#6435c9" size={22}/>*/}
-                    {/*                </EditButton>*/}
-                    {/*            )}*/}
-
-                    {/*            /!*刪除*!/*/}
-                    {/*            {onDeleteRow && (*/}
-                    {/*                <DeleteButton onClick={() => onDeleteRow(dataRow.id)}>*/}
-                    {/*                    <Icon code="trash" color="#dc3545" size={22}/>*/}
-                    {/*                </DeleteButton>*/}
-                    {/*            )}*/}
-                    {/*        </ActionGroup>*/}
-
-                    {/*    </ItemColumn>)*/}
-                    {/*}*/}
                 </li>
 
                 {/*{dataRow.appendData && (*/}
@@ -150,37 +71,18 @@ const TableBody = ({
     };
 
 
+    /**
+     * 產生表格底部顯示
+     * ex: 額外顯示資訊 例如統計
+     */
+    const renderTableFooterData = () => {
 
-    const tableFooterData = useMemo(() => {
-
-        return footerData.map((dataRow, index) => {
-            return ( <Fragment
-                key={`tbodyTrFooter_${index}`}
-            >
-                <li
-                    className={elClassNames.itemLi}
-                    // height={30}
-                    // isNonLine={true}
-                    // isAppendData={false}
-                    // trColor={trColor}
-                >
-                    <div
-                        className={elClassNames.itemColumn}
-                        data-align="right"
-                        style={{
-                            width: '100%',
-                            flex: '0 0 100%'
-                        }}
-                    >
-                        {dataRow}
-                    </div>
-                </li>
-
-            </Fragment>);
-        });
+        return <li className={elClassNames.bodyItemLi}>
+            <div className={elClassNames.itemColumn} style={getCol(true)}>{dataFooterContent}</div>
+        </li>
 
 
-    }, [data]);
+    };
 
 
 
@@ -190,8 +92,8 @@ const TableBody = ({
         <div className={elClassNames.bodySplitView}>
             <div className={elClassNames.bodySplitList}>
                 <ul className={elClassNames.itemUl}>
-                    {bodyData()}
-                    {tableFooterData}
+                    {renderBodyData()}
+                    {renderTableFooterData()}
                 </ul>
             </div>
         </div>
