@@ -2,22 +2,18 @@ import React, {useCallback, useState} from 'react';
 import {Table, IPaginateMeta, IPaginateInfo} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
-import {removeByIndex} from 'bear-jsutils/array';
-
-// Components
-import Checkbox from 'views/_components/Checkbox';
 import {data, dataTotal, IPaginateData} from '../_components/data';
 
 
-const CheckedUsed = () => {
+const ExpandUsed = () => {
 
     const [isFetching, setIsFetching] = useState(false);
-    const [isCheckedAll, setIsCheckAll] = useState<boolean>(false);
-    const [checkedIds, setCheckedIds] = useState<number[]>([]);
+    const [expandId, setExpandId] = useState<number|undefined>();
     const [paginateData, setPaginateData] = useState<IPaginateData[]>(data[0]);
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
+        sort: {field: 'name', orderBy: 'DESC'},
     });
     const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
         totalItems: dataTotal,
@@ -25,34 +21,6 @@ const CheckedUsed = () => {
     });
 
 
-    /**
-     * 全選控制
-     */
-    const handleCheckedAllId = useCallback((isChecked: boolean) => {
-        setIsCheckAll(isChecked);
-        setCheckedIds(currIds => {
-            if(isChecked){
-                return paginateData.map(row => row.id);
-            }
-            return [];
-        });
-
-    }, [paginateData]);
-
-
-    /**
-     * 選取單一項目
-     */
-    const handleCheckedId = (isChecked: boolean, id?: string|number) => {
-        const myId = Number(id);
-        setCheckedIds(currIds => {
-            if(!isChecked && currIds.includes(myId)) {
-                const removeId = currIds.findIndex(rowId => rowId === myId);
-                return removeByIndex(currIds, removeId);
-            }
-            return [...currIds, myId];
-        });
-    };
 
     /**
      * 查詢分頁
@@ -61,7 +29,6 @@ const CheckedUsed = () => {
         // 取得查詢項目
         setIsFetching(true);
         setPaginateMeta(meta);
-        setCheckedIds([]);
 
         setTimeout(() => {
             setPaginateData(data[meta.currentPage]);
@@ -71,34 +38,38 @@ const CheckedUsed = () => {
 
 
 
-    const handleEdit = (id: number) => {
-        console.log('edit id', id);
+    const handleSetExpandId = (id: number) => {
+        if(id === expandId){
+            setExpandId(undefined);
+        }else{
+            setExpandId(id);
+        }
     };
+
 
     return (
         <div>
             <Button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</Button>
             <div className="d-flex flex-row my-2">
 
-
                 <Table
                     isFetching={isFetching}
                     title={[
-                        {text: <Checkbox checked={isCheckedAll} onChange={handleCheckedAllId}/>, field: 'checked', col: 40, titleAlign: 'center', dataAlign: 'center'},
-                        {text: '#', field: 'avatar', col: 60, titleAlign: 'center', dataAlign: 'center'},
-                        {text: 'Name',     field: 'name' , col: true},
-                        {text: 'Role',  field: 'role'        , col: 120},
-                        {text: 'Crated',   field: 'createdAt', col: 110},
-                        {text: 'Joined',      field: 'isApplyJoin', col: 80},
+                        {text: 'expand',          field: 'expand',      col: 60, titleAlign: 'center', dataAlign: 'center'},
+                        {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
+                        {text: 'Name',       field: 'name',        col: true, isEnableSort: true},
+                        {text: 'Role',       field: 'role',        col: 120},
+                        {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
+                        {text: 'Joined',     field: 'isApplyJoin', col: 80},
                     ]}
                     data={paginateData.map(row => {
                         const createdAt = dayjs(row.createdAt);
 
                         return {
                             ...row,
-                            checked: <Checkbox value={row.id} checked={checkedIds.includes(row.id)} onChange={handleCheckedId}/>,
                             id: row.id,
                             disabled: !row.isJoined,
+                            expand: <Button onClick={() => handleSetExpandId(row.id)}>{expandId === row.id ? 'close':'open'}</Button>,
                             avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
                             name: <div className="d-flex flex-column">
                                 <div>{row.name}</div>
@@ -109,11 +80,10 @@ const CheckedUsed = () => {
                                 {createdAt.format('YYYY-MM-DD')}<br/>
                                 {createdAt.format('HH:mm:ss')}
                             </div>,
-                            actions: <div style={{fontSize: 12}}>
-                                <Button color="primary" onClick={() => handleEdit(row.id)}>Edit</Button>
-                            </div>,
+                            appendData: expandId === row.id ? `this is appendData ${row.id}`: undefined,
                         };
                     })}
+                    dataFooterContent={<div>join member is {paginateData.length}</div>}
                     onChangePage={handleFetchPaginate}
                     paginateMeta={paginateMeta}
                     paginateInfo={paginateInfo}
@@ -129,8 +99,7 @@ const CheckedUsed = () => {
 
 };
 
-export default CheckedUsed;
-
+export default ExpandUsed;
 
 
 

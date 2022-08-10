@@ -1,4 +1,6 @@
 import React from 'react';
+import {isEmpty} from 'bear-jsutils/equal';
+
 // Components
 import {IData, TDataFooterContent, IPaginateMeta, ITitle, IPaginateInfo} from './types';
 import elClassNames from './el-class-names';
@@ -62,6 +64,26 @@ const Table = ({
     };
 
 
+    /**
+     * 產生表格內容
+     */
+    const renderBody = () => {
+        if(isEmpty(data)){
+            return <div className={elClassNames.notData}>
+                {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}
+                <div className={elClassNames.notDataText}>Not Found</div>
+                <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
+            </div>;
+        }
+
+        return <TableBody
+            title={title}
+            data={data}
+            dataFooterContent={dataFooterContent}
+        />;
+    };
+
+
     return (
         <div className={elClassNames.root}>
 
@@ -70,29 +92,11 @@ const Table = ({
                 <div className={elClassNames.content}>
                     {isVisibleHeader && (<TableHeader
                         title={title}
-                        // isVisibleActions={isVisibleActions}
-                        // isEnableChecked={isEnableChecked && typeof hookForm !== 'undefined'}
-                        // onCheckedAll={onCheckedAll}
-                        // isNonLine={mode === 'nonLine'}
-
-                        // sortField={sortField}
-                        // sortBy={sortBy}
                         onChangeSortField={onChangePage}
                         paginateMeta={paginateMeta}
                     />)}
 
-                    {/* 表格內容 */}
-                    {data.length > 0 ? (
-                        <TableBody
-                            title={title}
-                            data={data}
-                            dataFooterContent={dataFooterContent}
-                        />
-                    ): (<div className={elClassNames.notData}>
-                        {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}
-                        <div className={elClassNames.notDataText}>Not Found</div>
-                        <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
-                    </div>)}
+                    {renderBody()}
                 </div>
 
                 <div className={elClassNames.loadingBox} data-visible={isFetching}>

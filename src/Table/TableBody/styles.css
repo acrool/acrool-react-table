@@ -2,11 +2,8 @@
 *        TableBody
 * =======================*/
 .bear-react-table-body__append-line {
-    height: 34px;
-    background-color: transparent;
     font-size: 13px;
-    margin-bottom: 20px;
-    z-index: 0;
+    padding-bottom: 8px;
 }
 
 

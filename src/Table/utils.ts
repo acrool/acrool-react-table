@@ -10,5 +10,5 @@ export const getCol = (col: TCol) => {
     return {
         width: width,
         flex: `0 0 ${width}`
-    }
+    };
 };

@@ -6,7 +6,7 @@ export type TCol = true|number|`${number}${sizeUnit}`;
 export interface IData {
     id: number,
     [field: string]: any,
-    appendData?: any,
+    appendData?: string|number|ReactNode,
     disabled?: boolean,
     onClickRow?: () => void,
 }
@@ -22,7 +22,6 @@ export interface ITitle {
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
     isEnableSort?: boolean,
-    // sortBy?: 'DESC'|'ASC',
 }
 
 
