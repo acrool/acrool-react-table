@@ -29,7 +29,6 @@ const TableHeader = ({
                 <div
                     className={elClassNames.itemColumn}
                     key={`columnTitle_${titleRow.field}`}
-                    // data-col={titleRow.col || EColType.auto}
                     data-align={titleRow.titleAlign}
                     style={getCol(titleRow.col)}
                 >

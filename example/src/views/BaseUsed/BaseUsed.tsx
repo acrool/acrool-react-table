@@ -71,7 +71,6 @@ const BaseUsed = () => {
                             </div>,
                         };
                     })}
-                    dataFooterContent={<div>join member is {paginateData.length}</div>}
                     onChangePage={handleFetchPaginate}
                     paginateMeta={paginateMeta}
                     paginateInfo={paginateInfo}

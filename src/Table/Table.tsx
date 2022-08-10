@@ -23,9 +23,6 @@ interface IProps {
     paginateMeta?: IPaginateMeta,
     paginateInfo?: IPaginateInfo,
     isVisibleHeader?: boolean,
-
-    sortField?: string,
-    sortBy?: 'DESC'|'ASC',
     onChangePage?: (meta: IPaginateMeta) => void;
 }
 
@@ -48,13 +45,10 @@ const Table = ({
         sort: {field: 'id', orderBy: 'DESC'},
     },
     isVisibleHeader = true,
-    sortField,
-    sortBy,
     onChangePage
 }: IProps) => {
 
     const handleOnChangePage = (meta: IPaginateMeta) => {
-
         window.scrollTo(0, 70);
 
         if(onChangePage){
@@ -86,9 +80,7 @@ const Table = ({
 
     return (
         <div className={elClassNames.root}>
-
             <div className={elClassNames.container}>
-
                 <div className={elClassNames.content}>
                     {isVisibleHeader && (<TableHeader
                         title={title}

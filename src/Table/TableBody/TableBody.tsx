@@ -83,17 +83,16 @@ const TableBody = ({
 
 
 
-    return (<div
-        className={elClassNames.bodyInnerContent}>
+    return <div className={elClassNames.bodyInnerContent}>
         <div className={elClassNames.bodySplitView}>
             <div className={elClassNames.bodySplitList}>
                 <ul className={elClassNames.itemUl}>
                     {renderBodyData()}
-                    {renderTableFooterData()}
+                    {dataFooterContent && renderTableFooterData()}
                 </ul>
             </div>
         </div>
-    </div>);
+    </div>;
 };
 
 export default TableBody;
