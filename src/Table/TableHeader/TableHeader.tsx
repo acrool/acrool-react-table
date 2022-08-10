@@ -35,6 +35,7 @@ const TableHeader = ({
                     {titleRow.isEnableSort ? (
                         <button
                             className={elClassNames.headerSortButton}
+                            data-active={paginateMeta.sort?.field === titleRow.field}
                             onClick={() => {
                                 onChangeSortField({
                                     ...paginateMeta,

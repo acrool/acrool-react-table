@@ -5,6 +5,14 @@
     color: #9aa0ac;
     padding: 0;
 }
+.bear-react-table-header__sort-button[data-active=true]{
+    color: #fff;
+}
+.bear-react-table-header__sort-button svg{
+    color: inherit;
+    margin-left: 5px;
+    fill: currentColor;
+}
 
 .bear-react-table-header__inner{
     color: #9aa0ac;
