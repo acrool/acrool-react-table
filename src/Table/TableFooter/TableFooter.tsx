@@ -6,21 +6,19 @@ import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
 import cx from 'classnames';
 import {IPaginateInfo, IPaginateMeta} from '../types';
+import Select from '../Select';
 
-
-
-// Components
-// import {Select} from '@bearests/form';
 
 interface IProps {
     meta: IPaginateMeta;
     info: IPaginateInfo;
     onChangePage: (paginateMeta: IPaginateMeta) => void;
+    pageLimitOptions?: number[];
 }
 
 
 /**
- * Footer
+ * Table Footer
  */
 const TableFooter = ({
     meta = {
@@ -32,6 +30,7 @@ const TableFooter = ({
         totalPages: 1,
     },
     onChangePage,
+    pageLimitOptions = [8, 40, 72, 150]
 }: IProps) => {
 
     const end = meta.currentPage * meta.pageLimit;
@@ -80,12 +79,17 @@ const TableFooter = ({
 
         const currentPage = meta?.currentPage ?? 1;
         // const pageLimit = meta?.pageLimit ?? 8;
-        const totalPages = info?.totalPages ?? 1;
+        const totalPages = Math.ceil(info?.totalPages) ?? 1;
         const pageGroup = 5;
 
         const startPage = ((Math.ceil(currentPage / pageGroup)-1) * pageGroup) + 1;
         const tmpEndPage = (Math.ceil(currentPage / pageGroup) * pageGroup);
         const endPage = tmpEndPage > totalPages ? totalPages : tmpEndPage;
+
+        const pages = new Array(totalPages ?? 1).fill(0).map((currPage, index) => {
+            return {text: String(index+1), value: String(index+1)}
+        });
+
 
         for(let i = startPage; i <= endPage; i+=1){
             const isActive = i===meta?.currentPage;
@@ -128,9 +132,13 @@ const TableFooter = ({
                 className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
                 type="button"
                 disabled={totalPages <= 1}
-                onClick={handleConfirmPage}
             >
                 <AlignCenterIcon/>
+                <Select
+                    options={pages}
+                    value={currentPage}
+                    onChange={(value) => handleChangePage(Number(value))}
+                />
             </button>
         </React.Fragment>;
 
@@ -141,26 +149,17 @@ const TableFooter = ({
     return (
         <div className={elClassNames.footerInner}>
             <div className={elClassNames.footerPaginateInfo}>
-                {/*{i18n('com.atom.table.showPage', {defaultMessage: 'show page..', params: {*/}
-                {/*    start: formatCurrency(paginateInfo.start),*/}
-                {/*    end: formatCurrency(paginateInfo.end),*/}
-                {/*    totalItem: formatCurrency(info.totalItems),*/}
-                {/*    totalPage: formatCurrency(info?.totalPages),*/}
-                {/*}})}*/}
                 Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item, Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
             </div>
 
             <div className={elClassNames.footerPageLimit}>
-                {/*<Select*/}
-                {/*    onChange={value => onChangePage(1, Number(value))}*/}
-                {/*    value={String(meta?.pageLimit) ?? '72'}*/}
-                {/*    options={[*/}
-                {/*        {text: i18n('com.atom.table.page',{defaultMessage:'8/Page', params: {item: 8}}), value: '8'},*/}
-                {/*        {text: i18n('com.atom.table.page',{defaultMessage:'20/Page', params: {item: 20}}), value: '20'},*/}
-                {/*        {text: i18n('com.atom.table.page',{defaultMessage:'72/Page', params: {item: 72}}), value: '72'},*/}
-                {/*        {text: i18n('com.atom.table.page',{defaultMessage:'150/Page',params:  {item: 150}}), value: '150'},*/}
-                {/*    ]}*/}
-                {/*/>*/}
+                <Select
+                    onChange={value => handleChangePage(Number(value))}
+                    value={String(meta.pageLimit)}
+                    options={pageLimitOptions.map(page => {
+                        return {text: `${page}/Page`, value: String(page)}
+                    })}
+                />
             </div>
 
             <div className={elClassNames.footerPaginateUl}>

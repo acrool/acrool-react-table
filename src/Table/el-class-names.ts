@@ -39,4 +39,8 @@ export default {
     footerPaginateLi: `${elClassNames.elCLassPrefix}-footer__paginate-li`,
     footerPaginateInfo: `${elClassNames.elCLassPrefix}-footer__paginate-info`,
     footerInner: `${elClassNames.elCLassPrefix}-footer__inner`,
+
+
+    select: `${elClassNames.elCLassPrefix}-footer__select`,
+
 };

@@ -55,6 +55,22 @@ button.bear-react-table-footer__paginate-li.paginate-nav {
     position: relative;
     flex: 0 0 auto;
 }
+button.bear-react-table-footer__paginate-li.paginate-nav select{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+button:disabled.bear-react-table-footer__paginate-li.paginate-nav select{
+    pointer-events: none;
+}
+
+
+button.bear-react-table-footer__paginate-li.paginate-select {
+
+}
 button.bear-react-table-footer__paginate-li.paginate-nav:first-child {
     border-radius: 4px 0 0 4px;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import {isEmpty} from 'bear-jsutils/equal';
+import CSS from 'csstype';
+import cx from 'classnames';
 
 // Components
 import {IData, TDataFooterContent, IPaginateMeta, ITitle, IPaginateInfo} from './types';
@@ -16,6 +18,8 @@ import './TableFooter/styles.css';
 
 
 interface IProps {
+    className?: string;
+    style?: CSS.Properties,
     isFetching?: boolean,
     title: ITitle[],
     data?: IData[],
@@ -24,6 +28,7 @@ interface IProps {
     paginateInfo?: IPaginateInfo,
     isVisibleHeader?: boolean,
     onChangePage?: (meta: IPaginateMeta) => void;
+    pageLimitOptions?: number[];
 }
 
 
@@ -31,6 +36,8 @@ interface IProps {
  * Table
  */
 const Table = ({
+    className,
+    style,
     isFetching = false,
     title,
     data = [],
@@ -45,7 +52,8 @@ const Table = ({
         sort: {field: 'id', orderBy: 'DESC'},
     },
     isVisibleHeader = true,
-    onChangePage
+    onChangePage,
+    pageLimitOptions,
 }: IProps) => {
 
     const handleOnChangePage = (meta: IPaginateMeta) => {
@@ -79,7 +87,7 @@ const Table = ({
 
 
     return (
-        <div className={elClassNames.root}>
+        <div className={cx(elClassNames.root, className)} style={style}>
             <div className={elClassNames.container}>
                 <div className={elClassNames.content}>
                     {isVisibleHeader && (<TableHeader
@@ -101,7 +109,12 @@ const Table = ({
 
 
             {/* 頁尾 */}
-            <TableFooter meta={paginateMeta} info={paginateInfo} onChangePage={paginateMeta => handleOnChangePage(paginateMeta)}/>
+            <TableFooter
+                meta={paginateMeta}
+                info={paginateInfo}
+                onChangePage={paginateMeta => handleOnChangePage(paginateMeta)}
+                pageLimitOptions={pageLimitOptions}
+            />
         </div>
 
     );

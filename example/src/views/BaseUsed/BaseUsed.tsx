@@ -18,7 +18,7 @@ const BaseUsed = () => {
     });
     const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
         totalItems: dataTotal,
-        totalPages: dataTotal / paginateMeta.pageLimit
+        totalPages: Math.ceil(dataTotal / paginateMeta.pageLimit),
     });
 
 
@@ -32,7 +32,7 @@ const BaseUsed = () => {
         setPaginateMeta(meta);
 
         setTimeout(() => {
-            setPaginateData(data[meta.currentPage]);
+            setPaginateData(data[meta.currentPage - 1] ?? []);
             setIsFetching(false);
         }, 400);
     }, []);

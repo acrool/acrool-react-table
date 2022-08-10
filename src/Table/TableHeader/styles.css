@@ -20,7 +20,7 @@
     position: sticky;
     top: 0;
     background-color: #2b3035;
-    flex: 1 1 100%;
+    flex: 0 0 auto;
     width: 100%;
     z-index: 5;
 }

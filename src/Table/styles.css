@@ -188,6 +188,7 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 30px;
+    min-height: 200px;
 }
 
 .bear-react-table__item-ul{

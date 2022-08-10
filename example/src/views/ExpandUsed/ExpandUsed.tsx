@@ -31,7 +31,7 @@ const ExpandUsed = () => {
         setPaginateMeta(meta);
 
         setTimeout(() => {
-            setPaginateData(data[meta.currentPage]);
+            setPaginateData(data[meta.currentPage - 1] ?? []);
             setIsFetching(false);
         }, 400);
     }, []);
