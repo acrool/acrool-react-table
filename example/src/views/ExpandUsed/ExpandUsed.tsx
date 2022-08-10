@@ -74,21 +74,23 @@ const ExpandUsed = () => {
                         const createdAt = dayjs(row.createdAt);
 
                         return {
-                            ...row,
                             id: row.id,
                             disabled: !row.isJoined,
-                            expand: <Button onClick={() => handleSetExpandId(row.id)}>{expandId === row.id ? 'close':'open'}</Button>,
-                            avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
-                            name: <div className="d-flex flex-column">
-                                <div>{row.name}</div>
-                                <div>{row.email}</div>
-                            </div>,
-                            isApplyJoin: row.isJoined ? '已加入':'等待同意',
-                            createdAt: <div style={{fontSize: 12}}>
-                                {createdAt.format('YYYY-MM-DD')}<br/>
-                                {createdAt.format('HH:mm:ss')}
-                            </div>,
                             appendData: expandId === row.id ? `this is appendData ${row.id}`: undefined,
+                            field: {
+                                role: row.role,
+                                expand: <Button onClick={() => handleSetExpandId(row.id)}>{expandId === row.id ? 'close':'open'}</Button>,
+                                avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
+                                name: <div className="d-flex flex-column">
+                                    <div>{row.name}</div>
+                                    <div>{row.email}</div>
+                                </div>,
+                                isApplyJoin: row.isJoined ? '已加入':'等待同意',
+                                createdAt: <div style={{fontSize: 12}}>
+                                    {createdAt.format('YYYY-MM-DD')}<br/>
+                                    {createdAt.format('HH:mm:ss')}
+                                </div>,
+                            }
                         };
                     })}
                     dataFooterContent={<div>join member is {paginateData.length}</div>}

@@ -91,15 +91,18 @@ const Table = ({
         <div className={cx(elClassNames.root, className)} style={style}>
             <div className={elClassNames.container}>
                 <div className={elClassNames.content}>
+                    {/* Header */}
                     {isVisibleHeader && (<TableHeader
                         title={title}
                         onChangeSortField={onChangePage}
                         paginateMeta={paginateMeta}
                     />)}
 
+                    {/* Body */}
                     {renderBody()}
                 </div>
 
+                {/* Loading */}
                 <div className={elClassNames.loadingBox} data-visible={isFetching}>
                     <div className={elClassNames.loadingPosition}>
                         {/*<div className={elClassNames.loadingImage} src={asset('/images/loading.gif')}/>*/}
@@ -109,7 +112,7 @@ const Table = ({
             </div>
 
 
-            {/* 頁尾 */}
+            {/* Footer */}
             <TableFooter
                 meta={paginateMeta}
                 info={paginateInfo}

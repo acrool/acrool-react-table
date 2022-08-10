@@ -39,7 +39,6 @@ const TableBody = ({
             >
                 <li
                     className={elClassNames.bodyItemLi}
-                    // isAppendData={!isEmpty(dataRow.appendData)}
                     onClick={dataRow.onClickRow}
                     data-disabled={dataRow.disabled}
                 >
@@ -52,7 +51,7 @@ const TableBody = ({
                             data-vertical={titleRow.dataVertical}
                             style={getCol(titleRow.col)}
                         >
-                            {dataRow[titleRow.field] ?? ''}
+                            {dataRow.field[titleRow.field] ?? ''}
                         </div>);
                     })}
                 </li>
