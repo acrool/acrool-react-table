@@ -33,7 +33,7 @@ import "bear-react-table/dist/index.css";
 then in your page
 ```tsx
 import {Table} from 'bear-react-table';
-
+import "bear-react-table/dist/index.css";
 
 
 const getPageData = (currentPage: number, pageLimit: number) => {
