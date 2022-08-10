@@ -6,7 +6,14 @@ import {removeByIndex} from 'bear-jsutils/array';
 
 // Components
 import Checkbox from 'views/_components/Checkbox';
-import {data, dataTotal, IPaginateData} from '../_components/data';
+import {data, IPaginateData} from '../_components/data';
+
+
+
+const getPageData = (currentPage: number, pageLimit: number) => {
+    const pageStart = (currentPage -1) * pageLimit;
+    return data.slice(pageStart, pageStart + pageLimit );
+}
 
 
 const CheckedUsed = () => {
@@ -14,14 +21,14 @@ const CheckedUsed = () => {
     const [isFetching, setIsFetching] = useState(false);
     const [isCheckedAll, setIsCheckAll] = useState<boolean>(false);
     const [checkedIds, setCheckedIds] = useState<number[]>([]);
-    const [paginateData, setPaginateData] = useState<IPaginateData[]>(data[0]);
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
     });
+    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
     const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
-        totalItems: dataTotal,
-        totalPages: dataTotal / paginateMeta.pageLimit
+        totalItems: data.length,
+        totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
     });
 
 
@@ -64,7 +71,7 @@ const CheckedUsed = () => {
         setCheckedIds([]);
 
         setTimeout(() => {
-            setPaginateData(data[meta.currentPage - 1] ?? []);
+            setPaginateData(getPageData(meta.currentPage, meta.pageLimit));
             setIsFetching(false);
         }, 400);
     }, []);

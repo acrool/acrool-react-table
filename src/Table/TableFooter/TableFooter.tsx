@@ -40,22 +40,6 @@ const TableFooter = ({
     };
 
 
-    const handleConfirmPage = useCallback(() => {
-        const ans = window.prompt(`您想跳去第幾頁 (可輸入範圍 1-${info?.totalPages ?? 1}`, String(meta?.currentPage ?? 1));
-        if(!isEmpty(ans)){
-            const numberAns = anyToNumber(ans);
-            if(numberAns > 0 && numberAns <= info?.totalPages){
-                onChangePage({
-                    ...meta,
-                    currentPage: numberAns,
-                });
-            }else{
-                window.alert('請輸入正確的頁數範圍');
-            }
-        }
-
-    }, [meta]);
-
 
     /**
      * 切換頁面
@@ -65,6 +49,18 @@ const TableFooter = ({
         onChangePage({
             ...meta,
             currentPage: targetPage,
+        })
+    }
+
+    /**
+     * 切換一頁顯示比數
+     * @param targetPageLimit
+     */
+    const handleChangePageLimit = (targetPageLimit: number) => {
+        onChangePage({
+            ...meta,
+            currentPage: 1,
+            pageLimit: targetPageLimit,
         })
     }
 
@@ -78,7 +74,6 @@ const TableFooter = ({
         const buttonPageDom = [];
 
         const currentPage = meta?.currentPage ?? 1;
-        // const pageLimit = meta?.pageLimit ?? 8;
         const totalPages = Math.ceil(info?.totalPages) ?? 1;
         const pageGroup = 5;
 
@@ -154,7 +149,7 @@ const TableFooter = ({
 
             <div className={elClassNames.footerPageLimit}>
                 <Select
-                    onChange={value => handleChangePage(Number(value))}
+                    onChange={value => handleChangePageLimit(Number(value))}
                     value={String(meta.pageLimit)}
                     options={pageLimitOptions.map(page => {
                         return {text: `${page}/Page`, value: String(page)}
@@ -165,7 +160,6 @@ const TableFooter = ({
             <div className={elClassNames.footerPaginateUl}>
                 {renderPaginateInfo()}
             </div>
-
         </div>
     );
 };

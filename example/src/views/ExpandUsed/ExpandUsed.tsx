@@ -2,23 +2,31 @@ import React, {useCallback, useState} from 'react';
 import {Table, IPaginateMeta, IPaginateInfo} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
-import {data, dataTotal, IPaginateData} from '../_components/data';
+import {data, IPaginateData} from '../_components/data';
 
+
+
+
+const getPageData = (currentPage: number, pageLimit: number) => {
+    const pageStart = (currentPage -1) * pageLimit;
+    return data.slice(pageStart, pageStart + pageLimit );
+}
 
 const ExpandUsed = () => {
 
     const [isFetching, setIsFetching] = useState(false);
     const [expandId, setExpandId] = useState<number|undefined>();
-    const [paginateData, setPaginateData] = useState<IPaginateData[]>(data[0]);
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
         sort: {field: 'name', orderBy: 'DESC'},
     });
+    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
     const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
-        totalItems: dataTotal,
-        totalPages: dataTotal / paginateMeta.pageLimit
+        totalItems: data.length,
+        totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
     });
+
 
 
 
@@ -31,7 +39,7 @@ const ExpandUsed = () => {
         setPaginateMeta(meta);
 
         setTimeout(() => {
-            setPaginateData(data[meta.currentPage - 1] ?? []);
+            setPaginateData(getPageData(meta.currentPage, meta.pageLimit));
             setIsFetching(false);
         }, 400);
     }, []);
