@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.0.1 (2022-08-10)
+
+
+### Features
+
+* add checkedUsed view ([fd24596](https://github.com/imagine10255/bear-react-table/commit/fd245969cc5192980d1fab3f8dd43f3ef1e1df38))
+* 新增 sort ([d2f0054](https://github.com/imagine10255/bear-react-table/commit/d2f005433cf8bfc17f87bc6211abab699e1a43dc))
+
 ### [2.1.14](https://github.com/imagine10255/bear-react-table/compare/v2.1.13...v2.1.14) (2022-08-09)
 
 ### [2.1.13](https://github.com/imagine10255/bear-react-table/compare/v2.1.12...v2.1.13) (2022-08-09)
