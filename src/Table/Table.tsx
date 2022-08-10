@@ -101,7 +101,7 @@ const Table = ({
 
 
             {/* 頁尾 */}
-            <TableFooter meta={paginateMeta} info={paginateInfo} onChangePage={(targetPage, pageLimit) => handleOnChangePage({currentPage: targetPage, pageLimit})}/>
+            <TableFooter meta={paginateMeta} info={paginateInfo} onChangePage={paginateMeta => handleOnChangePage(paginateMeta)}/>
         </div>
 
     );

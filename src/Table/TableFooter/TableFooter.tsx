@@ -5,6 +5,7 @@ import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
 import cx from 'classnames';
+import {IPaginateInfo, IPaginateMeta} from '../types';
 
 
 
@@ -12,15 +13,9 @@ import cx from 'classnames';
 // import {Select} from '@bearests/form';
 
 interface IProps {
-    meta: {
-        currentPage: number,
-        pageLimit: number,
-    }
-    info: {
-        totalItems: number,
-        totalPages: number,
-    }
-    onChangePage: (targetPage: number, pageLimit: number) => void;
+    meta: IPaginateMeta;
+    info: IPaginateInfo;
+    onChangePage: (paginateMeta: IPaginateMeta) => void;
 }
 
 
@@ -28,7 +23,7 @@ interface IProps {
  * Footer
  */
 const TableFooter = ({
-    meta= {
+    meta = {
         currentPage: 1,
         pageLimit: 8,
     },
@@ -51,13 +46,29 @@ const TableFooter = ({
         if(!isEmpty(ans)){
             const numberAns = anyToNumber(ans);
             if(numberAns > 0 && numberAns <= info?.totalPages){
-                onChangePage(numberAns, meta?.pageLimit ?? 8);
+                onChangePage({
+                    ...meta,
+                    currentPage: numberAns,
+                });
             }else{
                 window.alert('請輸入正確的頁數範圍');
             }
         }
 
     }, [meta]);
+
+
+    /**
+     * 切換頁面
+     * @param targetPage
+     */
+    const handleChangePage = (targetPage: number) => {
+        onChangePage({
+            ...meta,
+            currentPage: targetPage,
+        })
+    }
+
 
 
     /**
@@ -68,7 +79,7 @@ const TableFooter = ({
         const buttonPageDom = [];
 
         const currentPage = meta?.currentPage ?? 1;
-        const pageLimit = meta?.pageLimit ?? 8;
+        // const pageLimit = meta?.pageLimit ?? 8;
         const totalPages = info?.totalPages ?? 1;
         const pageGroup = 5;
 
@@ -82,9 +93,7 @@ const TableFooter = ({
                 className={cx(elClassNames.footerPaginateLi, {'is-active': isActive})}
                 key={`table-page-button-${i}`}
                 type="button"
-                onClick={() => {
-                    onChangePage(i, meta?.pageLimit);
-                }}
+                onClick={() => handleChangePage(i)}
                 disabled={isActive}
             >
                 {i}
@@ -98,7 +107,7 @@ const TableFooter = ({
                 className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
                 type="button"
                 disabled={currentPage <= 1}
-                onClick={() => onChangePage(currentPage - 1, pageLimit)}
+                onClick={() => handleChangePage(currentPage - 1)}
             >
                 Prev
             </button>
@@ -110,7 +119,7 @@ const TableFooter = ({
                 className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
                 type="button"
                 disabled={currentPage >= totalPages}
-                onClick={() => onChangePage(currentPage + 1, pageLimit)}
+                onClick={() => handleChangePage(currentPage + 1)}
             >
                 Next
             </button>
