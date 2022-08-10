@@ -11,9 +11,9 @@
 
 ## Support Version Map
 
-React | React Scripts | Bear React Grid | 
-------|:--------------|----------------:|
-18    | 5.0.1         |           2.0.0 |
+React | React Scripts | Bear React Table | 
+------|:--------------|-----------------:|
+18    | 5.0.1         |            2.0.0 |
 
 
 ## Install
