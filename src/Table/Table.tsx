@@ -15,6 +15,7 @@ import './styles.css';
 import './TableHeader/styles.css';
 import './TableBody/styles.css';
 import './TableFooter/styles.css';
+import { NoDataImage } from './Icon';
 
 
 interface IProps {
@@ -72,7 +73,7 @@ const Table = ({
     const renderBody = () => {
         if(isEmpty(data)){
             return <div className={elClassNames.notData}>
-                {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}
+                <NoDataImage/>
                 <div className={elClassNames.notDataText}>Not Found</div>
                 <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
             </div>;
