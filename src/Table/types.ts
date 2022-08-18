@@ -4,17 +4,16 @@ export type sizeUnit = 'px' | '%' | 'em';
 export type TCol = true|number|`${number}${sizeUnit}`;
 
 interface IField {
-    [field: string]: string | number | ReactNode
+    [field: string]: string | number | JSX.Element;
 }
 
-interface IBaseData {
+export interface IData {
     id: number,
-    appendData?: string|number|ReactNode,
+    appendData?: string|number|JSX.Element,
     disabled?: boolean,
     onClickRow?: () => void,
+    field: IField
 }
-
-export type IData = IBaseData & IField;
 
 export type TDataFooterContent = React.ReactElement;
 

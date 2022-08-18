@@ -102,23 +102,25 @@ const CheckedUsed = () => {
                         const createdAt = dayjs(row.createdAt);
 
                         return {
-                            ...row,
-                            checked: <Checkbox value={row.id} checked={checkedIds.includes(row.id)} onChange={handleCheckedId}/>,
                             id: row.id,
                             disabled: !row.isJoined,
-                            avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
-                            name: <div className="d-flex flex-column">
-                                <div>{row.name}</div>
-                                <div>{row.email}</div>
-                            </div>,
-                            isApplyJoin: row.isJoined ? '已加入':'等待同意',
-                            createdAt: <div style={{fontSize: 12}}>
-                                {createdAt.format('YYYY-MM-DD')}<br/>
-                                {createdAt.format('HH:mm:ss')}
-                            </div>,
-                            actions: <div style={{fontSize: 12}}>
-                                <Button color="primary" onClick={() => handleEdit(row.id)}>Edit</Button>
-                            </div>,
+                            field: {
+                                role: row.role,
+                                checked: <Checkbox value={row.id} checked={checkedIds.includes(row.id)} onChange={handleCheckedId}/>,
+                                avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
+                                name: <div className="d-flex flex-column">
+                                    <div>{row.name}</div>
+                                    <div>{row.email}</div>
+                                </div>,
+                                isApplyJoin: row.isJoined ? '已加入':'等待同意',
+                                createdAt: <div style={{fontSize: 12}}>
+                                    {createdAt.format('YYYY-MM-DD')}<br/>
+                                    {createdAt.format('HH:mm:ss')}
+                                </div>,
+                                actions: <div style={{fontSize: 12}}>
+                                    <Button color="primary" onClick={() => handleEdit(row.id)}>Edit</Button>
+                                </div>,
+                            }
                         };
                     })}
                     onChangePage={handleFetchPaginate}

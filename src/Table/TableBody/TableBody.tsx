@@ -39,9 +39,9 @@ const TableBody = ({
             >
                 <li
                     className={elClassNames.bodyItemLi}
-                    // isAppendData={!isEmpty(dataRow.appendData)}
                     onClick={dataRow.onClickRow}
                     data-disabled={dataRow.disabled}
+                    role={dataRow.onClickRow ? 'button':undefined}
                 >
                     {/* 各欄位值 */}
                     {title.map(titleRow => {
@@ -52,7 +52,7 @@ const TableBody = ({
                             data-vertical={titleRow.dataVertical}
                             style={getCol(titleRow.col)}
                         >
-                            {dataRow[titleRow.field] ?? ''}
+                            {dataRow.field[titleRow.field] ?? ''}
                         </div>);
                     })}
                 </li>

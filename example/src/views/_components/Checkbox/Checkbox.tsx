@@ -1,6 +1,5 @@
-import React, {forwardRef, memo, useCallback} from 'react';
+import React, {forwardRef} from 'react';
 import styled from 'styled-components/macro';
-import {deepCompare} from 'bear-jsutils/equal';
 
 
 
