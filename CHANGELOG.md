@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/imagine10255/bear-react-table/compare/v2.0.3-alpha.0...v2.0.3) (2022-08-18)
+
+
+### Features
+
+* add onClickRow style ([ca800e4](https://github.com/imagine10255/bear-react-table/commit/ca800e420d7c10c6db57b25b2e5b4f718d67277d))
+
 ### [2.0.3-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.2...v2.0.3-alpha.0) (2022-08-10)
 
 ### [2.0.2](https://github.com/imagine10255/bear-react-table/compare/v2.0.1...v2.0.2) (2022-08-10)
