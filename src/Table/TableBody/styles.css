@@ -23,6 +23,13 @@
     opacity: 1;
     z-index: 2;
 }
+
+.bear-react-table-body__item-li[role="button"]:not([data-disabled="true"]) {
+    cursor: pointer;
+}
+
+
+
 .bear-react-table-body__item-li:first-child {
     border-color: transparent;
 }

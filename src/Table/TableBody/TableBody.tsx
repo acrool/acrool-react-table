@@ -41,6 +41,7 @@ const TableBody = ({
                     className={elClassNames.bodyItemLi}
                     onClick={dataRow.onClickRow}
                     data-disabled={dataRow.disabled}
+                    role={dataRow.onClickRow ? 'button':undefined}
                 >
                     {/* 各欄位值 */}
                     {title.map(titleRow => {

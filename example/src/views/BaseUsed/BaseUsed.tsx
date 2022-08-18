@@ -63,6 +63,7 @@ const BaseUsed = () => {
                         return {
                             id: row.id,
                             disabled: !row.isJoined,
+                            onClickRow: () => console.log(row.id),
                             field: {
                                 role: row.role,
                                 avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
