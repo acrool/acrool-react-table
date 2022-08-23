@@ -10,6 +10,7 @@ import {getCol} from '../utils';
 interface IProps {
     title: ITitle[],
     onChangeSortField?: (meta: IPaginateMeta) => void;
+    isStickyHeader?: boolean;
     paginateMeta: IPaginateMeta,
 }
 
@@ -20,6 +21,7 @@ interface IProps {
 const TableHeader = ({
     title= [],
     paginateMeta,
+    isStickyHeader = false,
     onChangeSortField = () => {},
 }: IProps) => {
 
@@ -59,7 +61,7 @@ const TableHeader = ({
     };
 
 
-    return <div className={elClassNames.headerInner}>
+    return <div className={elClassNames.headerInner} data-sticky={isStickyHeader}>
         <div className={elClassNames.itemUl}>
             <li className={elClassNames.itemLi}>{renderTitle()}</li>
         </div>

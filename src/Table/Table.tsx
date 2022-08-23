@@ -28,6 +28,7 @@ interface IProps {
     paginateMeta?: IPaginateMeta,
     paginateInfo?: IPaginateInfo,
     isVisibleHeader?: boolean,
+    isStickyHeader?: boolean,
     onChangePage?: (meta: IPaginateMeta) => void;
     pageLimitOptions?: number[];
 }
@@ -53,6 +54,7 @@ const Table = ({
         sort: {field: 'id', orderBy: 'DESC'},
     },
     isVisibleHeader = true,
+    isStickyHeader = true,
     onChangePage,
     pageLimitOptions,
 }: IProps) => {
@@ -94,6 +96,7 @@ const Table = ({
                     {/* Header */}
                     {isVisibleHeader && (<TableHeader
                         title={title}
+                        isStickyHeader={isStickyHeader}
                         onChangeSortField={onChangePage}
                         paginateMeta={paginateMeta}
                     />)}
