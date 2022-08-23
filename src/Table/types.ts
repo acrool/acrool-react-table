@@ -44,5 +44,6 @@ export interface IPaginateInfo {
 export interface IPaginateMeta {
     currentPage: number,
     pageLimit: number,
-    sort?: {field: string, orderBy: 'DESC'|'ASC'}
+    orderField?: string,
+    orderBy?: 'DESC'|'ASC'
 }

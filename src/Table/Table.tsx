@@ -51,7 +51,8 @@ const Table = ({
     paginateMeta = {
         currentPage: 1,
         pageLimit: config.pageLimit,
-        sort: {field: 'id', orderBy: 'DESC'},
+        orderField: 'id',
+        orderBy: 'DESC',
     },
     isVisibleHeader = true,
     isStickyHeader = false,

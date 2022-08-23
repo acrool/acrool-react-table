@@ -37,18 +37,19 @@ const TableHeader = ({
                     {titleRow.isEnableSort ? (
                         <button
                             className={elClassNames.headerSortButton}
-                            data-active={paginateMeta.sort?.field === titleRow.field}
+                            data-active={paginateMeta.orderField === titleRow.field}
                             onClick={() => {
                                 onChangeSortField({
                                     ...paginateMeta,
                                     currentPage: 1,
-                                    sort: {field: titleRow.field, orderBy: (paginateMeta.sort?.orderBy === 'DESC' && paginateMeta.sort?.field === titleRow.field) ? 'ASC':'DESC'},
+                                    orderField: titleRow.field,
+                                    orderBy: (paginateMeta.orderBy === 'DESC' && paginateMeta.orderField === titleRow.field) ? 'ASC':'DESC',
                                 });
                             }}>
                             {titleRow.text}
 
-                            {paginateMeta.sort?.field === titleRow.field ?
-                                paginateMeta.sort?.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
+                            {paginateMeta.orderField === titleRow.field ?
+                                paginateMeta.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
                                 <SortIcon/>
                             }
 

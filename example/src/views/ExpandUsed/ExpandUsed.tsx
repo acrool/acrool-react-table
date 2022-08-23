@@ -19,7 +19,8 @@ const ExpandUsed = () => {
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
-        sort: {field: 'name', orderBy: 'DESC'},
+        orderField: 'name',
+        orderBy: 'DESC',
     });
     const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
     const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
