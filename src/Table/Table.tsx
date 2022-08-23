@@ -54,7 +54,7 @@ const Table = ({
         sort: {field: 'id', orderBy: 'DESC'},
     },
     isVisibleHeader = true,
-    isStickyHeader = true,
+    isStickyHeader = false,
     onChangePage,
     pageLimitOptions,
 }: IProps) => {
