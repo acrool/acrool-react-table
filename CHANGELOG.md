@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/imagine10255/bear-react-table/compare/v2.0.4...v2.0.5) (2022-08-23)
+
 ### [2.0.4](https://github.com/imagine10255/bear-react-table/compare/v2.0.3...v2.0.4) (2022-08-23)
 
 ### [2.0.3](https://github.com/imagine10255/bear-react-table/compare/v2.0.3-alpha.0...v2.0.3) (2022-08-18)
