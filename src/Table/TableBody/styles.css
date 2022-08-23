@@ -45,8 +45,8 @@
 }
 .bear-react-table-body__item-li[data-disabled="true"]:hover,
 .bear-react-table-body__item-li:hover{
-    color: #adadad;
-    background: rgb(45, 45, 45);
+    background: #1f1f1f;
+    color: #eaeaea;
 }
 
 .bear-react-table-body__split-list {
