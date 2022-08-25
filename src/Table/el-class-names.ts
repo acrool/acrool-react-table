@@ -21,6 +21,7 @@ export default {
     loadingPosition: `${elClassNames.elCLassPrefix}__loading-position`,
     loadingText: `${elClassNames.elCLassPrefix}__loading-text`,
     loadingImage: `${elClassNames.elCLassPrefix}__loading-image`,
+    icon: `${elClassNames.elCLassPrefix}__icon`,
 
 
     headerSortButton: `${elClassNames.elCLassPrefix}-header__sort-button`,

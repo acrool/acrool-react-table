@@ -67,7 +67,8 @@
 
 
 /* ========= reset start ============*/
-.bear-react-table__root button {
+.bear-react-table-header__sort-button,
+.bear-react-table-footer__paginate-li {
     margin: 0;
     font-family: inherit;
     font-size: inherit;
@@ -77,24 +78,33 @@
     overflow: visible;
     text-transform: none;
 }
-.bear-react-table__root button:focus {
+.bear-react-table-header__sort-button:focus,
+.bear-react-table-footer__paginate-li:focus{
     outline: none;
 }
 
-.bear-react-table__root button,
-.bear-react-table__root [type="button"]{
+.bear-react-table-header__sort-button,
+.bear-react-table-header__sort-button [type="button"]
+.bear-react-table-footer__paginate-li,
+.bear-react-table-footer__paginate-li [type="button"]
+{
     -webkit-appearance: button;
 }
-.bear-react-table__root button:not(:disabled),
-.bear-react-table__root [type="button"]:not(:disabled){
+.bear-react-table-header__sort-button:not(:disabled),
+.bear-react-table-header__sort-button [type="button"]:not(:disabled),
+.bear-react-table-footer__paginate-li:not(:disabled),
+.bear-react-table-footer__paginate-li [type="button"]:not(:disabled)
+{
     cursor: pointer;
 }
-.bear-react-table__root button::-moz-focus-inner,
-.bear-react-table__root [type="button"]::-moz-focus-inner{
+.bear-react-table-header__sort-button::-moz-focus-inner,
+.bear-react-table-header__sort-button [type="button"]::-moz-focus-inner
+.bear-react-table-footer__paginate-li::-moz-focus-inner,
+.bear-react-table-footer__paginate-li [type="button"]::-moz-focus-inner{
     padding: 0;
     border-style: none;
 }
-.bear-react-table__root svg {overflow: hidden;vertical-align: middle;}
+.bear-react-table__icon {overflow: hidden;vertical-align: middle;}
 /* ========= reset end ============*/
 
 
