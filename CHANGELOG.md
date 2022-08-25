@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.9-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.8...v2.0.9-alpha.0) (2022-08-25)
+
+
+### Bug Fixes
+
+* fix style button, svg obfuscate ([a43ba65](https://github.com/imagine10255/bear-react-table/commit/a43ba65b1f2d724ec1276fbc6b1c780bf4214d62))
+
 ### [2.0.8](https://github.com/imagine10255/bear-react-table/compare/v2.0.7...v2.0.8) (2022-08-23)
 
 ### [2.0.7](https://github.com/imagine10255/bear-react-table/compare/v2.0.6...v2.0.7) (2022-08-23)
