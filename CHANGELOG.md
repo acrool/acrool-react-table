@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.9-alpha.0...v2.1.0-alpha.0) (2022-08-31)
+
+
+### Features
+
+* split paginateMeta split currentPage, pageLimit, order ([34f5e27](https://github.com/imagine10255/bear-react-table/commit/34f5e27575b0140d2846c55b073d2e65f3e02abc))
+
 ### [2.0.9-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.8...v2.0.9-alpha.0) (2022-08-25)
 
 
