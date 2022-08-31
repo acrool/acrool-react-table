@@ -53,11 +53,11 @@ const Select = ({
     const renderOptions = () =>  {
         return options.map(row => (
             <option key={`option_${name}_${row.value}`}
-                    value={String(row.value)}>
+                value={String(row.value)}>
                 {row.text}
             </option>
         ));
-    }
+    };
 
     return (
         <select

@@ -4,7 +4,16 @@ import CSS from 'csstype';
 import cx from 'classnames';
 
 // Components
-import {IData, TDataFooterContent, IPaginateMeta, ITitle, IPaginateInfo} from './types';
+import {
+    IData,
+    TDataFooterContent,
+    IPaginateMeta,
+    ITitle,
+    IPaginateInfo,
+    IOrder,
+    TOnChangeSortField,
+    TOnChangePage, TChangePage
+} from './types';
 import elClassNames from './el-class-names';
 import TableHeader from './TableHeader/TableHeader';
 import TableBody from './TableBody/TableBody';
@@ -15,7 +24,7 @@ import './styles.css';
 import './TableHeader/styles.css';
 import './TableBody/styles.css';
 import './TableFooter/styles.css';
-import { NoDataImage } from './Icon';
+import {NoDataImage} from './Icon';
 
 
 interface IProps {
@@ -25,8 +34,13 @@ interface IProps {
     title: ITitle[],
     data?: IData[],
     dataFooterContent?: TDataFooterContent, // ex: total...
-    paginateMeta?: IPaginateMeta,
     paginateInfo?: IPaginateInfo,
+
+    currentPage?: number,
+    pageLimit?: number,
+
+    order?: IOrder,
+
     isVisibleHeader?: boolean,
     isStickyHeader?: boolean,
     onChangePage?: (meta: IPaginateMeta) => void;
@@ -48,27 +62,34 @@ const Table = ({
         totalItems: 0,
         totalPages: 1,
     },
-    paginateMeta = {
-        currentPage: 1,
-        pageLimit: config.pageLimit,
+    currentPage = 1,
+    pageLimit = config.pageLimit,
+    order = {
         orderField: 'id',
         orderBy: 'DESC',
     },
+
     isVisibleHeader = true,
     isStickyHeader = false,
     onChangePage,
     pageLimitOptions,
 }: IProps) => {
 
-    const handleOnChangePage = (meta: IPaginateMeta) => {
+    const mergeParamChangePage: TOnChangePage = (pageMeta, orderMeta) => {
         window.scrollTo(0, 70);
 
         if(onChangePage){
-            onChangePage(meta);
+            onChangePage({...pageMeta, ...orderMeta});
         }
-
     };
 
+    const handleOnChangePage: TChangePage = (pageMeta) => {
+        mergeParamChangePage({currentPage: pageMeta.currentPage, pageLimit: pageMeta.pageLimit}, order);
+    };
+
+    const handleOnOrderField: TOnChangeSortField = (params) => {
+        mergeParamChangePage({currentPage: 1, pageLimit}, params);
+    };
 
     /**
      * 產生表格內容
@@ -98,8 +119,8 @@ const Table = ({
                     {isVisibleHeader && (<TableHeader
                         title={title}
                         isStickyHeader={isStickyHeader}
-                        onChangeSortField={onChangePage}
-                        paginateMeta={paginateMeta}
+                        onChangeSortField={handleOnOrderField}
+                        order={order}
                     />)}
 
                     {/* Body */}
@@ -118,9 +139,11 @@ const Table = ({
 
             {/* Footer */}
             <TableFooter
-                meta={paginateMeta}
+                currentPage={currentPage}
+                pageLimit={pageLimit}
+
                 info={paginateInfo}
-                onChangePage={paginateMeta => handleOnChangePage(paginateMeta)}
+                onChangePage={handleOnChangePage}
                 pageLimitOptions={pageLimitOptions}
             />
         </div>

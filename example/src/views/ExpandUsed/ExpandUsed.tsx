@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Table, IPaginateMeta, IPaginateInfo} from 'bear-react-table';
+import {Table, TPaginateMeta, IPaginateInfo} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {data, IPaginateData} from '../_components/data';
@@ -16,17 +16,18 @@ const ExpandUsed = () => {
 
     const [isFetching, setIsFetching] = useState(false);
     const [expandId, setExpandId] = useState<number|undefined>();
-    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
+    const [paginateMeta, setPaginateMeta] = useState<TPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
         orderField: 'name',
         orderBy: 'DESC',
     });
     const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
-    const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
+    const paginateInfo = {
         totalItems: data.length,
         totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
-    });
+    }
+
 
 
 
@@ -34,7 +35,7 @@ const ExpandUsed = () => {
     /**
      * 查詢分頁
      */
-    const handleFetchPaginate = useCallback((meta: IPaginateMeta) => {
+    const handleFetchPaginate = useCallback((meta: TPaginateMeta) => {
         // 取得查詢項目
         setIsFetching(true);
         setPaginateMeta(meta);

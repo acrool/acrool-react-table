@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import {IPaginateMeta, ITitle} from '../types';
+import {IOrder, ITitle, TOnChangeSortField} from '../types';
 import elClassNames from '../el-class-names';
 import {SortDownIcon, SortIcon, SortUpIcon} from '../Icon';
 import {getCol} from '../utils';
@@ -9,9 +9,9 @@ import {getCol} from '../utils';
 
 interface IProps {
     title: ITitle[],
-    onChangeSortField?: (meta: IPaginateMeta) => void;
+    onChangeSortField?: TOnChangeSortField;
     isStickyHeader?: boolean;
-    paginateMeta: IPaginateMeta,
+    order: IOrder,
 }
 
 
@@ -20,7 +20,7 @@ interface IProps {
  */
 const TableHeader = ({
     title= [],
-    paginateMeta,
+    order,
     isStickyHeader = false,
     onChangeSortField = () => {},
 }: IProps) => {
@@ -37,19 +37,17 @@ const TableHeader = ({
                     {titleRow.isEnableSort ? (
                         <button
                             className={elClassNames.headerSortButton}
-                            data-active={paginateMeta.orderField === titleRow.field}
+                            data-active={order.orderField === titleRow.field}
                             onClick={() => {
                                 onChangeSortField({
-                                    ...paginateMeta,
-                                    currentPage: 1,
                                     orderField: titleRow.field,
-                                    orderBy: (paginateMeta.orderBy === 'DESC' && paginateMeta.orderField === titleRow.field) ? 'ASC':'DESC',
+                                    orderBy: (order.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
                                 });
                             }}>
                             {titleRow.text}
 
-                            {paginateMeta.orderField === titleRow.field ?
-                                paginateMeta.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
+                            {order.orderField === titleRow.field ?
+                                order.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
                                 <SortIcon/>
                             }
 

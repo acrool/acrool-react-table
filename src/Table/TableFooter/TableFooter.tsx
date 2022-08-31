@@ -1,6 +1,4 @@
-import React, {useCallback} from 'react';
-import {anyToNumber} from 'bear-jsutils/convert';
-import {isEmpty} from 'bear-jsutils/equal';
+import React from 'react';
 import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
@@ -10,7 +8,8 @@ import Select from '../Select';
 
 
 interface IProps {
-    meta: IPaginateMeta;
+    currentPage: number,
+    pageLimit?: number,
     info: IPaginateInfo;
     onChangePage: (paginateMeta: IPaginateMeta) => void;
     pageLimitOptions?: number[];
@@ -21,10 +20,8 @@ interface IProps {
  * Table Footer
  */
 const TableFooter = ({
-    meta = {
-        currentPage: 1,
-        pageLimit: 8,
-    },
+    currentPage = 1,
+    pageLimit = 8,
     info = {
         totalItems: 0,
         totalPages: 1,
@@ -33,9 +30,9 @@ const TableFooter = ({
     pageLimitOptions = [8, 40, 72, 150]
 }: IProps) => {
 
-    const end = meta.currentPage * meta.pageLimit;
+    const end = currentPage * pageLimit;
     const paginateInfo = {
-        start: ((meta.currentPage-1) * meta?.pageLimit) + 1,
+        start: ((currentPage-1) * pageLimit) + 1,
         end: end > info.totalItems ? info.totalItems : end,
     };
 
@@ -47,10 +44,10 @@ const TableFooter = ({
      */
     const handleChangePage = (targetPage: number) => {
         onChangePage({
-            ...meta,
+            pageLimit,
             currentPage: targetPage,
-        })
-    }
+        });
+    };
 
     /**
      * 切換一頁顯示比數
@@ -58,11 +55,10 @@ const TableFooter = ({
      */
     const handleChangePageLimit = (targetPageLimit: number) => {
         onChangePage({
-            ...meta,
             currentPage: 1,
             pageLimit: targetPageLimit,
-        })
-    }
+        });
+    };
 
 
 
@@ -73,7 +69,6 @@ const TableFooter = ({
 
         const buttonPageDom = [];
 
-        const currentPage = meta?.currentPage ?? 1;
         const totalPages = Math.ceil(info?.totalPages) ?? 1;
         const pageGroup = 5;
 
@@ -82,12 +77,12 @@ const TableFooter = ({
         const endPage = tmpEndPage > totalPages ? totalPages : tmpEndPage;
 
         const pages = new Array(totalPages ?? 1).fill(0).map((currPage, index) => {
-            return {text: String(index+1), value: String(index+1)}
+            return {text: String(index+1), value: String(index+1)};
         });
 
 
         for(let i = startPage; i <= endPage; i+=1){
-            const isActive = i===meta?.currentPage;
+            const isActive = i === currentPage;
             buttonPageDom.push(<button
                 className={cx(elClassNames.footerPaginateLi, {'is-active': isActive})}
                 key={`table-page-button-${i}`}
@@ -150,9 +145,9 @@ const TableFooter = ({
             <div className={elClassNames.footerPageLimit}>
                 <Select
                     onChange={value => handleChangePageLimit(Number(value))}
-                    value={String(meta.pageLimit)}
+                    value={String(pageLimit)}
                     options={pageLimitOptions.map(page => {
-                        return {text: `${page}/Page`, value: String(page)}
+                        return {text: `${page}/Page`, value: String(page)};
                     })}
                 />
             </div>

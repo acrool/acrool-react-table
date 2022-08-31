@@ -43,7 +43,20 @@ export interface IPaginateInfo {
 
 export interface IPaginateMeta {
     currentPage: number,
-    pageLimit: number,
+    pageLimit?: number,
     orderField?: string,
     orderBy?: 'DESC'|'ASC'
 }
+
+export interface IPage {
+    currentPage: number,
+    pageLimit?: number,
+}
+export interface IOrder {
+    orderField: string,
+    orderBy: 'DESC'|'ASC',
+}
+
+export type TChangePage = (pageMeta: IPage) => void
+export type TOnChangePage = (pageMeta: IPage, orderMeta?: IOrder) => void
+export type TOnChangeSortField = (meta: IOrder) => void

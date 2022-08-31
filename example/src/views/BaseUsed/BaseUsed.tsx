@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Table, IPaginateMeta, IPaginateInfo} from 'bear-react-table';
+import {Table, TPaginateMeta, IPaginateInfo, IOrder} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {data, IPaginateData} from '../_components/data';
@@ -15,27 +15,30 @@ const BaseUsed = () => {
 
 
     const [isFetching, setIsFetching] = useState(false);
-    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
-        currentPage: 1,
-        pageLimit: 8,
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [pageLimit, setPageLimit] = useState<number>(8);
+    const [order, setOrder] = useState<IOrder>({
         orderField: 'name',
         orderBy: 'DESC',
     });
-    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
-    const [paginateInfo, setPaginateInfo] = useState<IPaginateInfo>({
+    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(currentPage, pageLimit));
+
+    const paginateInfo = {
         totalItems: data.length,
-        totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
-    });
+        totalPages: Math.ceil(data.length / pageLimit),
+    }
 
 
 
     /**
      * 查詢分頁
      */
-    const handleFetchPaginate = useCallback((meta: IPaginateMeta) => {
+    const handleFetchPaginate = useCallback((meta: TPaginateMeta) => {
         // 取得查詢項目
         setIsFetching(true);
-        setPaginateMeta(meta);
+        setCurrentPage(meta.currentPage);
+        if(meta.pageLimit) setPageLimit(meta.pageLimit);
+
 
         setTimeout(() => {
             setPaginateData(getPageData(meta.currentPage, meta.pageLimit));
@@ -80,8 +83,10 @@ const BaseUsed = () => {
                             }
                         };
                     })}
+                    currentPage={currentPage}
+                    pageLimit={pageLimit}
                     onChangePage={handleFetchPaginate}
-                    paginateMeta={paginateMeta}
+                    // paginateMeta={paginateMeta}
                     paginateInfo={paginateInfo}
                 />
 
