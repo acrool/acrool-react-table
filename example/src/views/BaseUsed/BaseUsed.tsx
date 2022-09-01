@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Table, TOnChangePage, TMeta} from 'bear-react-table';
+import {Table, TOnChangePage, IPaginateMeta} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {data, IPaginateData} from '../_components/data';
@@ -36,7 +36,7 @@ const BaseUsed = () => {
 
 
     const [isFetching, setIsFetching] = useState(false);
-    const [paginateMeta, setPaginateMeta] = useState<TMeta>({
+    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
         order: {

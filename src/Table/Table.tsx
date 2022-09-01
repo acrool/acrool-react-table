@@ -12,7 +12,7 @@ import {
     IPaginateInfo,
     IOrder,
     TOnChangeSortField,
-    TOnChangePage, TMeta
+    TOnChangePage,
 } from './types';
 import elClassNames from './el-class-names';
 import TableHeader from './TableHeader/TableHeader';
@@ -34,7 +34,7 @@ interface IProps {
     data?: IData[],
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
-    paginateMeta: TMeta,
+    paginateMeta: IPaginateMeta,
 
     isVisibleHeader?: boolean,
     isStickyHeader?: boolean,
