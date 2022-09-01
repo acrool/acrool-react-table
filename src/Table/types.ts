@@ -52,8 +52,7 @@ export interface IOrder {
 
 export interface IPaginateMeta extends Required<IPage> {
     order?: IOrder,
-    isUsePreMeta?: boolean,
 }
 
-export type TOnChangePage = (meta: IPaginateMeta) => void
+export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
 export type TOnChangeSortField = (meta: IOrder) => void

@@ -75,29 +75,31 @@ const Table = ({
         window.scrollTo(0, 70);
 
         if(onChangePage){
-            onChangePage({
+
+            const paramsMeta = {
                 currentPage: pageMeta.currentPage,
                 pageLimit: pageMeta.pageLimit,
                 order: meta.order,
-                isUsePreMeta: true,
-                // orderBy: meta.orderBy,
-                // orderField: meta.orderField,
-            });
+            };
+
+            onChangePage(paramsMeta, true);
         }
     };
 
 
     const handleOnOrderField: TOnChangeSortField = (params) => {
+
         if(onChangePage){
-            onChangePage({
+            const paramsMeta = {
                 currentPage: 1,
                 pageLimit: meta.pageLimit,
                 order: {
                     orderBy: params.orderBy,
                     orderField: params.orderField,
                 },
-                isUsePreMeta: true,
-            });
+            };
+
+            onChangePage(paramsMeta, true);
         }
     };
 
