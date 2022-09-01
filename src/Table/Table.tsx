@@ -34,7 +34,7 @@ interface IProps {
     data?: IData[],
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
-    paginateMeta: IPaginateMeta,
+    paginateMeta?: IPaginateMeta,
 
     isVisibleHeader?: boolean,
     isStickyHeader?: boolean,
@@ -64,9 +64,9 @@ const Table = ({
     pageLimitOptions = [8, 40, 72, 150],
 }: IProps) => {
     const meta = {
-        currentPage: paginateMeta.currentPage ?? 1,
-        pageLimit: paginateMeta.pageLimit ?? pageLimitOptions[0] ?? 8,
-        order: paginateMeta.order
+        currentPage: paginateMeta?.currentPage ?? 1,
+        pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,
+        order: paginateMeta?.order
     };
 
 
