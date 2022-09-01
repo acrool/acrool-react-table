@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v2.1.0-alpha.1...v2.1.0-alpha.2) (2022-09-01)
+
+## [2.1.0-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v2.1.0-alpha.0...v2.1.0-alpha.1) (2022-09-01)
+
+## [2.1.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.9-alpha.0...v2.1.0-alpha.0) (2022-08-31)
+
+
+### Features
+
+* split paginateMeta split currentPage, pageLimit, order ([34f5e27](https://github.com/imagine10255/bear-react-table/commit/34f5e27575b0140d2846c55b073d2e65f3e02abc))
+
+### [2.0.9-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.8...v2.0.9-alpha.0) (2022-08-25)
+
+
+### Bug Fixes
+
+* fix style button, svg obfuscate ([a43ba65](https://github.com/imagine10255/bear-react-table/commit/a43ba65b1f2d724ec1276fbc6b1c780bf4214d62))
+
+### [2.0.8](https://github.com/imagine10255/bear-react-table/compare/v2.0.7...v2.0.8) (2022-08-23)
+
+### [2.0.7](https://github.com/imagine10255/bear-react-table/compare/v2.0.6...v2.0.7) (2022-08-23)
+
+### [2.0.6](https://github.com/imagine10255/bear-react-table/compare/v2.0.5...v2.0.6) (2022-08-23)
+
+### [2.0.5](https://github.com/imagine10255/bear-react-table/compare/v2.0.4...v2.0.5) (2022-08-23)
+
+### [2.0.4](https://github.com/imagine10255/bear-react-table/compare/v2.0.3...v2.0.4) (2022-08-23)
+
+### [2.0.3](https://github.com/imagine10255/bear-react-table/compare/v2.0.3-alpha.0...v2.0.3) (2022-08-18)
+
+
+### Features
+
+* add onClickRow style ([ca800e4](https://github.com/imagine10255/bear-react-table/commit/ca800e420d7c10c6db57b25b2e5b4f718d67277d))
+
+### [2.0.3-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.0.2...v2.0.3-alpha.0) (2022-08-10)
+
+### [2.0.2](https://github.com/imagine10255/bear-react-table/compare/v2.0.1...v2.0.2) (2022-08-10)
+
+### 2.0.1 (2022-08-10)
+
+
+### Features
+
+* add checkedUsed view ([fd24596](https://github.com/imagine10255/bear-react-table/commit/fd245969cc5192980d1fab3f8dd43f3ef1e1df38))
+* 新增 sort ([d2f0054](https://github.com/imagine10255/bear-react-table/commit/d2f005433cf8bfc17f87bc6211abab699e1a43dc))
+
 ### [2.1.14](https://github.com/imagine10255/bear-react-table/compare/v2.1.13...v2.1.14) (2022-08-09)
 
 ### [2.1.13](https://github.com/imagine10255/bear-react-table/compare/v2.1.12...v2.1.13) (2022-08-09)

@@ -1,3 +1,3 @@
 export default {
-    padding: 5,
-}
+    pageLimit: 8,
+};

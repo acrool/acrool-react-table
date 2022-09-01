@@ -1,32 +1,45 @@
-import React, {useCallback} from 'react';
+import React from 'react';
+import {isEmpty} from 'bear-jsutils/equal';
+import CSS from 'csstype';
+import cx from 'classnames';
+
 // Components
-import TableBody from './TableBody';
-import TableHeader from './TableHeader';
-import {IData, TFooterData, IPaginateMeta, ITitle, IPaginateInfo} from './types';
+import {
+    IData,
+    TDataFooterContent,
+    IPaginateMeta,
+    ITitle,
+    IPaginateInfo,
+    IOrder,
+    TOnChangeSortField,
+    TOnChangePage,
+} from './types';
 import elClassNames from './el-class-names';
+import TableHeader from './TableHeader/TableHeader';
+import TableBody from './TableBody/TableBody';
+import TableFooter from './TableFooter/TableFooter';
 
 import './styles.css';
-import TableFooter from './TableFooter';
+import './TableHeader/styles.css';
+import './TableBody/styles.css';
+import './TableFooter/styles.css';
+import {NoDataImage} from './Icon';
+
 
 interface IProps {
+    className?: string;
+    style?: CSS.Properties,
     isFetching?: boolean,
     title: ITitle[],
     data?: IData[],
-    paginateMeta?: IPaginateMeta,
+    dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
-    footerData?: TFooterData[]
-    bodyHeight?: number,
-    mode?: 'default'|'nonLine',
-    trColor?: string,
-    isEnableChecked?: boolean,
+    paginateMeta?: IPaginateMeta,
+
     isVisibleHeader?: boolean,
-    isVisibleActions?: boolean,
-    onEditRow?: (id: number, isOpen: boolean) => void;
-    onDeleteRow?: (id: number) => void;
-    onCheckedAll?: (isChecked: boolean) => void;
-    sortField?: string,
-    sortBy?: 'DESC'|'ASC',
-    onChangePage?: (meta: IPaginateMeta) => void;
+    isStickyHeader?: boolean,
+    onChangePage?: TOnChangePage,
+    pageLimitOptions?: number[];
 }
 
 
@@ -34,83 +47,95 @@ interface IProps {
  * Table
  */
 const Table = ({
+    className,
+    style,
     isFetching = false,
     title,
-    data= [],
-    footerData= [],
-   paginateInfo = {
-       totalItems: 0,
-       totalPages: 1,
-   },
-   paginateMeta= {
-       currentPage: 1,
-       pageLimit: 8,
-   },
-    bodyHeight,
-    mode = 'default',
-    trColor,
-    isEnableChecked = true,
+    data = [],
+    dataFooterContent,
+    paginateInfo = {
+        totalItems: 0,
+        totalPages: 1,
+    },
+    paginateMeta,
     isVisibleHeader = true,
-    isVisibleActions = false,
-    onEditRow,
-    onDeleteRow,
-    onCheckedAll= () => {},
-    sortField,
-    sortBy,
-    onChangePage
+    isStickyHeader = false,
+    onChangePage,
+    pageLimitOptions = [8, 40, 72, 150],
 }: IProps) => {
+    const meta = {
+        currentPage: paginateMeta?.currentPage ?? 1,
+        pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,
+        order: paginateMeta?.order
+    };
 
-    const handleOnChangePage = useCallback((meta: IPaginateMeta) => {
 
+
+    const handleOnChangePage: TOnChangePage = (pageMeta) => {
         window.scrollTo(0, 70);
 
         if(onChangePage){
-            onChangePage(meta);
+            onChangePage({
+                currentPage: pageMeta.currentPage,
+                pageLimit: pageMeta.pageLimit,
+                order: meta.order,
+                // orderBy: meta.orderBy,
+                // orderField: meta.orderField,
+            });
+        }
+    };
+
+
+    const handleOnOrderField: TOnChangeSortField = (params) => {
+        if(onChangePage){
+            onChangePage({
+                currentPage: 1,
+                pageLimit: meta.pageLimit,
+                order: {
+                    orderBy: params.orderBy,
+                    orderField: params.orderField,
+                }
+            });
+        }
+    };
+
+    /**
+     * 產生表格內容
+     */
+    const renderBody = () => {
+        if(isEmpty(data)){
+            return <div className={elClassNames.notData}>
+                <NoDataImage/>
+                <div className={elClassNames.notDataText}>Not Found</div>
+                <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
+            </div>;
         }
 
-    }, [onChangePage]);
+        return <TableBody
+            title={title}
+            data={data}
+            dataFooterContent={dataFooterContent}
+        />;
+    };
 
 
     return (
-        <div className={elClassNames.root}>
-
+        <div className={cx(elClassNames.root, className)} style={style}>
             <div className={elClassNames.container}>
-
                 <div className={elClassNames.content}>
+                    {/* Header */}
                     {isVisibleHeader && (<TableHeader
                         title={title}
-                        isVisibleActions={isVisibleActions}
-                        // isEnableChecked={isEnableChecked && typeof hookForm !== 'undefined'}
-                        onCheckedAll={onCheckedAll}
-                        isNonLine={mode === 'nonLine'}
-
-                        sortField={sortField}
-                        sortBy={sortBy}
-                        onChangePage={onChangePage}
+                        isStickyHeader={isStickyHeader}
+                        onChangeSortField={handleOnOrderField}
+                        order={meta.order}
                     />)}
 
-                    {/* 表格內容 */}
-                    {data.length > 0 ? (
-                        <TableBody
-                            // hookFormControl={hookForm?.control}
-                            isVisibleActions={isVisibleActions}
-                            title={title}
-                            data={data}
-                            footerData={footerData}
-                            height={bodyHeight}
-                            trColor={trColor}
-                            isEnableChecked={isEnableChecked}
-                            onDeleteRow={onDeleteRow}
-                            onEditRow={onEditRow}
-                            isNonLine={mode === 'nonLine'}
-                        />
-                    ): (<div className={elClassNames.notData}>
-                        {/*<NotDataImage src={asset('/images/no-email.svg')}/>*/}
-                        <div className={elClassNames.notDataText}>Not Found</div>
-                        <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
-                    </div>)}
+                    {/* Body */}
+                    {renderBody()}
                 </div>
 
+                {/* Loading */}
                 <div className={elClassNames.loadingBox} data-visible={isFetching}>
                     <div className={elClassNames.loadingPosition}>
                         {/*<div className={elClassNames.loadingImage} src={asset('/images/loading.gif')}/>*/}
@@ -120,8 +145,13 @@ const Table = ({
             </div>
 
 
-            {/* 頁尾 */}
-            <TableFooter meta={paginateMeta} info={paginateInfo} onChangePage={(targetPage, pageLimit) => handleOnChangePage({currentPage: targetPage, pageLimit})}/>
+            {/* Footer */}
+            <TableFooter
+                meta={meta}
+                info={paginateInfo}
+                onChangePage={handleOnChangePage}
+                pageLimitOptions={pageLimitOptions}
+            />
         </div>
 
     );

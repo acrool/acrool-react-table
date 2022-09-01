@@ -1,83 +1,70 @@
 import React, {useCallback, useState} from 'react';
-import {Table, TOnChangePage, IPaginateMeta} from 'bear-react-table';
+import {Table, TPaginateMeta, IOrder} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {data, IPaginateData} from '../_components/data';
 
 
-const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: 'DESC'|'ASC'}) => {
 
-    if(order){
-        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
-    }
 
+const getPageData = (currentPage: number, pageLimit = 8) => {
     const pageStart = (currentPage -1) * pageLimit;
     return data.slice(pageStart, pageStart + pageLimit );
 };
 
-
-
-const mockSort = (by: 'DESC'|'ASC', field: string, a: IPaginateData, b: IPaginateData) => {
-
-    const fieldName = field as keyof IPaginateData;
-
-    if (a[fieldName] < b[fieldName]) {
-        return by === 'ASC' ? -1 : 1;
-    }else if (a[fieldName] > b[fieldName]) {
-        return by === 'ASC' ?  1: -1;
-    }
-    // a 必須等於 b
-    return 0;
-};
-
-
-
-const BaseUsed = () => {
-
+const ExpandUsed = () => {
 
     const [isFetching, setIsFetching] = useState(false);
-    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
+    const [expandId, setExpandId] = useState<number|undefined>();
+
+    const [paginateMeta, setPaginateMeta] = useState<TPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
-        order: {
-            orderField: 'id',
-            orderBy: 'DESC',
-        }
     });
     const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
-
     const paginateInfo = {
         totalItems: data.length,
         totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
     };
 
 
+
+
+
     /**
      * 查詢分頁
      */
-    const handleFetchPaginate: TOnChangePage = (meta) => {
+    const handleFetchPaginate = useCallback((meta: TPaginateMeta) => {
         // 取得查詢項目
         setIsFetching(true);
-        // console.log('meta', meta);
         setPaginateMeta(meta);
 
-        const {currentPage, pageLimit, order} = meta;
-
         setTimeout(() => {
-            setPaginateData(getPageData(currentPage, pageLimit, order));
+            setPaginateData(getPageData(meta.currentPage, meta.pageLimit));
             setIsFetching(false);
         }, 400);
-    };
+    }, []);
 
+
+
+    const handleSetExpandId = (id: number) => {
+        if(id === expandId){
+            setExpandId(undefined);
+        }else{
+            setExpandId(id);
+        }
+    };
 
 
     return (
         <div>
             <Button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</Button>
             <div className="d-flex flex-row my-2">
+
                 <Table
                     isFetching={isFetching}
                     title={[
+                        {text: 'expand',          field: 'expand',      col: 60, titleAlign: 'center', dataAlign: 'center'},
                         {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
                         {text: 'Name',       field: 'name',        col: true, isEnableSort: true},
                         {text: 'Role',       field: 'role',        col: 120},
@@ -90,9 +77,10 @@ const BaseUsed = () => {
                         return {
                             id: row.id,
                             disabled: !row.isJoined,
-                            onClickRow: () => console.log(row.id),
+                            appendData: expandId === row.id ? `this is appendData ${row.id}`: undefined,
                             field: {
                                 role: row.role,
+                                expand: <Button onClick={() => handleSetExpandId(row.id)}>{expandId === row.id ? 'close':'open'}</Button>,
                                 avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
                                 name: <div className="d-flex flex-column">
                                     <div>{row.name}</div>
@@ -106,6 +94,7 @@ const BaseUsed = () => {
                             }
                         };
                     })}
+                    dataFooterContent={<div>join member is {paginateData.length}</div>}
                     onChangePage={handleFetchPaginate}
                     paginateMeta={paginateMeta}
                     paginateInfo={paginateInfo}
@@ -121,7 +110,7 @@ const BaseUsed = () => {
 
 };
 
-export default BaseUsed;
+export default ExpandUsed;
 
 
 
