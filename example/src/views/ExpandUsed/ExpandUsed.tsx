@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Table, TPaginateMeta, IPaginateInfo} from 'bear-react-table';
+import {Table, TPaginateMeta, IOrder} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {data, IPaginateData} from '../_components/data';
@@ -7,7 +7,7 @@ import {data, IPaginateData} from '../_components/data';
 
 
 
-const getPageData = (currentPage: number, pageLimit: number) => {
+const getPageData = (currentPage: number, pageLimit = 8) => {
     const pageStart = (currentPage -1) * pageLimit;
     return data.slice(pageStart, pageStart + pageLimit );
 };
@@ -16,17 +16,16 @@ const ExpandUsed = () => {
 
     const [isFetching, setIsFetching] = useState(false);
     const [expandId, setExpandId] = useState<number|undefined>();
+
     const [paginateMeta, setPaginateMeta] = useState<TPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
-        orderField: 'name',
-        orderBy: 'DESC',
     });
     const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
     const paginateInfo = {
         totalItems: data.length,
         totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
-    }
+    };
 
 
 

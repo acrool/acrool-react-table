@@ -3,16 +3,15 @@ import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
 import cx from 'classnames';
-import {IPaginateInfo, IPaginateMeta} from '../types';
+import {IPage, IPaginateInfo, IPaginateMeta} from '../types';
 import Select from '../Select';
 
 
 interface IProps {
-    currentPage: number,
-    pageLimit?: number,
+    meta: Required<IPage>
     info: IPaginateInfo;
-    onChangePage: (paginateMeta: IPaginateMeta) => void;
-    pageLimitOptions?: number[];
+    onChangePage: (paginateMeta: Required<IPage>) => void;
+    pageLimitOptions: number[];
 }
 
 
@@ -20,19 +19,21 @@ interface IProps {
  * Table Footer
  */
 const TableFooter = ({
-    currentPage = 1,
-    pageLimit = 8,
+    // currentPage = 1,
+    // pageLimit = 8,
+    meta,
     info = {
         totalItems: 0,
         totalPages: 1,
     },
     onChangePage,
-    pageLimitOptions = [8, 40, 72, 150]
+    pageLimitOptions
 }: IProps) => {
 
-    const end = currentPage * pageLimit;
+
+    const end = meta.currentPage * meta.pageLimit;
     const paginateInfo = {
-        start: ((currentPage-1) * pageLimit) + 1,
+        start: ((meta.currentPage-1) * meta.pageLimit) + 1,
         end: end > info.totalItems ? info.totalItems : end,
     };
 
@@ -44,7 +45,7 @@ const TableFooter = ({
      */
     const handleChangePage = (targetPage: number) => {
         onChangePage({
-            pageLimit,
+            pageLimit: meta.pageLimit,
             currentPage: targetPage,
         });
     };
@@ -72,8 +73,8 @@ const TableFooter = ({
         const totalPages = Math.ceil(info?.totalPages) ?? 1;
         const pageGroup = 5;
 
-        const startPage = ((Math.ceil(currentPage / pageGroup)-1) * pageGroup) + 1;
-        const tmpEndPage = (Math.ceil(currentPage / pageGroup) * pageGroup);
+        const startPage = ((Math.ceil(meta.currentPage / pageGroup)-1) * pageGroup) + 1;
+        const tmpEndPage = (Math.ceil(meta.currentPage / pageGroup) * pageGroup);
         const endPage = tmpEndPage > totalPages ? totalPages : tmpEndPage;
 
         const pages = new Array(totalPages ?? 1).fill(0).map((currPage, index) => {
@@ -82,7 +83,7 @@ const TableFooter = ({
 
 
         for(let i = startPage; i <= endPage; i+=1){
-            const isActive = i === currentPage;
+            const isActive = i === meta.currentPage;
             buttonPageDom.push(<button
                 className={cx(elClassNames.footerPaginateLi, {'is-active': isActive})}
                 key={`table-page-button-${i}`}
@@ -100,8 +101,8 @@ const TableFooter = ({
             <button
                 className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
                 type="button"
-                disabled={currentPage <= 1}
-                onClick={() => handleChangePage(currentPage - 1)}
+                disabled={meta.currentPage <= 1}
+                onClick={() => handleChangePage(meta.currentPage - 1)}
             >
                 Prev
             </button>
@@ -112,8 +113,8 @@ const TableFooter = ({
             <button
                 className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
                 type="button"
-                disabled={currentPage >= totalPages}
-                onClick={() => handleChangePage(currentPage + 1)}
+                disabled={meta.currentPage >= totalPages}
+                onClick={() => handleChangePage(meta.currentPage + 1)}
             >
                 Next
             </button>
@@ -126,7 +127,7 @@ const TableFooter = ({
                 <AlignCenterIcon/>
                 <Select
                     options={pages}
-                    value={currentPage}
+                    value={meta.currentPage}
                     onChange={(value) => handleChangePage(Number(value))}
                 />
             </button>
@@ -145,7 +146,7 @@ const TableFooter = ({
             <div className={elClassNames.footerPageLimit}>
                 <Select
                     onChange={value => handleChangePageLimit(Number(value))}
-                    value={String(pageLimit)}
+                    value={String(meta.pageLimit)}
                     options={pageLimitOptions.map(page => {
                         return {text: `${page}/Page`, value: String(page)};
                     })}

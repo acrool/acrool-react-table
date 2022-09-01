@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Table, TPaginateMeta, IPaginateInfo} from 'bear-react-table';
+import {Table, TPaginateMeta} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {removeByIndex} from 'bear-jsutils/array';
@@ -29,7 +29,7 @@ const CheckedUsed = () => {
     const paginateInfo = {
         totalItems: data.length,
         totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
-    }
+    };
 
 
     /**
@@ -79,7 +79,6 @@ const CheckedUsed = () => {
 
 
     const handleEdit = (id: number) => {
-        console.log('edit id', id);
     };
 
     return (

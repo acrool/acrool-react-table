@@ -1,50 +1,73 @@
 import React, {useCallback, useState} from 'react';
-import {Table, TPaginateMeta, IPaginateInfo, IOrder} from 'bear-react-table';
+import {Table, TOnChangePage, TMeta} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {data, IPaginateData} from '../_components/data';
 
 
-const getPageData = (currentPage: number, pageLimit: number) => {
+const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: 'DESC'|'ASC'}) => {
+
+    if(order){
+        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+    }
+
     const pageStart = (currentPage -1) * pageLimit;
     return data.slice(pageStart, pageStart + pageLimit );
 };
+
+
+
+const mockSort = (by: 'DESC'|'ASC', field: string, a: IPaginateData, b: IPaginateData) => {
+
+    const fieldName = field as keyof IPaginateData;
+
+    if (a[fieldName] < b[fieldName]) {
+        return by === 'ASC' ? -1 : 1;
+    }else if (a[fieldName] > b[fieldName]) {
+        return by === 'ASC' ?  1: -1;
+    }
+    // a 必須等於 b
+    return 0;
+};
+
 
 
 const BaseUsed = () => {
 
 
     const [isFetching, setIsFetching] = useState(false);
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [pageLimit, setPageLimit] = useState<number>(8);
-    const [order, setOrder] = useState<IOrder>({
-        orderField: 'name',
-        orderBy: 'DESC',
+    const [paginateMeta, setPaginateMeta] = useState<TMeta>({
+        currentPage: 1,
+        pageLimit: 8,
+        order: {
+            orderField: 'id',
+            orderBy: 'DESC',
+        }
     });
-    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(currentPage, pageLimit));
+    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
 
     const paginateInfo = {
         totalItems: data.length,
-        totalPages: Math.ceil(data.length / pageLimit),
-    }
-
+        totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
+    };
 
 
     /**
      * 查詢分頁
      */
-    const handleFetchPaginate = useCallback((meta: TPaginateMeta) => {
+    const handleFetchPaginate: TOnChangePage = (meta) => {
         // 取得查詢項目
         setIsFetching(true);
-        setCurrentPage(meta.currentPage);
-        if(meta.pageLimit) setPageLimit(meta.pageLimit);
+        // console.log('meta', meta);
+        setPaginateMeta(meta);
 
+        const {currentPage, pageLimit, order} = meta;
 
         setTimeout(() => {
-            setPaginateData(getPageData(meta.currentPage, meta.pageLimit));
+            setPaginateData(getPageData(currentPage, pageLimit, order));
             setIsFetching(false);
         }, 400);
-    }, []);
+    };
 
 
 
@@ -83,10 +106,8 @@ const BaseUsed = () => {
                             }
                         };
                     })}
-                    currentPage={currentPage}
-                    pageLimit={pageLimit}
                     onChangePage={handleFetchPaginate}
-                    // paginateMeta={paginateMeta}
+                    paginateMeta={paginateMeta}
                     paginateInfo={paginateInfo}
                 />
 

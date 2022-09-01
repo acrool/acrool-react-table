@@ -23,7 +23,6 @@ const Checkbox = forwardRef<HTMLInputElement, IProps>(({
 }, ref) => {
     const handleOnChange = (isChecked: boolean) => {
         if(onChange){
-            // console.log('onchange', isChecked);
             onChange(isChecked, value);
         }
 

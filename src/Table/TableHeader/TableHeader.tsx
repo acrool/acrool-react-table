@@ -11,7 +11,7 @@ interface IProps {
     title: ITitle[],
     onChangeSortField?: TOnChangeSortField;
     isStickyHeader?: boolean;
-    order: IOrder,
+    order?: IOrder,
 }
 
 
@@ -37,17 +37,17 @@ const TableHeader = ({
                     {titleRow.isEnableSort ? (
                         <button
                             className={elClassNames.headerSortButton}
-                            data-active={order.orderField === titleRow.field}
+                            data-active={order?.orderField === titleRow.field}
                             onClick={() => {
                                 onChangeSortField({
                                     orderField: titleRow.field,
-                                    orderBy: (order.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
+                                    orderBy: (order?.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
                                 });
                             }}>
                             {titleRow.text}
 
-                            {order.orderField === titleRow.field ?
-                                order.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
+                            {order?.orderField === titleRow.field ?
+                                order?.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
                                 <SortIcon/>
                             }
 

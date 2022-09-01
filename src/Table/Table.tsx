@@ -12,13 +12,12 @@ import {
     IPaginateInfo,
     IOrder,
     TOnChangeSortField,
-    TOnChangePage, TChangePage
+    TOnChangePage, TMeta
 } from './types';
 import elClassNames from './el-class-names';
 import TableHeader from './TableHeader/TableHeader';
 import TableBody from './TableBody/TableBody';
 import TableFooter from './TableFooter/TableFooter';
-import config from './config';
 
 import './styles.css';
 import './TableHeader/styles.css';
@@ -35,15 +34,11 @@ interface IProps {
     data?: IData[],
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
-
-    currentPage?: number,
-    pageLimit?: number,
-
-    order?: IOrder,
+    paginateMeta: TMeta,
 
     isVisibleHeader?: boolean,
     isStickyHeader?: boolean,
-    onChangePage?: (meta: IPaginateMeta) => void;
+    onChangePage?: TOnChangePage,
     pageLimitOptions?: number[];
 }
 
@@ -62,33 +57,46 @@ const Table = ({
         totalItems: 0,
         totalPages: 1,
     },
-    currentPage = 1,
-    pageLimit = config.pageLimit,
-    order = {
-        orderField: 'id',
-        orderBy: 'DESC',
-    },
-
+    paginateMeta,
     isVisibleHeader = true,
     isStickyHeader = false,
     onChangePage,
-    pageLimitOptions,
+    pageLimitOptions = [8, 40, 72, 150],
 }: IProps) => {
+    const meta = {
+        currentPage: paginateMeta.currentPage ?? 1,
+        pageLimit: paginateMeta.pageLimit ?? pageLimitOptions[0] ?? 8,
+        order: paginateMeta.order
+    };
 
-    const mergeParamChangePage: TOnChangePage = (pageMeta, orderMeta) => {
+
+
+    const handleOnChangePage: TOnChangePage = (pageMeta) => {
         window.scrollTo(0, 70);
 
         if(onChangePage){
-            onChangePage({...pageMeta, ...orderMeta});
+            onChangePage({
+                currentPage: pageMeta.currentPage,
+                pageLimit: pageMeta.pageLimit,
+                order: meta.order,
+                // orderBy: meta.orderBy,
+                // orderField: meta.orderField,
+            });
         }
     };
 
-    const handleOnChangePage: TChangePage = (pageMeta) => {
-        mergeParamChangePage({currentPage: pageMeta.currentPage, pageLimit: pageMeta.pageLimit}, order);
-    };
 
     const handleOnOrderField: TOnChangeSortField = (params) => {
-        mergeParamChangePage({currentPage: 1, pageLimit}, params);
+        if(onChangePage){
+            onChangePage({
+                currentPage: 1,
+                pageLimit: meta.pageLimit,
+                order: {
+                    orderBy: params.orderBy,
+                    orderField: params.orderField,
+                }
+            });
+        }
     };
 
     /**
@@ -120,7 +128,7 @@ const Table = ({
                         title={title}
                         isStickyHeader={isStickyHeader}
                         onChangeSortField={handleOnOrderField}
-                        order={order}
+                        order={meta.order}
                     />)}
 
                     {/* Body */}
@@ -139,9 +147,7 @@ const Table = ({
 
             {/* Footer */}
             <TableFooter
-                currentPage={currentPage}
-                pageLimit={pageLimit}
-
+                meta={meta}
                 info={paginateInfo}
                 onChangePage={handleOnChangePage}
                 pageLimitOptions={pageLimitOptions}
