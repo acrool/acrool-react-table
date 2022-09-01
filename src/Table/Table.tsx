@@ -79,6 +79,7 @@ const Table = ({
                 currentPage: pageMeta.currentPage,
                 pageLimit: pageMeta.pageLimit,
                 order: meta.order,
+                isUsePreMeta: true,
                 // orderBy: meta.orderBy,
                 // orderField: meta.orderField,
             });
@@ -94,7 +95,8 @@ const Table = ({
                 order: {
                     orderBy: params.orderBy,
                     orderField: params.orderField,
-                }
+                },
+                isUsePreMeta: true,
             });
         }
     };

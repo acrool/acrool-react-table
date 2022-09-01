@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Table, TPaginateMeta} from 'bear-react-table';
+import {Table, IPaginateMeta} from 'bear-react-table';
 import styled from 'styled-components/macro';
 import dayjs from 'dayjs';
 import {removeByIndex} from 'bear-jsutils/array';
@@ -21,7 +21,7 @@ const CheckedUsed = () => {
     const [isFetching, setIsFetching] = useState(false);
     const [isCheckedAll, setIsCheckAll] = useState<boolean>(false);
     const [checkedIds, setCheckedIds] = useState<number[]>([]);
-    const [paginateMeta, setPaginateMeta] = useState<TPaginateMeta>({
+    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
     });
@@ -64,7 +64,7 @@ const CheckedUsed = () => {
     /**
      * 查詢分頁
      */
-    const handleFetchPaginate = useCallback((meta: TPaginateMeta) => {
+    const handleFetchPaginate = useCallback((meta: IPaginateMeta) => {
         // 取得查詢項目
         setIsFetching(true);
         setPaginateMeta(meta);
