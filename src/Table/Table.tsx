@@ -38,6 +38,7 @@ interface IProps {
 
     isVisibleHeader?: boolean,
     isStickyHeader?: boolean,
+    isVisibleFooter?: boolean,
     onChangePage?: TOnChangePage,
     pageLimitOptions?: number[];
 }
@@ -60,6 +61,7 @@ const Table = ({
     paginateMeta,
     isVisibleHeader = true,
     isStickyHeader = false,
+    isVisibleFooter = true,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
 }: IProps) => {
@@ -150,12 +152,14 @@ const Table = ({
 
 
             {/* Footer */}
-            <TableFooter
-                meta={meta}
-                info={paginateInfo}
-                onChangePage={handleOnChangePage}
-                pageLimitOptions={pageLimitOptions}
-            />
+            {isVisibleFooter && (
+                <TableFooter
+                    meta={meta}
+                    info={paginateInfo}
+                    onChangePage={handleOnChangePage}
+                    pageLimitOptions={pageLimitOptions}
+                />
+            )}
         </div>
 
     );
