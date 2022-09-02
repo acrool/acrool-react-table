@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/imagine10255/bear-react-table/compare/v2.1.1-alpha.1...v2.1.1) (2022-09-02)
+
+
+### Features
+
+* add isVisibleFooter Switch ([3874ed1](https://github.com/imagine10255/bear-react-table/commit/3874ed1c0c425f8e88287d547632811723ced2c0))
+
 ### [2.1.1-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v2.1.1-alpha.0...v2.1.1-alpha.1) (2022-09-01)
 
 ### [2.1.1-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.1.0...v2.1.1-alpha.0) (2022-09-01)
