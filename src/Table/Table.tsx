@@ -41,6 +41,8 @@ interface IProps {
     isVisibleFooter?: boolean,
     onChangePage?: TOnChangePage,
     pageLimitOptions?: number[];
+
+    renderNoDaa?: () => JSX.Element;
 }
 
 
@@ -64,6 +66,8 @@ const Table = ({
     isVisibleFooter = true,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
+
+    renderNoDaa,
 }: IProps) => {
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -110,11 +114,14 @@ const Table = ({
      */
     const renderBody = () => {
         if(isEmpty(data)){
-            return <div className={elClassNames.notData}>
-                <NoDataImage/>
-                <div className={elClassNames.notDataText}>Not Found</div>
-                <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
-            </div>;
+            if(renderNoDaa){
+                return renderNoDaa();
+            }else{
+                return <div className={elClassNames.notData}>
+                    <div className={elClassNames.notDataText}>Not Found</div>
+                    <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
+                </div>;
+            }
         }
 
         return <TableBody

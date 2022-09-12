@@ -95,4 +95,6 @@ button.bear-react-table-footer__paginate-li.paginate-nav:last-child {
 
     height: 60px;
     flex: 0 0 60px;
+
+    margin-top: 15px;
 }

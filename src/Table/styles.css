@@ -41,7 +41,6 @@
 
 
 .bear-react-table__container {
-    margin-bottom: 15px;
     min-width: 0;
 
 
@@ -179,7 +178,7 @@
 
 
 .bear-react-table__not-data-text{
-    font-size: 24px;
+    font-size: 20px;
     color: #7d8490;
 }
 
@@ -189,8 +188,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 30px;
-    min-height: 200px;
+    padding: 12px;
 }
 .bear-react-table__not-data svg{
     height: 200px;
