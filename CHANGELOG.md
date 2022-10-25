@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/imagine10255/bear-react-table/compare/v2.1.2-alpha.0...v2.1.2) (2022-10-25)
+
+
+### Features
+
+* add itmeli padding(let not feel close to the line) ([9089415](https://github.com/imagine10255/bear-react-table/commit/9089415ad60e89230f266dda577e1b5292de58fd))
+
 ### [2.1.2-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.1.1...v2.1.2-alpha.0) (2022-09-12)
 
 ### [2.1.1](https://github.com/imagine10255/bear-react-table/compare/v2.1.1-alpha.1...v2.1.1) (2022-09-02)
