@@ -216,6 +216,7 @@
     justify-content: flex-start;
     border-bottom: 1px solid #585858;
 
+    padding: 0 var(--col-padding);
     margin: 0 var(--row-margin);
 }
 

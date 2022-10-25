@@ -83,6 +83,7 @@ const BaseUsed = () => {
                         {text: 'Role',       field: 'role',        col: 120},
                         {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
                         {text: 'Joined',     field: 'isApplyJoin', col: 80},
+                        {text: 'Amount',     field: 'amount', col: 80, titleAlign: 'right', dataAlign: 'right'},
                     ]}
                     data={paginateData.map(row => {
                         const createdAt = dayjs(row.createdAt);
@@ -103,6 +104,7 @@ const BaseUsed = () => {
                                     {createdAt.format('YYYY-MM-DD')}<br/>
                                     {createdAt.format('HH:mm:ss')}
                                 </div>,
+                                amount: `$ ${row.amount}`,
                             }
                         };
                     })}
