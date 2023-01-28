@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.1.2...v2.2.0-alpha.0) (2023-01-28)
+
+
+### Features
+
+* modify id is number, string ([0caf7ff](https://github.com/imagine10255/bear-react-table/commit/0caf7ffa87bdfa9449a67eb4cb4e19743383c5bd))
+
 ### [2.1.2](https://github.com/imagine10255/bear-react-table/compare/v2.1.2-alpha.0...v2.1.2) (2022-10-25)
 
 
