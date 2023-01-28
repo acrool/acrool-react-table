@@ -23,7 +23,6 @@ import './styles.css';
 import './TableHeader/styles.css';
 import './TableBody/styles.css';
 import './TableFooter/styles.css';
-import {NoDataImage} from './Icon';
 
 
 interface IProps {

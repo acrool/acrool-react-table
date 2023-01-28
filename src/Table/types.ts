@@ -8,7 +8,7 @@ interface IField {
 }
 
 export interface IData {
-    id: number,
+    id: number|string,
     appendData?: string|number|JSX.Element,
     disabled?: boolean,
     onClickRow?: () => void,
