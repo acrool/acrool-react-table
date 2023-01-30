@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v2.2.0-alpha.1...v2.2.0-alpha.2) (2023-01-30)
+
+
+### Features
+
+* export table props ([1c4b824](https://github.com/imagine10255/bear-react-table/commit/1c4b824283bee64e444cdd7a70ad5a648467577f))
+
 ## [2.2.0-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v2.2.0-alpha.0...v2.2.0-alpha.1) (2023-01-28)
 
 ## [2.2.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v2.1.2...v2.2.0-alpha.0) (2023-01-28)
