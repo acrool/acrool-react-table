@@ -1,4 +1,5 @@
 import {ReactNode} from 'react';
+import CSS from 'csstype';
 
 export type sizeUnit = 'px' | '%' | 'em';
 export type TCol = true|number|`${number}${sizeUnit}`;
@@ -56,3 +57,24 @@ export interface IPaginateMeta extends Required<IPage> {
 
 export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
 export type TOnChangeSortField = (meta: IOrder) => void
+
+
+
+export interface ITableProps {
+    className?: string;
+    style?: CSS.Properties,
+    isFetching?: boolean,
+    title: ITitle[],
+    data?: IData[],
+    dataFooterContent?: TDataFooterContent, // ex: total...
+    paginateInfo?: IPaginateInfo,
+    paginateMeta?: IPaginateMeta,
+
+    isVisibleHeader?: boolean,
+    isStickyHeader?: boolean,
+    isVisibleFooter?: boolean,
+    onChangePage?: TOnChangePage,
+    pageLimitOptions?: number[];
+
+    renderNoDaa?: () => JSX.Element;
+}

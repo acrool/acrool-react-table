@@ -12,7 +12,7 @@ import {
     IPaginateInfo,
     IOrder,
     TOnChangeSortField,
-    TOnChangePage,
+    TOnChangePage, ITableProps,
 } from './types';
 import elClassNames from './el-class-names';
 import TableHeader from './TableHeader/TableHeader';
@@ -25,24 +25,6 @@ import './TableBody/styles.css';
 import './TableFooter/styles.css';
 
 
-interface IProps {
-    className?: string;
-    style?: CSS.Properties,
-    isFetching?: boolean,
-    title: ITitle[],
-    data?: IData[],
-    dataFooterContent?: TDataFooterContent, // ex: total...
-    paginateInfo?: IPaginateInfo,
-    paginateMeta?: IPaginateMeta,
-
-    isVisibleHeader?: boolean,
-    isStickyHeader?: boolean,
-    isVisibleFooter?: boolean,
-    onChangePage?: TOnChangePage,
-    pageLimitOptions?: number[];
-
-    renderNoDaa?: () => JSX.Element;
-}
 
 
 /**
@@ -67,7 +49,7 @@ const Table = ({
     pageLimitOptions = [8, 40, 72, 150],
 
     renderNoDaa,
-}: IProps) => {
+}: ITableProps) => {
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
         pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,
@@ -151,7 +133,7 @@ const Table = ({
                 <div className={elClassNames.loadingBox} data-visible={isFetching}>
                     <div className={elClassNames.loadingPosition}>
                         {/*<div className={elClassNames.loadingImage} src={asset('/images/loading.gif')}/>*/}
-                        <div className={elClassNames.loadingText}>讀取中...</div>
+                        <div className={elClassNames.loadingText}>Loading...</div>
                     </div>
                 </div>
             </div>
