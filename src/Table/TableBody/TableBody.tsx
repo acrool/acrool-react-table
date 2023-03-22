@@ -7,9 +7,9 @@ import elClassNames from '../el-class-names';
 import {getCol} from '../utils';
 
 
-interface IProps {
+interface IProps<T> {
     title: ITitle[],
-    data?: IData[],
+    data?: IData<T>[],
     dataFooterContent?: TDataFooterContent,
 }
 
@@ -17,11 +17,11 @@ interface IProps {
 /**
  * Table Body
  */
-const TableBody = ({
-    title = [],
+const TableBody = <T extends string|number>({
+    title,
     data,
     dataFooterContent,
-}: IProps) => {
+}: IProps<T>) => {
 
 
     /**
@@ -44,7 +44,7 @@ const TableBody = ({
                     role={dataRow.onClickRow ? 'button':undefined}
                 >
                     {/* 各欄位值 */}
-                    {title.map(titleRow => {
+                    {title?.map(titleRow => {
                         return (<div
                             key={`tbodyTr_${dataRow.id}_${titleRow.field}`}
                             className={cx(elClassNames.itemColumn, titleRow.className)}
