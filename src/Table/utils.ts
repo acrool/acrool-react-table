@@ -12,3 +12,19 @@ export const getCol = (col: TCol) => {
         flex: `0 0 ${width}`
     };
 };
+
+
+/**
+ * 計算分頁
+ * @param totalItem
+ * @param pageLimit
+ */
+export const calcPageInfo = (totalItem: number, pageLimit: number) => {
+    let pageTotal = totalItem / pageLimit;
+    const remainder = totalItem % pageLimit;
+    if(remainder > 0){
+        pageTotal += 1;
+    }
+
+    return pageTotal;
+};

@@ -8,8 +8,8 @@ interface IField {
     [field: string]: string | number | JSX.Element;
 }
 
-export interface IData {
-    id: number|string,
+export interface IData<T> {
+    id: T,
     appendData?: string|number|JSX.Element,
     disabled?: boolean,
     onClickRow?: () => void,
@@ -60,12 +60,12 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 
 
-export interface ITableProps {
+export interface ITableProps<T extends string|number> {
     className?: string;
     style?: CSS.Properties,
     isFetching?: boolean,
     title: ITitle[],
-    data?: IData[],
+    data?: IData<T>[],
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
     paginateMeta?: IPaginateMeta,

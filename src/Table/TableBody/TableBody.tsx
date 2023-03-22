@@ -9,7 +9,7 @@ import {getCol} from '../utils';
 
 interface IProps {
     title: ITitle[],
-    data: IData[],
+    data?: IData[],
     dataFooterContent?: TDataFooterContent,
 }
 
@@ -19,7 +19,7 @@ interface IProps {
  */
 const TableBody = ({
     title = [],
-    data = [],
+    data,
     dataFooterContent,
 }: IProps) => {
 
@@ -29,7 +29,7 @@ const TableBody = ({
      */
     const renderBodyData = () => {
 
-        return data.map(dataRow => {
+        return data?.map(dataRow => {
             if(typeof dataRow?.id === 'undefined'){
                 throw new Error('TableBody error, `dataRow.id` can\'t is undefined!');
             }

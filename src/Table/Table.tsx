@@ -1,19 +1,9 @@
 import React from 'react';
 import {isEmpty} from 'bear-jsutils/equal';
-import CSS from 'csstype';
 import cx from 'classnames';
 
 // Components
-import {
-    IData,
-    TDataFooterContent,
-    IPaginateMeta,
-    ITitle,
-    IPaginateInfo,
-    IOrder,
-    TOnChangeSortField,
-    TOnChangePage, ITableProps,
-} from './types';
+import {TOnChangeSortField, TOnChangePage, ITableProps,} from './types';
 import elClassNames from './el-class-names';
 import TableHeader from './TableHeader/TableHeader';
 import TableBody from './TableBody/TableBody';
@@ -30,12 +20,12 @@ import './TableFooter/styles.css';
 /**
  * Table
  */
-const Table = ({
+const Table = <T extends string|number>({
     className,
     style,
     isFetching = false,
     title,
-    data = [],
+    data,
     dataFooterContent,
     paginateInfo = {
         totalItems: 0,
@@ -49,7 +39,7 @@ const Table = ({
     pageLimitOptions = [8, 40, 72, 150],
 
     renderNoDaa,
-}: ITableProps) => {
+}: ITableProps<T>) => {
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
         pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,
