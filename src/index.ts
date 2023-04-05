@@ -1,4 +1,3 @@
-export {default as Table} from './Table/Table';
-export {default as TableElClassNames} from './Table/el-class-names';
-export * from './Table/types';
-
+export {default} from './Table';
+// export {default as CardTable} from './CardTable';
+export * from './types';

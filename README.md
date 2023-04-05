@@ -1,19 +1,14 @@
 # bear-react-table
 
-> Datepicker library based for Reactjs
+> Table library based for Reactjs
 
 [![NPM](https://img.shields.io/npm/v/bear-react-table.svg)](https://www.npmjs.com/package/bear-react-table)
 [![npm](https://img.shields.io/npm/dm/bear-react-table.svg)](https://www.npmjs.com/package/bear-react-table)
 
-<img src="./docs/table.jpg" width="700"/>
+<div align="center">
+    <img src="https://github.com/imagine10255/bear-react-table/blob/main/docs/table.jpg" alt="Table library based for Reactjs" />
+</div>
 
-
-
-## Support Version Map
-
-React | React Scripts | Bear React Table | 
-------|:--------------|-----------------:|
-18    | 5.0.1         |            2.0.0 |
 
 
 ## Install
