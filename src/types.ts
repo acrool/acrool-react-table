@@ -63,6 +63,7 @@ export type TOnChangeSortField = (meta: IOrder) => void
 export interface ITableProps<T extends string|number> {
     className?: string;
     style?: CSS.Properties,
+    isDark?: boolean
     isFetching?: boolean,
     title: ITitle[],
     data?: IData<T>[],

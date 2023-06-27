@@ -22,6 +22,7 @@ import './TableFooter/styles.css';
 const Table = <T extends string|number>({
     className,
     style,
+    isDark,
     isFetching = false,
     title,
     data,
@@ -103,7 +104,7 @@ const Table = <T extends string|number>({
 
 
     return (
-        <div className={cx(elClassNames.root, className)} style={style}>
+        <div className={cx(elClassNames.root, className, {'dark-theme': isDark})} style={style}>
             <div className={elClassNames.container}>
                 <div className={elClassNames.content}>
                     {/* Header */}

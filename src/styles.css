@@ -9,24 +9,58 @@
 }
 
 .bear-react-table__root{
-    --bg-color: #fff;
-    --text-color: #333333;
-    --bg-active-color: #e6f7ff;
-    --bg-hover-color: #f5f5f5;
-    --border-color: #f0f0f0;
-
     --row-margin: -5px;
     --col-padding: 5px;
     --body-li-height: 57px;
     --header-li-height: 37px;
+
+
+
+    --bg-color: #fff;
+    --text-color: #000;
+    --header-text-color: #8d8c8c;
+    --header-text-active-color: #000;
+    --disabled-bg-color: #d3d3d3;
+    --disabled-text-color: #6e6e6e;
+    --border-color: #343a40;
+    --item-li-text-color: #9aa0ac;
+    --item-li-hover-text-color: #eaeaea;
+    --item-li-hover-bg-color: #9b9b9b;
+    --item-li-border-color: #585858;
+
+    --footer-info-text-color: #9aa0ac;
+    --footer-text-color: #000;
+    --footer-bg-color: #fff;
+    --footer-li-hover-bg-color: #d0d2d5;
+    --footer-li-hover-border-color: #b8bcbf;
+
+    --footer-li-active-color: #55a9ff;
+    --footer-li-active-text-color: #fff;
+    --footer-li-active-border-color: #007bff;
 }
 
 .bear-react-table__root.dark-theme {
-    --bg-color: #38393a;
-    --text-color: rgba(255, 255, 255, 0.65);
-    --bg-active-color: #727373;
-    --bg-hover-color: #5e5e5e;
-    --border-color: rgba(255, 255, 255, 0.25);
+    --bg-color: #2b3035;
+    --text-color: #7d8490;
+    --header-text-color: #9aa0ac;
+    --header-text-active-color: #fff;
+    --disabled-bg-color: #232323;
+    --disabled-text-color: #6e6e6e;
+    --border-color: #343a40;
+    --item-li-text-color: #9aa0ac;
+    --item-li-hover-text-color: #eaeaea;
+    --item-li-hover-bg-color: #1f1f1f;
+    --item-li-border-color: #585858;
+
+    --footer-info-text-color: #9aa0ac;
+    --footer-text-color: #9aa0ac;
+    --footer-bg-color: #495057;
+    --footer-li-hover-bg-color: #d0d2d5;
+    --footer-li-hover-border-color: #b8bcbf;
+
+    --footer-li-active-color: #007bff;
+    --footer-li-active-text-color: #fff;
+    --footer-li-active-border-color: #007bff;
 }
 
 
@@ -44,10 +78,9 @@
     min-width: 0;
 
 
-    border: 1px solid rgba(0,0,0,.125);
-    border-color: #343a40;
-    background: #2b3035;
-    color: #7d8490;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
     border-radius: .55rem;
     position: relative;
     width: 100%;
@@ -174,13 +207,13 @@
 
 .bear-react-table__not-data-desc{
     font-size: 14px;
-    color: #7d8490;
+    color: var(--text-color);
 }
 
 
 .bear-react-table__not-data-text{
     font-size: 20px;
-    color: #7d8490;
+    color: var(--text-color);
 }
 
 .bear-react-table__not-data{
@@ -210,14 +243,14 @@
 .bear-react-table__item-li,
 .bear-react-table-body__item-li{
     list-style: none;
-    color: #9aa0ac;
+    color: var(--item-li-text-color);
     font-size: 14px;
 
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-    border-bottom: 1px solid #585858;
+    border-bottom: 1px solid var(--item-li-border-color);
 
     padding: 0 var(--col-padding);
     margin: 0 var(--row-margin);

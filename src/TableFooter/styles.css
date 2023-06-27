@@ -24,20 +24,20 @@ button.bear-react-table-footer__paginate-li {
     width: 35px;
     justify-content: center;
     align-items: center;
-    color: #7d8490;
-    background-color: #495057;
-    border: 1px solid #495057;
+    color: var(--text-color);
+    background-color: var(--footer-bg-color);
+    border: 1px solid var(--footer-bg-color);
     border-right-color: transparent;
 }
 button.bear-react-table-footer__paginate-li:hover{
-    background-color: #d0d2d5;
-    border-color: #b8bcbf;
+    background-color: var(--footer-li-hover-bg-color);
+    border-color: var(--footer-li-hover-border-color);
 }
 button.bear-react-table-footer__paginate-li.is-active,
 button.bear-react-table-footer__paginate-li.is-active:hover{
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    color: var(--footer-li-active-text-color);
+    background-color: var(--footer-li-active-color);
+    border-color: var(--footer-li-active-border-color);
 }
 
 button.bear-react-table-footer__paginate-li svg{
@@ -81,7 +81,7 @@ button.bear-react-table-footer__paginate-li.paginate-nav:last-child {
 
 
 .bear-react-table-footer__paginate-info {
-    color: #9aa0ac;
+    color: var(--footer-info-text-color);
     font-size: 14px;
     margin-right: 20px;
     display: block;

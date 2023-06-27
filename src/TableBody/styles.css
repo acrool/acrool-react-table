@@ -17,7 +17,7 @@
 
 .bear-react-table-body__item-li {
     border-collapse: collapse;
-    border-top: 1px solid #343a40;
+    border-top: 1px solid var(--border-color);
     border-bottom: none;
     height: var(--body-li-height);
     opacity: 1;
@@ -40,13 +40,13 @@
 
 .bear-react-table-body__item-li[data-disabled="true"],
 .bear-react-table-body__item-li[data-disabled="true"]:nth-of-type(2n) {
-    color: #6e6e6e;
-    background: #232323;
+    color: var(--disabled-text-color);
+    background: var(--disabled-bg-color);
 }
 .bear-react-table-body__item-li[data-disabled="true"]:hover,
 .bear-react-table-body__item-li:hover{
-    background: #1f1f1f;
-    color: #eaeaea;
+    background: var(--item-li-hover-bg-color);
+    color: var(--item-li-hover-text-color);
 }
 
 .bear-react-table-body__split-list {
