@@ -18,6 +18,10 @@
     background-color: var(--bg-color);
     flex: 0 0 auto;
     width: 100%;
+
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-radius: .55rem .55rem 0 0;
 }
 
 

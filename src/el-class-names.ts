@@ -1,5 +1,5 @@
 const elClassNames = {
-    elCLassPrefix: 'bear-react-table',
+    elClassPrefix: 'bear-react-table',
 };
 
 
@@ -7,41 +7,41 @@ const elClassNames = {
  * css class setting
  */
 export default {
-    root: `${elClassNames.elCLassPrefix}__root`,
-    container: `${elClassNames.elCLassPrefix}__container`,
-    content: `${elClassNames.elCLassPrefix}__content`,
-    notDataDesc: `${elClassNames.elCLassPrefix}__not-data-desc`,
-    notDataText: `${elClassNames.elCLassPrefix}__not-data-text`,
-    notDataImage: `${elClassNames.elCLassPrefix}__not-data-image`,
-    notData: `${elClassNames.elCLassPrefix}__not-data`,
-    itemUl: `${elClassNames.elCLassPrefix}__item-ul`,
-    itemLi: `${elClassNames.elCLassPrefix}__item-li`,
-    itemColumn: `${elClassNames.elCLassPrefix}__item-column`,
-    loadingBox: `${elClassNames.elCLassPrefix}__loading-box`,
-    loadingPosition: `${elClassNames.elCLassPrefix}__loading-position`,
-    loadingText: `${elClassNames.elCLassPrefix}__loading-text`,
-    loadingImage: `${elClassNames.elCLassPrefix}__loading-image`,
-    icon: `${elClassNames.elCLassPrefix}__icon`,
+    root: `${elClassNames.elClassPrefix}__root`,
+    container: `${elClassNames.elClassPrefix}__container`,
+    content: `${elClassNames.elClassPrefix}__content`,
+    notDataDesc: `${elClassNames.elClassPrefix}__not-data-desc`,
+    notDataText: `${elClassNames.elClassPrefix}__not-data-text`,
+    notDataImage: `${elClassNames.elClassPrefix}__not-data-image`,
+    notData: `${elClassNames.elClassPrefix}__not-data`,
+    itemUl: `${elClassNames.elClassPrefix}__item-ul`,
+    itemLi: `${elClassNames.elClassPrefix}__item-li`,
+    itemColumn: `${elClassNames.elClassPrefix}__item-column`,
+    loadingBox: `${elClassNames.elClassPrefix}__loading-box`,
+    loadingPosition: `${elClassNames.elClassPrefix}__loading-position`,
+    loadingText: `${elClassNames.elClassPrefix}__loading-text`,
+    loadingImage: `${elClassNames.elClassPrefix}__loading-image`,
+    icon: `${elClassNames.elClassPrefix}__icon`,
 
 
-    headerSortButton: `${elClassNames.elCLassPrefix}-header__sort-button`,
-    headerInner: `${elClassNames.elCLassPrefix}-header__inner`,
+    headerSortButton: `${elClassNames.elClassPrefix}-header__sort-button`,
+    headerInner: `${elClassNames.elClassPrefix}-header__inner`,
 
-    bodyAppendLine: `${elClassNames.elCLassPrefix}-body__append-line`,
-    bodyInnerContent: `${elClassNames.elCLassPrefix}-body__inner-content`,
-    bodyItemLi: `${elClassNames.elCLassPrefix}-body__item-li`,
-    bodySplitList: `${elClassNames.elCLassPrefix}-body__split-list`,
-    bodySplitView: `${elClassNames.elCLassPrefix}-body__split-view`,
-
-
-
-    footerPageLimit: `${elClassNames.elCLassPrefix}-footer__page-limit`,
-    footerPaginateUl: `${elClassNames.elCLassPrefix}-footer__paginate-ul`,
-    footerPaginateLi: `${elClassNames.elCLassPrefix}-footer__paginate-li`,
-    footerPaginateInfo: `${elClassNames.elCLassPrefix}-footer__paginate-info`,
-    footerInner: `${elClassNames.elCLassPrefix}-footer__inner`,
+    bodyAppendLine: `${elClassNames.elClassPrefix}-body__append-line`,
+    bodyInnerContent: `${elClassNames.elClassPrefix}-body__inner-content`,
+    bodyItemLi: `${elClassNames.elClassPrefix}-body__item-li`,
+    bodySplitList: `${elClassNames.elClassPrefix}-body__split-list`,
+    bodySplitView: `${elClassNames.elClassPrefix}-body__split-view`,
 
 
-    select: `${elClassNames.elCLassPrefix}-footer__select`,
+
+    footerPageLimit: `${elClassNames.elClassPrefix}-footer__page-limit`,
+    footerPaginateUl: `${elClassNames.elClassPrefix}-footer__paginate-ul`,
+    footerPaginateLi: `${elClassNames.elClassPrefix}-footer__paginate-li`,
+    footerPaginateInfo: `${elClassNames.elClassPrefix}-footer__paginate-info`,
+    footerInner: `${elClassNames.elClassPrefix}-footer__inner`,
+
+
+    select: `${elClassNames.elClassPrefix}-footer__select`,
 
 };

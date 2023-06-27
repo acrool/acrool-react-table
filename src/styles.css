@@ -78,10 +78,9 @@
     min-width: 0;
 
 
-    border: 1px solid var(--border-color);
-    background: var(--bg-color);
+    /*border: 1px solid var(--border-color);*/
+    /*background: var(--bg-color);*/
     color: var(--text-color);
-    border-radius: .55rem;
     position: relative;
     width: 100%;
 }
