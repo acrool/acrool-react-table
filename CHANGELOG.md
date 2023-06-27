@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1-aplha.3](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-aplha.2...v3.0.1-aplha.3) (2023-06-27)
+
+
+### Features
+
+* add style ([cfb1f99](https://github.com/imagine10255/bear-react-table/commit/cfb1f997db65a0faa9f2ce71bc95ee80d34bae2b))
+
 ### [3.0.1-aplha.2](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-aplha.1...v3.0.1-aplha.2) (2023-06-27)
 
 
