@@ -47,11 +47,15 @@
     color: var(--disabled-text-color);
     background: var(--disabled-bg-color);
 }
-.bear-react-table-body__item-li[data-disabled="true"]:hover,
-.bear-react-table-body__item-li:hover{
-    background: var(--item-li-hover-bg-color);
-    color: var(--item-li-hover-text-color);
+
+@media (hover: hover) {
+    .bear-react-table-body__item-li[data-disabled="true"]:hover,
+    .bear-react-table-body__item-li:hover{
+        background: var(--item-li-hover-bg-color);
+        color: var(--item-li-hover-text-color);
+    }
 }
+
 
 .bear-react-table-body__split-list {
     height: 100%;

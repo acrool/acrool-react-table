@@ -29,24 +29,34 @@ button.bear-react-table-footer__paginate-li {
     border: 1px solid var(--footer-bg-color);
     border-right-color: transparent;
 }
-button.bear-react-table-footer__paginate-li:hover{
-    background-color: var(--footer-li-hover-bg-color);
-    border-color: var(--footer-li-hover-border-color);
-}
-button.bear-react-table-footer__paginate-li.is-active,
-button.bear-react-table-footer__paginate-li.is-active:hover{
-    color: var(--footer-li-active-text-color);
-    background-color: var(--footer-li-active-color);
-    border-color: var(--footer-li-active-border-color);
-}
+
 
 button.bear-react-table-footer__paginate-li svg{
     color: #bdbdbd;
     fill: currentColor;
 }
-button.bear-react-table-footer__paginate-li:hover svg{
-    color: #fff;
+button.bear-react-table-footer__paginate-li.is-active{
+    color: var(--footer-li-active-text-color);
+    background-color: var(--footer-li-active-color);
+    border-color: var(--footer-li-active-border-color);
 }
+
+@media (hover: hover) {
+    button.bear-react-table-footer__paginate-li:hover {
+        background-color: var(--footer-li-hover-bg-color);
+        border-color: var(--footer-li-hover-border-color);
+    }
+
+    button.bear-react-table-footer__paginate-li.is-active:hover {
+        color: var(--footer-li-active-text-color);
+        background-color: var(--footer-li-active-color);
+        border-color: var(--footer-li-active-border-color);
+    }
+    button.bear-react-table-footer__paginate-li:hover svg{
+        color: #fff;
+    }
+}
+
 
 
 button.bear-react-table-footer__paginate-li.paginate-nav {
