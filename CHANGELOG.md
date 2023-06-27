@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1-aplha.4](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-aplha.3...v3.0.1-aplha.4) (2023-06-27)
+
+
+### Features
+
+* disabled mobile hover style ([c3a13ad](https://github.com/imagine10255/bear-react-table/commit/c3a13ade73b3e0556164f742738a4a88036a15f2))
+
 ### [3.0.1-aplha.3](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-aplha.2...v3.0.1-aplha.3) (2023-06-27)
 
 
