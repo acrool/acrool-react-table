@@ -27,6 +27,7 @@
     --item-li-hover-text-color: #eaeaea;
     --item-li-hover-bg-color: #9b9b9b;
     --item-li-border-color: #585858;
+    --item-li-bg-2n-color: rgba(255,255,255,.9);
 
     --footer-info-text-color: #9aa0ac;
     --footer-text-color: #000;
@@ -51,6 +52,7 @@
     --item-li-hover-text-color: #eaeaea;
     --item-li-hover-bg-color: #1f1f1f;
     --item-li-border-color: #585858;
+    --item-li-bg-2n-color: rgba(0,0,0,.04);
 
     --footer-info-text-color: #9aa0ac;
     --footer-text-color: #9aa0ac;
