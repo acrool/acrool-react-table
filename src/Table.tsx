@@ -84,7 +84,7 @@ const Table = <T extends string|number>({
      * 產生表格內容
      */
     const renderBody = () => {
-        if(!isFetching){
+        if(isFetching){
             return <div className={elClassNames.notData}>
                 <div className={elClassNames.loadingText}>Loading...</div>
             </div>;
