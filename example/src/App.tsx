@@ -109,30 +109,9 @@ function App() {
                             {text: 'Joined',     field: 'isApplyJoin', col: 80},
                             {text: 'Amount',     field: 'amount', col: 80, titleAlign: 'right', dataAlign: 'right'},
                         ]}
-                        // data={undefined}
-                        data={paginateData.map(row => {
-                            const createdAt = dayjs(row.createdAt);
 
-                            return {
-                                id: row.id,
-                                disabled: !row.isJoined,
-                                onClickRow: () => console.log(row.id),
-                                field: {
-                                    role: row.role,
-                                    avatar: <div style={{backgroundImage: `url(${row.avatar})`}}/>,
-                                    name: <div className="d-flex flex-column">
-                                        <div>{row.name}</div>
-                                        <div>{row.email}</div>
-                                    </div>,
-                                    isApplyJoin: row.isJoined ? '已加入':'等待同意',
-                                    createdAt: <div style={{fontSize: 12}}>
-                                        {createdAt.format('YYYY-MM-DD')}<br/>
-                                        {createdAt.format('HH:mm:ss')}
-                                    </div>,
-                                    amount: `$ ${row.amount}`,
-                                }
-                            };
-                        })}
+
+                        data={undefined}
                         onChangePage={handleFetchPaginate}
                         paginateMeta={paginateMeta}
                         paginateInfo={paginateInfo}

@@ -84,15 +84,22 @@ const Table = <T extends string|number>({
      * 產生表格內容
      */
     const renderBody = () => {
-        if(!data){
+        if(!isFetching){
+            return <div className={elClassNames.notData}>
+                <div className={elClassNames.loadingText}>Loading...</div>
+            </div>;
+        }
+
+        if(!data || data?.length === 0){
             if(renderNoDaa){
                 return renderNoDaa();
-            }else{
-                return <div className={elClassNames.notData}>
-                    <div className={elClassNames.notDataText}>Not Found</div>
-                    <div className={elClassNames.notDataDesc}>Choose a different filter to view test results to you</div>
-                </div>;
             }
+
+            return <div className={elClassNames.notData}>
+                <div className={elClassNames.notDataText}>Not Found</div>
+                <div className={elClassNames.notDataDesc}>Choose a different filter to view results</div>
+            </div>;
+
         }
 
         return <TableBody
@@ -119,13 +126,7 @@ const Table = <T extends string|number>({
                     {renderBody()}
                 </div>
 
-                {/* Loading */}
-                <div className={elClassNames.loadingBox} data-visible={isFetching}>
-                    <div className={elClassNames.loadingPosition}>
-                        {/*<div className={elClassNames.loadingImage} src={asset('/images/loading.gif')}/>*/}
-                        <div className={elClassNames.loadingText}>Loading...</div>
-                    </div>
-                </div>
+
             </div>
 
 

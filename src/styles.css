@@ -169,25 +169,25 @@
     overflow: hidden;
 }
 
-.bear-react-table__loading-box[data-visible=true]{
-    opacity: 1;
-    pointer-events: unset;
-}
+/*.bear-react-table__loading-box[data-visible=true]{*/
+/*    opacity: 1;*/
+/*    pointer-events: unset;*/
+/*}*/
 
-.bear-react-table__loading-position{
-    position: absolute;
-    top: 150px;
-    z-index: 3;
-}
+/*.bear-react-table__loading-position{*/
+/*    position: absolute;*/
+/*    top: 150px;*/
+/*    z-index: 3;*/
+/*}*/
 .bear-react-table__loading-text{
     text-align: center;
 
 }
-.bear-react-table__loading-images{
-    width: 50px;
-    height: auto;
-    margin-bottom: 10px;
-}
+/*.bear-react-table__loading-images{*/
+/*    width: 50px;*/
+/*    height: auto;*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
 
 .bear-react-table__not-data{
@@ -201,6 +201,7 @@
     border: 1px solid var(--border-color);
     border-top: none;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+    min-height: 65px;
 }
 
 .bear-react-table__not-data-desc{
