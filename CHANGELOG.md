@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1-alpha.6](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.5...v3.0.1-alpha.6) (2023-06-28)
+
+
+### Features
+
+* modify loading style ([2b49845](https://github.com/imagine10255/bear-react-table/commit/2b4984506164f9eac60c9b3ed0b2a6bb94f651a7))
+
 ### [3.0.1-alpha.5](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-aplha.4...v3.0.1-alpha.5) (2023-06-28)
 
 
