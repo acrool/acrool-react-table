@@ -21,7 +21,7 @@
 
     border: 1px solid var(--border-color);
     border-bottom: none;
-    border-radius: .55rem .55rem 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 

@@ -35,7 +35,7 @@
 
 
 .bear-react-table-body__item-li:last-child {
-    border-radius: 0 0 .55rem .55rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 .bear-react-table-body__item-li:nth-of-type(2n) {
     background-color: var(--item-li-bg-2n-color);

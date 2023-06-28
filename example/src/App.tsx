@@ -109,6 +109,7 @@ function App() {
                             {text: 'Joined',     field: 'isApplyJoin', col: 80},
                             {text: 'Amount',     field: 'amount', col: 80, titleAlign: 'right', dataAlign: 'right'},
                         ]}
+                        // data={undefined}
                         data={paginateData.map(row => {
                             const createdAt = dayjs(row.createdAt);
 
