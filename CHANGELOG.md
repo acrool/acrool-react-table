@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1-alpha.7](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.6...v3.0.1-alpha.7) (2023-06-28)
+
+
+### Bug Fixes
+
+* isFetching status fail ([4fa7091](https://github.com/imagine10255/bear-react-table/commit/4fa7091408d93ce0ddd8bd40c451ab3ba4ddfbd4))
+
 ### [3.0.1-alpha.6](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.5...v3.0.1-alpha.6) (2023-06-28)
 
 
