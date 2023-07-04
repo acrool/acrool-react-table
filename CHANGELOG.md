@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1-alpha.8](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.7...v3.0.1-alpha.8) (2023-07-04)
+
+
+### Features
+
+* add not data render in div.elClassNames.notData ([3f9e34f](https://github.com/imagine10255/bear-react-table/commit/3f9e34f073a8a5a4832696e28ed23d6338ced087))
+
 ### [3.0.1-alpha.7](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.6...v3.0.1-alpha.7) (2023-06-28)
 
 
