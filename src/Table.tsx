@@ -92,7 +92,9 @@ const Table = <T extends string|number>({
 
         if(!data || data?.length === 0){
             if(renderNoDaa){
-                return renderNoDaa();
+                return <div className={elClassNames.notData}>
+                    {renderNoDaa()}
+                </div>;
             }
 
             return <div className={elClassNames.notData}>
