@@ -99,7 +99,7 @@ function App() {
                 <button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</button>
                 <div className="d-flex flex-row my-2">
                     <Table
-                        isDark={false}
+                        isDark
                         isFetching={isFetching}
                         title={[
                             {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
