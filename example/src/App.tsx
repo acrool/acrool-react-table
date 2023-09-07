@@ -8,6 +8,7 @@ import {data, IPaginateData} from './config/data';
 import './App.css';
 import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
+import styled from 'styled-components';
 
 
 
@@ -99,7 +100,7 @@ function App() {
                 <button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</button>
                 <div className="d-flex flex-row my-2">
                     <Table
-                        isDark
+                        isDark={false}
                         isFetching={isFetching}
                         title={[
                             {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
@@ -107,11 +108,25 @@ function App() {
                             {text: 'Role',       field: 'role',        col: 120},
                             {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
                             {text: 'Joined',     field: 'isApplyJoin', col: 80},
+                            {text: 'Result',     field: 'result', col: 80, isAppend: true,},
                             {text: 'Amount',     field: 'amount', col: 80, titleAlign: 'right', dataAlign: 'right'},
                         ]}
-
-
-                        data={undefined}
+                        dataFooterContent={<>
+                            <div className="w-100 text-right">Total: $ 123,455</div>
+                        </>}
+                        data={data.map(row => {
+                            return {
+                                id: row.id,
+                                field: {
+                                    avatar: <Avatar src={row.avatar}/>,
+                                    name: row.name,
+                                    role: row.role,
+                                    createdAt: dayjs(row.createdAt).format('MM/DD'),
+                                    isApplyJoin: row.isJoined ? 'Y':'N',
+                                    amount: row.amount,
+                                },
+                            };
+                        })}
                         onChangePage={handleFetchPaginate}
                         paginateMeta={paginateMeta}
                         paginateInfo={paginateInfo}
@@ -134,3 +149,11 @@ function App() {
 }
 
 export default App;
+
+
+const Avatar = styled.img`
+   border-radius: 99em;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+`;
