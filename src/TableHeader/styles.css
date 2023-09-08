@@ -13,23 +13,5 @@
     fill: currentColor;
 }
 
-.bear-react-table__root thead{
-    color: var(--header-text-color);
-    background-color: var(--bg-color);
-    flex: 0 0 auto;
-    width: 100%;
-
-    border: 1px solid var(--border-color);
-    border-bottom: none;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-
-.bear-react-table__root thead[data-sticky="true"]{
-    position: sticky;
-    top: 0;
-    z-index: 5;
-}
-
 
 

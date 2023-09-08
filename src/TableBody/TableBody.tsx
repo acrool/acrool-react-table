@@ -108,7 +108,7 @@ const TableBody = <T extends string|number>({
                     <th
                         key={`tbodyTr_${footer}_${titleRow.field}`}
                         className={cx(titleRow.className)}
-                        data-align={field.dataAlign}
+                        data-align={field?.dataAlign}
                         data-vertical={titleRow.dataVertical}
                         colSpan={colSpan}
                         style={{

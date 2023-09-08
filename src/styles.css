@@ -224,6 +224,24 @@
 
 
 
+/** -------------------------------
+ *             Header
+ * ------------------------------ */
+.bear-react-table__root thead tr{
+    color: var(--header-text-color);
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border: 1px solid var(--border-color);
+}
+
+
+.bear-react-table__root thead[data-sticky="true"]{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+
 
 
 /** -------------------------------
@@ -232,19 +250,36 @@
 .bear-react-table__root tbody{
     margin: 0;
 }
+.bear-react-table__root tbody tr:first-child {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
 .bear-react-table__root tbody tr:last-child {
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+.bear-react-table__root[data-header] tbody tr:first-child,
+.bear-react-table__root[data-footer] tbody tr:last-child {
+    border-radius: 0
 }
 .bear-react-table__root tbody tr:nth-of-type(odd) {
     background-color: var(--item-li-bg-odd-color);
 }
-.bear-react-table__root tbody tr{
-     border-left: 1px solid var(--border-color);
-     border-right: 1px solid var(--border-color);
+.bear-react-table__root thead tr,
+.bear-react-table__root tbody tr,
+.bear-react-table__root tfoot tr{
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    padding: 0 var(--grid-gap);
 }
 
 
 
+
+/** -------------------------------
+ *             Footer
+ * ------------------------------ */
+.bear-react-table__root tfoot tr{
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
 
 
 /** -------------------------------

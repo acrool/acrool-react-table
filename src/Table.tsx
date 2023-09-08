@@ -117,10 +117,13 @@ const Table = <T extends string|number>({
 
 
     return (
-        <div className={cx(elClassNames.root, className, {'dark-theme': isDark})} style={{
-            ...style,
-            ...getTemplate(title, gap)
-        }}>
+        <div className={cx(elClassNames.root, className, {'dark-theme': isDark})}
+            data-footer={!!isVisibleFooter ?? ''}
+            data-header={!!isVisibleHeader ?? ''}
+            style={{
+                ...style,
+                ...getTemplate(title, gap)
+            }}>
             <table>
                 {/* Header */}
                 {isVisibleHeader && (<TableHeader

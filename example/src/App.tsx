@@ -112,7 +112,13 @@ function App() {
                             {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
                             {text: 'Result',     field: 'result',      col: '80px', isAppend: true,},
                         ]}
-
+                        footer={{
+                            avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                            // name: row.name,
+                            // role: row.role,
+                            // createdAt: dayjs(row.createdAt).format('MM/DD'),
+                            // isApplyJoin: row.isJoined ? 'Y':'N',
+                        }}
                         data={data.map(row => {
                             return {
                                 id: row.id,
