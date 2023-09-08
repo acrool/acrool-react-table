@@ -13,7 +13,7 @@
     fill: currentColor;
 }
 
-.bear-react-table-header__inner{
+.bear-react-table__root thead{
     color: var(--header-text-color);
     background-color: var(--bg-color);
     flex: 0 0 auto;
@@ -25,7 +25,7 @@
 }
 
 
-.bear-react-table-header__inner[data-sticky="true"]{
+.bear-react-table__root thead[data-sticky="true"]{
     position: sticky;
     top: 0;
     z-index: 5;

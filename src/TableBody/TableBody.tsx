@@ -2,14 +2,13 @@ import React, {Fragment} from 'react';
 import cx from 'classnames';
 
 // Components
-import {IData, TDataFooterContent, ITitle} from '../types';
-import elClassNames from '../el-class-names';
-import {getCol} from '../utils';
+import {IData, TDataFooterContent, ITitle, IFooter} from '../types';
 
 
 interface IProps<T> {
     title: ITitle[],
     data?: IData<T>[],
+    footer?: IFooter,
     dataFooterContent?: TDataFooterContent,
 }
 
@@ -20,6 +19,7 @@ interface IProps<T> {
 const TableBody = <T extends string|number>({
     title,
     data,
+    footer,
     dataFooterContent,
 }: IProps<T>) => {
 
@@ -37,31 +37,32 @@ const TableBody = <T extends string|number>({
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
             >
-                <li
-                    className={elClassNames.bodyItemLi}
+                <tr
+                    // className={elClassNames.bodyItemLi}
                     onClick={dataRow.onClickRow}
                     data-disabled={dataRow.disabled}
                     role={dataRow.onClickRow ? 'button':undefined}
                 >
                     {/* 各欄位值 */}
                     {title?.map(titleRow => {
-                        return (<div
+                        return (<td
                             key={`tbodyTr_${dataRow.id}_${titleRow.field}`}
-                            className={cx(elClassNames.itemColumn, titleRow.className)}
+                            className={titleRow.className}
                             data-align={titleRow.dataAlign}
                             data-vertical={titleRow.dataVertical}
-                            style={getCol(titleRow.col)}
+                            // style={getCol(titleRow.col)}
+                            // colSpan={titleRow.colSpan}
                         >
                             {dataRow.field[titleRow.field] ?? ''}
-                        </div>);
+                        </td>);
                     })}
-                </li>
+                </tr>
 
-                {dataRow.appendData && (
-                    <div className={elClassNames.bodyAppendLine}>
-                        {dataRow.appendData}
-                    </div>
-                )}
+                {/*{dataRow.appendData && (*/}
+                {/*    <div className={elClassNames.bodyAppendLine}>*/}
+                {/*        {dataRow.appendData}*/}
+                {/*    </div>*/}
+                {/*)}*/}
 
             </Fragment>);
         });
@@ -69,30 +70,78 @@ const TableBody = <T extends string|number>({
 
     };
 
+    //
+    // /**
+    //  * 產生表格底部顯示
+    //  * ex: 額外顯示資訊 例如統計
+    //  */
+    // const renderTableFooterData = () => {
+    //     return <tr>
+    //         <td style={getCol(true)}>{dataFooterContent}</td>
+    //     </tr>;
+    // };
+
 
     /**
      * 產生表格底部顯示
      * ex: 額外顯示資訊 例如統計
      */
-    const renderTableFooterData = () => {
-        return <li className={elClassNames.bodyItemLi}>
-            <div className={elClassNames.itemColumn} style={getCol(true)}>{dataFooterContent}</div>
-        </li>;
+    const renderFooterData = () => {
+        if(footer){
+            let ignore = 0;
+            return title?.reduce((curr, titleRow) => {
+                const field = footer[titleRow.field];
+                const colSpan = field?.colSpan ?? 1;
+
+                if(ignore > 0){
+                    ignore -= 1;
+                    return curr;
+                }
+
+                if(colSpan > 1){
+                    ignore = colSpan - 1;
+                }
+
+
+                return [
+                    ...curr,
+                    <th
+                        key={`tbodyTr_${footer}_${titleRow.field}`}
+                        className={cx(titleRow.className)}
+                        data-align={field.dataAlign}
+                        data-vertical={titleRow.dataVertical}
+                        colSpan={colSpan}
+                        style={{
+                            gridColumn: colSpan ? `span ${colSpan}`: undefined,
+                        }}
+                    >
+                        {field?.value ?? ''}
+                    </th>
+                ];
+            }, []);
+
+
+        }
+
     };
 
 
 
-
-    return <div className={elClassNames.bodyInnerContent}>
-        <div className={elClassNames.bodySplitView}>
-            <div className={elClassNames.bodySplitList}>
-                <ul className={elClassNames.itemUl}>
-                    {renderBodyData()}
-                    {dataFooterContent && renderTableFooterData()}
-                </ul>
-            </div>
-        </div>
-    </div>;
+    return <>
+        <tbody
+            // className={elClassNames.itemUl}
+        >
+            {renderBodyData()}
+            {/*{dataFooterContent && renderTableFooterData()}*/}
+        </tbody>
+        {footer && (
+            <tfoot>
+                <tr>
+                    {renderFooterData()}
+                </tr>
+            </tfoot>
+        )}
+    </>;
 };
 
 export default TableBody;

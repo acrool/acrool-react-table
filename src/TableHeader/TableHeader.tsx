@@ -4,7 +4,6 @@ import React from 'react';
 import {IOrder, ITitle, TOnChangeSortField} from '../types';
 import elClassNames from '../el-class-names';
 import {SortDownIcon, SortIcon, SortUpIcon} from '../Icon';
-import {getCol} from '../utils';
 
 
 interface IProps {
@@ -28,11 +27,11 @@ const TableHeader = ({
     const renderTitle = () => {
         return title.map(titleRow => {
             return (
-                <div
-                    className={elClassNames.itemColumn}
+                <th
+                    // className={elClassNames.itemColumn}
                     key={`columnTitle_${titleRow.field}`}
                     data-align={titleRow.titleAlign}
-                    style={getCol(titleRow.col)}
+                    // style={getCol(titleRow.col)}
                 >
                     {titleRow.isEnableSort ? (
                         <button
@@ -53,18 +52,19 @@ const TableHeader = ({
 
                         </button>
                     ): titleRow.text}
-                </div>
+                </th>
             );
         });
 
     };
 
 
-    return <div className={elClassNames.headerInner} data-sticky={isStickyHeader}>
-        <div className={elClassNames.itemUl}>
-            <li className={elClassNames.itemLi}>{renderTitle()}</li>
-        </div>
-    </div>;
+    return <thead
+        data-sticky={isStickyHeader}>
+        <tr>
+            {renderTitle()}
+        </tr>
+    </thead>;
 };
 
 export default TableHeader;

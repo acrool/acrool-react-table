@@ -102,18 +102,17 @@ function App() {
                     <Table
                         isDark={false}
                         isFetching={isFetching}
+                        gap="8px"
                         title={[
-                            {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
-                            {text: 'Name',       field: 'name',        col: true, isEnableSort: true},
-                            {text: 'Role',       field: 'role',        col: 120},
-                            {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
-                            {text: 'Joined',     field: 'isApplyJoin', col: 80},
-                            {text: 'Result',     field: 'result', col: 80, isAppend: true,},
-                            {text: 'Amount',     field: 'amount', col: 80, titleAlign: 'right', dataAlign: 'right'},
+                            {text: '#',          field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
+                            {text: 'Name',       field: 'name',        col: 'auto', isEnableSort: true},
+                            {text: 'Amount',     field: 'amount',      col: '80px', titleAlign: 'right', dataAlign: 'right'},
+                            {text: 'Role',       field: 'role',        col: '120px'},
+                            {text: 'Crated',     field: 'createdAt',   col: '110px', isEnableSort: true},
+                            {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
+                            {text: 'Result',     field: 'result',      col: '80px', isAppend: true,},
                         ]}
-                        dataFooterContent={<>
-                            <div className="w-100 text-right">Total: $ 123,455</div>
-                        </>}
+
                         data={data.map(row => {
                             return {
                                 id: row.id,

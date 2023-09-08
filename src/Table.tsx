@@ -12,6 +12,7 @@ import './styles.css';
 import './TableHeader/styles.css';
 import './TableBody/styles.css';
 import './TableFooter/styles.css';
+import {getTemplate} from './utils';
 
 
 
@@ -26,6 +27,8 @@ const Table = <T extends string|number>({
     isFetching = false,
     title,
     data,
+    footer,
+    gap = '5px',
     dataFooterContent,
     paginateInfo = {
         totalItems: 0,
@@ -107,30 +110,29 @@ const Table = <T extends string|number>({
         return <TableBody
             title={title}
             data={data}
+            footer={footer}
             dataFooterContent={dataFooterContent}
         />;
     };
 
 
     return (
-        <div className={cx(elClassNames.root, className, {'dark-theme': isDark})} style={style}>
-            <div className={elClassNames.container}>
-                <div className={elClassNames.content}>
-                    {/* Header */}
-                    {isVisibleHeader && (<TableHeader
-                        title={title}
-                        isStickyHeader={isStickyHeader}
-                        onChangeSortField={handleOnOrderField}
-                        order={meta.order}
-                    />)}
+        <div className={cx(elClassNames.root, className, {'dark-theme': isDark})} style={{
+            ...style,
+            ...getTemplate(title, gap)
+        }}>
+            <table>
+                {/* Header */}
+                {isVisibleHeader && (<TableHeader
+                    title={title}
+                    isStickyHeader={isStickyHeader}
+                    onChangeSortField={handleOnOrderField}
+                    order={meta.order}
+                />)}
 
-                    {/* Body */}
-                    {renderBody()}
-                </div>
-
-
-            </div>
-
+                {/* Body */}
+                {renderBody()}
+            </table>
 
             {/* Footer */}
             {isVisibleFooter && (

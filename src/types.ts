@@ -1,8 +1,21 @@
 import {ReactNode} from 'react';
 import CSS from 'csstype';
 
-export type sizeUnit = 'px' | '%' | 'em';
-export type TCol = true|number|`${number}${sizeUnit}`;
+export type sizeUnit = 'px' | '%' | 'em' | 'auto' | 'fr';
+export type TCol = 'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
+
+
+
+// <select class = 'unit-select';
+// aria - label = 'column 2 unit';
+// data - v - f22bf1ba = '';
+// data - v - 003;
+// f2257 = '' > <option data - v - f22bf1ba = '' > fr < /option><option data-v-f22bf1ba="">px</;
+// option > <option data - v - f22bf1ba = '' > % </option><option data-v-f22bf1ba="">em</;
+// option > <option data - v - f22bf1ba = '' > auto < /option><option data-v-f22bf1ba="">min-content</;
+// option > <option data - v - f22bf1ba = '' > max - content < /option><option data-v-f22bf1ba="">minmax</;
+// option > </select>;
+
 
 interface IField {
     [field: string]: string | number | JSX.Element;
@@ -16,16 +29,26 @@ export interface IData<T> {
     field: IField
 }
 
+
 export type TDataFooterContent = React.ReactElement;
 
-export interface ITitle {
+
+
+
+
+
+export interface IFooter {
     className?: string,
     field: string,
     text: string|number|ReactNode,
-    col: TCol,
-    titleAlign?: 'left'|'center'|'right',
+    colSpan?: number,
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
+}
+
+export interface ITitle extends IFooter{
+    col: TCol,
+    titleAlign?: 'left'|'center'|'right',
     isEnableSort?: boolean,
 }
 
@@ -67,6 +90,8 @@ export interface ITableProps<T extends string|number> {
     isFetching?: boolean,
     title: ITitle[],
     data?: IData<T>[],
+    footer?: IFooter
+    gap?: string
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
     paginateMeta?: IPaginateMeta,
