@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.0.1...v4.0.2-alpha.0) (2023-09-09)
+
+
+### Bug Fixes
+
+* fix css var color ([6c46069](https://github.com/imagine10255/bear-react-table/commit/6c46069bac4a37457fcfdfe2381bdcb0a6d742cc))
+
 ### [4.0.1](https://github.com/imagine10255/bear-react-table/compare/v4.0.0...v4.0.1) (2023-09-09)
 
 
