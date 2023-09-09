@@ -10,9 +10,6 @@ import elClassNames from './el-class-names';
 import {getTemplate, getColSpan} from './utils';
 
 import './styles.css';
-import './TableHeader/styles.css';
-import './TableBody/styles.css';
-// import './TablePaginate/styles.css';
 
 
 

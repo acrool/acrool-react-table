@@ -1,15 +1,10 @@
 import React, {useCallback} from 'react';
 import {IOption} from './types';
-import elClassNames from '../el-class-names';
 import CSS from 'csstype';
-import cx from 'classnames';
-
-import './styles.css';
+import elClassNames from '../../../el-class-names';
 
 
 interface IProps {
-    className?: string;
-    style?: CSS.Properties,
     title?: string;
     name?: string;
     value?: string|number;
@@ -24,8 +19,6 @@ interface IProps {
  * 下拉選單元件
  *
  * @param style
- * @param className
- * @param title 標題
  * @param name 控制項名稱
  * @param options 下拉選單項目
  * @param disabled 是否禁用
@@ -33,8 +26,6 @@ interface IProps {
  * @param onChange
  */
 const Select = ({
-    style,
-    className,
     name,
     options = [],
     disabled = false,
@@ -61,8 +52,7 @@ const Select = ({
 
     return (
         <select
-            className={cx(elClassNames.select, className)}
-            style={style}
+            className={elClassNames.pageLimit}
             name={name}
             value={String(value)}
             onChange={handleOnChange}

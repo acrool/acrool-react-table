@@ -3,7 +3,7 @@ import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
 import {IPage, IPaginateInfo} from '../types';
-import Select from '../Select';
+import Select from './_components/Select';
 
 
 interface IProps {
@@ -141,15 +141,13 @@ const TablePaginate = ({
     };
 
     const renderLimit = () => {
-        return <div className={elClassNames.pageLimit}>
-            <Select
-                onChange={value => handleChangePageLimit(Number(value))}
-                value={String(meta.pageLimit)}
-                options={pageLimitOptions.map(page => {
-                    return {text: `${page}/Page`, value: String(page)};
-                })}
-            />
-        </div>;
+        return <Select
+            onChange={value => handleChangePageLimit(Number(value))}
+            value={String(meta.pageLimit)}
+            options={pageLimitOptions.map(page => {
+                return {text: `${page}/Page`, value: String(page)};
+            })}
+        />;
     };
 
 
