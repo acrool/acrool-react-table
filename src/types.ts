@@ -1,23 +1,12 @@
-import {ReactNode} from 'react';
+import {ReactNode, MouseEvent} from 'react';
 import CSS from 'csstype';
 
 export type sizeUnit = 'px' | '%' | 'em' | 'fr';
 export type TCol = true|'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
 
 
-
-// <select class = 'unit-select';
-// aria - label = 'column 2 unit';
-// data - v - f22bf1ba = '';
-// data - v - 003;
-// f2257 = '' > <option data - v - f22bf1ba = '' > fr < /option><option data-v-f22bf1ba="">px</;
-// option > <option data - v - f22bf1ba = '' > % </option><option data-v-f22bf1ba="">em</;
-// option > <option data - v - f22bf1ba = '' > auto < /option><option data-v-f22bf1ba="">min-content</;
-// option > <option data - v - f22bf1ba = '' > max - content < /option><option data-v-f22bf1ba="">minmax</;
-// option > </select>;
-
 type TFieldValue = string | number | JSX.Element;
-type TFieldFunc = (args: {isActive: boolean, collapse: () => void}) => TFieldValue;
+type TFieldFunc = (args: {isActive: boolean, collapse: (event: MouseEvent) => void}) => TFieldValue;
 
 interface IField<T> {
     [field: string]: TFieldValue | TFieldFunc;
@@ -35,8 +24,6 @@ interface IDetail {
 export interface IData<T> {
     id: T,
     appendData?: string | number | JSX.Element,
-    // detail?: JSX.Element | Array<IField<T>>,
-    // detail?: JSX.Element | IDetail,
     detail?: JSX.Element | IDetail,
     disabled?: boolean,
     onClickRow?: () => void,
@@ -56,28 +43,26 @@ export interface IConfig {
 }
 
 
-export interface IFooter extends IConfig{
-    className?: string,
-    field: string,
-    text: string|number|ReactNode,
-    colSpan?: number,
-    dataAlign?: 'left'|'center'|'right',
-    dataVertical?: 'top'|'center'|'bottom',
+export interface IFooter<T> {
+    [field: string]: { value: TFieldValue } & IConfig;
 }
 
-export interface ITitle extends IFooter{
+export interface ITitle extends IConfig{
+    className?: string,
     col: TCol,
+    field: string,
+    text: string|number|ReactNode,
     titleAlign?: 'left'|'center'|'right',
     isEnableSort?: boolean,
 }
 
 
 
-export interface IPaginationRes<T> {
-    rows: T[],
-    meta: IPaginateMeta,
-    info: IPaginateInfo,
-}
+// export interface IPaginationRes<T> {
+//     rows: T[],
+//     meta: IPaginateMeta,
+//     info: IPaginateInfo,
+// }
 
 export interface IPaginateInfo {
     totalItems: number,
@@ -109,7 +94,7 @@ export interface ITableProps<T extends string|number> {
     isFetching?: boolean,
     title: ITitle[],
     data?: IData<T>[],
-    footer?: IFooter
+    footer?: IFooter<T>
     gap?: string
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
@@ -121,5 +106,5 @@ export interface ITableProps<T extends string|number> {
     onChangePage?: TOnChangePage,
     pageLimitOptions?: number[];
 
-    renderNoDaa?: () => JSX.Element;
+    renderNoData?: () => JSX.Element;
 }

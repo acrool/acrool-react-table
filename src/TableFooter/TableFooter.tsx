@@ -1,12 +1,10 @@
-import {CSSProperties} from 'react';
-import cx from 'classnames';
 import {ITitle, IFooter} from '../types';
 import {getColSpan} from '../utils';
 
 
 interface IProps<T> {
     title: ITitle[],
-    data?: IFooter,
+    data?: IFooter<T>,
 }
 
 

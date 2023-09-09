@@ -37,7 +37,7 @@ const Table = <T extends string|number>({
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
 
-    renderNoDaa,
+    renderNoData,
 }: ITableProps<T>) => {
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -93,12 +93,12 @@ const Table = <T extends string|number>({
     /**
      * 產生沒資料時的顯示
      */
-    const renderNoData = () => {
+    const renderCustomNoData = () => {
         return <tbody data-no-data="">
             <tr>
                 <td {...getColSpan(title.length)}>
-                    {!!renderNoDaa ?
-                        renderNoDaa() : <div className={elClassNames.notData}>
+                    {!!renderNoData ?
+                        renderNoData() : <div className={elClassNames.notData}>
                             <div className={elClassNames.notDataTitle}>Not Found</div>
                             <div className={elClassNames.notDataDesc}>Choose a different filter to view results</div>
                         </div>
@@ -134,7 +134,7 @@ const Table = <T extends string|number>({
         }
 
         if(!data || data?.length === 0){
-            return renderNoData();
+            return renderCustomNoData();
         }
 
         return <TableBody

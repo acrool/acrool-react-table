@@ -132,7 +132,7 @@ function App() {
                                     },
                                     field: {
                                         plus: (args) => <CollapseButton
-                                            type="button" onClick={() => args.collapse()}
+                                            type="button" onClick={args.collapse}
                                             data-active={args.isActive ? '':undefined}
                                         >
                                             {args.isActive ? '-': '+'}
@@ -159,13 +159,13 @@ function App() {
                             gap="8px"
                             isStickyHeader
                             title={[
-                                {text: '',          field: 'plus',      col: 50, titleAlign: 'center', dataAlign: 'center'},
-                                {text: '#',          field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
-                                {text: 'Name',       field: 'name',        col: 'auto', isEnableSort: true},
-                                {text: 'Amount',     field: 'amount',      col: '80px', titleAlign: 'right', dataAlign: 'right'},
-                                {text: 'Role',       field: 'role',        col: '120px'},
-                                {text: 'Crated',     field: 'createdAt',   col: '110px', isEnableSort: true},
-                                {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
+                                {text: '',       field: 'plus',        col: 50, titleAlign: 'center', dataAlign: 'center'},
+                                {text: '#',      field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
+                                {text: 'Name',   field: 'name',        col: 'auto', isEnableSort: true},
+                                {text: 'Amount', field: 'amount',      col: '80px', titleAlign: 'right', dataAlign: 'right'},
+                                {text: 'Role',   field: 'role',        col: '120px'},
+                                {text: 'Crated', field: 'createdAt',   col: '110px', isEnableSort: true},
+                                {text: 'Joined', field: 'isApplyJoin', col: '80px'},
                             ]}
                             footer={{
                                 // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
@@ -180,7 +180,6 @@ function App() {
                                     //     <div>{row.amount}</div>
                                     //     <div>{row.role}</div>
                                     // </>,
-                                    onClickRow: () => console.log('xxx'),
                                     detail: {
                                         config: {plus: {colSpan: 2, dataAlign: 'right'}},
                                         data: [
@@ -188,9 +187,10 @@ function App() {
                                             {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
                                         ],
                                     },
+                                    onClickRow: () => console.log(`click row id: ${row.id}`),
                                     field: {
                                         plus: (args) => <CollapseButton
-                                            type="button" onClick={() => args.collapse()}
+                                            type="button" onClick={args.collapse}
                                             data-active={args.isActive ? '':undefined}
                                         >
                                             {args.isActive ? '-': '+'}

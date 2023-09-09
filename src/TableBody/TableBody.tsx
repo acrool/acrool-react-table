@@ -1,8 +1,8 @@
-import React, {Fragment, CSSProperties, useState} from 'react';
+import React, {Fragment, useState, MouseEvent} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
-import {IData, TDataFooterContent, ITitle} from '../types';
+import {IData, ITitle} from '../types';
 import {getColSpan} from '../utils';
 
 
@@ -23,19 +23,27 @@ const TableBody = <T extends string|number>({
     const [collapseIds, setCollapse] = useState<T[]>([]);
 
 
+    /**
+     * 處理開關明細
+     * @param id
+     */
     const handleSetCollapse = (id: T) => {
-        setCollapse(ids => {
-            const index = ids.findIndex(rowId => rowId === id);
-            if(index >= 0){
-                return removeByIndex(ids, index);
-            }
-            return [...ids, id];
-        });
+        return (event: MouseEvent) => {
+            event.stopPropagation();
+
+            setCollapse(ids => {
+                const index = ids.findIndex(rowId => rowId === id);
+                if(index >= 0){
+                    return removeByIndex(ids, index);
+                }
+                return [...ids, id];
+            });
+        };
     };
 
 
     /**
-     * 額外展開內容
+     * 渲染額外展開內容
      */
     const renderDetailData = (dataRow: IData<T>) => {
         if(!!dataRow.detail === false){
@@ -131,7 +139,7 @@ const TableBody = <T extends string|number>({
                         >
                             {
                                 typeof field === 'function' ?
-                                    field({isActive: collapseIds.includes(dataRow.id), collapse: () => handleSetCollapse(dataRow.id)}):
+                                    field({isActive: collapseIds.includes(dataRow.id), collapse: handleSetCollapse(dataRow.id)}):
                                     field
                             }
                         </td>);
