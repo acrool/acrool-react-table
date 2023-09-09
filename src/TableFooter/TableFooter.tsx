@@ -2,9 +2,9 @@ import {ITitle, IFooter} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps<T> {
+interface IProps {
     title: ITitle[],
-    data?: IFooter<T>,
+    data?: IFooter,
 }
 
 
@@ -12,10 +12,10 @@ interface IProps<T> {
  * Table Footer
  * 額外顯示資訊 例如統計
  */
-const TableFooter = <T extends string|number>({
+const TableFooter = ({
     title,
     data,
-}: IProps<T>) => {
+}: IProps) => {
 
     const renderFooterData = () => {
         if(data){
