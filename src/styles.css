@@ -17,6 +17,7 @@
 
     --grid-template: 1fr;
     --grid-gap: 0;
+    --grid-column-span: 1;
     --bg-color: #fff;
     --text-color: #000;
     --header-text-color: rgb(51, 51, 51);
@@ -260,7 +261,7 @@
 .bear-react-table__root[data-footer] tbody tr:last-child {
     border-radius: 0
 }
-.bear-react-table__root tbody tr:nth-of-type(odd) {
+.bear-react-table__root tbody tr[data-odd] {
     background-color: var(--item-li-bg-odd-color);
 }
 .bear-react-table__root thead tr,
@@ -270,6 +271,10 @@
     border-right: 1px solid var(--border-color);
     padding: 0 var(--grid-gap);
 }
+.bear-react-table__root td{
+    grid-column: span var(--grid-column-span)
+}
+
 
 
 

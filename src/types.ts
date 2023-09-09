@@ -16,17 +16,31 @@ export type TCol = 'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-conte
 // option > <option data - v - f22bf1ba = '' > max - content < /option><option data-v-f22bf1ba="">minmax</;
 // option > </select>;
 
+type TFieldValue = string | number | JSX.Element;
+type TFieldFunc = (args: {isActive: boolean, collapse: () => void}) => TFieldValue;
 
-interface IField {
-    [field: string]: string | number | JSX.Element;
+interface IField<T> {
+    [field: string]: TFieldValue | TFieldFunc;
+}
+
+interface IDetail {
+    config: {
+        [field: string]: IConfig
+    },
+    data: Array<{
+        [field: string]: TFieldValue;
+    }>,
 }
 
 export interface IData<T> {
     id: T,
-    appendData?: string|number|JSX.Element,
+    appendData?: string | number | JSX.Element,
+    // detail?: JSX.Element | Array<IField<T>>,
+    // detail?: JSX.Element | IDetail,
+    detail?: JSX.Element | IDetail,
     disabled?: boolean,
     onClickRow?: () => void,
-    field: IField
+    field: IField<T>
 }
 
 
@@ -35,9 +49,14 @@ export type TDataFooterContent = React.ReactElement;
 
 
 
+export interface IConfig {
+    colSpan?: number,
+    dataAlign?: 'left'|'center'|'right',
+    dataVertical?: 'top'|'center'|'bottom',
+}
 
 
-export interface IFooter {
+export interface IFooter extends IConfig{
     className?: string,
     field: string,
     text: string|number|ReactNode,
