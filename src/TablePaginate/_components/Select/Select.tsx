@@ -52,7 +52,7 @@ const Select = ({
 
     return (
         <select
-            className={elClassNames.pageLimit}
+            className={elClassNames.paginatePageLimit}
             name={name}
             value={String(value)}
             onChange={handleOnChange}

@@ -95,7 +95,7 @@ const TablePaginate = ({
 
 
 
-        return <div className={elClassNames.paginateUl}>
+        return <div className={elClassNames.paginatePageUl}>
 
             <button
                 className={elClassNames.paginatePageNav}
