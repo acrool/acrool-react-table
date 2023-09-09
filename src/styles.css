@@ -30,7 +30,7 @@
     --item-li-hover-bg-color: #fafafa;
     --item-li-border-color: rgb(233, 233, 233);
     --item-li-bg-odd-color: rgb(243, 247, 249);
-    --item-li-bg-even-color: rgb(243, 247, 249);
+    --item-li-bg-even-color: var(--bg-color);
 
     --footer-info-text-color: #9aa0ac;
     --footer-text-color: #000;
@@ -261,8 +261,11 @@
 .bear-react-table__root[data-footer] tbody tr:last-child {
     border-radius: 0
 }
-.bear-react-table__root tbody tr[data-odd] {
+.bear-react-table__root tbody tr[data-nth-type="odd"] {
     background-color: var(--item-li-bg-odd-color);
+}
+.bear-react-table__root tbody tr[data-nth-type="even"] {
+    background-color: var(--item-li-bg-even-color);
 }
 .bear-react-table__root thead tr,
 .bear-react-table__root tbody tr,

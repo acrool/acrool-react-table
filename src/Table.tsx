@@ -1,18 +1,18 @@
 import React from 'react';
 import cx from 'classnames';
 
-// Components
 import {TOnChangeSortField, TOnChangePage, ITableProps,} from './types';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
+import TableFooter from './TableFooter';
+import TablePaginate from './TablePaginate';
 import elClassNames from './el-class-names';
-import TableHeader from './TableHeader/TableHeader';
-import TableBody from './TableBody/TableBody';
-import TableFooter from './TableFooter/TableFooter';
+import {getTemplate} from './utils';
 
 import './styles.css';
 import './TableHeader/styles.css';
 import './TableBody/styles.css';
-import './TableFooter/styles.css';
-import {getTemplate} from './utils';
+import './TablePaginate/styles.css';
 
 
 
@@ -110,8 +110,23 @@ const Table = <T extends string|number>({
         return <TableBody
             title={title}
             data={data}
-            footer={footer}
-            dataFooterContent={dataFooterContent}
+        />;
+    };
+
+    /**
+     * 產生表格內容
+     */
+    const renderFooter = () => {
+        if(isFetching){
+            return null;
+        }
+        if(!isVisibleFooter){
+            return null;
+        }
+
+        return <TableFooter
+            title={title}
+            data={footer}
         />;
     };
 
@@ -135,11 +150,12 @@ const Table = <T extends string|number>({
 
                 {/* Body */}
                 {renderBody()}
+                {renderFooter()}
             </table>
 
             {/* Footer */}
             {isVisibleFooter && (
-                <TableFooter
+                <TablePaginate
                     meta={meta}
                     info={paginateInfo}
                     onChangePage={handleOnChangePage}
