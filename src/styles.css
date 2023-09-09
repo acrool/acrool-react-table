@@ -222,6 +222,10 @@
     height: var(--body-line-height);
     border-radius: 0
 }
+.bear-react-table__root tbody tr[role="button"]{
+    cursor: pointer;
+}
+
 .bear-react-table__root:not([data-header]) tbody tr:first-child{
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }

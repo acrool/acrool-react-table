@@ -180,6 +180,7 @@ function App() {
                                     //     <div>{row.amount}</div>
                                     //     <div>{row.role}</div>
                                     // </>,
+                                    onClickRow: () => console.log('xxx'),
                                     detail: {
                                         config: {plus: {colSpan: 2, dataAlign: 'right'}},
                                         data: [
