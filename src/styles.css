@@ -119,7 +119,7 @@
 }
 
 .bear-react-table-header__sort-button,
-.bear-react-table-header__sort-button [type="button"]
+.bear-react-table-header__sort-button [type="button"],
 .bear-react-table-footer__paginate-li,
 .bear-react-table-footer__paginate-li [type="button"]
 {
@@ -200,12 +200,37 @@
 }
 
 
-.bear-react-table__root thead[data-sticky="true"]{
+.bear-react-table__root thead[data-sticky]{
     position: sticky;
     top: 0;
     z-index: 5;
 }
 
+.bear-react-table__root thead th[data-enable-sort]{
+    position: relative;
+    padding-right: 12px;
+}
+
+.bear-react-table__root thead th[data-enable-sort]:before,
+.bear-react-table__root thead th[data-enable-sort]:after{
+    position: absolute;
+    font-size: 12px;
+    opacity: .225;
+    right: 0;
+    line-height: 9px;
+}
+.bear-react-table__root thead th[data-enable-sort]:before{
+    bottom: 50%;
+    content: '▲';
+}
+.bear-react-table__root thead th[data-enable-sort]:after{
+    top: 50%;
+    content: '▼';
+}
+.bear-react-table__root thead th[aria-sort="ascending"]:after,
+.bear-react-table__root thead th[aria-sort="descending"]:before{
+    opacity: .8;
+}
 
 
 

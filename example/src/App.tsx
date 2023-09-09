@@ -121,37 +121,37 @@ function App() {
                         //     name: {value: 'Total'},
                         //     amount: {value: calcAmount(data), dataAlign: 'right'},
                         // }}
-                        // data={data.map(row => {
-                        //     return {
-                        //         id: row.id,
-                        //         // detail: <>
-                        //         //     <div>{row.name}</div>
-                        //         //     <div>{row.amount}</div>
-                        //         //     <div>{row.role}</div>
-                        //         // </>,
-                        //         detail: {
-                        //             config: {plus: {colSpan: 2, dataAlign: 'right'}},
-                        //             data: [
-                        //                 {plus: '投注金額', amount: `$ ${formatCurrency(123456)}`},
-                        //                 {plus: '有效投注', amount: `$ ${formatCurrency(row.subAmount)}`},
-                        //             ],
-                        //         },
-                        //         field: {
-                        //             plus: (args) => <CollapseButton
-                        //                 type="button" onClick={() => args.collapse()}
-                        //                 data-active={args.isActive ? '':undefined}
-                        //             >
-                        //                 {args.isActive ? '-': '+'}
-                        //             </CollapseButton>,
-                        //             avatar: <Avatar src={row.avatar}/>,
-                        //             name: row.name,
-                        //             role: row.role,
-                        //             createdAt: dayjs(row.createdAt).format('MM/DD'),
-                        //             isApplyJoin: row.isJoined ? 'Y':'N',
-                        //             amount: `$ ${formatCurrency(row.amount)}`,
-                        //         },
-                        //     };
-                        // })}
+                        data={data.map(row => {
+                            return {
+                                id: row.id,
+                                // detail: <>
+                                //     <div>{row.name}</div>
+                                //     <div>{row.amount}</div>
+                                //     <div>{row.role}</div>
+                                // </>,
+                                detail: {
+                                    config: {plus: {colSpan: 2, dataAlign: 'right'}},
+                                    data: [
+                                        {plus: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
+                                        {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+                                    ],
+                                },
+                                field: {
+                                    plus: (args) => <CollapseButton
+                                        type="button" onClick={() => args.collapse()}
+                                        data-active={args.isActive ? '':undefined}
+                                    >
+                                        {args.isActive ? '-': '+'}
+                                    </CollapseButton>,
+                                    avatar: <Avatar src={row.avatar}/>,
+                                    name: row.name,
+                                    role: row.role,
+                                    createdAt: dayjs(row.createdAt).format('MM/DD'),
+                                    isApplyJoin: row.isJoined ? 'Y':'N',
+                                    amount: `$ ${formatCurrency(row.amount)}`,
+                                },
+                            };
+                        })}
                         onChangePage={handleFetchPaginate}
                         paginateMeta={paginateMeta}
                         paginateInfo={paginateInfo}
@@ -176,10 +176,10 @@ function App() {
 export default App;
 
 const CollapseButton = styled.button`
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background-color: #535bf2;
-    border-radius: 99em;
+    border-radius: 4px;
     padding: 0;
     display: flex;
     align-items: center;

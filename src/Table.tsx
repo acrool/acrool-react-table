@@ -98,7 +98,6 @@ const Table = <T extends string|number>({
      * 產生沒資料時的顯示
      */
     const renderNoData = () => {
-
         return <tbody data-no-data="">
             <tr>
                 <td {...getColSpan(title.length)}>

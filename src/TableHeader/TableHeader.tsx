@@ -2,8 +2,6 @@ import React from 'react';
 
 // Components
 import {IOrder, ITitle, TOnChangeSortField} from '../types';
-import elClassNames from '../el-class-names';
-import {SortDownIcon, SortIcon, SortUpIcon} from '../Icon';
 
 
 interface IProps {
@@ -26,32 +24,25 @@ const TableHeader = ({
 
     const renderTitle = () => {
         return title.map(titleRow => {
+            const isEnableSort = titleRow.isEnableSort;
+            const sortType = order?.orderField === titleRow.field && order?.orderBy === 'ASC' ? 'ascending':
+                order?.orderField === titleRow.field && order?.orderBy === 'DESC' ? 'descending':
+                    undefined;
+
             return (
                 <th
-                    // className={elClassNames.itemColumn}
                     key={`columnTitle_${titleRow.field}`}
                     data-align={titleRow.titleAlign}
-                    // style={getCol(titleRow.col)}
+                    aria-sort={sortType}
+                    data-enable-sort={isEnableSort ? '': undefined}
+                    onClick={() => {
+                        onChangeSortField({
+                            orderField: titleRow.field,
+                            orderBy: (order?.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
+                        });
+                    }}
                 >
-                    {titleRow.isEnableSort ? (
-                        <button
-                            className={elClassNames.headerSortButton}
-                            data-active={order?.orderField === titleRow.field}
-                            onClick={() => {
-                                onChangeSortField({
-                                    orderField: titleRow.field,
-                                    orderBy: (order?.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
-                                });
-                            }}>
-                            {titleRow.text}
-
-                            {order?.orderField === titleRow.field ?
-                                order?.orderBy === 'ASC' ? <SortUpIcon/> : <SortDownIcon/> :
-                                <SortIcon/>
-                            }
-
-                        </button>
-                    ): titleRow.text}
+                    {titleRow.text}
                 </th>
             );
         });
@@ -60,7 +51,8 @@ const TableHeader = ({
 
 
     return <thead
-        data-sticky={isStickyHeader}>
+        data-sticky={isStickyHeader ? '': undefined}
+    >
         <tr>
             {renderTitle()}
         </tr>
