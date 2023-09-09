@@ -117,7 +117,7 @@ export interface ITableProps<T extends string|number> {
 
     isVisibleHeader?: boolean,
     isStickyHeader?: boolean,
-    isVisibleFooter?: boolean,
+    isVisiblePaginate?: boolean,
     onChangePage?: TOnChangePage,
     pageLimitOptions?: number[];
 

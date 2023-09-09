@@ -240,16 +240,18 @@
 .bear-react-table__root tbody{
     margin: 0;
 }
-.bear-react-table__root tbody tr:first-child {
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-.bear-react-table__root tbody tr:last-child {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-}
-.bear-react-table__root[data-header] tbody tr:first-child,
-.bear-react-table__root[data-footer] tbody tr:last-child {
+
+.bear-react-table__root tbody tr{
     border-radius: 0
 }
+
+.bear-react-table__root:not([data-header]) tbody tr:first-child{
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.bear-react-table__root:not([data-footer]) tbody tr:last-child {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
 .bear-react-table__root tbody tr[data-nth-type="odd"] {
     background-color: var(--item-li-bg-odd-color);
 }
@@ -273,6 +275,7 @@
     justify-content: center;
 
 }
+
 .bear-react-table__root tbody[data-loading] tr,
 .bear-react-table__root tbody[data-no-data] tr{
     min-height: 65px;

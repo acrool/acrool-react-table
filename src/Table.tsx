@@ -35,8 +35,8 @@ const Table = <T extends string|number>({
     },
     paginateMeta,
     isVisibleHeader = true,
+    isVisiblePaginate = true,
     isStickyHeader = false,
-    isVisibleFooter = true,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
 
@@ -154,7 +154,7 @@ const Table = <T extends string|number>({
         if(isFetching){
             return null;
         }
-        if(!isVisibleFooter || !!footer === false){
+        if(!!footer === false){
             return null;
         }
 
@@ -169,7 +169,7 @@ const Table = <T extends string|number>({
      * 產生分頁資訊
      */
     const renderPaginate = () => {
-        if(!isVisibleFooter){
+        if(!isVisiblePaginate){
             return null;
         }
 
@@ -188,8 +188,8 @@ const Table = <T extends string|number>({
             className,
             {'dark-theme': isDark},
         )}
-        data-footer={!!isVisibleFooter ?? ''}
-        data-header={!!isVisibleHeader ?? ''}
+        data-header={!!isVisibleHeader ? '': undefined}
+        data-footer={!!footer ? '': undefined}
         style={{
             ...style,
             ...getTemplate(title, gap)

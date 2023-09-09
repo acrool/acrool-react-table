@@ -107,6 +107,7 @@ function App() {
                         isDark={false}
                         isFetching={isFetching}
                         gap="8px"
+                        isStickyHeader
                         title={[
                             {text: '',          field: 'plus',      col: 50, titleAlign: 'center', dataAlign: 'center'},
                             {text: '#',          field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
@@ -116,11 +117,11 @@ function App() {
                             {text: 'Crated',     field: 'createdAt',   col: '110px', isEnableSort: true},
                             {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
                         ]}
-                        // footer={{
-                        //     // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        //     name: {value: 'Total'},
-                        //     amount: {value: calcAmount(data), dataAlign: 'right'},
-                        // }}
+                        footer={{
+                            // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                            name: {value: 'Total'},
+                            amount: {value: calcAmount(data), dataAlign: 'right'},
+                        }}
                         data={data.map(row => {
                             return {
                                 id: row.id,

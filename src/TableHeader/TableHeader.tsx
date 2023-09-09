@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Components
 import {IOrder, ITitle, TOnChangeSortField} from '../types';
 
 
