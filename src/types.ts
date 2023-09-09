@@ -1,8 +1,8 @@
 import {ReactNode} from 'react';
 import CSS from 'csstype';
 
-export type sizeUnit = 'px' | '%' | 'em' | 'auto' | 'fr';
-export type TCol = 'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
+export type sizeUnit = 'px' | '%' | 'em' | 'fr';
+export type TCol = true|'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
 
 
 

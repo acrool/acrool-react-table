@@ -7,6 +7,9 @@ export const getTemplate = (titles: ITitle[], gap: string): CSSProperties => {
         if(typeof row.col === 'number'){
             return `${row.col}px`;
         }
+        if(row.col === true){
+            return '1fr';
+        }
         return row.col ?? 'auto';
     }).join(' ');
 
