@@ -44,11 +44,6 @@ export interface IConfig {
     dataVertical?: 'top'|'center'|'bottom',
 }
 
-
-export interface IFooter<T> {
-    [field: string]: { value: TFieldValue } & IConfig;
-}
-
 export interface ITitle extends IConfig{
     className?: string,
     col: TCol,
@@ -56,6 +51,10 @@ export interface ITitle extends IConfig{
     text: string|number|ReactNode,
     titleAlign?: 'left'|'center'|'right',
     isEnableSort?: boolean,
+}
+
+export interface IFooter {
+    [field: string]: { value: TFieldValue } & IConfig;
 }
 
 
@@ -89,14 +88,14 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 
 
-export interface ITableProps<T extends string|number> {
+export interface ITableProps<T extends TID, D extends ITitle> {
     className?: string;
     style?: CSS.Properties,
     isDark?: boolean
     isFetching?: boolean,
-    title: ITitle[],
+    title: D[],
     data?: IData<T>[],
-    footer?: IFooter<T>
+    footer?: IFooter
     gap?: string
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
