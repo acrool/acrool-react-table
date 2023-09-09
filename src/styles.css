@@ -179,42 +179,6 @@
 /*    top: 150px;*/
 /*    z-index: 3;*/
 /*}*/
-.bear-react-table__loading-text{
-    text-align: center;
-
-}
-/*.bear-react-table__loading-images{*/
-/*    width: 50px;*/
-/*    height: auto;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-
-.bear-react-table__not-data{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 12px;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    min-height: 65px;
-}
-
-.bear-react-table__not-data-desc{
-    font-size: 14px;
-    color: var(--text-color);
-}
-
-
-.bear-react-table__not-data-text{
-    font-size: 20px;
-    color: var(--text-color);
-}
-
 .bear-react-table__not-data svg{
     height: 200px;
     width: auto;
@@ -278,7 +242,39 @@
     grid-column: span var(--grid-column-span)
 }
 
+.bear-react-table__root tbody[data-loading] td,
+.bear-react-table__root tbody[data-no-data] td{
+    align-items: center;
+    justify-content: center;
 
+}
+.bear-react-table__root tbody[data-loading] tr,
+.bear-react-table__root tbody[data-no-data] tr{
+    min-height: 65px;
+}
+
+.bear-react-table__loading-text{
+    text-align: center;
+}
+
+.bear-react-table__not-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 65px;
+}
+
+.bear-react-table__not-data-desc{
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.bear-react-table__not-data-title{
+    font-size: 20px;
+    color: var(--text-color);
+}
 
 
 

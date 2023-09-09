@@ -3,6 +3,7 @@ import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
 import {IData, TDataFooterContent, ITitle} from '../types';
+import {getColSpan} from '../utils';
 
 
 interface IProps<T> {
@@ -75,10 +76,7 @@ const TableBody = <T extends string|number>({
                             className={cx(titleRow.className)}
                             data-align={fieldConfig?.dataAlign}
                             data-vertical={titleRow.dataVertical}
-                            colSpan={colSpan}
-                            style={{
-                                '--grid-column-span': colSpan,
-                            } as CSSProperties}
+                            {...getColSpan(colSpan)}
                         >
                             {fieldValue}
                         </td>
@@ -96,12 +94,7 @@ const TableBody = <T extends string|number>({
         }
 
         return <tr data-collapse="">
-            <td
-                colSpan={title.length}
-                style={{
-                    '--grid-column-span': title.length,
-                } as CSSProperties}
-            >
+            <td {...getColSpan(title.length)}>
                 {dataRow.detail}
             </td>
         </tr>;

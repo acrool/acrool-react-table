@@ -46,7 +46,7 @@ const mockSort = (by: 'DESC'|'ASC', field: string, a: IPaginateData, b: IPaginat
 function App() {
 
 
-    const [isFetching, setIsFetching] = useState(false);
+    const [isFetching, setIsFetching] = useState(true);
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,
@@ -116,42 +116,42 @@ function App() {
                             {text: 'Crated',     field: 'createdAt',   col: '110px', isEnableSort: true},
                             {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
                         ]}
-                        footer={{
-                            // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                            name: {value: 'Total'},
-                            amount: {value: calcAmount(data), dataAlign: 'right'},
-                        }}
-                        data={data.map(row => {
-                            return {
-                                id: row.id,
-                                // detail: <>
-                                //     <div>{row.name}</div>
-                                //     <div>{row.amount}</div>
-                                //     <div>{row.role}</div>
-                                // </>,
-                                detail: {
-                                    config: {plus: {colSpan: 2, dataAlign: 'right'}},
-                                    data: [
-                                        {plus: '投注金額', amount: `$ ${formatCurrency(123456)}`},
-                                        {plus: '有效投注', amount: `$ ${formatCurrency(row.subAmount)}`},
-                                    ],
-                                },
-                                field: {
-                                    plus: (args) => <CollapseButton
-                                        type="button" onClick={() => args.collapse()}
-                                        data-active={args.isActive ? '':undefined}
-                                    >
-                                        {args.isActive ? '-': '+'}
-                                    </CollapseButton>,
-                                    avatar: <Avatar src={row.avatar}/>,
-                                    name: row.name,
-                                    role: row.role,
-                                    createdAt: dayjs(row.createdAt).format('MM/DD'),
-                                    isApplyJoin: row.isJoined ? 'Y':'N',
-                                    amount: `$ ${formatCurrency(row.amount)}`,
-                                },
-                            };
-                        })}
+                        // footer={{
+                        //     // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        //     name: {value: 'Total'},
+                        //     amount: {value: calcAmount(data), dataAlign: 'right'},
+                        // }}
+                        // data={data.map(row => {
+                        //     return {
+                        //         id: row.id,
+                        //         // detail: <>
+                        //         //     <div>{row.name}</div>
+                        //         //     <div>{row.amount}</div>
+                        //         //     <div>{row.role}</div>
+                        //         // </>,
+                        //         detail: {
+                        //             config: {plus: {colSpan: 2, dataAlign: 'right'}},
+                        //             data: [
+                        //                 {plus: '投注金額', amount: `$ ${formatCurrency(123456)}`},
+                        //                 {plus: '有效投注', amount: `$ ${formatCurrency(row.subAmount)}`},
+                        //             ],
+                        //         },
+                        //         field: {
+                        //             plus: (args) => <CollapseButton
+                        //                 type="button" onClick={() => args.collapse()}
+                        //                 data-active={args.isActive ? '':undefined}
+                        //             >
+                        //                 {args.isActive ? '-': '+'}
+                        //             </CollapseButton>,
+                        //             avatar: <Avatar src={row.avatar}/>,
+                        //             name: row.name,
+                        //             role: row.role,
+                        //             createdAt: dayjs(row.createdAt).format('MM/DD'),
+                        //             isApplyJoin: row.isJoined ? 'Y':'N',
+                        //             amount: `$ ${formatCurrency(row.amount)}`,
+                        //         },
+                        //     };
+                        // })}
                         onChangePage={handleFetchPaginate}
                         paginateMeta={paginateMeta}
                         paginateInfo={paginateInfo}

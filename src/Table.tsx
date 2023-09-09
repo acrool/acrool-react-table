@@ -7,7 +7,7 @@ import TableBody from './TableBody';
 import TableFooter from './TableFooter';
 import TablePaginate from './TablePaginate';
 import elClassNames from './el-class-names';
-import {getTemplate} from './utils';
+import {getTemplate, getColSpan} from './utils';
 
 import './styles.css';
 import './TableHeader/styles.css';
@@ -29,7 +29,6 @@ const Table = <T extends string|number>({
     data,
     footer,
     gap = '5px',
-    dataFooterContent,
     paginateInfo = {
         totalItems: 0,
         totalPages: 1,
@@ -83,28 +82,64 @@ const Table = <T extends string|number>({
         }
     };
 
+
+    /**
+     * 產生讀取中樣式
+     */
+    const renderLoading = () => {
+        return <tbody data-loading="">
+            <tr>
+                <td {...getColSpan(title.length)}>Loading...</td>
+            </tr>
+        </tbody>;
+    };
+
+    /**
+     * 產生沒資料時的顯示
+     */
+    const renderNoData = () => {
+
+        return <tbody data-no-data="">
+            <tr>
+                <td {...getColSpan(title.length)}>
+                    {!!renderNoDaa ?
+                        renderNoDaa() : <div className={elClassNames.notData}>
+                            <div className={elClassNames.notDataTitle}>Not Found</div>
+                            <div className={elClassNames.notDataDesc}>Choose a different filter to view results</div>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </tbody>;
+    };
+
+    /**
+     * 產生表格內容
+     */
+    const renderHeader = () => {
+        if(!isVisibleHeader){
+            return null;
+        }
+
+        return <TableHeader
+            title={title}
+            isStickyHeader={isStickyHeader}
+            onChangeSortField={handleOnOrderField}
+            order={meta.order}
+        />;
+    };
+
+
     /**
      * 產生表格內容
      */
     const renderBody = () => {
         if(isFetching){
-            return <div className={elClassNames.notData}>
-                <div className={elClassNames.loadingText}>Loading...</div>
-            </div>;
+            return renderLoading();
         }
 
         if(!data || data?.length === 0){
-            if(renderNoDaa){
-                return <div className={elClassNames.notData}>
-                    {renderNoDaa()}
-                </div>;
-            }
-
-            return <div className={elClassNames.notData}>
-                <div className={elClassNames.notDataText}>Not Found</div>
-                <div className={elClassNames.notDataDesc}>Choose a different filter to view results</div>
-            </div>;
-
+            return renderNoData();
         }
 
         return <TableBody
@@ -120,7 +155,7 @@ const Table = <T extends string|number>({
         if(isFetching){
             return null;
         }
-        if(!isVisibleFooter){
+        if(!isVisibleFooter || !!footer === false){
             return null;
         }
 
@@ -131,37 +166,48 @@ const Table = <T extends string|number>({
     };
 
 
+    /**
+     * 產生分頁資訊
+     */
+    const renderPaginate = () => {
+        if(!isVisibleFooter){
+            return null;
+        }
+
+        return <TablePaginate
+            meta={meta}
+            info={paginateInfo}
+            onChangePage={handleOnChangePage}
+            pageLimitOptions={pageLimitOptions}
+        />;
+    };
+
+
     return (
-        <div className={cx(elClassNames.root, className, {'dark-theme': isDark})}
-            data-footer={!!isVisibleFooter ?? ''}
-            data-header={!!isVisibleHeader ?? ''}
-            style={{
-                ...style,
-                ...getTemplate(title, gap)
-            }}>
+        <div className={cx(
+            elClassNames.root,
+            className,
+            {'dark-theme': isDark},
+        )}
+        data-footer={!!isVisibleFooter ?? ''}
+        data-header={!!isVisibleHeader ?? ''}
+        style={{
+            ...style,
+            ...getTemplate(title, gap)
+        }}>
             <table>
                 {/* Header */}
-                {isVisibleHeader && (<TableHeader
-                    title={title}
-                    isStickyHeader={isStickyHeader}
-                    onChangeSortField={handleOnOrderField}
-                    order={meta.order}
-                />)}
+                {renderHeader()}
 
                 {/* Body */}
                 {renderBody()}
+
+                {/* Footer */}
                 {renderFooter()}
             </table>
 
-            {/* Footer */}
-            {isVisibleFooter && (
-                <TablePaginate
-                    meta={meta}
-                    info={paginateInfo}
-                    onChangePage={handleOnChangePage}
-                    pageLimitOptions={pageLimitOptions}
-                />
-            )}
+            {/* Paginate */}
+            {renderPaginate()}
         </div>
 
     );

@@ -1,6 +1,7 @@
 import {CSSProperties} from 'react';
 import cx from 'classnames';
 import {ITitle, IFooter} from '../types';
+import {getColSpan} from '../utils';
 
 
 interface IProps<T> {
@@ -38,13 +39,9 @@ const TableFooter = <T extends string|number>({
                     ...curr,
                     <th
                         key={`tfootTh_${titleRow.field}`}
-                        className={cx(titleRow.className)}
                         data-align={field?.dataAlign}
                         data-vertical={titleRow.dataVertical}
-                        colSpan={colSpan}
-                        style={{
-                            '--grid-column-span': title.length,
-                        } as CSSProperties}
+                        {...getColSpan(colSpan)}
                     >
                         {field?.value ?? ''}
                     </th>

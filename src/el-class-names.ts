@@ -10,7 +10,7 @@ export default {
     root: `${elClassNames.elClassPrefix}__root`,
     container: `${elClassNames.elClassPrefix}__container`,
     notDataDesc: `${elClassNames.elClassPrefix}__not-data-desc`,
-    notDataText: `${elClassNames.elClassPrefix}__not-data-text`,
+    notDataTitle: `${elClassNames.elClassPrefix}__not-data-title`,
     notDataImage: `${elClassNames.elClassPrefix}__not-data-image`,
     notData: `${elClassNames.elClassPrefix}__not-data`,
     loadingBox: `${elClassNames.elClassPrefix}__loading-box`,

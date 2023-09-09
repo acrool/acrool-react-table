@@ -20,6 +20,20 @@ export const getTemplate = (titles: ITitle[], gap: string): CSSProperties => {
 };
 
 
+/**
+ * 產生合併欄位屬性
+ * @param colSpan
+ */
+export const getColSpan = (colSpan: number) => {
+    return {
+        colSpan,
+        style: {
+            '--grid-column-span': colSpan,
+        } as CSSProperties
+    };
+};
+
+
 
 
 /**
