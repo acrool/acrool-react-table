@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -8,6 +8,8 @@ import {data, IPaginateData} from './config/data';
 import './App.css';
 import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
+import styled from 'styled-components';
+import {formatCurrency} from 'bear-jsutils/number';
 
 
 
@@ -79,6 +81,9 @@ function App() {
     };
 
 
+    const calcAmount = useCallback((rows: IPaginateData[]) => {
+        return formatCurrency(rows.reduce((curr, row) => curr + row.amount,0));
+    }, []);
 
 
 
@@ -99,19 +104,111 @@ function App() {
                 <button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</button>
                 <div className="d-flex flex-row my-2">
                     <Table
+                        className="mr-2"
+                        isDark={false}
+                        isFetching={isFetching}
+                        gap="8px"
+                        isStickyHeader
+                        title={[
+                            {text: '',          field: 'plus',         col: 50, titleAlign: 'center', dataAlign: 'center'},
+                            {text: '#',          field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
+                            {text: 'Name',       field: 'name',        col: 'auto', dataAlign: 'right', isEnableSort: true},
+                            {text: 'Amount',     field: 'amount',      col: '80px', titleAlign: 'right', dataAlign: 'right'},
+                            {text: 'Role',       field: 'role',        col: '120px'},
+                            {text: 'Crated',     field: 'createdAt',   col: '110px', isEnableSort: true},
+                            {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
+                        ]}
+                        footer={{
+                            // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                            name: {value: 'Total'},
+                            amount: {value: calcAmount(data), dataAlign: 'right'},
+                        }}
+                        data={data.map(row => {
+                            return {
+                                id: row.id,
+                                // detail: <>
+                                //     <div>{row.name}</div>
+                                //     <div>{row.amount}</div>
+                                //     <div>{row.role}</div>
+                                // </>,
+                                detail: {
+                                    config: {plus: {colSpan: 2, dataAlign: 'right'}},
+                                    data: [
+                                        {plus: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
+                                        {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+                                    ],
+                                },
+                                field: {
+                                    plus: (args) => <CollapseButton
+                                        type="button" onClick={() => args.collapse()}
+                                        data-active={args.isActive ? '':undefined}
+                                    >
+                                        {args.isActive ? '-': '+'}
+                                    </CollapseButton>,
+                                    avatar: <Avatar src={row.avatar}/>,
+                                    name: row.name,
+                                    role: row.role,
+                                    createdAt: dayjs(row.createdAt).format('MM/DD'),
+                                    isApplyJoin: row.isJoined ? 'Y':'N',
+                                    amount: `$ ${formatCurrency(row.amount)}`,
+                                },
+                            };
+                        })}
+                        onChangePage={handleFetchPaginate}
+                        paginateMeta={paginateMeta}
+                        paginateInfo={paginateInfo}
+                    />
+
+                    <Table
                         isDark
                         isFetching={isFetching}
+                        gap="8px"
+                        isStickyHeader
                         title={[
-                            {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
-                            {text: 'Name',       field: 'name',        col: true, isEnableSort: true},
-                            {text: 'Role',       field: 'role',        col: 120},
-                            {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
-                            {text: 'Joined',     field: 'isApplyJoin', col: 80},
-                            {text: 'Amount',     field: 'amount', col: 80, titleAlign: 'right', dataAlign: 'right'},
+                            {text: '',          field: 'plus',      col: 50, titleAlign: 'center', dataAlign: 'center'},
+                            {text: '#',          field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
+                            {text: 'Name',       field: 'name',        col: 'auto', isEnableSort: true},
+                            {text: 'Amount',     field: 'amount',      col: '80px', titleAlign: 'right', dataAlign: 'right'},
+                            {text: 'Role',       field: 'role',        col: '120px'},
+                            {text: 'Crated',     field: 'createdAt',   col: '110px', isEnableSort: true},
+                            {text: 'Joined',     field: 'isApplyJoin', col: '80px'},
                         ]}
-
-
-                        data={undefined}
+                        footer={{
+                            // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                            name: {value: 'Total'},
+                            amount: {value: calcAmount(data), dataAlign: 'right'},
+                        }}
+                        data={data.map(row => {
+                            return {
+                                id: row.id,
+                                // detail: <>
+                                //     <div>{row.name}</div>
+                                //     <div>{row.amount}</div>
+                                //     <div>{row.role}</div>
+                                // </>,
+                                detail: {
+                                    config: {plus: {colSpan: 2, dataAlign: 'right'}},
+                                    data: [
+                                        {plus: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
+                                        {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+                                    ],
+                                },
+                                field: {
+                                    plus: (args) => <CollapseButton
+                                        type="button" onClick={() => args.collapse()}
+                                        data-active={args.isActive ? '':undefined}
+                                    >
+                                        {args.isActive ? '-': '+'}
+                                    </CollapseButton>,
+                                    avatar: <Avatar src={row.avatar}/>,
+                                    name: row.name,
+                                    role: row.role,
+                                    createdAt: dayjs(row.createdAt).format('MM/DD'),
+                                    isApplyJoin: row.isJoined ? 'Y':'N',
+                                    amount: `$ ${formatCurrency(row.amount)}`,
+                                },
+                            };
+                        })}
                         onChangePage={handleFetchPaginate}
                         paginateMeta={paginateMeta}
                         paginateInfo={paginateInfo}
@@ -134,3 +231,27 @@ function App() {
 }
 
 export default App;
+
+const CollapseButton = styled.button`
+    width: 20px;
+    height: 20px;
+    background-color: #535bf2;
+    border-radius: 4px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+
+    &[data-active] {
+        background-color: #f25353;
+    }
+`;
+
+
+const Avatar = styled.img`
+   border-radius: 99em;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+`;

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.8...v4.0.0-alpha.0) (2023-09-08)
+
+
+### Features
+
+* add feature grid and table tag ([f3b3c0f](https://github.com/imagine10255/bear-react-table/commit/f3b3c0fa2fb9ce622ee756646fec67cd83783073))
+
 ### [3.0.1-alpha.8](https://github.com/imagine10255/bear-react-table/compare/v3.0.1-alpha.7...v3.0.1-alpha.8) (2023-07-04)
 
 

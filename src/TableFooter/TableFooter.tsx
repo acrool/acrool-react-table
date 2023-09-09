@@ -1,163 +1,60 @@
-import React from 'react';
-import {formatCurrency} from '../utils';
-import {AlignCenterIcon} from '../Icon';
-import elClassNames from '../el-class-names';
+import {CSSProperties} from 'react';
 import cx from 'classnames';
-import {IPage, IPaginateInfo, IPaginateMeta} from '../types';
-import Select from '../Select';
+import {ITitle, IFooter} from '../types';
+import {getColSpan} from '../utils';
 
 
-interface IProps {
-    meta: Required<IPage>
-    info: IPaginateInfo;
-    onChangePage: (paginateMeta: Required<IPage>) => void;
-    pageLimitOptions: number[];
+interface IProps<T> {
+    title: ITitle[],
+    data?: IFooter,
 }
 
 
 /**
  * Table Footer
+ * 額外顯示資訊 例如統計
  */
-const TableFooter = ({
-    // currentPage = 1,
-    // pageLimit = 8,
-    meta,
-    info = {
-        totalItems: 0,
-        totalPages: 1,
-    },
-    onChangePage,
-    pageLimitOptions
-}: IProps) => {
+const TableFooter = <T extends string|number>({
+    title,
+    data,
+}: IProps<T>) => {
 
+    const renderFooterData = () => {
+        if(data){
+            let ignoreMerge = 0;
+            return title?.reduce((curr, titleRow) => {
+                const field = data[titleRow.field];
+                const colSpan = field?.colSpan ?? 1;
 
-    const end = meta.currentPage * meta.pageLimit;
-    const paginateInfo = {
-        start: ((meta.currentPage-1) * meta.pageLimit) + 1,
-        end: end > info.totalItems ? info.totalItems : end,
-    };
+                if(ignoreMerge > 0){
+                    ignoreMerge -= 1;
+                    return curr;
+                }
 
+                if(colSpan > 1){
+                    ignoreMerge = colSpan - 1;
+                }
 
-
-    /**
-     * 切換頁面
-     * @param targetPage
-     */
-    const handleChangePage = (targetPage: number) => {
-        onChangePage({
-            pageLimit: meta.pageLimit,
-            currentPage: targetPage,
-        });
-    };
-
-    /**
-     * 切換一頁顯示比數
-     * @param targetPageLimit
-     */
-    const handleChangePageLimit = (targetPageLimit: number) => {
-        onChangePage({
-            currentPage: 1,
-            pageLimit: targetPageLimit,
-        });
-    };
-
-
-
-    /**
-     * 產生頁面資訊
-     */
-    const renderPaginateInfo = () => {
-
-        const buttonPageDom = [];
-
-        const totalPages = Math.ceil(info?.totalPages) ?? 1;
-        const pageGroup = 5;
-
-        const startPage = ((Math.ceil(meta.currentPage / pageGroup)-1) * pageGroup) + 1;
-        const tmpEndPage = (Math.ceil(meta.currentPage / pageGroup) * pageGroup);
-        const endPage = tmpEndPage > totalPages ? totalPages : tmpEndPage;
-
-        const pages = new Array(totalPages ?? 1).fill(0).map((currPage, index) => {
-            return {text: String(index+1), value: String(index+1)};
-        });
-
-
-        for(let i = startPage; i <= endPage; i+=1){
-            const isActive = i === meta.currentPage;
-            buttonPageDom.push(<button
-                className={cx(elClassNames.footerPaginateLi, {'is-active': isActive})}
-                key={`table-page-button-${i}`}
-                type="button"
-                onClick={() => handleChangePage(i)}
-                disabled={isActive}
-            >
-                {i}
-            </button>);
+                return [
+                    ...curr,
+                    <th
+                        key={`tfootTh_${titleRow.field}`}
+                        data-align={field?.dataAlign}
+                        data-vertical={titleRow.dataVertical}
+                        {...getColSpan(colSpan)}
+                    >
+                        {field?.value ?? ''}
+                    </th>
+                ];
+            }, []);
         }
-
-
-
-        return <React.Fragment>
-            <button
-                className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
-                type="button"
-                disabled={meta.currentPage <= 1}
-                onClick={() => handleChangePage(meta.currentPage - 1)}
-            >
-                Prev
-            </button>
-
-            {buttonPageDom}
-
-
-            <button
-                className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
-                type="button"
-                disabled={meta.currentPage >= totalPages}
-                onClick={() => handleChangePage(meta.currentPage + 1)}
-            >
-                Next
-            </button>
-
-            <button
-                className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
-                type="button"
-                disabled={totalPages <= 1}
-            >
-                <AlignCenterIcon/>
-                <Select
-                    options={pages}
-                    value={meta.currentPage}
-                    onChange={(value) => handleChangePage(Number(value))}
-                />
-            </button>
-        </React.Fragment>;
-
-
     };
 
-
-    return (
-        <div className={elClassNames.footerInner}>
-            <div className={elClassNames.footerPaginateInfo}>
-                Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item, Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
-            </div>
-
-            <div className={elClassNames.footerPageLimit}>
-                <Select
-                    onChange={value => handleChangePageLimit(Number(value))}
-                    value={String(meta.pageLimit)}
-                    options={pageLimitOptions.map(page => {
-                        return {text: `${page}/Page`, value: String(page)};
-                    })}
-                />
-            </div>
-
-            <div className={elClassNames.footerPaginateUl}>
-                {renderPaginateInfo()}
-            </div>
-        </div>
-    );
+    return <tfoot>
+        <tr>
+            {renderFooterData()}
+        </tr>
+    </tfoot>;
 };
 
 export default TableFooter;
