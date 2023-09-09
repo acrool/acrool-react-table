@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/imagine10255/bear-react-table/compare/v4.1.0-alpha.0...v4.1.0) (2023-09-09)
+
+
+### Features
+
+* add stats.html to gitignore ([077f81b](https://github.com/imagine10255/bear-react-table/commit/077f81b201cdad917820e281a2ba8f9219721f24))
+
+
+### Bug Fixes
+
+* fix handleSetCollapse event.stopPropagation() ([0893e38](https://github.com/imagine10255/bear-react-table/commit/0893e382100bd0aa56761e32b45f1b4c47aee4b1))
+
 ## [4.1.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.0.2-alpha.1...v4.1.0-alpha.0) (2023-09-09)
 
 
