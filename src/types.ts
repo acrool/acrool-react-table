@@ -5,10 +5,12 @@ export type sizeUnit = 'px' | '%' | 'em' | 'fr';
 export type TCol = true|'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
 
 
+export type TID = string | number;
 type TFieldValue = string | number | JSX.Element;
 type TFieldFunc = (args: {isActive: boolean, collapse: (event: MouseEvent) => void}) => TFieldValue;
 
-interface IField<T> {
+interface IField<T extends TID> {
+    id: T,
     [field: string]: TFieldValue | TFieldFunc;
 }
 
@@ -21,7 +23,7 @@ interface IDetail {
     }>,
 }
 
-export interface IData<T> {
+export interface IData<T extends TID> {
     id: T,
     appendData?: string | number | JSX.Element,
     detail?: JSX.Element | IDetail,

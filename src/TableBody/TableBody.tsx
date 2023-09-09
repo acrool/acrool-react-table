@@ -2,11 +2,11 @@ import React, {Fragment, useState, MouseEvent} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
-import {IData, ITitle} from '../types';
+import {IData, ITitle, TID} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps<T> {
+interface IProps<T extends TID> {
     title: ITitle[],
     data?: IData<T>[],
 }
