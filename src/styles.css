@@ -10,9 +10,9 @@
 
 .bear-react-table__root{
 
-    --line-height: 40px;
-    --body-li-height: var(--line-height);
-    --header-li-height: var(--line-height);
+    --body-line-height: 40px;
+    --header-line-height: var(--body-line-height);
+    --footer-line-height: var(--body-line-height);
     --border-radius: .4rem;
 
     --grid-template: 1fr;
@@ -98,7 +98,6 @@
  *             Common
  * ------------------------------ */
 .bear-react-table__root tr{
-    height: var(--header-li-height);
     border-bottom: 1px solid var(--border-color);
 
     display: grid;
@@ -169,6 +168,7 @@
  *             Header
  * ------------------------------ */
 .bear-react-table__root thead tr{
+    height: var(--header-line-height);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border: 1px solid var(--border-color);
     border-bottom-color: var(--header-border-color);
@@ -218,6 +218,7 @@
 }
 
 .bear-react-table__root tbody tr{
+    height: var(--body-line-height);
     border-radius: 0
 }
 .bear-react-table__root:not([data-header]) tbody tr:first-child{
@@ -284,6 +285,7 @@
  *             Footer
  * ------------------------------ */
 .bear-react-table__root tfoot tr{
+    height: var(--footer-line-height);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 

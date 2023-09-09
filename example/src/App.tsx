@@ -10,6 +10,7 @@ import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
+import elClassNames from '../../src/el-class-names';
 
 
 
@@ -93,7 +94,7 @@ function App() {
             <h1>Bear React Table</h1>
             <div>
                 <button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</button>
-                <div className="d-flex flex-row my-2">
+                <TableContainer className="d-flex flex-row my-2">
                     <div style={{backgroundColor: '#fff', flex: 1, padding: '20px'}}>
                         <Table
                             isDark={false}
@@ -210,7 +211,7 @@ function App() {
 
 
                     </div>
-                </div>
+                </TableContainer>
 
 
 
@@ -251,4 +252,12 @@ const Avatar = styled.img`
     overflow: hidden;
     width: 20px;
     height: 20px;
+`;
+
+const TableContainer = styled.div`
+    .${elClassNames.root}{
+        --primary-color: #535bf2;
+        --header-line-height: 45px;
+        --body-line-height: 45px;
+    }
 `;
