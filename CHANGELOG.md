@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.0.2-alpha.1...v4.1.0-alpha.0) (2023-09-09)
+
+
+### Features
+
+* add col = true ([8980401](https://github.com/imagine10255/bear-react-table/commit/8980401184979e278e9f6134329c8de822fed7d2))
+
+
+### Bug Fixes
+
+* fix onCLickRow css ([9d8031b](https://github.com/imagine10255/bear-react-table/commit/9d8031b037582306a64d56777a695f5c5fa60246))
+
 ### [4.0.2-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v4.0.2-alpha.0...v4.0.2-alpha.1) (2023-09-09)
 
 
