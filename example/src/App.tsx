@@ -255,8 +255,9 @@ const Avatar = styled.img`
 `;
 
 const TableContainer = styled.div`
-    .${elClassNames.root}{
-        --primary-color: #535bf2;
+    --primary-color: #17a254;
+
+    .${elClassNames.root} {
         --header-line-height: 45px;
         --body-line-height: 45px;
     }

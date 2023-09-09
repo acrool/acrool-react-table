@@ -19,8 +19,9 @@
     --grid-gap: 0;
     --grid-column-span: 1;
 
-    --primary-color: #55a9ff;
-    --primary-contrast-color: #fff;
+    --default-primary-color: #535bf2;
+    --default-primary-contrast-color: #fff;
+
     --bg-color: #fff;
     --text-color: #000;
     --text-contrast-color: #fff;
@@ -364,8 +365,8 @@
 }
 
 .bear-react-table__paginate-page-li[data-active]{
-    color: var(--primary-contrast-color);
-    background-color: var(--primary-color);
+    color: var(--primary-contrast-color, var(--default-primary-contrast-color));
+    background-color: var(--primary-color, var(--default-primary-color));
 }
 
 .bear-react-table__paginate-page-picker{
