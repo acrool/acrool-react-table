@@ -18,5 +18,6 @@ export default {
     paginatePageUl: `${elClassNames.elClassPrefix}__paginate-page-ul`,
     paginatePageLi: `${elClassNames.elClassPrefix}__paginate-page-li`,
     paginatePageNav: `${elClassNames.elClassPrefix}__paginate-page-nav`,
+    paginatePagePicker: `${elClassNames.elClassPrefix}__paginate-page-picker`,
     paginateInfo: `${elClassNames.elClassPrefix}__paginate-info`,
 };

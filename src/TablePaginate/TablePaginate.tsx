@@ -119,7 +119,7 @@ const TablePaginate = ({
             </button>
 
             <button
-                className={elClassNames.paginatePageNav}
+                className={elClassNames.paginatePagePicker}
                 type="button"
                 disabled={totalPages <= 1}
             >
