@@ -12,7 +12,7 @@ import {getTemplate, getColSpan} from './utils';
 import './styles.css';
 import './TableHeader/styles.css';
 import './TableBody/styles.css';
-import './TablePaginate/styles.css';
+// import './TablePaginate/styles.css';
 
 
 
@@ -54,7 +54,6 @@ const Table = <T extends string|number>({
         window.scrollTo(0, 70);
 
         if(onChangePage){
-
             const paramsMeta = {
                 currentPage: pageMeta.currentPage,
                 pageLimit: pageMeta.pageLimit,

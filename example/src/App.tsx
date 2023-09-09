@@ -46,7 +46,7 @@ const mockSort = (by: 'DESC'|'ASC', field: string, a: IPaginateData, b: IPaginat
 function App() {
 
 
-    const [isFetching, setIsFetching] = useState(true);
+    const [isFetching, setIsFetching] = useState(false);
     const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
         currentPage: 1,
         pageLimit: 8,

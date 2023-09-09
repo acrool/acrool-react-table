@@ -1,9 +1,8 @@
 import React from 'react';
-import {formatCurrency} from '../utils';
+import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
-import cx from 'classnames';
-import {IPage, IPaginateInfo, IPaginateMeta} from '../types';
+import {IPage, IPaginateInfo} from '../types';
 import Select from '../Select';
 
 
@@ -19,8 +18,6 @@ interface IProps {
  * Table Footer
  */
 const TablePaginate = ({
-    // currentPage = 1,
-    // pageLimit = 8,
     meta,
     info = {
         totalItems: 0,
@@ -66,7 +63,7 @@ const TablePaginate = ({
     /**
      * 產生頁面資訊
      */
-    const renderPaginateInfo = () => {
+    const renderNav = () => {
 
         const buttonPageDom = [];
 
@@ -85,8 +82,9 @@ const TablePaginate = ({
         for(let i = startPage; i <= endPage; i+=1){
             const isActive = i === meta.currentPage;
             buttonPageDom.push(<button
-                className={cx(elClassNames.footerPaginateLi, {'is-active': isActive})}
+                className={elClassNames.paginatePageLi}
                 key={`table-page-button-${i}`}
+                data-active={isActive ? '': undefined}
                 type="button"
                 onClick={() => handleChangePage(i)}
                 disabled={isActive}
@@ -97,9 +95,10 @@ const TablePaginate = ({
 
 
 
-        return <React.Fragment>
+        return <div className={elClassNames.paginateUl}>
+
             <button
-                className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
+                className={elClassNames.paginatePageNav}
                 type="button"
                 disabled={meta.currentPage <= 1}
                 onClick={() => handleChangePage(meta.currentPage - 1)}
@@ -111,7 +110,7 @@ const TablePaginate = ({
 
 
             <button
-                className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
+                className={elClassNames.paginatePageNav}
                 type="button"
                 disabled={meta.currentPage >= totalPages}
                 onClick={() => handleChangePage(meta.currentPage + 1)}
@@ -120,7 +119,7 @@ const TablePaginate = ({
             </button>
 
             <button
-                className={cx(elClassNames.footerPaginateLi, 'paginate-nav')}
+                className={elClassNames.paginatePageNav}
                 type="button"
                 disabled={totalPages <= 1}
             >
@@ -131,31 +130,34 @@ const TablePaginate = ({
                     onChange={(value) => handleChangePage(Number(value))}
                 />
             </button>
-        </React.Fragment>;
+        </div>;
+    };
 
 
+    const renderInfo = () => {
+        return <div className={elClassNames.paginateInfo}>
+            Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item, Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
+        </div>;
+    };
+
+    const renderLimit = () => {
+        return <div className={elClassNames.pageLimit}>
+            <Select
+                onChange={value => handleChangePageLimit(Number(value))}
+                value={String(meta.pageLimit)}
+                options={pageLimitOptions.map(page => {
+                    return {text: `${page}/Page`, value: String(page)};
+                })}
+            />
+        </div>;
     };
 
 
     return (
-        <div className={elClassNames.footerInner}>
-            <div className={elClassNames.footerPaginateInfo}>
-                Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item, Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
-            </div>
-
-            <div className={elClassNames.footerPageLimit}>
-                <Select
-                    onChange={value => handleChangePageLimit(Number(value))}
-                    value={String(meta.pageLimit)}
-                    options={pageLimitOptions.map(page => {
-                        return {text: `${page}/Page`, value: String(page)};
-                    })}
-                />
-            </div>
-
-            <div className={elClassNames.footerPaginateUl}>
-                {renderPaginateInfo()}
-            </div>
+        <div className={elClassNames.paginate}>
+            {renderInfo()}
+            {renderLimit()}
+            {renderNav()}
         </div>
     );
 };

@@ -34,12 +34,12 @@ const TableHeader = ({
                     data-align={titleRow.titleAlign}
                     aria-sort={sortType}
                     data-enable-sort={isEnableSort ? '': undefined}
-                    onClick={() => {
+                    onClick={isEnableSort ? () => {
                         onChangeSortField({
                             orderField: titleRow.field,
                             orderBy: (order?.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
                         });
-                    }}
+                    }: undefined}
                 >
                     {titleRow.text}
                 </th>

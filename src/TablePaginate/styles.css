@@ -35,10 +35,9 @@ button.bear-react-table-footer__paginate-li svg{
     color: #bdbdbd;
     fill: currentColor;
 }
-button.bear-react-table-footer__paginate-li.is-active{
+button.bear-react-table-footer__paginate-li[data-active]{
     color: var(--footer-li-active-text-color);
-    background-color: var(--footer-li-active-color);
-    border-color: var(--footer-li-active-border-color);
+    background-color: var(--primary-color);;
 }
 
 @media (hover: hover) {

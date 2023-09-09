@@ -2,8 +2,6 @@ import {TCol, ITitle} from './types';
 import {CSSProperties} from 'react';
 
 
-
-
 export const getTemplate = (titles: ITitle[], gap: string): CSSProperties => {
     const frs = titles.map(row => {
         if(typeof row.col === 'number'){
@@ -51,15 +49,3 @@ export const calcPageInfo = (totalItem: number, pageLimit: number) => {
     return pageTotal;
 };
 
-
-/**
- * 千分位格式化
- * @param val 原數值
- * @param isDecimal2 保留小數2位
- */
-export function formatCurrency(val = 0, isDecimal2 = false): string {
-    const dec = Math.floor(val);
-    const parts = dec.toString().split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return parts.join('.');
-}

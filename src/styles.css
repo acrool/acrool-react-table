@@ -9,6 +9,8 @@
 }
 
 .bear-react-table__root{
+    --primary-color: #55a9ff;
+
     --row-margin: -5px;
     --col-padding: 5px;
     --body-li-height: 40px;
@@ -20,6 +22,8 @@
     --grid-column-span: 1;
     --bg-color: #fff;
     --text-color: #000;
+    --text-contrast-color: #fff;
+
     --header-text-color: rgb(51, 51, 51);
     --header-text-active-color: #000;
     --disabled-bg-color: #d3d3d3;
@@ -73,23 +77,23 @@
 
 .bear-react-table__root {
     width: 100%;
+    color: var(--text-color);
+    font-size: 13px;
 }
 
-
-
-.bear-react-table__container {
+.bear-react-table__root table {
     min-width: 0;
-
-
-    /*border: 1px solid var(--border-color);*/
-    /*background: var(--bg-color);*/
-    color: var(--text-color);
     position: relative;
     width: 100%;
+
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
 }
 
 @media print{
-    .bear-react-table__container {
+    .bear-react-table__root table {
         border-radius: 0;
         border: none;
         background: #fff;
@@ -100,90 +104,7 @@
 
 
 
-/* ========= reset start ============*/
-.bear-react-table-header__sort-button,
-.bear-react-table-footer__paginate-li {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    background: none;
-    border: none;
-    overflow: visible;
-    text-transform: none;
-    border-radius: 0;
-}
-.bear-react-table-header__sort-button:focus,
-.bear-react-table-footer__paginate-li:focus{
-    outline: none;
-}
 
-.bear-react-table-header__sort-button,
-.bear-react-table-header__sort-button [type="button"],
-.bear-react-table-footer__paginate-li,
-.bear-react-table-footer__paginate-li [type="button"]
-{
-    -webkit-appearance: button;
-}
-.bear-react-table-header__sort-button:not(:disabled),
-.bear-react-table-header__sort-button [type="button"]:not(:disabled),
-.bear-react-table-footer__paginate-li:not(:disabled),
-.bear-react-table-footer__paginate-li [type="button"]:not(:disabled)
-{
-    cursor: pointer;
-}
-.bear-react-table-header__sort-button::-moz-focus-inner,
-.bear-react-table-header__sort-button [type="button"]::-moz-focus-inner
-.bear-react-table-footer__paginate-li::-moz-focus-inner,
-.bear-react-table-footer__paginate-li [type="button"]::-moz-focus-inner{
-    padding: 0;
-    border-style: none;
-}
-.bear-react-table__icon {overflow: hidden;vertical-align: middle;}
-/* ========= reset end ============*/
-
-
-.bear-react-table__root table {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-
-.bear-react-table__loading-box {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(39, 44, 49, .9);
-    opacity: 0;
-    transition: opacity .3s;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-/*.bear-react-table__loading-box[data-visible=true]{*/
-/*    opacity: 1;*/
-/*    pointer-events: unset;*/
-/*}*/
-
-/*.bear-react-table__loading-position{*/
-/*    position: absolute;*/
-/*    top: 150px;*/
-/*    z-index: 3;*/
-/*}*/
-.bear-react-table__not-data svg{
-    height: 200px;
-    width: auto;
-    margin-bottom: 10px;
-}
 
 
 
@@ -209,6 +130,7 @@
 .bear-react-table__root thead th[data-enable-sort]{
     position: relative;
     padding-right: 12px;
+    cursor: pointer;
 }
 
 .bear-react-table__root thead th[data-enable-sort]:before,
@@ -311,6 +233,92 @@
  * ------------------------------ */
 .bear-react-table__root tfoot tr{
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+
+/** -------------------------------
+ *             Paginate
+ * ------------------------------ */
+.bear-react-table__paginate{
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    column-gap: .5rem;
+    margin-top: 1.2rem;
+}
+.bear-react-table__paginate-info{
+    text-align: left;
+}
+.bear-react-table__paginate-limit{
+    display: flex;
+    align-items: flex-start;
+    width: 100px;
+}
+.bear-react-table__paginate-page-ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1 1 auto;
+}
+.bear-react-table__paginate-page-li,
+.bear-react-table__paginate-page-nav{
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: button;
+
+    flex: 0 0 35px;
+    height: 35px;
+    width: 35px;
+    padding: 0;
+    font-size: 12px;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    background-color: #efefef;
+    border: none;
+}
+.bear-react-table__paginate-page-li:hover,
+.bear-react-table__paginate-page-nav:hover{
+    color: var(--text-contrast-color);
+    background-color: #cbcbcb;
+    border: none;
+}
+.bear-react-table__paginate-page-li:focus,
+.bear-react-table__paginate-page-nav:focus{
+    outline: none;
+}
+
+.bear-react-table__paginate-page-li[data-active]{
+    color: var(--footer-li-active-text-color);
+    background-color: var(--primary-color);
+}
+
+.bear-react-table__paginate-page-nav{
+    padding: 0 10px;
+    width: auto;
+    flex: 0 0 auto;
+}
+.bear-react-table__paginate-page-nav select{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.bear-react-table__paginate-page-nav:disabled select{
+    pointer-events: none;
+}
+.bear-react-table__paginate-page-nav:first-child{
+    border-radius: 4px 0 0 4px;
+}
+.bear-react-table__paginate-page-nav:last-child{
+    border-radius: 0 4px 4px 0;
 }
 
 

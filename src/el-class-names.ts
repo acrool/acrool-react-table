@@ -29,11 +29,12 @@ export default {
 
 
 
-    footerPageLimit: `${elClassNames.elClassPrefix}-footer__page-limit`,
-    footerPaginateUl: `${elClassNames.elClassPrefix}-footer__paginate-ul`,
-    footerPaginateLi: `${elClassNames.elClassPrefix}-footer__paginate-li`,
-    footerPaginateInfo: `${elClassNames.elClassPrefix}-footer__paginate-info`,
-    footerInner: `${elClassNames.elClassPrefix}-footer__inner`,
+    paginate: `${elClassNames.elClassPrefix}__paginate`,
+    pageLimit: `${elClassNames.elClassPrefix}__paginate-limit`,
+    paginateUl: `${elClassNames.elClassPrefix}__paginate-page-ul`,
+    paginatePageLi: `${elClassNames.elClassPrefix}__paginate-page-li`,
+    paginatePageNav: `${elClassNames.elClassPrefix}__paginate-page-nav`,
+    paginateInfo: `${elClassNames.elClassPrefix}__paginate-info`,
 
 
     select: `${elClassNames.elClassPrefix}-footer__select`,
