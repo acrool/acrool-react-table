@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.2.0...v4.2.1-alpha.0) (2023-09-10)
+
+
+### Bug Fixes
+
+* fix sample ([5f7ddb6](https://github.com/imagine10255/bear-react-table/commit/5f7ddb6ebb06c91a57f5a0924eda1f87151d9db0))
+
 ## [4.2.0](https://github.com/imagine10255/bear-react-table/compare/v4.1.0...v4.2.0) (2023-09-10)
 
 ## [4.1.0](https://github.com/imagine10255/bear-react-table/compare/v4.1.0-alpha.0...v4.1.0) (2023-09-09)
