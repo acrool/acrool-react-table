@@ -17,7 +17,7 @@ import './styles.css';
 /**
  * Table
  */
-const Table = <T extends string|number, D extends ITitle>({
+const Table = <T extends string|number, D extends string>({
     className,
     style,
     isDark,
@@ -85,7 +85,7 @@ const Table = <T extends string|number, D extends ITitle>({
     const renderLoading = () => {
         return <tbody data-loading="">
             <tr>
-                <td {...getColSpan(title.length)}>Loading...</td>
+                <td {...getColSpan(Object.keys(title).length)}>Loading...</td>
             </tr>
         </tbody>;
     };
@@ -96,7 +96,7 @@ const Table = <T extends string|number, D extends ITitle>({
     const renderCustomNoData = () => {
         return <tbody data-no-data="">
             <tr>
-                <td {...getColSpan(title.length)}>
+                <td {...getColSpan(Object.keys(title).length)}>
                     {!!renderNoData ?
                         renderNoData() : <div className={elClassNames.notData}>
                             <div className={elClassNames.notDataTitle}>Not Found</div>

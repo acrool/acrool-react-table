@@ -1,10 +1,10 @@
-import {ITitle, IFooter} from '../types';
+import {ITitle, IFooter, TTitleField} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps {
-    title: ITitle[],
-    data?: IFooter,
+interface IProps <K extends string>{
+    title: TTitleField<K>,
+    data?: IFooter<K>,
 }
 
 
@@ -12,16 +12,18 @@ interface IProps {
  * Table Footer
  * 額外顯示資訊 例如統計
  */
-const TableFooter = ({
+const TableFooter = <D extends string>({
     title,
     data,
-}: IProps) => {
+}: IProps<D>) => {
 
     const renderFooterData = () => {
         if(data){
             let ignoreMerge = 0;
-            return title?.reduce((curr, titleRow) => {
-                const field = data[titleRow.field];
+            return Object.keys(title)?.reduce((curr, titleKey) => {
+                const titleRow = title[titleKey];
+
+                const field = data[titleKey];
                 const colSpan = field?.colSpan ?? 1;
 
                 if(ignoreMerge > 0){
@@ -36,7 +38,7 @@ const TableFooter = ({
                 return [
                     ...curr,
                     <th
-                        key={`tfootTh_${titleRow.field}`}
+                        key={`tfootTh_${titleKey}`}
                         data-align={field?.dataAlign}
                         data-vertical={titleRow.dataVertical}
                         {...getColSpan(colSpan)}

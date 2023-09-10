@@ -9,27 +9,26 @@ export type TID = string | number;
 type TFieldValue = string | number | JSX.Element;
 type TFieldFunc = (args: {isActive: boolean, collapse: (event: MouseEvent) => void}) => TFieldValue;
 
-interface IField<T extends TID> {
-    id: T,
-    [field: string]: TFieldValue | TFieldFunc;
+type IField<K extends string> = {
+    [P in K]: TFieldValue | TFieldFunc;
 }
 
-interface IDetail {
+type IDetail<K extends string> = {
     config: {
-        [field: string]: IConfig
+        [P in K]?: IConfig
     },
     data: Array<{
-        [field: string]: TFieldValue;
+        [P in K]?: TFieldValue;
     }>,
 }
 
-export interface IData<T extends TID> {
+export interface IData<T extends TID, K extends string> {
     id: T,
     appendData?: string | number | JSX.Element,
-    detail?: JSX.Element | IDetail,
+    detail?: JSX.Element | IDetail<K>,
     disabled?: boolean,
     onClickRow?: () => void,
-    field: IField<T>
+    field: IField<K>
 }
 
 
@@ -44,20 +43,22 @@ export interface IConfig {
     dataVertical?: 'top'|'center'|'bottom',
 }
 
-export interface ITitle extends IConfig{
+export interface ITitle extends IConfig {
     className?: string,
     col: TCol,
-    field: string,
     text: string|number|ReactNode,
     titleAlign?: 'left'|'center'|'right',
     isEnableSort?: boolean,
 }
 
-export interface IFooter {
-    [field: string]: { value: TFieldValue } & IConfig;
+// export type TTitleField<K extends string> = Record<K, ITitle>
+export type TTitleField<K extends string> = {
+    [P in K]?: ITitle;
 }
 
-
+export type IFooter<K extends string> = {
+    [P in K]?: { value: TFieldValue } & IConfig;
+}
 
 // export interface IPaginationRes<T> {
 //     rows: T[],
@@ -88,14 +89,14 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 
 
-export interface ITableProps<T extends TID, D extends ITitle> {
+export interface ITableProps<T extends TID, K extends string> {
     className?: string;
     style?: CSS.Properties,
     isDark?: boolean
     isFetching?: boolean,
-    title: D[],
-    data?: IData<T>[],
-    footer?: IFooter
+    title: TTitleField<K>,
+    data?: IData<T, K>[],
+    footer?: IFooter<K>
     gap?: string
     dataFooterContent?: TDataFooterContent, // ex: total...
     paginateInfo?: IPaginateInfo,
