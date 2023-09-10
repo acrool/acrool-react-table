@@ -1,9 +1,11 @@
-import {TCol, ITitle} from './types';
+import {TCol, ITitle, TTitleField} from './types';
 import {CSSProperties} from 'react';
 
 
-export const getTemplate = (titles: ITitle[], gap: string): CSSProperties => {
-    const frs = titles.map(row => {
+export const getTemplate = <D extends string>(titles: TTitleField<D>, gap: string): CSSProperties => {
+    const frs = Object.keys(titles).map(titleKey => {
+        const row = titles[titleKey];
+
         if(typeof row.col === 'number'){
             return `${row.col}px`;
         }

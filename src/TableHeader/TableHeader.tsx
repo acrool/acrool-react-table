@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {IOrder, ITitle, TOnChangeSortField} from '../types';
+import {IOrder, ITitle, TOnChangeSortField, TTitleField} from '../types';
 
 
-interface IProps {
-    title: ITitle[],
+interface IProps<D extends string> {
+    title: TTitleField<D>,
     onChangeSortField?: TOnChangeSortField;
     isStickyHeader?: boolean;
     order?: IOrder,
@@ -14,30 +14,31 @@ interface IProps {
 /**
  * Table Header
  */
-const TableHeader = ({
-    title= [],
+const TableHeader = <D extends string>({
+    title,
     order,
     isStickyHeader = false,
     onChangeSortField = () => {},
-}: IProps) => {
+}: IProps<D>) => {
 
     const renderTitle = () => {
-        return title.map(titleRow => {
+        return Object.keys(title).map(titleKey => {
+            const titleRow = title[titleKey];
             const isEnableSort = titleRow.isEnableSort;
-            const sortType = order?.orderField === titleRow.field && order?.orderBy === 'ASC' ? 'ascending':
-                order?.orderField === titleRow.field && order?.orderBy === 'DESC' ? 'descending':
+            const sortType = order?.orderField === titleKey && order?.orderBy === 'ASC' ? 'ascending':
+                order?.orderField === titleKey && order?.orderBy === 'DESC' ? 'descending':
                     undefined;
 
             return (
                 <th
-                    key={`columnTitle_${titleRow.field}`}
+                    key={`columnTitle_${titleKey}`}
                     data-align={titleRow.titleAlign}
                     aria-sort={sortType}
                     data-enable-sort={isEnableSort ? '': undefined}
                     onClick={isEnableSort ? () => {
                         onChangeSortField({
-                            orderField: titleRow.field,
-                            orderBy: (order?.orderBy === 'DESC' && order.orderField === titleRow.field) ? 'ASC':'DESC',
+                            orderField: titleKey,
+                            orderBy: (order?.orderBy === 'DESC' && order.orderField === titleKey) ? 'ASC':'DESC',
                         });
                     }: undefined}
                 >

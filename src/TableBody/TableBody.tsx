@@ -2,23 +2,23 @@ import React, {Fragment, useState, MouseEvent} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
-import {IData, ITitle, TID} from '../types';
+import {IData, ITitle, TID, TTitleField} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps<T extends TID> {
-    title: ITitle[],
-    data?: IData<T>[],
+interface IProps<T extends TID, K extends string> {
+    title: TTitleField<K>,
+    data?: IData<T, K>[],
 }
 
 
 /**
  * Table Body
  */
-const TableBody = <T extends string|number>({
+const TableBody = <T extends string|number, K extends string>({
     title,
     data,
-}: IProps<T>) => {
+}: IProps<T, K>) => {
 
     const [collapseIds, setCollapse] = useState<T[]>([]);
 
@@ -45,7 +45,7 @@ const TableBody = <T extends string|number>({
     /**
      * 渲染額外展開內容
      */
-    const renderDetailData = (dataRow: IData<T>) => {
+    const renderDetailData = (dataRow: IData<T, K>) => {
         if(!!dataRow.detail === false){
             return null;
         }
@@ -60,12 +60,14 @@ const TableBody = <T extends string|number>({
             return dataRow.detail.data.map((detailFields, detailIndex) => {
                 let ignore = 0;
 
-                const tds = title?.reduce((curr: JSX.Element[], titleRow) => {
+                const tds = Object.keys(title)?.reduce((curr: JSX.Element[], titleKey) => {
+                    const titleRow = title[titleKey];
+
                     const fieldConfig = {
                         ...titleRow,
-                        ...config[titleRow.field],
+                        ...config[titleKey],
                     };
-                    const fieldValue = detailFields[titleRow.field];
+                    const fieldValue = detailFields[titleKey];
                     const colSpan = fieldConfig?.colSpan ?? 1;
 
                     if(ignore > 0){
@@ -80,7 +82,7 @@ const TableBody = <T extends string|number>({
                     return [
                         ...curr,
                         <td
-                            key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleRow.field}`}
+                            key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
                             className={cx(titleRow.className)}
                             data-align={fieldConfig?.dataAlign}
                             data-vertical={titleRow.dataVertical}
@@ -102,7 +104,7 @@ const TableBody = <T extends string|number>({
         }
 
         return <tr data-collapse="">
-            <td {...getColSpan(title.length)}>
+            <td {...getColSpan(Object.keys(title).length)}>
                 {dataRow.detail}
             </td>
         </tr>;
@@ -129,10 +131,12 @@ const TableBody = <T extends string|number>({
                     role={dataRow.onClickRow ? 'button':undefined}
                 >
                     {/* 各欄位值 */}
-                    {title?.map(titleRow => {
-                        const field = dataRow.field[titleRow.field];
+                    {Object.keys(title)?.map(titleKey => {
+                        const titleRow = title[titleKey];
+
+                        const field = dataRow.field[titleKey];
                         return (<td
-                            key={`tbodyTd_${dataRow.id}_${titleRow.field}`}
+                            key={`tbodyTd_${dataRow.id}_${titleKey}`}
                             className={titleRow.className}
                             data-align={titleRow.dataAlign}
                             data-vertical={titleRow.dataVertical}
