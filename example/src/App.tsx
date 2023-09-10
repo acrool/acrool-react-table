@@ -104,16 +104,13 @@ function App() {
                             title={{
                                 plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
                                 avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                name:     {text: 'Name',   col: 'auto',  dataAlign: 'right',   isEnableSort: true},
+                                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
                                 amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
                                 role:     {text: 'Role',   col: '120px'},
                                 createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
                                 joined:  {text: 'Joined',  col: '80px'},
                             }}
                             footer={{
-                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                                // join: {value: 'xxx'},
-                                // plus: {value: 'xxx'},
                                 plus: {value: 'Total'},
                                 name: {value: 'Total'},
                                 amount: {value: calcAmount(data), dataAlign: 'right'},
@@ -161,15 +158,15 @@ function App() {
                             isFetching={isFetching}
                             gap="8px"
                             isStickyHeader
-                            title={[
-                                {text: '',       field: 'plus',        col: 50, titleAlign: 'center', dataAlign: 'center'},
-                                {text: '#',      field: 'avatar',      col: 50, titleAlign: 'center', dataAlign: 'center'},
-                                {text: 'Name',   field: 'name',        col: 'auto', isEnableSort: true},
-                                {text: 'Amount', field: 'amount',      col: '80px', titleAlign: 'right', dataAlign: 'right'},
-                                {text: 'Role',   field: 'role',        col: '120px'},
-                                {text: 'Crated', field: 'createdAt',   col: '110px', isEnableSort: true},
-                                {text: 'Joined', field: 'isApplyJoin', col: '80px'},
-                            ]}
+                            title={{
+                                plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+                                amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
+                                role:     {text: 'Role',   col: '120px'},
+                                createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+                                joined:  {text: 'Joined',  col: '80px'},
+                            }}
                             footer={{
                                 // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
                                 name: {value: 'Total'},
@@ -178,18 +175,11 @@ function App() {
                             data={data.map(row => {
                                 return {
                                     id: row.id,
-                                    // detail: <>
-                                    //     <div>{row.name}</div>
-                                    //     <div>{row.amount}</div>
-                                    //     <div>{row.role}</div>
-                                    // </>,
-                                    detail: {
-                                        config: {plus: {colSpan: 2, dataAlign: 'right'}},
-                                        data: [
-                                            {plus: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
-                                            {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
-                                        ],
-                                    },
+                                    detail: <>
+                                        <div>{row.name}</div>
+                                        <div>{row.amount}</div>
+                                        <div>{row.role}</div>
+                                    </>,
                                     onClickRow: () => console.log(`click row id: ${row.id}`),
                                     field: {
                                         plus: (args) => <CollapseButton
@@ -202,7 +192,7 @@ function App() {
                                         name: row.name,
                                         role: row.role,
                                         createdAt: dayjs(row.createdAt).format('MM/DD'),
-                                        isApplyJoin: row.isJoined ? 'Y':'N',
+                                        joined: row.isJoined ? 'Y':'N',
                                         amount: `$ ${formatCurrency(row.amount)}`,
                                     },
                                 };
