@@ -68,45 +68,99 @@ const BaseUsed = () => {
 
 
 
-    return <div className="d-flex flex-row my-2">
+    return <TableContainer>
         <Table
+            isDark={false}
             isFetching={isFetching}
-            title={[
-                {text: '#',          field: 'avatar',      col: 60, titleAlign: 'center', dataAlign: 'center'},
-                {text: 'Name',       field: 'name',        col: true, isEnableSort: true},
-                {text: 'Role',       field: 'role',        col: 120},
-                {text: 'Crated',     field: 'createdAt',   col: 110, isEnableSort: true},
-                {text: 'Joined',     field: 'isApplyJoin', col: 80},
-            ]}
-            data={paginateData.map(row => {
-                const createdAt = dayjs(row.createdAt);
-
+            gap="8px"
+            isStickyHeader
+            title={{
+                plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+                amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
+                role:     {text: 'Role',   col: '120px'},
+                createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+                joined:  {text: 'Joined',  col: '80px'},
+            }}
+            footer={{
+                plus: {value: 'Total'},
+                name: {value: 'Total'},
+                amount: {value: calcAmount(data), dataAlign: 'right'},
+            }}
+            data={data.map(row => {
                 return {
                     id: row.id,
-                    disabled: !row.isJoined,
+                    // detail: <>
+                    //     <div>{row.name}</div>
+                    //     <div>{row.amount}</div>
+                    //     <div>{row.role}</div>
+                    // </>,
+                    detail: {
+                        config: {plus: {colSpan: 2, dataAlign: 'right'}},
+                        data: [
+                            {plus: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
+                            {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+                        ],
+                    },
                     field: {
-                        avatar: <Avatar style={{backgroundImage: `url(${row.avatar})`}}/>,
-                        name: <div className="d-flex flex-column">
-                            <div>{row.name}</div>
-                            <div>{row.email}</div>
-                        </div>,
-                        isApplyJoin: row.isJoined ? '已加入':'等待同意',
-                        createdAt: <div style={{fontSize: 12}}>
-                            {createdAt.format('YYYY-MM-DD')}<br/>
-                            {createdAt.format('HH:mm:ss')}
-                        </div>,
-                    }
-                    
+                        plus: (args) => <CollapseButton
+                            type="button" onClick={args.collapse}
+                            data-active={args.isActive ? '':undefined}
+                        >
+                            {args.isActive ? '-': '+'}
+                        </CollapseButton>,
+                        avatar: <Avatar src={row.avatar}/>,
+                        name: row.name,
+                        role: row.role,
+                        createdAt: dayjs(row.createdAt).format('MM/DD'),
+                        joined: row.isJoined ? 'Y':'N',
+                        amount: `$ ${formatCurrency(row.amount)}`,
+                    },
                 };
             })}
             onChangePage={handleFetchPaginate}
             paginateMeta={paginateMeta}
             paginateInfo={paginateInfo}
         />
-
-    </div>
-
+    </TableContainer>
 };
+
+
+
+const CollapseButton = styled.button`
+    width: 20px;
+    height: 20px;
+    background-color: #535bf2;
+    border-radius: 4px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+
+    &[data-active] {
+        background-color: #f25353;
+    }
+`;
+
+
+const Avatar = styled.img`
+   border-radius: 99em;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+`;
+
+const TableContainer = styled.div`
+    --primary-color: #17a254;
+
+    .${elClassNames.root} {
+        --header-line-height: 45px;
+        --body-line-height: 45px;
+    }
+`;
+
 ```
 
 
