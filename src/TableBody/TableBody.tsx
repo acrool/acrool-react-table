@@ -2,20 +2,20 @@ import React, {Fragment, useState, MouseEvent} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
-import {IData, ITitle, TID, TTitleField} from '../types';
+import {IBodyData, TBodyDataID, TTitleField, TBodyDataFieldKey} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps<T extends TID, K extends string> {
+interface IProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
     title: TTitleField<K>,
-    data?: IData<T, K>[],
+    data?: IBodyData<I, K>[],
 }
 
 
 /**
  * Table Body
  */
-const TableBody = <T extends string|number, K extends string>({
+const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
     title,
     data,
 }: IProps<T, K>) => {
@@ -45,7 +45,7 @@ const TableBody = <T extends string|number, K extends string>({
     /**
      * 渲染額外展開內容
      */
-    const renderDetailData = (dataRow: IData<T, K>) => {
+    const renderDetailData = (dataRow: IBodyData<T, K>) => {
         if(!!dataRow.detail === false){
             return null;
         }

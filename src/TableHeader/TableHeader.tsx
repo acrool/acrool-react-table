@@ -1,10 +1,8 @@
-import React from 'react';
-
-import {IOrder, ITitle, TOnChangeSortField, TTitleField} from '../types';
+import {IOrder, TOnChangeSortField, TTitleField, TBodyDataFieldKey} from '../types';
 
 
-interface IProps<D extends string> {
-    title: TTitleField<D>,
+interface IProps<K extends TBodyDataFieldKey> {
+    title: TTitleField<K>,
     onChangeSortField?: TOnChangeSortField;
     isStickyHeader?: boolean;
     order?: IOrder,
@@ -14,12 +12,12 @@ interface IProps<D extends string> {
 /**
  * Table Header
  */
-const TableHeader = <D extends string>({
+const TableHeader = <K extends TBodyDataFieldKey>({
     title,
     order,
     isStickyHeader = false,
     onChangeSortField = () => {},
-}: IProps<D>) => {
+}: IProps<K>) => {
 
     const renderTitle = () => {
         return Object.keys(title).map(titleKey => {

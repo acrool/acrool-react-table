@@ -1,4 +1,4 @@
-import {TCol, ITitle, TTitleField} from './types';
+import {TTitleCol, ITitleField, TTitleField} from './types';
 import {CSSProperties} from 'react';
 
 

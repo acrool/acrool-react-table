@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import {TOnChangeSortField, TOnChangePage, ITableProps, ITitle,} from './types';
+import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
@@ -17,7 +17,7 @@ import './styles.css';
 /**
  * Table
  */
-const Table = <T extends string|number, D extends string>({
+const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     className,
     style,
     isDark,
@@ -38,7 +38,7 @@ const Table = <T extends string|number, D extends string>({
     pageLimitOptions = [8, 40, 72, 150],
 
     renderNoData,
-}: ITableProps<T, D>) => {
+}: ITableProps<I, K>) => {
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
         pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,

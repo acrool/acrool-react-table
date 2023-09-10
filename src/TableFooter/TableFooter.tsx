@@ -1,10 +1,10 @@
-import {ITitle, IFooter, TTitleField} from '../types';
+import {TFooter, TTitleField, TBodyDataFieldKey} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps <K extends string>{
+interface IProps <K extends TBodyDataFieldKey>{
     title: TTitleField<K>,
-    data?: IFooter<K>,
+    data?: TFooter<K>,
 }
 
 
@@ -12,10 +12,10 @@ interface IProps <K extends string>{
  * Table Footer
  * 額外顯示資訊 例如統計
  */
-const TableFooter = <D extends string>({
+const TableFooter = <K extends TBodyDataFieldKey>({
     title,
     data,
-}: IProps<D>) => {
+}: IProps<K>) => {
 
     const renderFooterData = () => {
         if(data){
