@@ -1,8 +1,8 @@
-import {TTitleCol, ITitleField, TTitleField} from './types';
+import {TTitleCol, ITitleField, TTitle} from './types';
 import {CSSProperties} from 'react';
 
 
-export const getTemplate = <D extends string>(titles: TTitleField<D>, gap: string): CSSProperties => {
+export const getTemplate = <D extends string>(titles: TTitle<D>, gap: string): CSSProperties => {
     const frs = Object.keys(titles).map(titleKey => {
         const row = titles[titleKey];
 

@@ -23,8 +23,8 @@ export interface ITitleField extends IConfig {
     isEnableSort?: boolean,
 }
 
-export type TTitleField<K extends TBodyDataFieldKey> = {
-    [P in K]?: ITitleField;
+export type TTitle<K extends string> = {
+    [P in K]: ITitleField;
 }
 
 export type TOnChangeSortField = (meta: IOrder) => void
@@ -103,7 +103,7 @@ export interface ITableProps<T extends TBodyDataID, K extends TBodyDataFieldKey>
     style?: CSS.Properties,
     isDark?: boolean
     isFetching?: boolean,
-    title: TTitleField<K>,
+    title: TTitle<K>,
     data?: IBodyData<T, K>[],
     footer?: TFooter<K> // ex: calc total...
     gap?: string

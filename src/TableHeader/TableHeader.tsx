@@ -1,8 +1,8 @@
-import {IOrder, TOnChangeSortField, TTitleField, TBodyDataFieldKey} from '../types';
+import {IOrder, TOnChangeSortField, TTitle, TBodyDataFieldKey} from '../types';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
-    title: TTitleField<K>,
+    title: TTitle<K>,
     onChangeSortField?: TOnChangeSortField;
     isStickyHeader?: boolean;
     order?: IOrder,

@@ -2,7 +2,7 @@ import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import Table, {elClassName, TOnChangePage, IPaginateMeta} from 'bear-react-table';
+import Table, {elClassName, TOnChangePage, IPaginateMeta, TTitle, ITableProps} from 'bear-react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
@@ -86,6 +86,15 @@ function App() {
     }, []);
 
 
+    const title: TTitle<string> = {
+        plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
+        avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+        name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+        amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
+        role:     {text: 'Role',   col: '120px'},
+        createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+        joined:  {text: 'Joined',  col: '80px'},
+    };
 
     return (
         <div className="App">
@@ -100,15 +109,7 @@ function App() {
                             isFetching={isFetching}
                             gap="8px"
                             isStickyHeader
-                            title={{
-                                plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-                                amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
-                                role:     {text: 'Role',   col: '120px'},
-                                createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
-                                joined:  {text: 'Joined',  col: '80px'},
-                            }}
+                            title={title}
                             footer={{
                                 plus: {value: 'Total'},
                                 name: {value: 'Total'},

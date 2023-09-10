@@ -1,9 +1,9 @@
-import {TFooter, TTitleField, TBodyDataFieldKey} from '../types';
+import {TFooter, TTitle, TBodyDataFieldKey} from '../types';
 import {getColSpan} from '../utils';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
-    title: TTitleField<K>,
+    title: TTitle<K>,
     data?: TFooter<K>,
 }
 

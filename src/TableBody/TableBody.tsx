@@ -2,12 +2,12 @@ import React, {Fragment, useState, MouseEvent} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
-import {IBodyData, TBodyDataID, TTitleField, TBodyDataFieldKey} from '../types';
+import {IBodyData, TBodyDataID, TTitle, TBodyDataFieldKey} from '../types';
 import {getColSpan} from '../utils';
 
 
 interface IProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
-    title: TTitleField<K>,
+    title: TTitle<K>,
     data?: IBodyData<I, K>[],
 }
 
