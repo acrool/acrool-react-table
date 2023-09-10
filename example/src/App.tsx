@@ -2,7 +2,7 @@ import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import Table, {TOnChangePage, IPaginateMeta} from 'bear-react-table';
+import Table, {elClassName, TOnChangePage, IPaginateMeta} from 'bear-react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
@@ -10,7 +10,6 @@ import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
-import elClassNames from '../../src/el-class-names';
 
 
 
@@ -233,6 +232,11 @@ const CollapseButton = styled.button`
     justify-content: center;
     font-size: 12px;
 
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+
     &[data-active] {
         background-color: #f25353;
     }
@@ -249,7 +253,7 @@ const Avatar = styled.img`
 const TableContainer = styled.div`
     --primary-color: #17a254;
 
-    .${elClassNames.root} {
+    .${elClassName.root} {
         --header-line-height: 45px;
         --body-line-height: 45px;
     }
