@@ -11,7 +11,7 @@ export interface IConfig {
 /** -------------------------------
  *             Title
  * ------------------------------ */
-export type sizeUnit = 'px' | '%' | 'em' | 'fr';
+export type sizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
 export type TTitleCol = true|'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
 
 
