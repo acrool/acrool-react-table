@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import cx from 'classnames';
 
 import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
@@ -34,6 +34,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisibleHeader = true,
     isVisiblePaginate = true,
     isStickyHeader = false,
+    tableCellMediaSize,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
 
@@ -44,8 +45,32 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,
         order: paginateMeta?.order
     };
+    const tableRef = useRef<HTMLDivElement>(null);
 
 
+    useEffect(() => {
+        handleOnResize();
+
+    }, [tableCellMediaSize]);
+
+    useEffect(() => {
+        window.addEventListener('resize', handleOnResize, false);
+
+        return () => {
+            window.removeEventListener('resize', handleOnResize, false);
+        };
+    }, [tableCellMediaSize]);
+
+
+    const handleOnResize = () => {
+        if(tableRef.current){
+            if(window.innerWidth <= tableCellMediaSize){
+                tableRef.current.dataset['cell'] = '';
+            }else{
+                tableRef.current.removeAttribute('data-cell');
+            }
+        }
+    };
 
     const handleOnChangePage: TOnChangePage = (pageMeta) => {
         window.scrollTo(0, 70);
@@ -184,7 +209,9 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             className,
             {'dark-theme': isDark},
         )}
-        data-header={!!isVisibleHeader ? '': undefined}
+        ref={tableRef}
+        data-cell={undefined}
+        data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         style={{
             ...style,

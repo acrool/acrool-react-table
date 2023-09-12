@@ -84,6 +84,7 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
                         <td
                             key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
                             className={cx(titleRow.className)}
+                            aria-label={titleRow.text}
                             data-align={fieldConfig?.dataAlign}
                             data-vertical={titleRow.dataVertical}
                             {...getColSpan(colSpan)}
@@ -138,6 +139,7 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
                         return (<td
                             key={`tbodyTd_${dataRow.id}_${titleKey}`}
                             className={titleRow.className}
+                            aria-label={titleRow.text}
                             data-align={titleRow.dataAlign}
                             data-vertical={titleRow.dataVertical}
                         >

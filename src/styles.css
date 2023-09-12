@@ -31,6 +31,7 @@
 
     --border-color: rgb(233, 233, 233);
     --header-border-color: var(--border-color);
+    --rwd-border-color: #9ca3af;
 
     --tr-odd-bg-color: rgb(243, 247, 249);
     --tr-odd-bg-hover-color: rgb(236, 236, 236);
@@ -300,13 +301,19 @@
  * ------------------------------ */
 .bear-react-table__paginate{
     display: grid;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-row: 1fr;
     align-items: center;
     column-gap: .5rem;
     margin-top: 1.2rem;
 }
 .bear-react-table__paginate-info{
-    text-align: left;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.bear-react-table__paginate-info > span{
+    display: block;
+
 }
 .bear-react-table__paginate-limit{
     border: 1px solid var(--border-color);
@@ -321,6 +328,7 @@
     font-size: 14px;
     color: var(--text-color);
     background: var(--bg-color);
+    margin-bottom: 10px;
 }
 .bear-react-table__paginate-limit:focus {
     outline: 0;
@@ -356,6 +364,9 @@
     background-color: var(--page-bg-color);
     border: none;
 }
+.bear-react-table__paginate-page-li{
+    display: none;
+}
 .bear-react-table__paginate-page-li:hover,
 .bear-react-table__paginate-page-picker:hover,
 .bear-react-table__paginate-page-nav:hover{
@@ -379,8 +390,7 @@
 .bear-react-table__paginate-page-picker,
 .bear-react-table__paginate-page-nav{
     padding: 0 10px;
-    width: auto;
-    flex: 0 0 auto;
+    flex: 1;
 }
 .bear-react-table__paginate-page-picker select{
     opacity: 0;
@@ -402,4 +412,71 @@
 }
 
 
+@media (min-width: 768px) {
+    .bear-react-table__paginate {
+        grid-template-columns: auto auto 1fr;
+    }
+    .bear-react-table__paginate-info{
+        text-align: left;
+        margin-bottom: 0;
+    }
+    .bear-react-table__paginate-info > span {
+        display: inline-block;
+    }
+    .bear-react-table__paginate-limit{
+        margin-bottom: 0;
+    }
+    .bear-react-table__paginate-page-picker,
+    .bear-react-table__paginate-page-nav{
+        width: auto;
+        flex: 0 0 auto;
+    }
+}
 
+
+
+/** -------------------------------
+ *       RWD Cell Mode
+ * ------------------------------ */
+.bear-react-table__root[data-cell] thead, .bear-react-table__root[data-cell] tfoot {
+    display: none;
+}
+
+.bear-react-table__root[data-cell] tbody tr:hover{
+    background-color: inherit;
+}
+.bear-react-table__root[data-cell] tbody tr {
+    margin-bottom: 1rem;
+    height: auto;
+    background-color: inherit;
+    border: none;
+    display: block;
+    width: 100%;
+}
+
+.bear-react-table__root[data-cell] tbody td:nth-of-type(odd) {
+    background-color: var(--tr-odd-bg-color);
+}
+.bear-react-table__root[data-cell] tbody td:nth-of-type(even) {
+    background-color: var(--tr-even-bg-color);
+}
+
+/* value */
+.bear-react-table__root[data-cell] tbody td {
+    display: flex;
+    text-align: right;
+    margin-left: auto;
+    height: auto;
+    border-bottom: .01rem solid var(--rwd-border-color);
+    width: 100%;
+    padding: 2px;
+}
+
+/* title */
+.bear-react-table__root[data-cell] td:before {
+    text-align: left;
+    margin-right: auto;
+
+    content: attr(aria-label);
+    font-weight: bold;
+}

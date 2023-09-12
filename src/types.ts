@@ -35,7 +35,8 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 export type TBodyDataFieldKey = string;
 type TFieldValue = string | number | JSX.Element;
-type TFieldFunc = (args: {isActive: boolean, collapse: (event: MouseEvent) => void}) => TFieldValue;
+interface TFieldFuncArgs {isActive: boolean, collapse: (event: MouseEvent) => void}
+type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
 type TBodyDataField<K extends TBodyDataFieldKey> = {
     [P in K]: TFieldValue | TFieldFunc;
@@ -99,22 +100,23 @@ export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => voi
  *             Table
  * ------------------------------ */
 export interface ITableProps<T extends TBodyDataID, K extends TBodyDataFieldKey> {
-    className?: string;
-    style?: CSS.Properties,
+    className?: string
+    style?: CSS.Properties
     isDark?: boolean
-    isFetching?: boolean,
-    title: TTitle<K>,
-    data?: IBodyData<T, K>[],
+    isFetching?: boolean
+    title: TTitle<K>
+    data?: IBodyData<T, K>[]
     footer?: TFooter<K> // ex: calc total...
     gap?: string
-    paginateInfo?: IPaginateInfo,
-    paginateMeta?: IPaginateMeta,
+    paginateInfo?: IPaginateInfo
+    paginateMeta?: IPaginateMeta
 
-    isVisibleHeader?: boolean,
-    isStickyHeader?: boolean,
-    isVisiblePaginate?: boolean,
-    onChangePage?: TOnChangePage,
-    pageLimitOptions?: number[];
+    isVisibleHeader?: boolean
+    isStickyHeader?: boolean
+    tableCellMediaSize?: number
+    isVisiblePaginate?: boolean
+    onChangePage?: TOnChangePage
+    pageLimitOptions?: number[]
 
-    renderNoData?: () => JSX.Element;
+    renderNoData?: () => JSX.Element
 }

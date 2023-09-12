@@ -136,7 +136,8 @@ const TablePaginate = ({
 
     const renderInfo = () => {
         return <div className={elClassNames.paginateInfo}>
-            Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item, Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
+            <span>Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item,</span>
+            <span>Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page</span>
         </div>;
     };
 

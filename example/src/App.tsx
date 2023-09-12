@@ -110,6 +110,7 @@ function App() {
                             gap="8px"
                             isStickyHeader
                             title={title}
+                            tableCellMediaSize={768}
                             footer={{
                                 plus: {value: 'Total'},
                                 name: {value: 'Total'},
@@ -167,6 +168,7 @@ function App() {
                                 createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
                                 joined:  {text: 'Joined',  col: '80px'},
                             }}
+                            tableCellMediaSize={768}
                             footer={{
                                 // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
                                 name: {value: 'Total'},
