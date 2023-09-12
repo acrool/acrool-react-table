@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.2](https://github.com/imagine10255/bear-react-table/compare/v4.2.1...v4.2.2) (2023-09-12)
+
+
+### Features
+
+* add sizeUnit rem ([f7cb77f](https://github.com/imagine10255/bear-react-table/commit/f7cb77f7e124fca540b4c2fd8861d90fac9d40cc))
+* add table-cell rwd mode ([b7b6b51](https://github.com/imagine10255/bear-react-table/commit/b7b6b51a6483f3f3be26840febea422a4f7d4875))
+
 ### [4.2.1](https://github.com/imagine10255/bear-react-table/compare/v4.2.1-alpha.2...v4.2.1) (2023-09-10)
 
 ### [4.2.1-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v4.2.1-alpha.1...v4.2.1-alpha.2) (2023-09-10)
