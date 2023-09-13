@@ -2,7 +2,7 @@ import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import Table, {elClassName, TOnChangePage, IPaginateMeta, TTitle, ITableProps} from 'bear-react-table';
+import Table, {elClassName, TOnChangePage, IPaginateMeta, TTitle, TBodyDataID, TBodyDataFieldKey, IBodyData} from 'bear-react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
@@ -10,7 +10,6 @@ import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
-
 
 
 
@@ -41,6 +40,11 @@ const mockSort = (by: 'DESC'|'ASC', field: string, a: IPaginateData, b: IPaginat
     return 0;
 };
 
+
+interface ITableTitleData<T extends TBodyDataID, K extends TBodyDataFieldKey> {
+    title: TTitle<K>
+    data: IBodyData<T, K>[]
+}
 
 
 function App() {
@@ -86,7 +90,7 @@ function App() {
     }, []);
 
 
-    const tableTitleData = {
+    const tableTitleData: ITableTitleData<TBodyDataID, TBodyDataFieldKey> = {
         title: {
             plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
             avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
@@ -96,7 +100,7 @@ function App() {
             createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
             joined:   {text: 'Joined',  col: '80px'},
         },
-        data:  paginateData.map(row => {
+        data: paginateData.map(row => {
             return {
                 id: row.id,
                 // detail: <>
@@ -111,20 +115,22 @@ function App() {
                         {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
                     ],
                 },
-                onClickRow: collapse => collapse(),
+                // onClickRow: collapse => collapse(),
                 field: {
-                    plus: (args) => <CollapseButton
-                        type="button" onClick={args.collapse}
-                        data-active={args.isActive ? '':undefined}
-                    >
-                        {args.isActive ? '-': '+'}
-                    </CollapseButton>,
+                    // plus: (args) => <CollapseButton
+                    //     type="button" onClick={args.collapse}
+                    //     data-active={args.isActive ? '':undefined}
+                    // >
+                    //     {args.isActive ? '-': '+'}
+                    // </CollapseButton>,
+                    plus: 'xxx',
                     avatar: <Avatar src={row.avatar}/>,
                     name: row.name,
+                    amount: `$ ${formatCurrency(row.amount)}`,
                     role: row.role,
-                    // createdAt: dayjs(row.createdAt).format('MM/DD'),
+
+                    createdAt: dayjs(row.createdAt).format('MM/DD'),
                     // joined: row.isJoined ? 'Y':'N',
-                    // amount: `$ ${formatCurrency(row.amount)}`,
 
                 },
             };
