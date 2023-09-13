@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.6](https://github.com/imagine10255/bear-react-table/compare/v4.2.5...v4.2.6) (2023-09-13)
+
+
+### Features
+
+* 更改 cell mode empty data odd even color ([82a187e](https://github.com/imagine10255/bear-react-table/commit/82a187e66861441c004b1761cb17c52e46521623))
+
 ### [4.2.5](https://github.com/imagine10255/bear-react-table/compare/v4.2.4...v4.2.5) (2023-09-13)
 
 
