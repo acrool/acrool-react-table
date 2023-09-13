@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.5](https://github.com/imagine10255/bear-react-table/compare/v4.2.4...v4.2.5) (2023-09-13)
+
+
+### Bug Fixes
+
+* fix lineHeight type ([c1a6a37](https://github.com/imagine10255/bear-react-table/commit/c1a6a37994a7ee795828b8b9ab6f2a6ea3477e5a))
+
 ### [4.2.4](https://github.com/imagine10255/bear-react-table/compare/v4.2.3...v4.2.4) (2023-09-13)
 
 
