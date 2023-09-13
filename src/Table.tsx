@@ -10,6 +10,7 @@ import elClassNames from './el-class-names';
 import {getTemplate, getColSpan} from './utils';
 
 import './styles.css';
+import {useWindowResizeEffect} from './hooks';
 
 
 
@@ -40,6 +41,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
     renderNoData,
 }: ITableProps<I, K>) => {
+
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
         pageLimit: paginateMeta?.pageLimit ?? pageLimitOptions[0] ?? 8,
@@ -48,32 +50,33 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const tableRef = useRef<HTMLDivElement>(null);
 
 
-    useEffect(() => {
-        handleOnResize();
-
-    }, [tableCellMediaSize]);
-
-    useEffect(() => {
-        window.addEventListener('resize', handleOnResize, false);
-
-        return () => {
-            window.removeEventListener('resize', handleOnResize, false);
-        };
-    }, [tableCellMediaSize]);
+    useWindowResizeEffect(() => handleOnResize(), [tableCellMediaSize]);
 
 
+    /**
+     * 更新尺寸時是否改為 cell 模式
+     */
     const handleOnResize = () => {
         if(tableRef.current){
             if(window.innerWidth <= tableCellMediaSize){
-                tableRef.current.dataset['cell'] = '';
+                if(typeof tableRef.current.dataset['cell'] === 'undefined'){
+                    tableRef.current.dataset['cell'] = '';
+                }
             }else{
-                tableRef.current.removeAttribute('data-cell');
+                if(typeof tableRef.current.dataset['cell'] !== 'undefined') {
+                    tableRef.current.removeAttribute('data-cell');
+                }
             }
         }
     };
 
+
+    /**
+     * 切換頁面
+     * @param pageMeta
+     */
     const handleOnChangePage: TOnChangePage = (pageMeta) => {
-        window.scrollTo(0, 70);
+        window.scrollTo(0, tableRef.current?.offsetTop);
 
         if(onChangePage){
             const paramsMeta = {

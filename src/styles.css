@@ -302,7 +302,7 @@
 .bear-react-table__paginate{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-row: 1fr;
+    grid-template-rows: 1fr;
     align-items: center;
     column-gap: .5rem;
     margin-top: 1.2rem;
@@ -431,6 +431,9 @@
         width: auto;
         flex: 0 0 auto;
     }
+    .bear-react-table__paginate-page-li{
+        display: flex;
+    }
 }
 
 
@@ -452,6 +455,12 @@
     border: none;
     display: block;
     width: 100%;
+}
+.bear-react-table__root[data-cell] tbody tr[data-collapse] td:empty {
+   display: none;
+}
+.bear-react-table__root[data-cell] tbody tr[data-collapse] td:nth-of-type(odd) {
+   background-color: inherit;
 }
 
 .bear-react-table__root[data-cell] tbody td:nth-of-type(odd) {

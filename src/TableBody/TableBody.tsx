@@ -84,7 +84,7 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
                         <td
                             key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
                             className={cx(titleRow.className)}
-                            aria-label={titleRow.text}
+                            // aria-label={titleRow.text}
                             data-align={fieldConfig?.dataAlign}
                             data-vertical={titleRow.dataVertical}
                             {...getColSpan(colSpan)}
@@ -122,11 +122,13 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
                 throw new Error('TableBody error, `dataRow.id` can\'t is undefined!');
             }
 
+            const collapseEvent = handleSetCollapse(dataRow.id);
+
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
             >
                 <tr
-                    onClick={dataRow.onClickRow}
+                    onClick={(event) => dataRow.onClickRow(() => collapseEvent(event))}
                     data-disabled={dataRow.disabled}
                     data-nth-type={index % 2 === 0 ? 'odd': 'even'}
                     role={dataRow.onClickRow ? 'button':undefined}
@@ -145,7 +147,7 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
                         >
                             {
                                 typeof field === 'function' ?
-                                    field({isActive: collapseIds.includes(dataRow.id), collapse: handleSetCollapse(dataRow.id)}):
+                                    field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
                                     field
                             }
                         </td>);

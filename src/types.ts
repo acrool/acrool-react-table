@@ -35,7 +35,8 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 export type TBodyDataFieldKey = string;
 type TFieldValue = string | number | JSX.Element;
-interface TFieldFuncArgs {isActive: boolean, collapse: (event: MouseEvent) => void}
+type TCollapseEvent = (event: MouseEvent) => void;
+interface TFieldFuncArgs {isActive: boolean, collapse: (event: TCollapseEvent) => void}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
 type TBodyDataField<K extends TBodyDataFieldKey> = {
@@ -56,7 +57,7 @@ export interface IBodyData<I extends TBodyDataID, K extends TBodyDataFieldKey> {
     id: I,
     detail?: JSX.Element | TBodyDataDetail<K>,
     disabled?: boolean,
-    onClickRow?: () => void,
+    onClickRow?: (collapse: TCollapseEvent) => void,
     field: TBodyDataField<K>
 }
 
