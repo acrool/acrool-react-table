@@ -153,58 +153,58 @@ function App() {
                         />
                     </div>
 
-                    {/*<div style={{flex: 1, padding: '20px'}}>*/}
-                    {/*    <Table*/}
-                    {/*        isDark*/}
-                    {/*        isFetching={isFetching}*/}
-                    {/*        gap="8px"*/}
-                    {/*        isStickyHeader*/}
-                    {/*        title={{*/}
-                    {/*            plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},*/}
-                    {/*            avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},*/}
-                    {/*            name:     {text: 'Name',   col: 'auto',  isEnableSort: true},*/}
-                    {/*            amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},*/}
-                    {/*            role:     {text: 'Role',   col: '120px'},*/}
-                    {/*            createdAt:{text: 'Crated', col: '110px', isEnableSort: true},*/}
-                    {/*            joined:  {text: 'Joined',  col: '80px'},*/}
-                    {/*        }}*/}
-                    {/*        tableCellMediaSize={768}*/}
-                    {/*        footer={{*/}
-                    {/*            // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},*/}
-                    {/*            name: {value: 'Total'},*/}
-                    {/*            amount: {value: calcAmount(data), dataAlign: 'right'},*/}
-                    {/*        }}*/}
-                    {/*        data={paginateData.map(row => {*/}
-                    {/*            return {*/}
-                    {/*                id: row.id,*/}
-                    {/*                detail: <>*/}
-                    {/*                    <div>{row.name}</div>*/}
-                    {/*                    <div>{row.amount}</div>*/}
-                    {/*                    <div>{row.role}</div>*/}
-                    {/*                </>,*/}
-                    {/*                onClickRow: () => console.log(`click row id: ${row.id}`),*/}
-                    {/*                field: {*/}
-                    {/*                    plus: (args) => <CollapseButton*/}
-                    {/*                        type="button" onClick={args.collapse}*/}
-                    {/*                        data-active={args.isActive ? '':undefined}*/}
-                    {/*                    >*/}
-                    {/*                        {args.isActive ? '-': '+'}*/}
-                    {/*                    </CollapseButton>,*/}
-                    {/*                    avatar: <Avatar src={row.avatar}/>,*/}
-                    {/*                    name: row.name,*/}
-                    {/*                    role: row.role,*/}
-                    {/*                    createdAt: dayjs(row.createdAt).format('MM/DD'),*/}
-                    {/*                    joined: row.isJoined ? 'Y':'N',*/}
-                    {/*                    amount: `$ ${formatCurrency(row.amount)}`,*/}
-                    {/*                },*/}
-                    {/*            };*/}
-                    {/*        })}*/}
-                    {/*        onChangePage={handleFetchPaginate}*/}
-                    {/*        paginateMeta={paginateMeta}*/}
-                    {/*        paginateInfo={paginateInfo}*/}
-                    {/*    />*/}
+                    <div style={{flex: 1, padding: '20px'}}>
+                        <Table
+                            isDark
+                            isFetching={isFetching}
+                            gap="8px"
+                            isStickyHeader
+                            title={{
+                                plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+                                amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
+                                role:     {text: 'Role',   col: '120px'},
+                                createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+                                joined:  {text: 'Joined',  col: '80px'},
+                            }}
+                            tableCellMediaSize={768}
+                            footer={{
+                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                                name: {value: 'Total'},
+                                amount: {value: calcAmount(data), dataAlign: 'right'},
+                            }}
+                            data={paginateData.map(row => {
+                                return {
+                                    id: row.id,
+                                    detail: <>
+                                        <div>{row.name}</div>
+                                        <div>{row.amount}</div>
+                                        <div>{row.role}</div>
+                                    </>,
+                                    onClickRow: () => console.log(`click row id: ${row.id}`),
+                                    field: {
+                                        plus: (args) => <CollapseButton
+                                            type="button" onClick={args.collapse}
+                                            data-active={args.isActive ? '':undefined}
+                                        >
+                                            {args.isActive ? '-': '+'}
+                                        </CollapseButton>,
+                                        avatar: <Avatar src={row.avatar}/>,
+                                        name: row.name,
+                                        role: row.role,
+                                        createdAt: dayjs(row.createdAt).format('MM/DD'),
+                                        joined: row.isJoined ? 'Y':'N',
+                                        amount: `$ ${formatCurrency(row.amount)}`,
+                                    },
+                                };
+                            })}
+                            onChangePage={handleFetchPaginate}
+                            paginateMeta={paginateMeta}
+                            paginateInfo={paginateInfo}
+                        />
 
-                    {/*</div>*/}
+                    </div>
                 </TableContainer>
 
 
@@ -256,8 +256,4 @@ const Avatar = styled.img`
 const TableContainer = styled.div`
     --primary-color: #17a254;
 
-    .${elClassName.root} {
-        --header-line-height: 45px;
-        --body-line-height: 45px;
-    }
 `;

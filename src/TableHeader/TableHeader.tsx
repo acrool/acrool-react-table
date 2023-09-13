@@ -1,11 +1,13 @@
-import {IOrder, TOnChangeSortField, TTitle, TBodyDataFieldKey} from '../types';
+import {IOrder, TOnChangeSortField, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
+import {CSSProperties} from 'react';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
-    title: TTitle<K>,
-    onChangeSortField?: TOnChangeSortField;
-    isStickyHeader?: boolean;
-    order?: IOrder,
+    title: TTitle<K>
+    onChangeSortField?: TOnChangeSortField
+    isStickyHeader?: boolean
+    order?: IOrder
+    lineHeight: TLineHeight
 }
 
 
@@ -17,6 +19,7 @@ const TableHeader = <K extends TBodyDataFieldKey>({
     order,
     isStickyHeader = false,
     onChangeSortField = () => {},
+    lineHeight,
 }: IProps<K>) => {
 
     const renderTitle = () => {
@@ -49,6 +52,9 @@ const TableHeader = <K extends TBodyDataFieldKey>({
 
 
     return <thead
+        style={{
+            '--header-line-height': lineHeight,
+        } as CSSProperties}
         data-sticky={isStickyHeader ? '': undefined}
     >
         <tr>

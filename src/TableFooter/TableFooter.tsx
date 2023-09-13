@@ -1,10 +1,12 @@
-import {TFooter, TTitle, TBodyDataFieldKey} from '../types';
+import {TFooter, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
 import {getColSpan} from '../utils';
+import {CSSProperties} from 'react';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
-    title: TTitle<K>,
-    data?: TFooter<K>,
+    title: TTitle<K>
+    data?: TFooter<K>
+    lineHeight?: TLineHeight
 }
 
 
@@ -15,6 +17,7 @@ interface IProps <K extends TBodyDataFieldKey>{
 const TableFooter = <K extends TBodyDataFieldKey>({
     title,
     data,
+    lineHeight,
 }: IProps<K>) => {
 
     const renderFooterData = () => {
@@ -50,7 +53,9 @@ const TableFooter = <K extends TBodyDataFieldKey>({
         }
     };
 
-    return <tfoot>
+    return <tfoot style={{
+        '--footer-line-height': lineHeight,
+    } as CSSProperties}>
         <tr>
             {renderFooterData()}
         </tr>

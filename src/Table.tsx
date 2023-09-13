@@ -26,6 +26,9 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     title,
     data,
     footer,
+    headerLineHeight,
+    bodyLineHeight,
+    footerLineHeight,
     gap = '5px',
     paginateInfo = {
         totalItems: 0,
@@ -149,6 +152,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             isStickyHeader={isStickyHeader}
             onChangeSortField={handleOnOrderField}
             order={meta.order}
+            lineHeight={headerLineHeight}
         />;
     };
 
@@ -168,6 +172,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         return <TableBody
             title={title}
             data={data}
+            lineHeight={bodyLineHeight}
         />;
     };
 
@@ -185,6 +190,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         return <TableFooter
             title={title}
             data={footer}
+            lineHeight={footerLineHeight}
         />;
     };
 

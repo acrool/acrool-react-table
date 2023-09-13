@@ -10,9 +10,7 @@
 
 .bear-react-table__root{
 
-    --body-line-height: 40px;
-    --header-line-height: var(--body-line-height);
-    --footer-line-height: var(--body-line-height);
+    --line-height: 40px;
     --border-radius: .4rem;
 
     --grid-template: 1fr;
@@ -170,7 +168,7 @@
  *             Header
  * ------------------------------ */
 .bear-react-table__root thead tr{
-    height: var(--header-line-height);
+    height: var(--header-line-height, var(--line-height));
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border: 1px solid var(--border-color);
     border-bottom-color: var(--header-border-color);
@@ -220,7 +218,7 @@
 }
 
 .bear-react-table__root tbody tr{
-    height: var(--body-line-height);
+    height: var(--body-line-height, var(--line-height));
     border-radius: 0
 }
 .bear-react-table__root tbody tr[role="button"]{
@@ -291,7 +289,7 @@
  *             Footer
  * ------------------------------ */
 .bear-react-table__root tfoot tr{
-    height: var(--footer-line-height);
+    height: var(--footer-line-height, var(--line-height));
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
@@ -367,9 +365,9 @@
 .bear-react-table__paginate-page-li{
     display: none;
 }
-.bear-react-table__paginate-page-li:hover,
-.bear-react-table__paginate-page-picker:hover,
-.bear-react-table__paginate-page-nav:hover{
+.bear-react-table__paginate-page-li:not(:disabled):hover,
+.bear-react-table__paginate-page-picker:not(:disabled):hover,
+.bear-react-table__paginate-page-nav:not(:disabled):hover{
     color: var(--text-contrast-color);
     background-color: var(--page-bg-hover-color);
     border: none;
@@ -403,6 +401,10 @@
 }
 .bear-react-table__paginate-page-picker:disabled select{
     pointer-events: none;
+}
+.bear-react-table__paginate-page-nav:disabled{
+    cursor: not-allowed;
+    opacity: .7;
 }
 .bear-react-table__paginate-page-nav:first-child{
     border-radius: var(--border-radius) 0 0 var(--border-radius);

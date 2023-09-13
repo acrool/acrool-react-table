@@ -7,12 +7,13 @@ export interface IConfig {
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
 }
+export type TLineHeight = `${number}${TSizeUnit}`;
 
 /** -------------------------------
  *             Title
  * ------------------------------ */
-export type sizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
-export type TTitleCol = true|'auto'|number|`${number}${sizeUnit}`|'min-content'|'max-content'|`minmax('${number}${sizeUnit}', '${number}${sizeUnit}')`;
+export type TSizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
+export type TTitleCol = true|'auto'|number|`${number}${TSizeUnit}`|'min-content'|'max-content'|`minmax('${number}${TSizeUnit}', '${number}${TSizeUnit}')`;
 
 
 export interface ITitleField extends IConfig {
@@ -108,6 +109,9 @@ export interface ITableProps<T extends TBodyDataID, K extends TBodyDataFieldKey>
     title: TTitle<K>
     data?: IBodyData<T, K>[]
     footer?: TFooter<K> // ex: calc total...
+    headerLineHeight?: TLineHeight,
+    bodyLineHeight?: TLineHeight,
+    footerLineHeight?: TLineHeight,
     gap?: string
     paginateInfo?: IPaginateInfo
     paginateMeta?: IPaginateMeta
