@@ -2,14 +2,14 @@ import React, {Fragment, useState, MouseEvent, CSSProperties} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 
-import {IBodyData, TBodyDataID, TTitle, TBodyDataFieldKey, TSizeUnit} from '../types';
+import {IBodyData, TBodyDataID, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
 import {getColSpan} from '../utils';
 
 
 interface IProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
     title: TTitle<K>
     data?: IBodyData<I, K>[]
-    lineHeight?: TSizeUnit
+    lineHeight?: TLineHeight
 }
 
 
