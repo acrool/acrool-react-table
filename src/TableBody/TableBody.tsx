@@ -1,6 +1,7 @@
 import React, {Fragment, useState, MouseEvent, CSSProperties} from 'react';
 import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
+import {isNotEmpty} from 'bear-jsutils/equal';
 
 import {IBodyData, TBodyDataID, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
 import {getColSpan} from '../utils';
@@ -125,12 +126,17 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
             }
 
             const collapseEvent = handleSetCollapse(dataRow.id);
+            let cellTdIndex = 0;
 
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
             >
                 <tr
-                    onClick={(event) => dataRow.onClickRow(() => collapseEvent(event))}
+                    onClick={(event) => {
+                        if(dataRow.onClickRow) {
+                            dataRow.onClickRow(() => collapseEvent(event));
+                        }
+                    }}
                     data-disabled={dataRow.disabled}
                     data-nth-type={index % 2 === 0 ? 'odd': 'even'}
                     role={dataRow.onClickRow ? 'button':undefined}
@@ -138,12 +144,20 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
                     {/* 各欄位值 */}
                     {Object.keys(title)?.map(titleKey => {
                         const titleRow = title[titleKey];
-
                         const field = dataRow.field[titleKey];
+
+
+                        let nthType = undefined;
+                        if(isNotEmpty(field)){
+                            nthType = cellTdIndex % 2 === 0 ? 'odd': 'even';
+                            cellTdIndex = cellTdIndex + 1;
+                        }
+
                         return (<td
                             key={`tbodyTd_${dataRow.id}_${titleKey}`}
                             className={titleRow.className}
                             aria-label={titleRow.text}
+                            data-nth-type={nthType}
                             data-align={titleRow.dataAlign}
                             data-vertical={titleRow.dataVertical}
                         >
