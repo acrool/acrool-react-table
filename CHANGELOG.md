@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.7](https://github.com/imagine10255/bear-react-table/compare/v4.2.6...v4.2.7) (2023-09-14)
+
+
+### Features
+
+* add genericsTitleData fn, type name modify ([ee736bd](https://github.com/imagine10255/bear-react-table/commit/ee736bd8c2c6b432dea7cff6be17f71aaf6894cf))
+
 ### [4.2.6](https://github.com/imagine10255/bear-react-table/compare/v4.2.5...v4.2.6) (2023-09-13)
 
 
