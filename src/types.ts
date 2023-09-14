@@ -24,7 +24,7 @@ export interface ITitleField extends IConfig {
     isEnableSort?: boolean,
 }
 
-export type TTitle<K extends string> = {
+export type TTableTitle<K extends string> = {
     [P in K]: ITitleField;
 }
 
@@ -36,7 +36,7 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 export type TBodyDataFieldKey = string;
 type TFieldValue = string | number | JSX.Element;
-type TCollapseEvent = (event: MouseEvent) => void;
+type TCollapseEvent = (event?: MouseEvent) => void;
 interface TFieldFuncArgs {isActive: boolean, collapse: (event: TCollapseEvent) => void}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
@@ -54,7 +54,7 @@ type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 }
 
 export type TBodyDataID = string | number;
-export interface IBodyData<I extends TBodyDataID, K extends TBodyDataFieldKey> {
+export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
     detail?: JSX.Element | TBodyDataDetail<K>,
     disabled?: boolean,
@@ -101,13 +101,13 @@ export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => voi
 /** -------------------------------
  *             Table
  * ------------------------------ */
-export interface ITableProps<T extends TBodyDataID, K extends TBodyDataFieldKey> {
+export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
     className?: string
     style?: CSS.Properties
     isDark?: boolean
     isFetching?: boolean
-    title: TTitle<K>
-    data?: IBodyData<T, K>[]
+    title: TTableTitle<K>
+    data?: ITableBody<K, I>[]
     footer?: TFooter<K> // ex: calc total...
     headerLineHeight?: TLineHeight,
     bodyLineHeight?: TLineHeight,

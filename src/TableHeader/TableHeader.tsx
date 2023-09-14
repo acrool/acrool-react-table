@@ -1,9 +1,9 @@
-import {IOrder, TOnChangeSortField, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
+import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
 import {CSSProperties} from 'react';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
-    title: TTitle<K>
+    title: TTableTitle<K>
     onChangeSortField?: TOnChangeSortField
     isStickyHeader?: boolean
     order?: IOrder

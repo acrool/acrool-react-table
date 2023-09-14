@@ -1,10 +1,10 @@
-import {TFooter, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
+import {TFooter, TTableTitle, TBodyDataFieldKey, TLineHeight} from '../types';
 import {getColSpan} from '../utils';
 import {CSSProperties} from 'react';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
-    title: TTitle<K>
+    title: TTableTitle<K>
     data?: TFooter<K>
     lineHeight?: TLineHeight
 }

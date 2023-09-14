@@ -1,8 +1,8 @@
-import {TTitleCol, ITitleField, TTitle} from './types';
+import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody} from './types';
 import {CSSProperties} from 'react';
 
 
-export const getTemplate = <D extends string>(titles: TTitle<D>, gap: string): CSSProperties => {
+export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: string): CSSProperties => {
     const frs = Object.keys(titles).map(titleKey => {
         const row = titles[titleKey];
 
@@ -52,5 +52,34 @@ export const calcPageInfo = (totalItem: number, pageLimit: number) => {
     }
 
     return pageTotal;
+};
+
+
+
+interface ITableTitleData<K extends TBodyDataFieldKey, I extends TBodyDataID> {
+    title: TTableTitle<K>
+    data: ITableBody<K, I>[]
+}
+
+
+/**
+ * 綁定的方式產生 data,
+ * tableTitleData({
+ *     title: {text: 'title', col: 'auto'},
+ *     name: {text: 'name', col: 'auto'},
+ * }, [
+ *     {
+ *         id: 'name',
+ *         field: {
+ *             name: 'xx',
+ *             title: 'xxx',
+ *         }
+ *     }
+ * ]);
+ * @param title
+ * @param data
+ */
+export const genericsTitleData = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data: ITableBody<K, I>[]): ITableTitleData<K, I> => {
+    return {title, data};
 };
 

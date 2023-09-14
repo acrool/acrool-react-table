@@ -3,13 +3,13 @@ import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 import {isNotEmpty} from 'bear-jsutils/equal';
 
-import {IBodyData, TBodyDataID, TTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
+import {ITableBody, TBodyDataID, TTableTitle, TBodyDataFieldKey, TLineHeight} from '../types';
 import {getColSpan} from '../utils';
 
 
-interface IProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
-    title: TTitle<K>
-    data?: IBodyData<I, K>[]
+interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
+    title: TTableTitle<K>
+    data?: ITableBody<K, I>[]
     lineHeight?: TLineHeight
 }
 
@@ -17,22 +17,22 @@ interface IProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
 /**
  * Table Body
  */
-const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
+const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
     lineHeight,
-}: IProps<T, K>) => {
+}: IProps<K, I>) => {
 
-    const [collapseIds, setCollapse] = useState<T[]>([]);
+    const [collapseIds, setCollapse] = useState<I[]>([]);
 
 
     /**
      * 處理開關明細
      * @param id
      */
-    const handleSetCollapse = (id: T) => {
-        return (event: MouseEvent) => {
-            event.stopPropagation();
+    const handleSetCollapse = (id: I) => {
+        return (event?: MouseEvent) => {
+            event?.stopPropagation();
 
             setCollapse(ids => {
                 const index = ids.findIndex(rowId => rowId === id);
@@ -48,7 +48,7 @@ const TableBody = <T extends TBodyDataID, K extends TBodyDataFieldKey>({
     /**
      * 渲染額外展開內容
      */
-    const renderDetailData = (dataRow: IBodyData<T, K>) => {
+    const renderDetailData = (dataRow: ITableBody<K, I>) => {
         if(!!dataRow.detail === false){
             return null;
         }
