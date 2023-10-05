@@ -147,7 +147,7 @@ function App() {
                         />
                     </div>
 
-                    <div style={{flex: 1, padding: '20px'}}>
+                    <div style={{backgroundColor: '#000', flex: 1, padding: '20px'}}>
                         <Table
                             isDark
                             isFetching={isFetching}

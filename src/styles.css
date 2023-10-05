@@ -109,7 +109,8 @@
 .bear-react-table__root tr {
     display: contents;
 }
-.bear-react-table__root tr{
+.bear-react-table__root th,
+.bear-react-table__root td{
     background-color: var(--bg-color);
 }
 
