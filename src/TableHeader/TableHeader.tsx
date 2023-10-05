@@ -1,5 +1,6 @@
 import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
 import {CSSProperties} from 'react';
+import elClassNames from '../el-class-names';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -44,6 +45,7 @@ const TableHeader = <K extends TBodyDataFieldKey>({
                     }: undefined}
                 >
                     {titleRow.text}
+                    <div className={elClassNames.sortColumn}/>
                 </th>
             );
         });

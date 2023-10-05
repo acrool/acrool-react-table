@@ -126,6 +126,8 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             }
 
             const collapseEvent = handleSetCollapse(dataRow.id);
+
+            // 避免忽略行，CSS無法跳過，所以自行計算
             let cellTdIndex = 0;
 
             return (<Fragment
@@ -146,6 +148,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         const titleRow = title[titleKey];
                         const field = dataRow.field[titleKey];
 
+                        const isTh = cellTdIndex === 0;
 
                         let nthType = undefined;
                         if(isNotEmpty(field)){
@@ -153,20 +156,22 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             cellTdIndex = cellTdIndex + 1;
                         }
 
-                        return (<td
-                            key={`tbodyTd_${dataRow.id}_${titleKey}`}
-                            className={titleRow.className}
-                            aria-label={titleRow.text}
-                            data-nth-type={nthType}
-                            data-align={titleRow.dataAlign}
-                            data-vertical={titleRow.dataVertical}
-                        >
-                            {
-                                typeof field === 'function' ?
-                                    field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
-                                    field
-                            }
-                        </td>);
+                        const args = {
+                            key: `tbodyTd_${dataRow.id}_${titleKey}`,
+                            className: titleRow.className,
+                            'aria-label': titleRow.text,
+                            'data-nth-type': nthType,
+                            'data-align': titleRow.dataAlign,
+                            'data-vertical': titleRow.dataVertical,
+                            children: typeof field === 'function' ?
+                                field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
+                                field
+                        };
+                        if(isTh){
+                            return (<th {...args}/>);
+                        }
+                        return (<td {...args}/>);
+
                     })}
                 </tr>
 
