@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.3](https://github.com/imagine10255/bear-react-table/compare/v4.3.1...v4.3.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* modify tfooter colspan merge ([f0a3fa8](https://github.com/imagine10255/bear-react-table/commit/f0a3fa8392bedb802f9fc2e707df5e2fdf8b0006))
+
 ### [4.3.1](https://github.com/imagine10255/bear-react-table/compare/v4.3.0...v4.3.1) (2023-10-05)
 
 
