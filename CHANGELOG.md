@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1](https://github.com/imagine10255/bear-react-table/compare/v4.3.0...v4.3.1) (2023-10-05)
+
+
+### Bug Fixes
+
+* change background color in td (old in tr) ([96b357c](https://github.com/imagine10255/bear-react-table/commit/96b357cf054f8c898095e063ee9d1d47e6733f31))
+
 ## [4.3.0](https://github.com/imagine10255/bear-react-table/compare/v4.2.7...v4.3.0) (2023-10-05)
 
 ### [4.2.7](https://github.com/imagine10255/bear-react-table/compare/v4.2.6...v4.2.7) (2023-09-14)
