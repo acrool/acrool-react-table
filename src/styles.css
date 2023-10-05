@@ -29,6 +29,7 @@
 
     --border-color: rgb(233, 233, 233);
     --header-border-color: var(--border-color);
+    --vertical-border-color: transparent;
     --rwd-border-color: #9ca3af;
 
     --tr-odd-bg-color: rgb(243, 247, 249);
@@ -48,6 +49,7 @@
 
     --border-color: #343a40;
     --header-border-color: #585858;
+    --vertical-border-color: transparent;
 
     --tr-odd-bg-color: #2b3035;
     --tr-odd-bg-hover-color: #1f1f1f;
@@ -71,11 +73,15 @@
     min-width: 0;
     position: relative;
     width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
 
     padding: 0;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    border-collapse: collapse;
+    grid-template-columns: var(--grid-template);
+    grid-template-rows: 1fr;
 }
 
 @media print{
@@ -97,31 +103,33 @@
 /** -------------------------------
  *             Common
  * ------------------------------ */
-.bear-react-table__root tr{
-    border-bottom: 1px solid var(--border-color);
-
-    display: grid;
-    grid-template-columns: var(--grid-template);
-    grid-auto-flow: column dense;
-    grid-auto-columns: 1fr 1fr;
-    grid-auto-rows: 1fr;
-    column-gap: var(--grid-gap);
-    background-color: var(--bg-color);
+.bear-react-table__root thead,
+.bear-react-table__root tbody,
+.bear-react-table__root tfoot,
+.bear-react-table__root tr {
+    display: contents;
 }
-
-.bear-react-table__root thead tr,
-.bear-react-table__root tbody tr,
-.bear-react-table__root tfoot tr{
-    border-left: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
-    padding: 0 var(--grid-gap);
+.bear-react-table__root tr{
+    background-color: var(--bg-color);
 }
 
 .bear-react-table__root td,
 .bear-react-table__root th{
+    padding: 0 var(--grid-gap);
+}
+.bear-react-table__root td:not(:last-child),
+.bear-react-table__root th:not(:last-child){
+    border-right: 1px solid var(--vertical-border-color);
+}
+
+.bear-react-table__root td,
+.bear-react-table__root th,
+.bear-react-table__root th{
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    border-bottom: 1px solid var(--border-color);
+
 
     color: var(--text-color);
     font-size: 14px;
@@ -167,10 +175,8 @@
 /** -------------------------------
  *             Header
  * ------------------------------ */
-.bear-react-table__root thead tr{
+.bear-react-table__root thead th{
     height: var(--header-line-height, var(--line-height));
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    border: 1px solid var(--border-color);
     border-bottom-color: var(--header-border-color);
 }
 
@@ -183,29 +189,32 @@
 
 .bear-react-table__root thead th[data-enable-sort]{
     position: relative;
-    padding-right: 12px;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 
-.bear-react-table__root thead th[data-enable-sort]:before,
-.bear-react-table__root thead th[data-enable-sort]:after{
-    position: absolute;
-    font-size: 12px;
+.bear-react-table__root thead th[data-enable-sort] .bear-react-table__sort-column{
+    display: flex;
+}
+.bear-react-table__sort-column{
+    display: none;
+    flex-direction: column;
     opacity: .225;
-    right: 0;
     line-height: 9px;
+    font-size: 12px;
 }
-.bear-react-table__root thead th[data-enable-sort]:before{
-    bottom: 50%;
+.bear-react-table__sort-column:before{
     content: '▲';
+    margin-bottom: -5px;
 }
-.bear-react-table__root thead th[data-enable-sort]:after{
-    top: 50%;
+.bear-react-table__sort-column:after{
     content: '▼';
 }
-.bear-react-table__root thead th[aria-sort="ascending"]:after,
-.bear-react-table__root thead th[aria-sort="descending"]:before{
-    opacity: .8;
+.bear-react-table__root thead th[aria-sort="ascending"] .bear-react-table__sort-column:after,
+.bear-react-table__root thead th[aria-sort="descending"] .bear-react-table__sort-column:before{
+    opacity: .6;
 }
 
 
@@ -217,35 +226,32 @@
     margin: 0;
 }
 
-.bear-react-table__root tbody tr{
-    height: var(--body-line-height, var(--line-height));
-    border-radius: 0
-}
 .bear-react-table__root tbody tr[role="button"]{
     cursor: pointer;
 }
 
-.bear-react-table__root:not([data-header]) tbody tr:first-child{
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-.bear-react-table__root:not([data-footer]) tbody tr:last-child {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-}
 
-.bear-react-table__root tbody tr[data-nth-type="odd"] {
+.bear-react-table__root tbody tr[data-nth-type="odd"] th,
+.bear-react-table__root tbody tr[data-nth-type="odd"] td{
     background-color: var(--tr-odd-bg-color);
 }
-.bear-react-table__root tbody tr[data-nth-type="odd"]:hover {
+.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="odd"]:hover th,
+.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="odd"]:hover td{
     background-color: var(--tr-odd-bg-hover-color);
 }
-.bear-react-table__root tbody tr[data-nth-type="even"] {
+.bear-react-table__root tbody tr[data-nth-type="even"] th,
+.bear-react-table__root tbody tr[data-nth-type="even"] td{
     background-color: var(--tr-even-bg-color);
 }
-.bear-react-table__root tbody tr[data-nth-type="even"]:hover {
+.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="even"]:hover th,
+.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="even"]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
-.bear-react-table__root td{
-    grid-column: span var(--grid-column-span)
+.bear-react-table__root tbody th,
+.bear-react-table__root tbody td{
+    height: var(--body-line-height, var(--line-height));
+    grid-column: auto / span var(--grid-column-span);
+    font-weight: normal;
 }
 
 .bear-react-table__root tbody[data-loading] td,
@@ -288,9 +294,9 @@
 /** -------------------------------
  *             Footer
  * ------------------------------ */
-.bear-react-table__root tfoot tr{
+.bear-react-table__root tfoot td{
     height: var(--footer-line-height, var(--line-height));
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-bottom: none;
 }
 
 
@@ -298,17 +304,20 @@
  *             Paginate
  * ------------------------------ */
 .bear-react-table__paginate{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
     align-items: center;
-    column-gap: .5rem;
+    justify-content: center;
+    gap: .5rem;
     margin-top: 1.2rem;
 }
 .bear-react-table__paginate-info{
     text-align: center;
     margin-bottom: 10px;
     order: 3;
+    white-space:nowrap;
 }
 
 .bear-react-table__paginate-limit{
@@ -318,7 +327,7 @@
     font-weight: 400;
     line-height: 1.5;
     display: block;
-    width: 100%;
+    width: auto;
     height: 35px;
     padding: 6px 8px;
     font-size: 14px;
@@ -335,9 +344,8 @@
 .bear-react-table__paginate-page-ul{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-self: flex-end;
     align-items: center;
-    flex: 1 1 auto;
     margin-bottom: .8rem;
 }
 .bear-react-table__paginate-page-li,
@@ -360,6 +368,10 @@
     color: var(--page-text-color);
     background-color: var(--page-bg-color);
     border: none;
+}
+.bear-react-table__paginate-page-nav {
+    min-width: auto;
+    width: 100%;
 }
 .bear-react-table__paginate-page-li{
     display: none;
@@ -448,15 +460,23 @@
 
 
 /** -------------------------------
+ *       OverFlow Scroll Mode
+ * ------------------------------ */
+.bear-react-table__root table{
+    overflow: auto;
+}
+
+/** -------------------------------
  *       RWD Cell Mode
  * ------------------------------ */
+.bear-react-table__root[data-cell] table{
+    display: block;
+    border: none;
+}
 .bear-react-table__root[data-cell] thead, .bear-react-table__root[data-cell] tfoot {
     display: none;
 }
 
-.bear-react-table__root[data-cell] tbody tr:hover{
-    background-color: inherit;
-}
 .bear-react-table__root[data-cell] tbody tr {
     margin-bottom: 1rem;
     height: auto;
@@ -465,21 +485,26 @@
     display: block;
     width: 100%;
 }
+.bear-react-table__root[data-cell] tbody tr[data-collapse] th:empty,
 .bear-react-table__root[data-cell] tbody tr[data-collapse] td:empty {
    display: none;
 }
+.bear-react-table__root[data-cell] tbody tr[data-collapse] th:nth-of-type(odd),
 .bear-react-table__root[data-cell] tbody tr[data-collapse] td:nth-of-type(odd) {
    background-color: inherit;
 }
 
+.bear-react-table__root[data-cell] tbody th[data-nth-type="odd"],
 .bear-react-table__root[data-cell] tbody td[data-nth-type="odd"] {
     background-color: var(--tr-odd-bg-color);
 }
+.bear-react-table__root[data-cell] tbody th[data-nth-type="even"],
 .bear-react-table__root[data-cell] tbody td[data-nth-type="even"] {
     background-color: var(--tr-even-bg-color);
 }
 
 /* value */
+.bear-react-table__root[data-cell] tbody th,
 .bear-react-table__root[data-cell] tbody td {
     display: flex;
     text-align: right;
@@ -491,12 +516,14 @@
 }
 
 /* value */
+.bear-react-table__root[data-cell] tbody th:empty,
 .bear-react-table__root[data-cell] tbody td:empty {
     display: none;
 }
 
 /* title */
-.bear-react-table__root[data-cell] td:before {
+.bear-react-table__root[data-cell] tbody th:before,
+.bear-react-table__root[data-cell] tbody td:before {
     text-align: left;
     margin-right: auto;
 

@@ -45,6 +45,13 @@ export const data: IPaginateData[] = [
     {id: 29, name: 'Hung Mak', email: 'hungMak@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-29.jpg'), amount: 200, subAmount: 400},
     {id: 30, name: 'Aro Hang', email: 'aroHang@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-30.jpg'), amount: 200, subAmount: 400},
     {id: 31, name: 'Onica Camilleri', email: 'onicaCamilleri@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-31.jpg'), amount: 200, subAmount: 400},
+    {id: 32, name: 'Orris Wang', email: 'orrisWang@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-25.jpg'), amount: 200, subAmount: 400},
+    {id: 33, name: 'Ick Yang', email: 'ickYang@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-26.jpg'), amount: 200, subAmount: 400},
+    {id: 34, name: 'Ayne Chen', email: 'ayneChen@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-27.jpg'), amount: 200, subAmount: 400},
+    {id: 35, name: 'TdGamers', email: 'tdGamers@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-28.jpg'), amount: 200, subAmount: 400},
+    {id: 36, name: 'Hung Mak', email: 'hungMak@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-29.jpg'), amount: 200, subAmount: 400},
+    {id: 37, name: 'Aro Hang', email: 'aroHang@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-30.jpg'), amount: 200, subAmount: 400},
+    {id: 38, name: 'Onica Camilleri', email: 'onicaCamilleri@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-31.jpg'), amount: 200, subAmount: 400},
 ];
 //
 // export const data: IPaginateData[][] = [

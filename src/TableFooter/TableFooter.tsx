@@ -40,14 +40,14 @@ const TableFooter = <K extends TBodyDataFieldKey>({
 
                 return [
                     ...curr,
-                    <th
+                    <td
                         key={`tfootTh_${titleKey}`}
                         data-align={field?.dataAlign}
                         data-vertical={titleRow.dataVertical}
                         {...getColSpan(colSpan)}
                     >
                         {field?.value ?? ''}
-                    </th>
+                    </td>
                 ];
             }, []);
         }

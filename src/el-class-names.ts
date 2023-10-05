@@ -9,6 +9,8 @@ const elClassNames = {
 export default {
     root: `${elClassNames.elClassPrefix}__root`,
 
+    sortColumn: `${elClassNames.elClassPrefix}__sort-column`,
+
     notData: `${elClassNames.elClassPrefix}__not-data`,
     notDataTitle: `${elClassNames.elClassPrefix}__not-data-title`,
     notDataDesc: `${elClassNames.elClassPrefix}__not-data-desc`,

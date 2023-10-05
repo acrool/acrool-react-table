@@ -1,12 +1,7 @@
 import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import Table, {
-    TOnChangePage,
-    IPaginateMeta,
-    genericsTitleData,
-} from 'bear-react-table';
+
+import Table, {TOnChangePage, IPaginateMeta, genericsTitleData} from 'bear-react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
@@ -137,6 +132,7 @@ function App() {
                             isDark={false}
                             isFetching={isFetching}
                             gap="8px"
+                            // isVisibleHeader={false}
                             isStickyHeader
                             title={tableData.title}
                             tableCellMediaSize={768}
@@ -157,6 +153,7 @@ function App() {
                             isFetching={isFetching}
                             gap="8px"
                             isStickyHeader
+                            // isOverflow
                             title={{
                                 plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
                                 avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
@@ -254,4 +251,8 @@ const Avatar = styled.img`
 const TableContainer = styled.div`
     --primary-color: #17a254;
 
+    table{
+        //--vertical-border-color: var(--border-color);
+        //--header-border-color: var(--border-color);
+    }
 `;
