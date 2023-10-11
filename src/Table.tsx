@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, CSSProperties} from 'react';
 import cx from 'classnames';
 
 import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
@@ -28,6 +28,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     footer,
     headerLineHeight,
     bodyLineHeight,
+    cellLineHeight,
     footerLineHeight,
     gap = '5px',
     paginateInfo = {
@@ -172,7 +173,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         return <TableBody
             title={title}
             data={data}
-            lineHeight={bodyLineHeight}
         />;
     };
 
@@ -224,8 +224,12 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-footer={!!footer ? '': undefined}
         style={{
             ...style,
-            ...getTemplate(title, gap)
-        }}>
+            '--header-line-height': headerLineHeight,
+            '--body-line-height': bodyLineHeight,
+            '--cell-line-height': cellLineHeight,
+            '--footer-line-height': footerLineHeight,
+            ...getTemplate(title, gap),
+        } as CSSProperties}>
             <table>
                 {/* Header */}
                 {renderHeader()}

@@ -10,7 +10,6 @@ import {getColSpan} from '../utils';
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
-    lineHeight?: TLineHeight
 }
 
 
@@ -20,7 +19,6 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
 const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
-    lineHeight,
 }: IProps<K, I>) => {
 
     const [collapseIds, setCollapse] = useState<I[]>([]);
@@ -183,11 +181,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     };
 
 
-    return <tbody
-        style={{
-            '--body-line-height': lineHeight,
-        } as CSSProperties}
-    >
+    return <tbody>
         {renderBodyData()}
     </tbody>;
 };

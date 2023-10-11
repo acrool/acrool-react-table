@@ -6,7 +6,6 @@ import {CSSProperties} from 'react';
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
     data?: TFooter<K>
-    lineHeight?: TLineHeight
 }
 
 
@@ -17,7 +16,6 @@ interface IProps <K extends TBodyDataFieldKey>{
 const TableFooter = <K extends TBodyDataFieldKey>({
     title,
     data,
-    lineHeight,
 }: IProps<K>) => {
 
     const renderFooterData = () => {
@@ -53,9 +51,7 @@ const TableFooter = <K extends TBodyDataFieldKey>({
         }
     };
 
-    return <tfoot style={{
-        '--footer-line-height': lineHeight,
-    } as CSSProperties}>
+    return <tfoot>
         <tr>
             {renderFooterData()}
         </tr>

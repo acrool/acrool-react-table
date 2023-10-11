@@ -97,6 +97,13 @@
 
 
 
+/** -------------------------------
+ *             Reset
+ * ------------------------------ */
+.bear-react-table__root table th,
+.bear-react-table__root table td {
+    border: none;
+}
 
 
 
@@ -509,8 +516,9 @@
     display: flex;
     text-align: right;
     margin-left: auto;
-    height: auto;
+    height: var(--cell-line-height, 30px);
     border-bottom: .01rem solid var(--rwd-border-color);
+    border-right: none;
     width: 100%;
     padding: 2px;
 }

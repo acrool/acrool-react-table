@@ -112,6 +112,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     headerLineHeight?: TLineHeight,
     bodyLineHeight?: TLineHeight,
     footerLineHeight?: TLineHeight,
+    cellLineHeight?: TLineHeight,
     gap?: string
     paginateInfo?: IPaginateInfo
     paginateMeta?: IPaginateMeta
