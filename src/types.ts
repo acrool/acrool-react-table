@@ -1,4 +1,4 @@
-import {ReactNode, MouseEvent} from 'react';
+import {ReactNode, MouseEvent, MouseEventHandler} from 'react';
 import CSS from 'csstype';
 
 
@@ -36,8 +36,7 @@ export type TOnChangeSortField = (meta: IOrder) => void
 
 export type TBodyDataFieldKey = string;
 type TFieldValue = string | number | JSX.Element;
-type TCollapseEvent = (event?: MouseEvent) => void;
-interface TFieldFuncArgs {isActive: boolean, collapse: (event: TCollapseEvent) => void}
+interface TFieldFuncArgs {isActive: boolean, collapse: MouseEventHandler}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
 type TBodyDataField<K extends TBodyDataFieldKey> = {
@@ -58,7 +57,7 @@ export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> 
     id: I,
     detail?: JSX.Element | TBodyDataDetail<K>,
     disabled?: boolean,
-    onClickRow?: (collapse: TCollapseEvent) => void,
+    onClickRow?: MouseEventHandler,
     field: TBodyDataField<K>
 }
 
