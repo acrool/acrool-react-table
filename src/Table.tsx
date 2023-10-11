@@ -153,7 +153,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             isStickyHeader={isStickyHeader}
             onChangeSortField={handleOnOrderField}
             order={meta.order}
-            lineHeight={headerLineHeight}
         />;
     };
 
@@ -190,7 +189,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         return <TableFooter
             title={title}
             data={footer}
-            lineHeight={footerLineHeight}
         />;
     };
 
