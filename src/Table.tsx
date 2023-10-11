@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, CSSProperties} from 'react';
+import React, {useEffect, useRef, CSSProperties, useCallback} from 'react';
 import cx from 'classnames';
 
 import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
@@ -38,6 +38,8 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     paginateMeta,
     isVisibleHeader = true,
     isVisiblePaginate = true,
+    isEnableHover = true,
+    isEnableChangePageScrollTop = true,
     isStickyHeader = false,
     tableCellMediaSize,
     onChangePage,
@@ -79,8 +81,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 切換頁面
      * @param pageMeta
      */
-    const handleOnChangePage: TOnChangePage = (pageMeta) => {
-        window.scrollTo(0, tableRef.current?.offsetTop);
+    const handleOnChangePage: TOnChangePage = useCallback((pageMeta) => {
+        if(isEnableChangePageScrollTop && tableRef.current){
+            globalThis.window.scrollTo(0, tableRef.current?.offsetTop);
+        }
 
         if(onChangePage){
             const paramsMeta = {
@@ -91,7 +95,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
             onChangePage(paramsMeta, true);
         }
-    };
+    }, [isEnableChangePageScrollTop, onChangePage, meta.order]);
 
 
     const handleOnOrderField: TOnChangeSortField = (params) => {
@@ -220,6 +224,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-cell={undefined}
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
+        data-hover={!!isEnableHover ? '': undefined}
         style={{
             ...style,
             '--header-line-height': headerLineHeight,

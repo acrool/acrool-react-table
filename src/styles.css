@@ -244,16 +244,16 @@
 .bear-react-table__root tbody tr[data-nth-type="odd"] td{
     background-color: var(--tr-odd-bg-color);
 }
-.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="odd"]:hover th,
-.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="odd"]:hover td{
+.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="odd"]:hover th,
+.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="odd"]:hover td{
     background-color: var(--tr-odd-bg-hover-color);
 }
 .bear-react-table__root tbody tr[data-nth-type="even"] th,
 .bear-react-table__root tbody tr[data-nth-type="even"] td{
     background-color: var(--tr-even-bg-color);
 }
-.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="even"]:hover th,
-.bear-react-table__root:not([data-cell]) tbody tr[data-nth-type="even"]:hover td{
+.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="even"]:hover th,
+.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="even"]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
 .bear-react-table__root tbody th,
@@ -341,7 +341,6 @@
     font-size: 14px;
     color: var(--text-color);
     background: var(--bg-color);
-    margin-bottom: 10px;
 }
 .bear-react-table__paginate-limit:focus {
     outline: 0;
@@ -354,7 +353,6 @@
     flex-direction: row;
     justify-self: flex-end;
     align-items: center;
-    margin-bottom: .8rem;
 }
 .bear-react-table__paginate-page-li,
 .bear-react-table__paginate-page-picker,

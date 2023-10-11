@@ -19,7 +19,7 @@ export type TTitleCol = true|'auto'|number|`${number}${TSizeUnit}`|'min-content'
 export interface ITitleField extends IConfig {
     className?: string,
     col: TTitleCol,
-    text: string|number|ReactNode,
+    text?: string|number|ReactNode,
     titleAlign?: 'left'|'center'|'right',
     isEnableSort?: boolean,
 }
@@ -117,9 +117,11 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     paginateMeta?: IPaginateMeta
 
     isVisibleHeader?: boolean
+    isVisiblePaginate?: boolean
+    isEnableHover?: boolean
+    isEnableChangePageScrollTop?: boolean
     isStickyHeader?: boolean
     tableCellMediaSize?: number
-    isVisiblePaginate?: boolean
     onChangePage?: TOnChangePage
     pageLimitOptions?: number[]
 
