@@ -57,7 +57,7 @@ export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> 
     id: I,
     detail?: JSX.Element | TBodyDataDetail<K>,
     disabled?: boolean,
-    onClickRow?: MouseEventHandler,
+    onClickRow?: (collapse: MouseEventHandler) => void,
     field: TBodyDataField<K>
 }
 
