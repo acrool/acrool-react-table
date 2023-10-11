@@ -30,7 +30,7 @@
     --border-color: rgb(233, 233, 233);
     --header-border-color: var(--border-color);
     --vertical-border-color: transparent;
-    --rwd-border-color: #9ca3af;
+    --cell-border-color: #9ca3af;
 
     --tr-odd-bg-color: rgb(243, 247, 249);
     --tr-odd-bg-hover-color: rgb(236, 236, 236);
@@ -50,6 +50,7 @@
     --border-color: #343a40;
     --header-border-color: #585858;
     --vertical-border-color: transparent;
+    --cell-border-color: #4d4d4d;
 
     --tr-odd-bg-color: #2b3035;
     --tr-odd-bg-hover-color: #1f1f1f;
@@ -516,8 +517,8 @@
     display: flex;
     text-align: right;
     margin-left: auto;
-    height: var(--cell-line-height, 30px);
-    border-bottom: .01rem solid var(--rwd-border-color);
+    height: var(--cell-line-height, 35px);
+    border-bottom: .01rem solid var(--cell-border-color);
     border-right: none;
     width: 100%;
     padding: 2px;
