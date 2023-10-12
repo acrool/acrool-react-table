@@ -134,7 +134,7 @@ function App() {
                             gap="8px"
                             // isVisibleHeader={false}
                             isStickyHeader
-                            isEnableOddEvent={false}
+                            // isEnableOddEven={false}
                             title={tableData.title}
                             tableCellMediaSize={768}
                             footer={{
@@ -155,6 +155,7 @@ function App() {
                             gap="8px"
                             isStickyHeader
                             // isOverflow
+                            isEnableHover={false}
                             title={{
                                 plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
                                 avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
@@ -255,7 +256,7 @@ const TableContainer = styled.div`
     table {
         --vertical-border-color: var(--border-color);
         --header-border-color: var(--border-color);
-        --tbody-th-bg-color: #d4d4d4;
+        --tbody-th-bg-color: #4a63b6;
         --tbody-th-color-color: #0a278a;
     }
 `;
