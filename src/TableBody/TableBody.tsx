@@ -87,7 +87,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             className={cx(titleRow.className)}
                             // aria-label={titleRow.text}
                             data-align={fieldConfig?.dataAlign}
-                            data-vertical={titleRow.dataVertical}
+                            data-vertical={titleRow?.dataVertical}
                             {...getColSpan(colSpan)}
                         >
                             {fieldValue}
@@ -128,6 +128,58 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             // 避免忽略行，CSS無法跳過，所以自行計算
             let cellTdIndex = 0;
 
+            let ignore = 0;
+
+            const tds = Object.keys(title)?.reduce((curr: JSX.Element[], titleKey) => {
+                const config = typeof dataRow.field[titleKey] === 'object' && 'value' in dataRow.field[titleKey] ? dataRow.field[titleKey]: undefined;
+                const titleRow = title[titleKey];
+
+                const fieldConfig = {
+                    ...titleRow,
+                    ...config,
+                };
+                const field = dataRow.field[titleKey];
+                const colSpan = fieldConfig?.colSpan ?? 1;
+
+                if(ignore > 0){
+                    ignore -= 1;
+                    return curr;
+                }
+
+                if(colSpan > 1){
+                    ignore = colSpan - 1;
+                }
+
+
+                const isTh = cellTdIndex === 0;
+
+                let nthType = undefined;
+                if(isNotEmpty(field)){
+                    nthType = cellTdIndex % 2 === 0 ? 'odd': 'even';
+                    cellTdIndex = cellTdIndex + 1;
+                }
+
+                const children = typeof field === 'function' ?
+                    field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
+                    typeof field === 'object' && 'value' in field ? field.value:
+                        field;
+
+                const args = {
+                    key: `tbodyTd_${dataRow.id}_${titleKey}`,
+                    className: titleRow.className,
+                    'aria-label': titleRow.text,
+                    'data-nth-type': nthType,
+                    'data-align': fieldConfig?.dataAlign,
+                    'data-vertical': titleRow?.dataVertical,
+                    ...getColSpan(colSpan),
+                    children,
+                };
+                return [
+                    ...curr,
+                    isTh ? <th {...args}/>: <td {...args}/>,
+                ];
+            }, []);
+
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
             >
@@ -141,39 +193,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     data-nth-type={index % 2 === 0 ? 'odd': 'even'}
                     role={dataRow.onClickRow ? 'button':undefined}
                 >
-                    {/* 各欄位值 */}
-                    {Object.keys(title)?.map(titleKey => {
-                        const titleRow = title[titleKey];
-                        const field = dataRow.field[titleKey];
-
-                        const isTh = cellTdIndex === 0;
-
-                        let nthType = undefined;
-                        if(isNotEmpty(field)){
-                            nthType = cellTdIndex % 2 === 0 ? 'odd': 'even';
-                            cellTdIndex = cellTdIndex + 1;
-                        }
-
-                        const children = typeof field === 'function' ?
-                            field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
-                            typeof field === 'object' && 'value' in field ? field.value:
-                                field;
-
-                        const args = {
-                            key: `tbodyTd_${dataRow.id}_${titleKey}`,
-                            className: titleRow.className,
-                            'aria-label': titleRow.text,
-                            'data-nth-type': nthType,
-                            'data-align': titleRow.dataAlign,
-                            'data-vertical': titleRow.dataVertical,
-                            children,
-                        };
-                        if(isTh){
-                            return (<th {...args}/>);
-                        }
-                        return (<td {...args}/>);
-
-                    })}
+                    {tds}
                 </tr>
 
 
