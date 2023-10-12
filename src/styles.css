@@ -68,9 +68,7 @@
     min-width: 0;
     position: relative;
     width: 100%;
-    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-
     padding: 0;
 
     display: grid;
@@ -79,6 +77,9 @@
     grid-template-rows: 1fr;
 
     overflow: auto; /* overflow mode; */
+}
+.bear-react-table__root[data-border] table{
+    border: 1px solid var(--border-color);
 }
 .bear-react-table__root[data-sticky] table {
     overflow: unset;
@@ -128,8 +129,8 @@
     padding: 0 var(--grid-gap);
     grid-column: auto / span var(--grid-column-span);
 }
-.bear-react-table__root[data-vertical-border] td:not(:last-child),
-.bear-react-table__root[data-vertical-border] th:not(:last-child){
+.bear-react-table__root[data-border][data-vertical-border] td:not(:last-child),
+.bear-react-table__root[data-border][data-vertical-border] th:not(:last-child){
     border-right: 1px solid var(--border-color);
 }
 
@@ -140,10 +141,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border-bottom: 1px solid var(--border-color);
 
     color: var(--text-color);
     font-size: 14px;
+}
+.bear-react-table__root[data-border] thead th,
+.bear-react-table__root[data-border] tfoot td,
+.bear-react-table__root[data-border] tbody td,
+.bear-react-table__root[data-border] tbody th{
+    border-bottom: 1px solid var(--border-color);
 }
 
 .bear-react-table__root td[data-align="left"],

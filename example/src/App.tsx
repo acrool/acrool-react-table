@@ -134,6 +134,7 @@ function App() {
                             gap="8px"
                             // isVisibleHeader={false}
                             isStickyHeader
+                            isVisibleBorder={true}
                             // isEnableOddEven={false}
                             title={tableData.title}
                             tableCellMediaSize={768}
@@ -154,6 +155,7 @@ function App() {
                             isFetching={isFetching}
                             gap="8px"
                             isStickyHeader
+                            // isVisibleBorder={false}
                             isVisibleVerticalBorder
                             // isOverflow
                             isEnableHover={false}
