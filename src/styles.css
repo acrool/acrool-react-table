@@ -29,7 +29,6 @@
 
     --border-color: rgb(233, 233, 233);
     --header-border-color: var(--border-color);
-    --vertical-border-color: transparent;
     --cell-border-color: #9ca3af;
 
     --tr-bg-color: #fff;
@@ -49,7 +48,6 @@
 
     --border-color: #343a40;
     --header-border-color: #585858;
-    --vertical-border-color: transparent;
     --cell-border-color: #4d4d4d;
 
     --tr-bg-color: #2b3035;
@@ -123,19 +121,22 @@
     background-color: var(--bg-color);
 }
 
-.bear-react-table__root td,
-.bear-react-table__root th{
+.bear-react-table__root thead th,
+.bear-react-table__root tfoot td,
+.bear-react-table__root tbody td,
+.bear-react-table__root tbody th{
     padding: 0 var(--grid-gap);
     grid-column: auto / span var(--grid-column-span);
 }
-.bear-react-table__root td:not(:last-child),
-.bear-react-table__root th:not(:last-child){
-    border-right: 1px solid var(--vertical-border-color);
+.bear-react-table__root[data-vertical-border] td:not(:last-child),
+.bear-react-table__root[data-vertical-border] th:not(:last-child){
+    border-right: 1px solid var(--border-color);
 }
 
-.bear-react-table__root td,
-.bear-react-table__root th,
-.bear-react-table__root th{
+.bear-react-table__root thead th,
+.bear-react-table__root tfoot td,
+.bear-react-table__root tbody td,
+.bear-react-table__root tbody th{
     display: flex;
     align-items: center;
     justify-content: flex-start;

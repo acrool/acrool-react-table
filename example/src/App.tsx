@@ -154,6 +154,7 @@ function App() {
                             isFetching={isFetching}
                             gap="8px"
                             isStickyHeader
+                            isVisibleVerticalBorder
                             // isOverflow
                             isEnableHover={false}
                             title={{
@@ -254,9 +255,10 @@ const TableContainer = styled.div`
     --primary-color: #17a254;
 
     table {
-        --vertical-border-color: var(--border-color);
+        //--vertical-border-color: var(--border-color);
         --header-border-color: var(--border-color);
         --tbody-th-bg-color: #4a63b6;
         --tbody-th-color-color: #0a278a;
+        --border-color: #9ca3af;
     }
 `;

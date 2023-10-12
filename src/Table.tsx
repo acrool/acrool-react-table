@@ -37,6 +37,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     },
     paginateMeta,
     isVisibleHeader = true,
+    isVisibleVerticalBorder = false,
     isVisiblePaginate = true,
     isEnableHover = true,
     isEnableOddEven = true,
@@ -227,6 +228,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-hover={!!isEnableHover ? '': undefined}
         data-sticky={!!isStickyHeader ? '': undefined}
         data-odd-even={!!isEnableOddEven ? '': undefined}
+        data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
         style={{
             ...style,
             '--header-line-height': headerLineHeight,
