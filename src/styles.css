@@ -268,15 +268,15 @@
 }
 .bear-react-table__root:not([data-cell]) tbody tr th{
     background-color: var(--tbody-th-bg-color, var(--tr-bg-color));
-    color: var(--tbody-th-color-color);
+    color: var(--tbody-th-color);
 }
 .bear-react-table__root:not([data-cell])[data-hover] tbody tr:hover th{
     background-color: var(--tbody-th-bg-color, var(--tr-bg-hover-color));
-    color: var(--tbody-th-color-color);
+    color: var(--tbody-th-color);
 }
 .bear-react-table__root:not([data-cell])[data-odd-even] tbody tr[data-nth-type="even"] th{
     background-color: var(--tbody-th-bg-color, var(--tr-even-bg-color));
-    color: var(--tbody-th-color-color);
+    color: var(--tbody-th-color);
 }
 .bear-react-table__root:not([data-cell])[data-hover][data-odd-even] tbody tr[data-nth-type="even"]:hover th{
     background-color: var(--tbody-th-bg-color, var(--tr-even-bg-hover-color));
