@@ -192,8 +192,8 @@
 
 .bear-react-table__root thead[data-sticky]{
     position: sticky;
-    top: 0;
-    z-index: 5;
+    top: var(--stick-top, 0);
+    z-index: var(--stick-z-index, 5);
 }
 
 .bear-react-table__root thead th[data-enable-sort]{
