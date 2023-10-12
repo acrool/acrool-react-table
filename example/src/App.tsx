@@ -174,7 +174,7 @@ function App() {
                                 name: {value: 'Total'},
                                 amount: {value: calcAmount(data), dataAlign: 'right'},
                             }}
-                            data={paginateData.map(row => {
+                            data={paginateData.map((row, index) => {
                                 return {
                                     id: row.id,
                                     detail: <>
@@ -191,11 +191,16 @@ function App() {
                                             {args.isActive ? '-': '+'}
                                         </CollapseButton>,
                                         avatar: <Avatar src={row.avatar}/>,
+                                        // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
                                         name: row.name,
                                         role: row.role,
                                         createdAt: dayjs(row.createdAt).format('MM/DD'),
                                         joined: row.isJoined ? 'Y':'N',
-                                        amount: `$ ${formatCurrency(row.amount)}`,
+                                        amount: {
+                                            colSpan: index === 0 ? 4: 1,
+                                            dataAlign: index === 0 ? 'center': 'right',
+                                            value: `$ ${formatCurrency(row.amount)}`,
+                                        },
                                     },
                                 };
                             })}
