@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.4-alpha.8](https://github.com/imagine10255/bear-react-table/compare/v4.3.4-alpha.7...v4.3.4-alpha.8) (2023-10-12)
+
+
+### Bug Fixes
+
+* modify style hover tr color, and add th color ([45a7b83](https://github.com/imagine10255/bear-react-table/commit/45a7b835f27d46677e90ec318ddff64f3639439b))
+
 ### [4.3.4-alpha.7](https://github.com/imagine10255/bear-react-table/compare/v4.3.4-alpha.6...v4.3.4-alpha.7) (2023-10-12)
 
 ### [4.3.4-alpha.6](https://github.com/imagine10255/bear-react-table/compare/v4.3.4-alpha.5...v4.3.4-alpha.6) (2023-10-12)
