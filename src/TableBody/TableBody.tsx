@@ -154,6 +154,11 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             cellTdIndex = cellTdIndex + 1;
                         }
 
+                        const children = typeof field === 'function' ?
+                            field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
+                            typeof field === 'object' && 'value' in field ? field.value:
+                                field;
+
                         const args = {
                             key: `tbodyTd_${dataRow.id}_${titleKey}`,
                             className: titleRow.className,
@@ -161,9 +166,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             'data-nth-type': nthType,
                             'data-align': titleRow.dataAlign,
                             'data-vertical': titleRow.dataVertical,
-                            children: typeof field === 'function' ?
-                                field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
-                                field
+                            children,
                         };
                         if(isTh){
                             return (<th {...args}/>);

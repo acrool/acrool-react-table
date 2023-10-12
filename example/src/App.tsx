@@ -191,7 +191,8 @@ function App() {
                                             {args.isActive ? '-': '+'}
                                         </CollapseButton>,
                                         avatar: <Avatar src={row.avatar}/>,
-                                        name: row.name,
+                                        name: {value: '12313', colSpan: 2, dataAlign: 'right'},
+                                        // name: row.name,
                                         role: row.role,
                                         createdAt: dayjs(row.createdAt).format('MM/DD'),
                                         joined: row.isJoined ? 'Y':'N',
