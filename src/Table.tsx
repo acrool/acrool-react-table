@@ -39,7 +39,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisibleHeader = true,
     isVisiblePaginate = true,
     isEnableHover = true,
-    isEnableOddEvent = false,
+    isEnableOddEven = false,
     isEnableChangePageScrollTop = true,
     isStickyHeader = false,
     tableCellMediaSize,
@@ -226,7 +226,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-footer={!!footer ? '': undefined}
         data-hover={!!isEnableHover ? '': undefined}
         data-sticky={!!isStickyHeader ? '': undefined}
-        data-odd-event={!!isEnableOddEvent ? '': undefined}
+        data-odd-even={!!isEnableOddEven ? '': undefined}
         style={{
             ...style,
             '--header-line-height': headerLineHeight,

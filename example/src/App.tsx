@@ -134,7 +134,7 @@ function App() {
                             gap="8px"
                             // isVisibleHeader={false}
                             isStickyHeader
-                            isEnableOddEvent
+                            isEnableOddEvent={false}
                             title={tableData.title}
                             tableCellMediaSize={768}
                             footer={{

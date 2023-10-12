@@ -255,12 +255,12 @@
 .bear-react-table__root:not([data-cell])[data-hover] tbody tr:hover td{
     background-color: var(--tr-bg-hover-color);
 }
-.bear-react-table__root tbody tr[data-nth-type="even"] th,
-.bear-react-table__root tbody tr[data-nth-type="even"] td{
+.bear-react-table__root[data-odd-even] tbody tr[data-nth-type="even"] th,
+.bear-react-table__root[data-odd-even] tbody tr[data-nth-type="even"] td{
     background-color: var(--tr-even-bg-color);
 }
-.bear-react-table__root:not([data-cell])[data-hover] tbody tr[data-nth-type="even"]:hover th,
-.bear-react-table__root:not([data-cell])[data-hover] tbody tr[data-nth-type="even"]:hover td{
+.bear-react-table__root:not([data-cell])[data-odd-even][data-hover] tbody tr[data-nth-type="even"]:hover th,
+.bear-react-table__root:not([data-cell])[data-odd-even][data-hover] tbody tr[data-nth-type="even"]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
 .bear-react-table__root tbody th,
@@ -268,10 +268,10 @@
     height: var(--body-line-height, var(--line-height));
     font-weight: normal;
 }
-.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr th,
-.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr:hover th,
-.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr[data-nth-type="even"] th,
-.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr[data-nth-type="even"]:hover th{
+.bear-react-table__root:not([data-cell]) tbody tr th,
+.bear-react-table__root:not([data-cell]) tbody tr:hover th,
+.bear-react-table__root:not([data-cell])[data-odd-even] tbody tr[data-nth-type="even"] th,
+.bear-react-table__root:not([data-cell])[data-odd-even] tbody tr[data-nth-type="even"]:hover th{
     background-color: var(--tbody-th-bg-color);
     color: var(--tbody-th-color-color);
 }
@@ -510,8 +510,8 @@
 .bear-react-table__root[data-cell] tbody tr[data-collapse] td:empty {
    display: none;
 }
-.bear-react-table__root[data-cell] tbody tr[data-collapse] th:nth-of-type(odd),
-.bear-react-table__root[data-cell] tbody tr[data-collapse] td:nth-of-type(odd) {
+.bear-react-table__root[data-cell][data-odd-even] tbody tr[data-collapse] th:nth-of-type(odd),
+.bear-react-table__root[data-cell][data-odd-even] tbody tr[data-collapse] td:nth-of-type(odd) {
    background-color: inherit;
 }
 
@@ -519,8 +519,8 @@
 .bear-react-table__root[data-cell] tbody td {
     background-color: var(--tr-bg-color);
 }
-.bear-react-table__root[data-cell] tbody th[data-nth-type="even"],
-.bear-react-table__root[data-cell] tbody td[data-nth-type="even"] {
+.bear-react-table__root[data-cell][data-odd-even] tbody th[data-nth-type="even"],
+.bear-react-table__root[data-cell][data-odd-even] tbody td[data-nth-type="even"] {
     background-color: var(--tr-even-bg-color);
 }
 

@@ -119,7 +119,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isVisibleHeader?: boolean
     isVisiblePaginate?: boolean
     isEnableHover?: boolean
-    isEnableOddEvent?: boolean
+    isEnableOddEven?: boolean
     isEnableChangePageScrollTop?: boolean
     isStickyHeader?: boolean
     tableCellMediaSize?: number
