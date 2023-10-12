@@ -17,7 +17,6 @@ interface IProps<K extends TBodyDataFieldKey> {
 const TableHeader = <K extends TBodyDataFieldKey>({
     title,
     order,
-    isStickyHeader = false,
     onChangeSortField = () => {},
 }: IProps<K>) => {
 
@@ -51,9 +50,7 @@ const TableHeader = <K extends TBodyDataFieldKey>({
     };
 
 
-    return <thead
-        data-sticky={isStickyHeader ? '': undefined}
-    >
+    return <thead>
         <tr>
             {renderTitle()}
         </tr>

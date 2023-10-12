@@ -83,6 +83,11 @@
     border-collapse: collapse;
     grid-template-columns: var(--grid-template);
     grid-template-rows: 1fr;
+
+    overflow: auto; /* overflow mode; */
+}
+.bear-react-table__root[data-sticky] table {
+    overflow: unset !important;
 }
 
 @media print{
@@ -190,14 +195,14 @@
 }
 
 
-.bear-react-table__root thead[data-sticky]{
+.bear-react-table__root[data-sticky] thead th{
     position: sticky;
     top: var(--stick-top, 0);
     z-index: var(--stick-z-index, 5);
 }
 
 .bear-react-table__root thead th[data-enable-sort]{
-    position: relative;
+    /*position: relative;*/
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -465,12 +470,6 @@
 
 
 
-/** -------------------------------
- *       OverFlow Scroll Mode
- * ------------------------------ */
-.bear-react-table__root table{
-    overflow: auto;
-}
 
 /** -------------------------------
  *       RWD Cell Mode

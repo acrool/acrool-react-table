@@ -154,7 +154,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
         return <TableHeader
             title={title}
-            isStickyHeader={isStickyHeader}
             onChangeSortField={handleOnOrderField}
             order={meta.order}
         />;
@@ -225,6 +224,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         data-hover={!!isEnableHover ? '': undefined}
+        data-sticky={!!isStickyHeader ? '': undefined}
         style={{
             ...style,
             '--header-line-height': headerLineHeight,
