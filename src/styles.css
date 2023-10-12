@@ -32,10 +32,10 @@
     --vertical-border-color: transparent;
     --cell-border-color: #9ca3af;
 
-    --tr-odd-bg-color: rgb(243, 247, 249);
-    --tr-odd-bg-hover-color: rgb(236, 236, 236);
-    --tr-even-bg-color: #fff;
-    --tr-even-bg-hover-color: #f1f1f1;
+    --tr-bg-color: #fff;
+    --tr-bg-hover-color: #f1f1f1;
+    --tr-even-bg-color: rgb(243, 247, 249);
+    --tr-even-bg-hover-color: rgb(236, 236, 236);
 }
 
 .bear-react-table__root.dark-theme {
@@ -52,14 +52,10 @@
     --vertical-border-color: transparent;
     --cell-border-color: #4d4d4d;
 
-    --tr-odd-bg-color: #2b3035;
-    --tr-odd-bg-hover-color: #1f1f1f;
+    --tr-bg-color: #2b3035;
+    --tr-bg-hover-color: #1f1f1f;
     --tr-even-bg-color: #262a2e;
     --tr-even-bg-hover-color: #1f1f1f;
-
-    --tr-hover-bg-color: #1f1f1f;
-    --tr-border-color: #585858;
-    --tr-bg-even-color: rgba(0,0,0,.04);
 }
 
 
@@ -87,7 +83,7 @@
     overflow: auto; /* overflow mode; */
 }
 .bear-react-table__root[data-sticky] table {
-    overflow: unset !important;
+    overflow: unset;
 }
 
 @media print{
@@ -193,6 +189,12 @@
     height: var(--header-line-height, var(--line-height));
     border-bottom-color: var(--header-border-color);
 }
+.bear-react-table__root thead th:first-child{
+    border-top-left-radius: var(--border-radius);
+}
+.bear-react-table__root thead th:last-child{
+    border-top-right-radius: var(--border-radius);
+}
 
 
 .bear-react-table__root[data-sticky] thead th{
@@ -245,20 +247,20 @@
 }
 
 
-.bear-react-table__root tbody tr[data-nth-type="odd"] th,
-.bear-react-table__root tbody tr[data-nth-type="odd"] td{
-    background-color: var(--tr-odd-bg-color);
+.bear-react-table__root tbody tr th,
+.bear-react-table__root tbody tr td{
+    background-color: var(--tr-bg-color);
 }
-.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="odd"]:hover th,
-.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="odd"]:hover td{
-    background-color: var(--tr-odd-bg-hover-color);
+.bear-react-table__root:not([data-cell])[data-hover] tbody tr:hover th,
+.bear-react-table__root:not([data-cell])[data-hover] tbody tr:hover td{
+    background-color: var(--tr-bg-hover-color);
 }
 .bear-react-table__root tbody tr[data-nth-type="even"] th,
 .bear-react-table__root tbody tr[data-nth-type="even"] td{
     background-color: var(--tr-even-bg-color);
 }
-.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="even"]:hover th,
-.bear-react-table__root:not([data-cell]):not([data-hover]) tbody tr[data-nth-type="even"]:hover td{
+.bear-react-table__root:not([data-cell])[data-hover] tbody tr[data-nth-type="even"]:hover th,
+.bear-react-table__root:not([data-cell])[data-hover] tbody tr[data-nth-type="even"]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
 .bear-react-table__root tbody th,
@@ -266,6 +268,14 @@
     height: var(--body-line-height, var(--line-height));
     font-weight: normal;
 }
+.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr th,
+.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr:hover th,
+.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr[data-nth-type="even"] th,
+.bear-react-table__root:not([data-cell])[data-odd-event] tbody tr[data-nth-type="even"]:hover th{
+    background-color: var(--tbody-th-bg-color);
+    color: var(--tbody-th-color-color);
+}
+
 
 .bear-react-table__root tbody[data-loading] td,
 .bear-react-table__root tbody[data-no-data] td{
@@ -312,6 +322,12 @@
     border-bottom: none;
 }
 
+.bear-react-table__root tfoot td:first-child{
+    border-bottom-left-radius: var(--border-radius);
+}
+.bear-react-table__root tfoot td:last-child{
+    border-bottom-right-radius: var(--border-radius);
+}
 
 /** -------------------------------
  *             Paginate
@@ -335,7 +351,7 @@
 
 .bear-react-table__paginate-limit{
     border: 1px solid var(--border-color);
-    border-radius: .25rem;
+    border-radius: var(--border-radius);
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     font-weight: 400;
     line-height: 1.5;
@@ -499,9 +515,9 @@
    background-color: inherit;
 }
 
-.bear-react-table__root[data-cell] tbody th[data-nth-type="odd"],
-.bear-react-table__root[data-cell] tbody td[data-nth-type="odd"] {
-    background-color: var(--tr-odd-bg-color);
+.bear-react-table__root[data-cell] tbody th,
+.bear-react-table__root[data-cell] tbody td {
+    background-color: var(--tr-bg-color);
 }
 .bear-react-table__root[data-cell] tbody th[data-nth-type="even"],
 .bear-react-table__root[data-cell] tbody td[data-nth-type="even"] {

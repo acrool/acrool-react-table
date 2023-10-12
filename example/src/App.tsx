@@ -91,7 +91,7 @@ function App() {
             plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
             avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
             name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-            amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
+            amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
             role:     {text: 'Role',   col: '120px'},
             createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
         },
@@ -134,6 +134,7 @@ function App() {
                             gap="8px"
                             // isVisibleHeader={false}
                             isStickyHeader
+                            isEnableOddEvent
                             title={tableData.title}
                             tableCellMediaSize={768}
                             footer={{
@@ -158,7 +159,7 @@ function App() {
                                 plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
                                 avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
                                 name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-                                amount:   {text: 'Amount', col: '80px',  titleAlign: 'right',  dataAlign: 'right'},
+                                amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
                                 role:     {text: 'Role',   col: '120px'},
                                 createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
                                 joined:  {text: 'Joined',  col: '80px'},
@@ -251,8 +252,10 @@ const Avatar = styled.img`
 const TableContainer = styled.div`
     --primary-color: #17a254;
 
-    table{
+    table {
         --vertical-border-color: var(--border-color);
         --header-border-color: var(--border-color);
+        --tbody-th-bg-color: #d4d4d4;
+        --tbody-th-color-color: #0a278a;
     }
 `;
