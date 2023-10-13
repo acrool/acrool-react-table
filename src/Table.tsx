@@ -67,13 +67,14 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      */
     const handleOnResize = () => {
         if(tableRef.current){
+            console.log('tableRef.current.dataset[\'mode\']', tableRef.current.dataset['mode']);
             if(window.innerWidth <= tableCellMediaSize){
-                if(typeof tableRef.current.dataset['cell'] === 'undefined'){
-                    tableRef.current.dataset['cell'] = '';
+                if(tableRef.current.dataset['mode'] === 'table'){
+                    tableRef.current.dataset['mode'] = 'cell';
                 }
             }else{
-                if(typeof tableRef.current.dataset['cell'] !== 'undefined') {
-                    tableRef.current.removeAttribute('data-cell');
+                if(tableRef.current.dataset['mode'] === 'cell') {
+                    tableRef.current.dataset['mode'] = 'table';
                 }
             }
         }
@@ -223,7 +224,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             {'dark-theme': isDark},
         )}
         ref={tableRef}
-        data-cell={undefined}
+        data-mode="table"
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         data-hover={!!isEnableHover ? '': undefined}
