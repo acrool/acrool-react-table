@@ -1,14 +1,29 @@
-# bear-react-table
+# [Bear React Grid](https://bear-react-table.pages.dev/)
 
-> Table library based for Reactjs
-
-[![NPM](https://img.shields.io/npm/v/bear-react-table.svg)](https://www.npmjs.com/package/bear-react-table)
-[![npm](https://img.shields.io/npm/dm/bear-react-table.svg)](https://www.npmjs.com/package/bear-react-table)
+Table library based for Reactjs
 
 <div align="center">
-    <img src="https://github.com/imagine10255/bear-react-table/blob/main/docs/table.jpg" alt="Table library based for Reactjs" />
+        <a href="https://bear-react-table.pages.dev/" title="Bear Grid Logo - CSS IN JS following Bootstrap RWD design, composed of React + Styled Component">
+            <img src="https://bear-react-table.pages.dev/img/logo.svg" width="120" alt="Table library based for Reactjs" />
+        </a>
 </div>
 
+<div align="center">
+
+
+
+[![NPM](https://img.shields.io/npm/v/bear-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/bear-react-table)
+[![npm downloads](https://img.shields.io/npm/dm/bear-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/bear-react-table)
+[![npm](https://img.shields.io/npm/dt/bear-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/bear-react-table)
+[![npm](https://img.shields.io/npm/l/bear-react-table?style=for-the-badge)](https://github.com/imagine10255/bear-react-table/blob/main/LICENSE)
+
+</div>
+
+<p align="center">
+  <a href="https://bear-react-table.pages.dev/docs/getting-started">Get started</a> |
+  <a href="https://bear-react-table.pages.dev/docs/components/table">Table</a> |
+  <a href="https://bear-react-table.pages.dev/docs/category/features">Features</a> |
+</p>
 
 
 ## Install
