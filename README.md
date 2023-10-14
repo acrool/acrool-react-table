@@ -1,7 +1,7 @@
 # Bear React Table
 
-<a href="https://bear-react-table.pages.dev/" title="Bear table Logo - CSS Gird Of React Table Design">
-    <img src="https://bear-react-table.pages.dev/img/banner.webp" alt="Bear React table Logo - CSS Gird Of React Table Design"/>
+<a href="https://bear-react-table.pages.dev/" title="Bear React Table - CSS Gird Of React Table Design">
+    <img src="https://bear-react-table.pages.dev/img/banner.webp" alt="Bear React table Logo"/>
 </a>
 
 <p align="center">
