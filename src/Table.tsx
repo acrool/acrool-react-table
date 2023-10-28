@@ -67,7 +67,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      */
     const handleOnResize = () => {
         if(tableRef.current){
-            console.log('tableRef.current.dataset[\'mode\']', tableRef.current.dataset['mode']);
             if(window.innerWidth <= tableCellMediaSize){
                 if(tableRef.current.dataset['mode'] === 'table'){
                     tableRef.current.dataset['mode'] = 'cell';
