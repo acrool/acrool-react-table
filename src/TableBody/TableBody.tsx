@@ -1,5 +1,4 @@
 import React, {Fragment, useState, MouseEvent, CSSProperties} from 'react';
-import cx from 'classnames';
 import {removeByIndex} from 'bear-jsutils/array';
 import {isNotEmpty} from 'bear-jsutils/equal';
 
@@ -84,7 +83,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         ...curr,
                         <td
                             key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
-                            className={cx(titleRow.className)}
+                            className={titleRow.className}
                             // aria-label={titleRow.text}
                             data-align={fieldConfig?.dataAlign}
                             data-vertical={titleRow?.dataVertical}

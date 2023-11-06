@@ -8,7 +8,8 @@
     user-select: none;
 }
 
-.bear-react-table__root{
+.bear-react-table__root,
+.bear-react-table__paginate {
 
     --line-height: 50px;
     --border-radius: .4rem;
@@ -37,7 +38,8 @@
     --tr-even-bg-hover-color: rgb(236, 236, 236);
 }
 
-.bear-react-table__root.dark-theme {
+.bear-react-table__root.dark-theme,
+.bear-react-table__paginate.dark-theme {
     --bg-color: #2b3035;
     --text-color: rgb(154, 160, 172);
     --text-contrast-color: #fff;

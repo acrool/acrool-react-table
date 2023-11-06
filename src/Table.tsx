@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, CSSProperties, useCallback} from 'react';
-import cx from 'classnames';
 
 import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
 import TableHeader from './TableHeader';
@@ -11,6 +10,7 @@ import {getTemplate, getColSpan} from './utils';
 
 import './styles.css';
 import {useWindowResizeEffect} from './hooks';
+import clsx from 'clsx';
 
 
 
@@ -209,6 +209,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         }
 
         return <TablePaginate
+            isDark={isDark}
             meta={meta}
             info={paginateInfo}
             onChangePage={handleOnChangePage}
@@ -218,7 +219,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
 
     return (
-        <div className={cx(
+        <div className={clsx(
             elClassNames.root,
             className,
             {'dark-theme': isDark},

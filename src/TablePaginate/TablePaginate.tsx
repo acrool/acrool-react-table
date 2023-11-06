@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import elClassNames from '../el-class-names';
-import {IPage, IPaginateInfo} from '../types';
+import {IPage, IPaginateInfo, TOnChangePage} from '../types';
 import Select from './_components/Select';
+import clsx from 'clsx';
 
 
 interface IProps {
+    isDark?: boolean
     meta: Required<IPage>
-    info: IPaginateInfo;
-    onChangePage: (paginateMeta: Required<IPage>) => void;
-    pageLimitOptions: number[];
+    info?: IPaginateInfo
+    onChangePage: (paginateMeta: Required<IPage>) => void
+    pageLimitOptions: number[]
 }
 
 
@@ -18,13 +20,14 @@ interface IProps {
  * Table Footer
  */
 const TablePaginate = ({
+    isDark = false,
     meta,
     info = {
         totalItems: 0,
         totalPages: 1,
     },
     onChangePage,
-    pageLimitOptions
+    pageLimitOptions = [8, 40, 72, 150],
 }: IProps) => {
 
 
@@ -33,7 +36,6 @@ const TablePaginate = ({
         start: ((meta.currentPage-1) * meta.pageLimit) + 1,
         end: end > info.totalItems ? info.totalItems : end,
     };
-
 
 
     /**
@@ -153,7 +155,7 @@ const TablePaginate = ({
 
 
     return (
-        <div className={elClassNames.paginate}>
+        <div className={clsx(elClassNames.paginate, {'dark-theme': isDark} )}>
             {renderInfo()}
             {renderLimit()}
             {renderNav()}

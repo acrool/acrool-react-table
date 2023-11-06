@@ -1,7 +1,7 @@
 import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 
-import Table, {TOnChangePage, IPaginateMeta, genericsTitleData} from 'bear-react-table';
+import Table, {TablePaginate, TOnChangePage, IPaginateMeta, genericsTitleData} from 'bear-react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
@@ -9,6 +9,7 @@ import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
+import {IPage, IPaginateInfo} from '../../src';
 
 
 
@@ -150,64 +151,77 @@ function App() {
                     </div>
 
                     <div style={{backgroundColor: '#000', flex: 1, padding: '20px'}}>
-                        <Table
-                            isDark
-                            isFetching={isFetching}
-                            gap="8px"
-                            isStickyHeader
-                            // isVisibleBorder={false}
-                            isVisibleVerticalBorder
-                            isOverflow
-                            isEnableHover={false}
-                            title={{
-                                plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-                                amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
-                                role:     {text: 'Role',   col: '120px'},
-                                createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
-                                joined:  {text: 'Joined',  col: '80px'},
-                            }}
-                            tableCellMediaSize={768}
-                            footer={{
-                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                                name: {value: 'Total'},
-                                amount: {value: calcAmount(data), dataAlign: 'right'},
-                            }}
-                            data={paginateData.map((row, index) => {
-                                return {
-                                    id: row.id,
-                                    detail: <>
-                                        <div>{row.name}</div>
-                                        <div>{row.amount}</div>
-                                        <div>{row.role}</div>
-                                    </>,
-                                    onClickRow: () => console.log(`click row id: ${row.id}`),
-                                    field: {
-                                        plus: (args) => <CollapseButton
-                                            type="button" onClick={args.collapse}
-                                            data-active={args.isActive ? '':undefined}
-                                        >
-                                            {args.isActive ? '-': '+'}
-                                        </CollapseButton>,
-                                        avatar: <Avatar src={row.avatar}/>,
-                                        // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
-                                        name: row.name,
-                                        role: row.role,
-                                        createdAt: dayjs(row.createdAt).format('MM/DD'),
-                                        joined: row.isJoined ? 'Y':'N',
-                                        amount: {
-                                            colSpan: index === 0 ? 4: 1,
-                                            dataAlign: index === 0 ? 'center': 'right',
-                                            value: `$ ${formatCurrency(row.amount)}`,
+                        <TableProvider>
+
+                            <Table
+                                isDark
+                                isFetching={isFetching}
+                                gap="8px"
+                                isStickyHeader
+                                // isVisibleBorder={false}
+                                isVisibleVerticalBorder
+                                isOverflow
+                                isEnableHover={false}
+                                title={{
+                                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                                    name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+                                    amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
+                                    role:     {text: 'Role',   col: '120px'},
+                                    createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+                                    joined:  {text: 'Joined',  col: '80px'},
+                                }}
+                                tableCellMediaSize={768}
+                                footer={{
+                                    // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                                    name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                                    amount: {value: calcAmount(data), dataAlign: 'right'},
+                                }}
+                                data={paginateData.map((row, index) => {
+                                    return {
+                                        id: row.id,
+                                        detail: <>
+                                            <div>{row.name}</div>
+                                            <div>{row.amount}</div>
+                                            <div>{row.role}</div>
+                                        </>,
+                                        onClickRow: () => console.log(`click row id: ${row.id}`),
+                                        field: {
+                                            plus: (args) => <CollapseButton
+                                                type="button" onClick={args.collapse}
+                                                data-active={args.isActive ? '':undefined}
+                                            >
+                                                {args.isActive ? '-': '+'}
+                                            </CollapseButton>,
+                                            avatar: <Avatar src={row.avatar}/>,
+                                            // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
+                                            name: row.name,
+                                            role: row.role,
+                                            createdAt: dayjs(row.createdAt).format('MM/DD'),
+                                            joined: row.isJoined ? 'Y':'N',
+                                            amount: {
+                                                colSpan: index === 0 ? 4: 1,
+                                                dataAlign: index === 0 ? 'center': 'right',
+                                                value: `$ ${formatCurrency(row.amount)}`,
+                                            },
                                         },
-                                    },
-                                };
-                            })}
-                            onChangePage={handleFetchPaginate}
-                            paginateMeta={paginateMeta}
-                            paginateInfo={paginateInfo}
-                        />
+                                    };
+                                })}
+                                isVisiblePaginate={false}
+                                // onChangePage={handleFetchPaginate}
+                                // paginateMeta={paginateMeta}
+                                // paginateInfo={paginateInfo}
+                            />
+
+                            <hr/>
+                            extend Paginate
+                            <TablePaginate
+                                isDark
+                                meta={paginateMeta}
+                                info={paginateInfo}
+                                onChangePage={handleFetchPaginate}
+                            />
+                        </TableProvider>
 
                     </div>
                 </TableContainer>
