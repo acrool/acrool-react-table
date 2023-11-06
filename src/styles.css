@@ -149,12 +149,19 @@
     font-size: 14px;
 }
 .bear-react-table__root[data-border] thead th,
-.bear-react-table__root[data-border] tfoot td,
 .bear-react-table__root[data-border] tbody td,
 .bear-react-table__root[data-border] tbody th{
     border-bottom: 1px solid var(--border-color);
 }
-
+.bear-react-table__root[data-border]:not([data-footer]) tbody tr:last-child td {
+    border: none;
+}
+.bear-react-table__root[data-border]:not([data-footer]) tr:last-child td:last-child{
+    border-bottom-right-radius: var(--border-radius);
+}
+.bear-react-table__root[data-border]:not([data-footer]) tr:last-child td:first-child{
+    border-bottom-left-radius: var(--border-radius);
+}
 .bear-react-table__root td[data-align="left"],
 .bear-react-table__root th[data-align="left"]{
     justify-content: flex-start;
