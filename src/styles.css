@@ -75,14 +75,15 @@
     border-collapse: collapse;
     grid-template-columns: var(--grid-template);
     grid-template-rows: 1fr;
-
-    overflow: auto; /* overflow mode; */
 }
 .bear-react-table__root[data-border] table{
     border: 1px solid var(--border-color);
 }
+.bear-react-table__root[data-overflow] table {
+    overflow: auto;
+}
 .bear-react-table__root[data-sticky] table {
-    overflow: unset;
+    overflow: visible;
 }
 
 @media print{

@@ -43,6 +43,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isEnableHover = true,
     isEnableOddEven = true,
     isEnableChangePageScrollTop = true,
+    isOverflow = true,
     isStickyHeader = false,
     tableCellMediaSize,
     onChangePage,
@@ -227,6 +228,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         data-hover={!!isEnableHover ? '': undefined}
+        data-overflow={!!isOverflow ? '': undefined}
         data-sticky={!!isStickyHeader ? '': undefined}
         data-odd-even={!!isEnableOddEven ? '': undefined}
         data-border={!!isVisibleBorder ? '': undefined}

@@ -157,7 +157,7 @@ function App() {
                             isStickyHeader
                             // isVisibleBorder={false}
                             isVisibleVerticalBorder
-                            // isOverflow
+                            isOverflow
                             isEnableHover={false}
                             title={{
                                 plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
