@@ -64,6 +64,8 @@
     color: var(--text-color);
     font-size: 13px;
     text-align: left;
+
+    filter: grayscale(0);
 }
 
 .bear-react-table__root table {
@@ -87,6 +89,30 @@
 .bear-react-table__root[data-sticky] table {
     overflow: visible;
 }
+.bear-react-table__root[data-fetching] table{
+    position: relative;
+}
+.bear-react-table__root table:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    pointer-events: none;
+    background-color: transparent;
+    transition: background-color .2s, opacity .2s;
+}
+
+.bear-react-table__root[data-fetching] table:after{
+    z-index: 5;
+    background-color: var(--bg-color);
+    opacity: .3;
+    border-radius: var(--border-radius);
+}
+
+
 
 @media print{
     .bear-react-table__root table {
@@ -304,16 +330,25 @@
 .bear-react-table__root tbody[data-no-data] td{
     align-items: center;
     justify-content: center;
-
+    min-height: 105px;
 }
 
-.bear-react-table__root tbody[data-loading] tr,
-.bear-react-table__root tbody[data-no-data] tr{
-    min-height: 65px;
-}
 
 .bear-react-table__loading-text{
-    text-align: center;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 15px;
+    border-radius: var(--border-radius);
+    z-index: 5;
+
 }
 
 .bear-react-table__not-data{

@@ -9,7 +9,6 @@ import './bootstrap-base.min.css';
 import 'bear-react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
-import {IPage, IPaginateInfo} from '../../src';
 
 
 

@@ -168,11 +168,17 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生表格內容
      */
     const renderBody = () => {
-        if(isFetching){
-            return renderLoading();
-        }
+
 
         if(!data || data?.length === 0){
+            if(isFetching){
+                return <tbody data-loading="">
+                    <tr>
+                        <td {...getColSpan(Object.keys(title).length)}>Loading...</td>
+                    </tr>
+                </tbody>;
+            }
+
             return renderCustomNoData();
         }
 
@@ -186,9 +192,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生表格內容
      */
     const renderFooter = () => {
-        if(isFetching){
-            return null;
-        }
+
         if(!!footer === false){
             return null;
         }
@@ -226,6 +230,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         )}
         ref={tableRef}
         data-mode="table"
+        data-fetching={isFetching ? '': undefined}
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         data-hover={!!isEnableHover ? '': undefined}
@@ -251,6 +256,13 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
                 {/* Footer */}
                 {renderFooter()}
+
+
+                {isFetching && data?.length > 0 && (
+                    <div className="bear-react-table__loading-text">
+                        Loading...
+                    </div>
+                )}
             </table>
 
             {/* Paginate */}
