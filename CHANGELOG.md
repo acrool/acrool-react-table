@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.5-alpha.3](https://github.com/imagine10255/bear-react-table/compare/v4.3.5-alpha.2...v4.3.5-alpha.3) (2023-11-06)
+
+
+### Features
+
+* add export TablePaginate ([2903491](https://github.com/imagine10255/bear-react-table/commit/29034912fd380c18c0f76b7a556f5c0a1fc14525))
+* add isOverflow props ([51612d2](https://github.com/imagine10255/bear-react-table/commit/51612d21f129674c565f43f294661ad5317248f8))
+
 ### [4.3.5-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v4.3.5-alpha.1...v4.3.5-alpha.2) (2023-10-28)
 
 
