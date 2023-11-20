@@ -130,7 +130,9 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             let ignore = 0;
 
             const tds = Object.keys(title)?.reduce((curr: JSX.Element[], titleKey) => {
-                const config = typeof dataRow.field[titleKey] === 'object' && 'value' in dataRow.field[titleKey] ? dataRow.field[titleKey]: undefined;
+                const config = typeof dataRow.field[titleKey] === 'object' &&
+                    (dataRow.field[titleKey] !== null && 'value' in dataRow.field[titleKey]) ?
+                    dataRow.field[titleKey]: undefined;
                 const titleRow = title[titleKey];
 
                 const fieldConfig = {
