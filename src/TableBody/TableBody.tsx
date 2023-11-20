@@ -162,7 +162,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
                 const children = typeof field === 'function' ?
                     field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
-                    typeof field === 'object' && 'value' in field ? field.value:
+                    typeof field === 'object' && field !== null && 'value' in field ? field.value:
                         field;
 
                 const args = {
