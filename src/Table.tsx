@@ -256,14 +256,13 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
                 {/* Footer */}
                 {renderFooter()}
-
-
-                {isFetching && data?.length > 0 && (
-                    <div className="bear-react-table__loading-text">
-                        Loading...
-                    </div>
-                )}
             </table>
+
+            {isFetching && data?.length > 0 && (
+                <div className="bear-react-table__loading-text">
+                    Loading...
+                </div>
+            )}
 
             {/* Paginate */}
             {renderPaginate()}
