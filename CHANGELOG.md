@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.6-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.3.5...v4.3.6-alpha.0) (2023-12-05)
+
+
+### Bug Fixes
+
+* fix table add loading div format ([7aa9da6](https://github.com/imagine10255/bear-react-table/commit/7aa9da60a1bbd3ee76eaecde6aab00ec2c377cc7))
+
 ### [4.3.5](https://github.com/imagine10255/bear-react-table/compare/v4.3.5-alpha.6...v4.3.5) (2023-11-22)
 
 ### [4.3.5-alpha.6](https://github.com/imagine10255/bear-react-table/compare/v4.3.5-alpha.5...v4.3.5-alpha.6) (2023-11-20)
