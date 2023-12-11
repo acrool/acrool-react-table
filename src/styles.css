@@ -275,7 +275,7 @@
 }
 .bear-react-table__root thead th[aria-sort="ascending"] .bear-react-table__sort-column:after,
 .bear-react-table__root thead th[aria-sort="descending"] .bear-react-table__sort-column:before{
-    opacity: .6;
+    opacity: 1;
     color: var(--sort-column);
 }
 
