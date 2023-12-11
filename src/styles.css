@@ -22,6 +22,7 @@
 
     --bg-color: #fff;
     --text-color: #000;
+    --sort-column: #000;
     --text-contrast-color: #fff;
     --page-text-color: rgb(170, 170, 170);
     --page-bg-color: #efefef;
@@ -42,6 +43,7 @@
     --bg-color: #2b3035;
     --text-color: rgb(154, 160, 172);
     --text-contrast-color: #fff;
+    --sort-column: #fff;
 
     --page-text-color: rgb(125, 132, 144);
     --page-bg-color: #495057;
@@ -178,7 +180,8 @@
 .bear-react-table__root[data-border] tbody th{
     border-bottom: 1px solid var(--border-color);
 }
-.bear-react-table__root[data-border]:not([data-footer]) tbody tr:last-child td {
+.bear-react-table__root[data-border]:not([data-footer]) tbody tr:last-child td,
+.bear-react-table__root[data-border]:not([data-footer]) tbody tr:last-child th{
     border: none;
 }
 .bear-react-table__root[data-border]:not([data-footer]) tr:last-child td:last-child{
@@ -273,6 +276,7 @@
 .bear-react-table__root thead th[aria-sort="ascending"] .bear-react-table__sort-column:after,
 .bear-react-table__root thead th[aria-sort="descending"] .bear-react-table__sort-column:before{
     opacity: .6;
+    color: var(--sort-column);
 }
 
 

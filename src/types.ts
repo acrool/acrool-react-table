@@ -86,7 +86,7 @@ export interface IPage {
 }
 export interface IOrder {
     orderField: string,
-    orderBy: 'DESC'|'ASC',
+    orderBy: string,
 }
 
 export interface IPaginateMeta extends Required<IPage> {
