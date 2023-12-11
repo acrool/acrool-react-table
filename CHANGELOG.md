@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.6-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.0...v4.3.6-alpha.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* fix not footer border, orderBy change to string (ASC|DESC) ([4252a29](https://github.com/imagine10255/bear-react-table/commit/4252a29f99bdc1b191d6a0e032f8fca7be8ffcee))
+
 ### [4.3.6-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.3.5...v4.3.6-alpha.0) (2023-12-05)
 
 
