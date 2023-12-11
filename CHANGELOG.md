@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.6-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.1...v4.3.6-alpha.2) (2023-12-11)
+
+
+### Features
+
+* modify order active color ([6973607](https://github.com/imagine10255/bear-react-table/commit/697360711c98b0c996469f1c5cce68e736f3764e))
+
 ### [4.3.6-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.0...v4.3.6-alpha.1) (2023-12-11)
 
 
