@@ -250,7 +250,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
             {isFetching && data?.length > 0 && (
                 <div className="bear-react-table__loading-text">
-                    Loading...
+                    {renderFetching}
                 </div>
             )}
 
