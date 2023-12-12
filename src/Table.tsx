@@ -50,6 +50,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     pageLimitOptions = [8, 40, 72, 150],
 
     renderNoData,
+    renderFetching = 'Loading...',
 }: ITableProps<I, K>) => {
 
     const meta = {
@@ -120,17 +121,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
 
     /**
-     * 產生讀取中樣式
-     */
-    const renderLoading = () => {
-        return <tbody data-loading="">
-            <tr>
-                <td {...getColSpan(Object.keys(title).length)}>Loading...</td>
-            </tr>
-        </tbody>;
-    };
-
-    /**
      * 產生沒資料時的顯示
      */
     const renderCustomNoData = () => {
@@ -138,7 +128,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             <tr>
                 <td {...getColSpan(Object.keys(title).length)}>
                     {!!renderNoData ?
-                        renderNoData() : <div className={elClassNames.notData}>
+                        renderNoData : <div className={elClassNames.notData}>
                             <div className={elClassNames.notDataTitle}>Not Found</div>
                             <div className={elClassNames.notDataDesc}>Choose a different filter to view results</div>
                         </div>
@@ -174,7 +164,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             if(isFetching){
                 return <tbody data-loading="">
                     <tr>
-                        <td {...getColSpan(Object.keys(title).length)}>Loading...</td>
+                        <td {...getColSpan(Object.keys(title).length)}>{renderFetching}</td>
                     </tr>
                 </tbody>;
             }

@@ -129,5 +129,6 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     onChangePage?: TOnChangePage
     pageLimitOptions?: number[]
 
-    renderNoData?: () => JSX.Element
+    renderNoData?: JSX.Element|string
+    renderFetching?: JSX.Element|string
 }
