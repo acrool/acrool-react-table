@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.6-alpha.3](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.2...v4.3.6-alpha.3) (2023-12-12)
+
+
+### Features
+
+* add renderFetching props ([c77fa47](https://github.com/imagine10255/bear-react-table/commit/c77fa47ef1fc38aceea73e796a93c2ccd96063dd))
+
 ### [4.3.6-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.1...v4.3.6-alpha.2) (2023-12-11)
 
 
