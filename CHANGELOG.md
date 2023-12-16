@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.6](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.4...v4.3.6) (2023-12-16)
+
+
+### Features
+
+* add locle setting ([91c0a3c](https://github.com/imagine10255/bear-react-table/commit/91c0a3cbf8583ea0bbce290b88ede5721f03df09))
+
 ### [4.3.6-alpha.4](https://github.com/imagine10255/bear-react-table/compare/v4.3.6-alpha.3...v4.3.6-alpha.4) (2023-12-12)
 
 
