@@ -104,6 +104,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     className?: string
     style?: CSS.Properties
     isDark?: boolean
+    locale?: string
     isFetching?: boolean
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]

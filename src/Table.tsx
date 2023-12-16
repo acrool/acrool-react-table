@@ -22,6 +22,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     className,
     style,
     isDark,
+    locale = 'en-US',
     isFetching = false,
     title,
     data,
@@ -204,6 +205,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
         return <TablePaginate
             isDark={isDark}
+            locale={locale}
             meta={meta}
             info={paginateInfo}
             onChangePage={handleOnChangePage}

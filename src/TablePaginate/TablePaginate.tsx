@@ -5,10 +5,12 @@ import elClassNames from '../el-class-names';
 import {IPage, IPaginateInfo, TOnChangePage} from '../types';
 import Select from './_components/Select';
 import clsx from 'clsx';
+import useLocale from '../locales';
 
 
 interface IProps {
     isDark?: boolean
+    locale?: string
     meta: Required<IPage>
     info?: IPaginateInfo
     onChangePage: (paginateMeta: Required<IPage>) => void
@@ -21,6 +23,7 @@ interface IProps {
  */
 const TablePaginate = ({
     isDark = false,
+    locale,
     meta,
     info = {
         totalItems: 0,
@@ -29,7 +32,9 @@ const TablePaginate = ({
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
 }: IProps) => {
+    const {i18n} = useLocale(locale);
 
+    console.log('locale', locale);
 
     const end = meta.currentPage * meta.pageLimit;
     const paginateInfo = {
@@ -105,7 +110,7 @@ const TablePaginate = ({
                 disabled={meta.currentPage <= 1}
                 onClick={() => handleChangePage(meta.currentPage - 1)}
             >
-                Prev
+                {i18n('com.table.prev', {def: 'Prev'})}
             </button>
 
             {buttonPageDom}
@@ -117,7 +122,7 @@ const TablePaginate = ({
                 disabled={meta.currentPage >= totalPages}
                 onClick={() => handleChangePage(meta.currentPage + 1)}
             >
-                Next
+                {i18n('com.table.next', {def: 'Next'})}
             </button>
 
             <button
@@ -138,8 +143,15 @@ const TablePaginate = ({
 
     const renderInfo = () => {
         return <div className={elClassNames.paginateInfo}>
-            Show {formatCurrency(paginateInfo.start)} - {formatCurrency(paginateInfo.end)} item,
-            Total {formatCurrency(info.totalItems)} item / {formatCurrency(info?.totalPages)} Page
+            {i18n('com.table.showPage', {args: {
+                start: formatCurrency(paginateInfo.start),
+                end: formatCurrency(paginateInfo.end),
+            }})}
+
+            {i18n('com.table.totalPage', {args: {
+                totalItem: formatCurrency(info.totalItems),
+                totalPage: formatCurrency(info?.totalPages),
+            }})}
         </div>;
     };
 
@@ -147,8 +159,8 @@ const TablePaginate = ({
         return <Select
             onChange={value => handleChangePageLimit(Number(value))}
             value={String(meta.pageLimit)}
-            options={pageLimitOptions.map(page => {
-                return {text: `${page}/Page`, value: String(page)};
+            options={pageLimitOptions.map(item => {
+                return {text: i18n('com.table.pageLimit', {args: {item: item}}), value: String(item)};
             })}
         />;
     };

@@ -130,6 +130,7 @@ function App() {
                     <div style={{backgroundColor: '#fff', flex: 1, padding: '20px'}}>
                         <Table
                             isDark={false}
+                            locale="ja-JP"
                             isFetching={isFetching}
                             gap="8px"
                             // isVisibleHeader={false}
@@ -153,6 +154,7 @@ function App() {
 
                         <Table
                             isDark
+                            locale="zh-TW"
                             isFetching={isFetching}
                             gap="8px"
                             isStickyHeader
@@ -214,6 +216,7 @@ function App() {
                             extend Paginate
                         <TablePaginate
                             isDark
+                            locale="zh-TW"
                             meta={paginateMeta}
                             info={paginateInfo}
                             onChangePage={handleFetchPaginate}
