@@ -34,7 +34,6 @@ const TablePaginate = ({
 }: IProps) => {
     const {i18n} = useLocale(locale);
 
-    console.log('locale', locale);
 
     const end = meta.currentPage * meta.pageLimit;
     const paginateInfo = {
