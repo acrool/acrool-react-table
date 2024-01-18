@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.8](https://github.com/imagine10255/bear-react-table/compare/v4.3.8-alpha.2...v4.3.8) (2024-01-18)
+
 ### [4.3.8-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v4.3.8-alpha.1...v4.3.8-alpha.2) (2024-01-18)
 
 
