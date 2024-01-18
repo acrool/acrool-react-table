@@ -33,9 +33,9 @@ yarn add bear-react-table
 
 ## Usage
 
-add in your index.tsx
+add in your main.tsx
 ```tst
-import "bear-react-table/dist/index.css";
+import 'bear-react-table/dist/index.css';
 
 ```
 
