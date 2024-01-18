@@ -45,6 +45,7 @@
     "release:alpha": "standard-version --prerelease alpha"
   },
   "dependencies": {
+    "@types/throttle-debounce": "^5.0.2",
     "react": "^18.x",
     "react-dom": "^18.x"
   },
@@ -54,7 +55,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "bear-jsutils": "3.1.6",
+    "bear-jsutils": "3.2.0-alpha.4",
     "clsx": "^2.0.0",
     "cz-git": "^1.6.1",
     "eslint": "^8.37.0",

@@ -1,9 +1,10 @@
 import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody} from './types';
 import {CSSProperties} from 'react';
+import {objectKeys} from 'bear-jsutils/object';
 
 
 export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: string): CSSProperties => {
-    const frs = Object.keys(titles).map(titleKey => {
+    const frs = objectKeys(titles).map(titleKey => {
         const row = titles[titleKey];
 
         if(typeof row.col === 'number'){

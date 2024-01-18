@@ -1,8 +1,16 @@
-import React, {Fragment, useState, MouseEvent, CSSProperties} from 'react';
+import React, {Fragment, useState, MouseEvent, CSSProperties, ReactNode} from 'react';
 import {removeByIndex} from 'bear-jsutils/array';
 import {isNotEmpty} from 'bear-jsutils/equal';
+import {objectKeys} from 'bear-jsutils/object';
 
-import {ITableBody, TBodyDataID, TTableTitle, TBodyDataFieldKey, TLineHeight} from '../types';
+import {
+    ITableBody,
+    TBodyDataID,
+    TTableTitle,
+    TBodyDataFieldKey,
+    TBodyDataField,
+    TCollapseEvent
+} from '../types';
 import {getColSpan} from '../utils';
 
 
@@ -27,7 +35,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
      * 處理開關明細
      * @param id
      */
-    const handleSetCollapse = (id: I) => {
+    const handleSetCollapse = (id: I): TCollapseEvent => {
         return (event?: MouseEvent) => {
             event?.stopPropagation();
 
@@ -60,39 +68,40 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             return dataRow.detail.data.map((detailFields, detailIndex) => {
                 let ignore = 0;
 
-                const tds = Object.keys(title)?.reduce((curr: JSX.Element[], titleKey) => {
-                    const titleRow = title[titleKey];
+                const tds = objectKeys(title)
+                    ?.reduce((curr: JSX.Element[], titleKey) => {
+                        const titleRow = title[titleKey];
 
-                    const fieldConfig = {
-                        ...titleRow,
-                        ...config[titleKey],
-                    };
-                    const fieldValue = detailFields[titleKey];
-                    const colSpan = fieldConfig?.colSpan ?? 1;
+                        const fieldConfig = {
+                            ...titleRow,
+                            ...config[titleKey],
+                        };
+                        const fieldValue = detailFields[titleKey];
+                        const colSpan = fieldConfig?.colSpan ?? 1;
 
-                    if(ignore > 0){
-                        ignore -= 1;
-                        return curr;
-                    }
+                        if(ignore > 0){
+                            ignore -= 1;
+                            return curr;
+                        }
 
-                    if(colSpan > 1){
-                        ignore = colSpan - 1;
-                    }
+                        if(colSpan > 1){
+                            ignore = colSpan - 1;
+                        }
 
-                    return [
-                        ...curr,
-                        <td
-                            key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
-                            className={titleRow.className}
-                            // aria-label={titleRow.text}
-                            data-align={fieldConfig?.dataAlign}
-                            data-vertical={titleRow?.dataVertical}
-                            {...getColSpan(colSpan)}
-                        >
-                            {fieldValue}
-                        </td>
-                    ];
-                }, []);
+                        return [
+                            ...curr,
+                            <td
+                                key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
+                                className={titleRow.className}
+                                // aria-label={titleRow.text}
+                                data-align={fieldConfig?.dataAlign}
+                                data-vertical={titleRow?.dataVertical}
+                                {...getColSpan(colSpan)}
+                            >
+                                {fieldValue}
+                            </td>
+                        ];
+                    }, []);
 
                 return <tr
                     key={`tbodyDetailTr_${dataRow.id}_${detailIndex}`}
@@ -113,6 +122,43 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
     /**
+     * 取得資料內容
+     * @param field
+     * @param isActive
+     * @param collapse
+     */
+    const getBodyData = (field: TBodyDataField<K>[K], isActive: boolean, collapse: TCollapseEvent) => {
+        if(typeof field === 'function'){
+            return field({isActive, collapse});
+        }
+
+        if(typeof field === 'boolean'){
+            return String(field);
+        }
+
+        if(typeof field === 'object' && field !== null && 'value' in field){
+            return field.value;
+        }
+
+        return field as ReactNode;
+    };
+
+
+    /**
+     * 取得欄位設定
+     * @param titleField
+     */
+    const getConfig = (titleField: TBodyDataField<K>[K]) => {
+        if(typeof titleField === 'object' &&
+            (titleField !== null && 'value' in titleField)
+        ){
+            return titleField;
+        }
+        return undefined;
+    };
+
+
+    /**
      * 產生表格內容
      */
     const renderBodyData = () => {
@@ -129,57 +175,57 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
             let ignore = 0;
 
-            const tds = Object.keys(title)?.reduce((curr: JSX.Element[], titleKey) => {
-                const config = typeof dataRow.field[titleKey] === 'object' &&
-                    (dataRow.field[titleKey] !== null && 'value' in dataRow.field[titleKey]) ?
-                    dataRow.field[titleKey]: undefined;
-                const titleRow = title[titleKey];
+            const tds = objectKeys(title)
+                ?.reduce((curr: JSX.Element[], titleKey) => {
+                    const titleField = dataRow.field[titleKey];
+                    const config = getConfig(titleField);
 
-                const fieldConfig = {
-                    ...titleRow,
-                    ...config,
-                };
-                const field = dataRow.field[titleKey];
-                const colSpan = fieldConfig?.colSpan ?? 1;
+                    const titleRow = title[titleKey];
 
-                if(ignore > 0){
-                    ignore -= 1;
-                    return curr;
-                }
+                    const fieldConfig = {
+                        ...titleRow,
+                        ...config,
+                    };
+                    const field = dataRow.field[titleKey];
+                    const colSpan = fieldConfig?.colSpan ?? 1;
 
-                if(colSpan > 1){
-                    ignore = colSpan - 1;
-                }
+                    if(ignore > 0){
+                        ignore -= 1;
+                        return curr;
+                    }
+
+                    if(colSpan > 1){
+                        ignore = colSpan - 1;
+                    }
 
 
-                const isTh = cellTdIndex === 0;
+                    const isTh = cellTdIndex === 0;
 
-                let nthType = undefined;
-                if(isNotEmpty(field)){
-                    nthType = cellTdIndex % 2 === 0 ? 'odd': 'even';
-                    cellTdIndex = cellTdIndex + 1;
-                }
+                    let nthType = undefined;
+                    if(isNotEmpty(field)){
+                        nthType = cellTdIndex % 2 === 0 ? 'odd': 'even';
+                        cellTdIndex = cellTdIndex + 1;
+                    }
 
-                const children = typeof field === 'function' ?
-                    field({isActive: collapseIds.includes(dataRow.id), collapse: collapseEvent}):
-                    typeof field === 'object' && field !== null && 'value' in field ? field.value:
-                        field;
 
-                const args = {
-                    key: `tbodyTd_${dataRow.id}_${titleKey}`,
-                    className: titleRow.className,
-                    'aria-label': titleRow.text,
-                    'data-nth-type': nthType,
-                    'data-align': fieldConfig?.dataAlign,
-                    'data-vertical': titleRow?.dataVertical,
-                    ...getColSpan(colSpan),
-                    children,
-                };
-                return [
-                    ...curr,
-                    isTh ? <th {...args}/>: <td {...args}/>,
-                ];
-            }, []);
+                    const children = getBodyData(field, collapseIds.includes(dataRow.id), collapseEvent);
+
+
+                    const args = {
+                        key: `tbodyTd_${dataRow.id}_${titleKey}`,
+                        className: titleRow.className,
+                        'ariaLabel': titleRow.text,
+                        'data-nth-type': nthType,
+                        'data-align': fieldConfig?.dataAlign,
+                        'data-vertical': titleRow?.dataVertical,
+                        ...getColSpan(colSpan),
+                        children,
+                    };
+                    return [
+                        ...curr,
+                        isTh ? <th {...args}/>: <td {...args}/>,
+                    ];
+                }, []);
 
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
@@ -192,7 +238,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     }}
                     data-disabled={dataRow.disabled}
                     data-nth-type={index % 2 === 0 ? 'odd': 'even'}
-                    role={dataRow.onClickRow ? 'button':undefined}
+                    role={dataRow.onClickRow ? 'button': undefined}
                 >
                     {tds}
                 </tr>

@@ -43,22 +43,38 @@ then in your page
 ```tsx
 import {Table} from 'bear-react-table';
 
+
+const data = [
+    {id: 1, text: 'Imagine', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-1.jpg'},
+    {id: 1, text: 'Gary', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-2.jpg'},
+    {id: 1, text: 'Selin', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-3.jpg'},
+    {id: 1, text: 'Amy', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-4.jpg'},
+    {id: 1, text: 'Keria', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-5.jpg'},
+];
+
 const BaseUsed = () => {
-    return  <Table
-        title={{
-            avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-            name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-        }}
-        data={data.map(row => {
-            return {
-                id: row.id,
-                field: {
-                    avatar: <Avatar src={row.avatar}/>,
-                    name: row.name,
-                },
-            };
-        })}
-    />
+    
+    const renderTable = () => {
+        return <Table
+            title={{
+                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+            }}
+            data={data.map(row => {
+                return {
+                    id: row.id,
+                    field: {
+                        avatar: <Avatar src={row.avatar}/>,
+                        name: row.name,
+                    },
+                };
+            })}
+        />;
+    }
+    
+    return <div>
+        {renderTable()}
+    </div>;
 };
 ```
 

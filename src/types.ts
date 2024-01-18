@@ -39,7 +39,7 @@ type TFieldValue = string | number | JSX.Element;
 interface TFieldFuncArgs {isActive: boolean, collapse: MouseEventHandler}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
-type TBodyDataField<K extends TBodyDataFieldKey> = {
+export type TBodyDataField<K extends TBodyDataFieldKey> = {
     [P in K]: TFieldValue | TFieldFunc | { value: TFieldValue } & IConfig;
 }
 
@@ -95,7 +95,7 @@ export interface IPaginateMeta extends Required<IPage> {
 
 export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
 
-
+export type TCollapseEvent = (e: MouseEvent) => void
 
 /** -------------------------------
  *             Table

@@ -1,6 +1,6 @@
 import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, TSizeUnit, TLineHeight} from '../types';
-import {CSSProperties} from 'react';
 import elClassNames from '../el-class-names';
+import {objectKeys} from 'bear-jsutils/object';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -21,31 +21,32 @@ const TableHeader = <K extends TBodyDataFieldKey>({
 }: IProps<K>) => {
 
     const renderTitle = () => {
-        return Object.keys(title).map(titleKey => {
-            const titleRow = title[titleKey];
-            const isEnableSort = titleRow.isEnableSort;
-            const sortType = order?.orderField === titleKey && order?.orderBy === 'ASC' ? 'ascending':
-                order?.orderField === titleKey && order?.orderBy === 'DESC' ? 'descending':
-                    undefined;
+        return objectKeys(title)
+            .map(titleKey => {
+                const titleRow = title[titleKey];
+                const isEnableSort = titleRow.isEnableSort;
+                const sortType = order?.orderField === titleKey && order?.orderBy === 'ASC' ? 'ascending':
+                    order?.orderField === titleKey && order?.orderBy === 'DESC' ? 'descending':
+                        undefined;
 
-            return (
-                <th
-                    key={`columnTitle_${titleKey}`}
-                    data-align={titleRow.titleAlign}
-                    aria-sort={sortType}
-                    data-enable-sort={isEnableSort ? '': undefined}
-                    onClick={isEnableSort ? () => {
-                        onChangeSortField({
-                            orderField: titleKey,
-                            orderBy: (order?.orderBy === 'DESC' && order.orderField === titleKey) ? 'ASC':'DESC',
-                        });
-                    }: undefined}
-                >
-                    {titleRow.text}
-                    <div className={elClassNames.sortColumn}/>
-                </th>
-            );
-        });
+                return (
+                    <th
+                        key={`columnTitle_${titleKey}`}
+                        data-align={titleRow.titleAlign}
+                        aria-sort={sortType}
+                        data-enable-sort={isEnableSort ? '': undefined}
+                        onClick={isEnableSort ? () => {
+                            onChangeSortField({
+                                orderField: titleKey,
+                                orderBy: (order?.orderBy === 'DESC' && order.orderField === titleKey) ? 'ASC':'DESC',
+                            });
+                        }: undefined}
+                    >
+                        {titleRow.text}
+                        <div className={elClassNames.sortColumn}/>
+                    </th>
+                );
+            });
 
     };
 
