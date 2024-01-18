@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.8-alpha.2](https://github.com/imagine10255/bear-react-table/compare/v4.3.8-alpha.1...v4.3.8-alpha.2) (2024-01-18)
+
+
+### Bug Fixes
+
+* aria-label ts check in th/td ([8910e9d](https://github.com/imagine10255/bear-react-table/commit/8910e9d16846731960e46e33d9e02ace758198bb))
+
 ### [4.3.8-alpha.1](https://github.com/imagine10255/bear-react-table/compare/v4.3.8-alpha.0...v4.3.8-alpha.1) (2024-01-18)
 
 ### [4.3.8-alpha.0](https://github.com/imagine10255/bear-react-table/compare/v4.3.7...v4.3.8-alpha.0) (2024-01-18)
