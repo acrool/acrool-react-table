@@ -11,6 +11,7 @@ import {getTemplate, getColSpan} from './utils';
 import './styles.css';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
+import {objectKeys} from 'bear-jsutils/object';
 
 
 
@@ -69,7 +70,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 更新尺寸時是否改為 cell 模式
      */
     const handleOnResize = () => {
-        if(tableRef.current){
+        if(tableRef.current && tableCellMediaSize){
             if(window.innerWidth <= tableCellMediaSize){
                 if(tableRef.current.dataset['mode'] === 'table'){
                     tableRef.current.dataset['mode'] = 'cell';
@@ -127,7 +128,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const renderCustomNoData = () => {
         return <tbody data-no-data="">
             <tr>
-                <td {...getColSpan(Object.keys(title).length)}>
+                <td {...getColSpan(objectKeys(title).length)}>
                     {!!renderNoData ?
                         renderNoData : <div className={elClassNames.notData}>
                             <div className={elClassNames.notDataTitle}>Not Found</div>
@@ -165,7 +166,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             if(isFetching){
                 return <tbody data-loading="">
                     <tr>
-                        <td {...getColSpan(Object.keys(title).length)}>{renderFetching}</td>
+                        <td {...getColSpan(objectKeys(title).length)}>{renderFetching}</td>
                     </tr>
                 </tbody>;
             }
@@ -250,7 +251,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
                 {renderFooter()}
             </table>
 
-            {isFetching && data?.length > 0 && (
+            {isFetching && (data && data.length > 0) && (
                 <div className="bear-react-table__loading-text">
                     {renderFetching}
                 </div>

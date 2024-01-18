@@ -62,7 +62,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             return null;
         }
 
-        if('data' in dataRow.detail){
+        if(dataRow?.detail && 'data' in dataRow.detail){
             const config = dataRow.detail.config;
 
             return dataRow.detail.data.map((detailFields, detailIndex) => {
@@ -114,8 +114,8 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         }
 
         return <tr data-collapse="">
-            <td {...getColSpan(Object.keys(title).length)}>
-                {dataRow.detail}
+            <td {...getColSpan(objectKeys(title).length)}>
+                {dataRow.detail as ReactNode}
             </td>
         </tr>;
     };

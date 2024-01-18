@@ -1,6 +1,6 @@
 import {TFooter, TTableTitle, TBodyDataFieldKey, TLineHeight} from '../types';
 import {getColSpan} from '../utils';
-import {CSSProperties} from 'react';
+import {ReactNode} from 'react';
 import {objectKeys} from 'bear-jsutils/object';
 
 
@@ -23,7 +23,7 @@ const TableFooter = <K extends TBodyDataFieldKey>({
         if(data){
             let ignoreMerge = 0;
             return objectKeys(title)
-                ?.reduce((curr, titleKey) => {
+                ?.reduce((curr: ReactNode[], titleKey) => {
                     const titleRow = title[titleKey];
 
                     const field = data[titleKey];

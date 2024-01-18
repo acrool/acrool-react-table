@@ -1,3 +1,5 @@
+import {objectKeys} from 'bear-jsutils/object';
+
 interface ILocale {
     [locale: string]: {
         [key: string]: string,
@@ -49,16 +51,19 @@ const locales: ILocale = {
 
 
 const useLocale = (locale?: string) => {
-    const i18n = (id: string, options?: {def?: string, args?: any}) => {
+    const i18n = (id: string, options?: {def?: string, args?: object}) => {
         const selectLocale = typeof locale !== 'undefined' ? locale : 'en-US';
         const localeMap = locales[selectLocale] ? locales[selectLocale]: locales['en-US'];
 
         if(typeof localeMap !== 'undefined' && typeof localeMap[id] !== 'undefined'){
             let resText = localeMap[id];
-            if(options.args){
-                Object.keys(options.args).forEach(argKey => {
-                    resText = resText.replace(`{${argKey}}`, options.args[argKey]);
-                });
+            if(options?.args){
+                objectKeys(options.args)
+                    .forEach(argKey => {
+                        if(options.args){
+                            resText = resText.replace(`{${argKey}}`, options.args[argKey]);
+                        }
+                    });
             }
             return resText;
         }

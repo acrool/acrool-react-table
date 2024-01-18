@@ -35,7 +35,7 @@ export type TOnChangeSortField = (meta: IOrder) => void
  * ------------------------------ */
 
 export type TBodyDataFieldKey = string;
-type TFieldValue = string | number | JSX.Element;
+type TFieldValue = string | number | boolean | JSX.Element;
 interface TFieldFuncArgs {isActive: boolean, collapse: MouseEventHandler}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
