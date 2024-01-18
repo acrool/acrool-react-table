@@ -214,7 +214,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
                         className: titleRow.className,
-                        'ariaLabel': titleRow.text,
+                        'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-nth-type': nthType,
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': titleRow?.dataVertical,
