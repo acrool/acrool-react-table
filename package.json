@@ -44,18 +44,22 @@
     "release:patch": "standard-version -r patch",
     "release:alpha": "standard-version --prerelease alpha"
   },
-  "dependencies": {
-    "@types/throttle-debounce": "^5.0.2",
+  "peerDependencies": {
     "react": "^18.x",
-    "react-dom": "^18.x"
+    "react-dom": "^18.x",
+    "@types/throttle-debounce": "^5.x",
+    "throttle-debounce": "^5.x"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/throttle-debounce": "^5.x",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "bear-jsutils": "3.2.0",
+    "react": "^18.x",
+    "react-dom": "^18.x",
     "clsx": "^2.0.0",
     "cz-git": "^1.6.1",
     "eslint": "^8.37.0",
