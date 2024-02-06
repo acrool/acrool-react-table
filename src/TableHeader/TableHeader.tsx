@@ -25,8 +25,8 @@ const TableHeader = <K extends TBodyDataFieldKey>({
             .map(titleKey => {
                 const titleRow = title[titleKey];
                 const isEnableSort = titleRow.isEnableSort;
-                const sortType = order?.orderField === titleKey && order?.orderBy === 'ASC' ? 'ascending':
-                    order?.orderField === titleKey && order?.orderBy === 'DESC' ? 'descending':
+                const sortType = order?.orderField === titleKey && order?.orderBy === 'asc' ? 'ascending':
+                    order?.orderField === titleKey && order?.orderBy?.toLowerCase() === 'desc' ? 'descending':
                         undefined;
 
                 return (
@@ -38,7 +38,7 @@ const TableHeader = <K extends TBodyDataFieldKey>({
                         onClick={isEnableSort ? () => {
                             onChangeSortField({
                                 orderField: titleKey,
-                                orderBy: (order?.orderBy === 'DESC' && order.orderField === titleKey) ? 'ASC':'DESC',
+                                orderBy: (order?.orderBy?.toLowerCase() === 'desc' && order.orderField === titleKey) ? 'asc':'desc',
                             });
                         }: undefined}
                     >
