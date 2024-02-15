@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.11](https://github.com/imagine10255/bear-react-table/compare/v4.3.10...v4.3.11) (2024-02-15)
+
+
+### Features
+
+* add orderByCase control ([321dbb3](https://github.com/imagine10255/bear-react-table/commit/321dbb38aa46dd09a9525e90440b8fa362441d11))
+
 ### [4.3.10](https://github.com/imagine10255/bear-react-table/compare/v4.3.9...v4.3.10) (2024-02-06)
 
 ### [4.3.9](https://github.com/imagine10255/bear-react-table/compare/v4.3.8...v4.3.9) (2024-01-20)
