@@ -30,6 +30,8 @@ export type TTableTitle<K extends string> = {
 
 export type TOnChangeSortField = (meta: IOrder) => void
 
+export interface IOrderByType {asc: string, desc: string}
+
 /** -------------------------------
  *             Body
  * ------------------------------ */
@@ -130,6 +132,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     onChangePage?: TOnChangePage
     pageLimitOptions?: number[]
 
+    orderByType?: IOrderByType
     renderNoData?: JSX.Element|string
     renderFetching?: JSX.Element|string
 }

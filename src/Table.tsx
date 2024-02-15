@@ -51,6 +51,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
 
+    orderByType,
     renderNoData,
     renderFetching = 'Loading...',
 }: ITableProps<I, K>) => {
@@ -152,6 +153,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             title={title}
             onChangeSortField={handleOnOrderField}
             order={meta.order}
+            orderByType={orderByType}
         />;
     };
 

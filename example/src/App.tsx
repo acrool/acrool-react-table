@@ -51,10 +51,10 @@ function App() {
         pageLimit: 8,
         order: {
             orderField: 'id',
-            orderBy: 'desc',
+            orderBy: 'DESC',
         }
     });
-    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit));
+    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit, paginateMeta.order));
 
     const paginateInfo = {
         totalItems: data.length,
@@ -208,9 +208,9 @@ function App() {
                                 };
                             })}
                             isVisiblePaginate={false}
-                            // onChangePage={handleFetchPaginate}
-                            // paginateMeta={paginateMeta}
-                            // paginateInfo={paginateInfo}
+                            onChangePage={handleFetchPaginate}
+                            paginateMeta={paginateMeta}
+                            paginateInfo={paginateInfo}
                         />
 
                             extend Paginate

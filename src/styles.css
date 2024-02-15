@@ -262,19 +262,21 @@
 .bear-react-table__sort-column{
     display: none;
     flex-direction: column;
-    opacity: .225;
+    opacity: .525;
     line-height: 9px;
     font-size: 12px;
 }
 .bear-react-table__sort-column:before{
+    opacity: .5;
     content: '▲';
     margin-bottom: -5px;
 }
 .bear-react-table__sort-column:after{
+    opacity: .5;
     content: '▼';
 }
-.bear-react-table__root thead th[aria-sort="ascending"] .bear-react-table__sort-column:after,
-.bear-react-table__root thead th[aria-sort="descending"] .bear-react-table__sort-column:before{
+.bear-react-table__root thead th[aria-sort="ascending"] .bear-react-table__sort-column:before,
+.bear-react-table__root thead th[aria-sort="descending"] .bear-react-table__sort-column:after{
     opacity: 1;
     color: var(--sort-column);
 }
