@@ -23,6 +23,7 @@ const TableFooter = <K extends TBodyDataFieldKey>({
         if(data){
             let ignoreMerge = 0;
             return objectKeys(title)
+                ?.filter(titleKey => title[titleKey].isHidden !== true)
                 ?.reduce((curr: ReactNode[], titleKey) => {
                     const titleRow = title[titleKey];
 

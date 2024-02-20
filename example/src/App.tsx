@@ -92,7 +92,7 @@ function App() {
             avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
             name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
             amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
-            role:     {text: 'Role',   col: '120px'},
+            role:     {text: 'Role',   col: '120px', isHidden: true},
             createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
         },
         paginateData.map(row => {

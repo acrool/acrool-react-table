@@ -79,6 +79,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         const fieldValue = detailFields[titleKey];
                         const colSpan = fieldConfig?.colSpan ?? 1;
 
+
                         if(ignore > 0){
                             ignore -= 1;
                             return curr;
@@ -176,6 +177,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             let ignore = 0;
 
             const tds = objectKeys(title)
+                ?.filter(titleKey => title[titleKey].isHidden !== true)
                 ?.reduce((curr: JSX.Element[], titleKey) => {
                     const titleField = dataRow.field[titleKey];
                     const config = getConfig(titleField);

@@ -4,17 +4,19 @@ import {objectKeys} from 'bear-jsutils/object';
 
 
 export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: string): CSSProperties => {
-    const frs = objectKeys(titles).map(titleKey => {
-        const row = titles[titleKey];
+    const frs = objectKeys(titles)
+        ?.filter(titleKey => titles[titleKey].isHidden !== true)
+        ?.map(titleKey => {
+            const row = titles[titleKey];
 
-        if(typeof row.col === 'number'){
-            return `${row.col}px`;
-        }
-        if(row.col === true){
-            return '1fr';
-        }
-        return row.col ?? 'auto';
-    }).join(' ');
+            if(typeof row.col === 'number'){
+                return `${row.col}px`;
+            }
+            if(row.col === true){
+                return '1fr';
+            }
+            return row.col ?? 'auto';
+        }).join(' ');
 
 
     return {

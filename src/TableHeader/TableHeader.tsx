@@ -30,6 +30,7 @@ const TableHeader = <K extends TBodyDataFieldKey>({
 
     const renderTitle = () => {
         return objectKeys(title)
+            .filter(titleKey => title[titleKey].isHidden !== true)
             .map(titleKey => {
                 const titleRow = title[titleKey];
                 const isEnableSort = titleRow.isEnableSort;
