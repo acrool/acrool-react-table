@@ -445,6 +445,7 @@
     outline: none;
     -webkit-appearance: button;
 
+
     flex: 0 0 35px;
     height: 35px;
     width: 35px;
@@ -462,6 +463,7 @@
 .bear-react-table__paginate-page-nav {
     min-width: auto;
     width: 100%;
+    white-space: nowrap;
 }
 .bear-react-table__paginate-page-li{
     display: none;
