@@ -7,7 +7,7 @@ export interface IConfig {
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
 }
-export type TLineHeight = `${number}${TSizeUnit}`;
+export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 
 /** -------------------------------
  *             Title
