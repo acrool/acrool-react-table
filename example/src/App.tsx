@@ -1,12 +1,12 @@
 import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 
-import Table, {TablePaginate, TOnChangePage, IPaginateMeta, genericsTitleData} from 'acrool-react-table';
+import Table, {TablePaginate, TOnChangePage, IPaginateMeta, genericsTitleData} from '@acrool/react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
 import './bootstrap-base.min.css';
-import 'acrool-react-table/dist/index.css';
+import '@acrool/react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
 
