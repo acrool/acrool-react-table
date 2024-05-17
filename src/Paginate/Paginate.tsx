@@ -1,11 +1,11 @@
-import React, {useCallback} from 'react';
+import React, {ReactNode, useCallback} from 'react';
 import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
 import {IPage, IPaginateInfo, TOnChangePage} from '../types';
 import Select from './_components/Select';
 import clsx from 'clsx';
 import useLocale from '../locales';
-import styles from './table-paginate.module.scss';
+import styles from './paginate.module.scss';
 import CSS from 'csstype';
 
 interface IProps {
@@ -17,13 +17,15 @@ interface IProps {
     info?: IPaginateInfo
     onChangePage: (paginateMeta: Required<IPage>) => void
     pageLimitOptions: number[]
+    nextText?: ReactNode,
+    prevText?: ReactNode,
 }
 
 
 /**
  * Table Footer
  */
-const TablePaginate = ({
+const Paginate = ({
     isDark = false,
     className,
     locale,
@@ -34,6 +36,8 @@ const TablePaginate = ({
     },
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
+    nextText,
+    prevText,
 }: IProps) => {
     const {i18n} = useLocale(locale);
 
@@ -91,7 +95,7 @@ const TablePaginate = ({
         for(let i = startPage; i <= endPage; i+=1){
             const isActive = i === meta.currentPage;
             buttonPageDom.push(<button
-                className={styles.paginatePageLi}
+                className={styles.pageLi}
                 key={`table-page-button-${i}`}
                 data-active={isActive ? '': undefined}
                 type="button"
@@ -104,31 +108,31 @@ const TablePaginate = ({
 
 
 
-        return <div className={styles.paginatePageUl}>
+        return <div className={styles.pageUl}>
 
             <button
-                className={styles.paginatePageNav}
+                className={styles.pageNav}
                 type="button"
                 disabled={meta.currentPage <= 1}
                 onClick={() => handleChangePage(meta.currentPage - 1)}
             >
-                {i18n('com.table.prev', {def: 'Prev'})}
+                {prevText ?? i18n('com.table.prev', {def: 'Prev'})}
             </button>
 
             {buttonPageDom}
 
 
             <button
-                className={styles.paginatePageNav}
+                className={styles.pageNav}
                 type="button"
                 disabled={meta.currentPage >= totalPages}
                 onClick={() => handleChangePage(meta.currentPage + 1)}
             >
-                {i18n('com.table.next', {def: 'Next'})}
+                {nextText ?? i18n('com.table.next', {def: 'Next'})}
             </button>
 
             <button
-                className={styles.paginatePagePicker}
+                className={styles.pagePicker}
                 type="button"
                 disabled={totalPages <= 1}
             >
@@ -144,7 +148,7 @@ const TablePaginate = ({
 
 
     const renderInfo = () => {
-        return <div className={styles.paginateInfo}>
+        return <div className={styles.info}>
             {i18n('com.table.showPage', {args: {
                 start: formatCurrency(paginateInfo.start),
                 end: formatCurrency(paginateInfo.end),
@@ -177,4 +181,4 @@ const TablePaginate = ({
     );
 };
 
-export default TablePaginate;
+export default Paginate;
