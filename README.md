@@ -10,10 +10,10 @@
 
 <div align="center">
 
-[![NPM](https://img.shields.io/npm/v/acrool-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/acrool-react-table)
-[![npm downloads](https://img.shields.io/npm/dm/acrool-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/acrool-react-table)
-[![npm](https://img.shields.io/npm/dt/acrool-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/acrool-react-table)
-[![npm](https://img.shields.io/npm/l/acrool-react-table?style=for-the-badge)](https://github.com/imagine10255/acrool-react-table/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/v/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm downloads](https://img.shields.io/npm/dm/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm](https://img.shields.io/npm/dt/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm](https://img.shields.io/npm/l/@acrool/react-table?style=for-the-badge)](https://github.com/imagine10255/@acrool/react-table/blob/main/LICENSE)
 
 </div>
 
@@ -28,14 +28,14 @@
 ## Installation
 
 ```bash
-yarn add acrool-react-table
+yarn add @acrool/react-table
 ```
 
 ## Usage
 
 add in your main.tsx
 ```tst
-import 'acrool-react-table/dist/index.css';
+import '@acrool/react-table/dist/index.css';
 
 ```
 
