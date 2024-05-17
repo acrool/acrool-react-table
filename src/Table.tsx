@@ -4,7 +4,7 @@ import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBody
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
-import TablePaginate from './TablePaginate';
+import Paginate from './Paginate';
 import {getTemplate, getColSpan} from './utils';
 
 import styles from './styles.module.scss';
@@ -207,7 +207,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return null;
         }
 
-        return <TablePaginate
+        return <Paginate
             isDark={isDark}
             locale={locale}
             meta={meta}
