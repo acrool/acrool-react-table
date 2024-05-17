@@ -1,5 +1,5 @@
 {
-  "name": "bear-react-table",
+  "name": "@acrool/react-table",
   "version": "4.3.13-alpha.1",
   "description": "Table library based for Reactjs",
   "keywords": [
@@ -12,13 +12,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/imagine10255/bear-react-table.git"
+    "url": "https://github.com/acrool/acrool-react-table.git"
   },
-  "module": "./dist/bear-react-table.es.js",
+  "module": "./dist/acrool-react-table.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/bear-react-table.es.js"
+      "import": "./dist/acrool-react-table.es.js"
     },
     "./dist/index.css": "./dist/style.css"
   },

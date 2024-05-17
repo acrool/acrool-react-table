@@ -254,7 +254,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             </table>
 
             {isFetching && (data && data.length > 0) && (
-                <div className="bear-react-table__loading-text">
+                <div className="acrool-react-table__loading-text">
                     {renderFetching}
                 </div>
             )}

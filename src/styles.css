@@ -1,14 +1,14 @@
-.bear-react-table__root,
-.bear-react-table__root *,
-.bear-react-table__root *::before,
-.bear-react-table__root *::after{
+.acrool-react-table__root,
+.acrool-react-table__root *,
+.acrool-react-table__root *::before,
+.acrool-react-table__root *::after{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     line-height: normal;
 }
 
-.bear-react-table__root,
-.bear-react-table__paginate {
+.acrool-react-table__root,
+.acrool-react-table__paginate {
 
     --line-height: 50px;
     --border-radius: .4rem;
@@ -38,8 +38,8 @@
     --tr-even-bg-hover-color: rgb(236, 236, 236);
 }
 
-.bear-react-table__root.dark-theme,
-.bear-react-table__paginate.dark-theme {
+.acrool-react-table__root.dark-theme,
+.acrool-react-table__paginate.dark-theme {
     --bg-color: #2b3035;
     --text-color: rgb(154, 160, 172);
     --text-contrast-color: #fff;
@@ -60,7 +60,7 @@
 }
 
 
-.bear-react-table__root {
+.acrool-react-table__root {
     width: 100%;
     color: var(--text-color);
     font-size: 13px;
@@ -69,7 +69,7 @@
     filter: grayscale(0);
 }
 
-.bear-react-table__root table {
+.acrool-react-table__root table {
     min-width: 0;
     position: relative;
     width: 100%;
@@ -81,19 +81,19 @@
     grid-template-columns: var(--grid-template);
     grid-template-rows: 1fr;
 }
-.bear-react-table__root[data-border] table{
+.acrool-react-table__root[data-border] table{
     border: 1px solid var(--border-color);
 }
-.bear-react-table__root[data-overflow] table {
+.acrool-react-table__root[data-overflow] table {
     overflow: auto;
 }
-.bear-react-table__root[data-sticky] table {
+.acrool-react-table__root[data-sticky] table {
     overflow: visible;
 }
-.bear-react-table__root[data-fetching] table{
+.acrool-react-table__root[data-fetching] table{
     position: relative;
 }
-.bear-react-table__root table:after{
+.acrool-react-table__root table:after{
     content: '';
     position: absolute;
     top: 0;
@@ -106,7 +106,7 @@
     transition: background-color .2s, opacity .2s;
 }
 
-.bear-react-table__root[data-fetching] table:after{
+.acrool-react-table__root[data-fetching] table:after{
     z-index: 5;
     background-color: var(--bg-color);
     opacity: .3;
@@ -116,7 +116,7 @@
 
 
 @media print{
-    .bear-react-table__root table {
+    .acrool-react-table__root table {
         border-radius: 0;
         border: none;
         background: #fff;
@@ -131,8 +131,8 @@
 /** -------------------------------
  *             Reset
  * ------------------------------ */
-.bear-react-table__root table th,
-.bear-react-table__root table td {
+.acrool-react-table__root table th,
+.acrool-react-table__root table td {
     border: none;
 }
 
@@ -141,33 +141,33 @@
 /** -------------------------------
  *             Common
  * ------------------------------ */
-.bear-react-table__root thead,
-.bear-react-table__root tbody,
-.bear-react-table__root tfoot,
-.bear-react-table__root tr {
+.acrool-react-table__root thead,
+.acrool-react-table__root tbody,
+.acrool-react-table__root tfoot,
+.acrool-react-table__root tr {
     display: contents;
 }
-.bear-react-table__root th,
-.bear-react-table__root td{
+.acrool-react-table__root th,
+.acrool-react-table__root td{
     background-color: var(--bg-color);
 }
 
-.bear-react-table__root thead th,
-.bear-react-table__root tfoot td,
-.bear-react-table__root tbody td,
-.bear-react-table__root tbody th{
+.acrool-react-table__root thead th,
+.acrool-react-table__root tfoot td,
+.acrool-react-table__root tbody td,
+.acrool-react-table__root tbody th{
     padding: 0 var(--grid-gap);
     grid-column: auto / span var(--grid-column-span);
 }
-.bear-react-table__root[data-mode="table"][data-border][data-vertical-border] td:not(:last-child),
-.bear-react-table__root[data-mode="table"][data-border][data-vertical-border] th:not(:last-child){
+.acrool-react-table__root[data-mode="table"][data-border][data-vertical-border] td:not(:last-child),
+.acrool-react-table__root[data-mode="table"][data-border][data-vertical-border] th:not(:last-child){
     border-right: 1px solid var(--border-color);
 }
 
-.bear-react-table__root thead th,
-.bear-react-table__root tfoot td,
-.bear-react-table__root tbody td,
-.bear-react-table__root tbody th{
+.acrool-react-table__root thead th,
+.acrool-react-table__root tfoot td,
+.acrool-react-table__root tbody td,
+.acrool-react-table__root tbody th{
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -175,54 +175,54 @@
     color: var(--text-color);
     font-size: 14px;
 }
-.bear-react-table__root[data-border] thead th,
-.bear-react-table__root[data-border] tbody td,
-.bear-react-table__root[data-border] tbody th{
+.acrool-react-table__root[data-border] thead th,
+.acrool-react-table__root[data-border] tbody td,
+.acrool-react-table__root[data-border] tbody th{
     border-bottom: 1px solid var(--border-color);
 }
-.bear-react-table__root[data-border]:not([data-footer]) tbody tr:last-child td,
-.bear-react-table__root[data-border]:not([data-footer]) tbody tr:last-child th{
+.acrool-react-table__root[data-border]:not([data-footer]) tbody tr:last-child td,
+.acrool-react-table__root[data-border]:not([data-footer]) tbody tr:last-child th{
     border: none;
 }
-.bear-react-table__root[data-border]:not([data-footer]) tr:last-child td:last-child{
+.acrool-react-table__root[data-border]:not([data-footer]) tr:last-child td:last-child{
     border-bottom-right-radius: var(--border-radius);
 }
-.bear-react-table__root[data-border]:not([data-footer]) tr:last-child td:first-child{
+.acrool-react-table__root[data-border]:not([data-footer]) tr:last-child td:first-child{
     border-bottom-left-radius: var(--border-radius);
 }
-.bear-react-table__root td[data-align="left"],
-.bear-react-table__root th[data-align="left"]{
+.acrool-react-table__root td[data-align="left"],
+.acrool-react-table__root th[data-align="left"]{
     justify-content: flex-start;
     text-align: left;
 }
 
-.bear-react-table__root td[data-align="center"],
-.bear-react-table__root th[data-align="center"]{
+.acrool-react-table__root td[data-align="center"],
+.acrool-react-table__root th[data-align="center"]{
     justify-content: center;
     text-align: center;
 }
 
 
-.bear-react-table__root td[data-align="right"],
-.bear-react-table__root th[data-align="right"]{
+.acrool-react-table__root td[data-align="right"],
+.acrool-react-table__root th[data-align="right"]{
     justify-content: flex-end;
     text-align: right;
 }
 
 
-.bear-react-table__root td[data-vertical="top"],
-.bear-react-table__root th[data-vertical="top"]{
+.acrool-react-table__root td[data-vertical="top"],
+.acrool-react-table__root th[data-vertical="top"]{
     align-items: flex-start;
 }
 
 
-.bear-react-table__root td[data-vertical="center"],
-.bear-react-table__root th[data-vertical="center"]{
+.acrool-react-table__root td[data-vertical="center"],
+.acrool-react-table__root th[data-vertical="center"]{
     align-items: center;
 }
 
-.bear-react-table__root td[data-vertical="bottom"],
-.bear-react-table__root th[data-vertical="bottom"]{
+.acrool-react-table__root td[data-vertical="bottom"],
+.acrool-react-table__root th[data-vertical="bottom"]{
     align-items: flex-end;
 }
 
@@ -230,25 +230,25 @@
 /** -------------------------------
  *             Header
  * ------------------------------ */
-.bear-react-table__root thead th{
+.acrool-react-table__root thead th{
     height: var(--header-line-height, var(--line-height));
     border-bottom-color: var(--header-border-color);
 }
-.bear-react-table__root thead th:first-child{
+.acrool-react-table__root thead th:first-child{
     border-top-left-radius: var(--border-radius);
 }
-.bear-react-table__root thead th:last-child{
+.acrool-react-table__root thead th:last-child{
     border-top-right-radius: var(--border-radius);
 }
 
 
-.bear-react-table__root[data-sticky] thead th{
+.acrool-react-table__root[data-sticky] thead th{
     position: sticky;
     top: var(--stick-top, 0);
     z-index: var(--stick-z-index, 5);
 }
 
-.bear-react-table__root thead th[data-enable-sort]{
+.acrool-react-table__root thead th[data-enable-sort]{
     /*position: relative;*/
     cursor: pointer;
     display: flex;
@@ -256,27 +256,27 @@
     gap: 5px;
 }
 
-.bear-react-table__root thead th[data-enable-sort] .bear-react-table__sort-column{
+.acrool-react-table__root thead th[data-enable-sort] .acrool-react-table__sort-column{
     display: flex;
 }
-.bear-react-table__sort-column{
+.acrool-react-table__sort-column{
     display: none;
     flex-direction: column;
     opacity: .525;
     line-height: 9px;
     font-size: 12px;
 }
-.bear-react-table__sort-column:before{
+.acrool-react-table__sort-column:before{
     opacity: .5;
     content: '▲';
     margin-bottom: -5px;
 }
-.bear-react-table__sort-column:after{
+.acrool-react-table__sort-column:after{
     opacity: .5;
     content: '▼';
 }
-.bear-react-table__root thead th[aria-sort="ascending"] .bear-react-table__sort-column:before,
-.bear-react-table__root thead th[aria-sort="descending"] .bear-react-table__sort-column:after{
+.acrool-react-table__root thead th[aria-sort="ascending"] .acrool-react-table__sort-column:before,
+.acrool-react-table__root thead th[aria-sort="descending"] .acrool-react-table__sort-column:after{
     opacity: 1;
     color: var(--sort-column);
 }
@@ -286,60 +286,60 @@
 /** -------------------------------
  *             Body
  * ------------------------------ */
-.bear-react-table__root tbody{
+.acrool-react-table__root tbody{
     margin: 0;
 }
 
-.bear-react-table__root tbody tr[role="button"]{
+.acrool-react-table__root tbody tr[role="button"]{
     cursor: pointer;
 }
 
 
-.bear-react-table__root tbody tr th,
-.bear-react-table__root tbody tr td{
+.acrool-react-table__root tbody tr th,
+.acrool-react-table__root tbody tr td{
     background-color: var(--tr-bg-color);
 }
-.bear-react-table__root[data-mode="table"][data-hover] tbody tr:hover th,
-.bear-react-table__root[data-mode="table"][data-hover] tbody tr:hover td{
+.acrool-react-table__root[data-mode="table"][data-hover] tbody tr:hover th,
+.acrool-react-table__root[data-mode="table"][data-hover] tbody tr:hover td{
     background-color: var(--tr-bg-hover-color);
 }
-.bear-react-table__root[data-mode="table"][data-odd-even] tbody tr[data-nth-type="even"] td{
+.acrool-react-table__root[data-mode="table"][data-odd-even] tbody tr[data-nth-type="even"] td{
     background-color: var(--tr-even-bg-color);
 }
-.bear-react-table__root[data-mode="table"][data-odd-even][data-hover] tbody tr[data-nth-type="even"]:hover td{
+.acrool-react-table__root[data-mode="table"][data-odd-even][data-hover] tbody tr[data-nth-type="even"]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
-.bear-react-table__root tbody th,
-.bear-react-table__root tbody td{
+.acrool-react-table__root tbody th,
+.acrool-react-table__root tbody td{
     height: var(--body-line-height, var(--line-height));
     font-weight: normal;
 }
-.bear-react-table__root[data-mode="table"] tbody tr th{
+.acrool-react-table__root[data-mode="table"] tbody tr th{
     background-color: var(--tbody-th-bg-color, var(--tr-bg-color));
     color: var(--tbody-th-color);
 }
-.bear-react-table__root[data-mode="table"][data-hover] tbody tr:hover th{
+.acrool-react-table__root[data-mode="table"][data-hover] tbody tr:hover th{
     background-color: var(--tbody-th-bg-color, var(--tr-bg-hover-color));
     color: var(--tbody-th-color);
 }
-.bear-react-table__root[data-mode="table"][data-odd-even] tbody tr[data-nth-type="even"] th{
+.acrool-react-table__root[data-mode="table"][data-odd-even] tbody tr[data-nth-type="even"] th{
     background-color: var(--tbody-th-bg-color, var(--tr-even-bg-color));
     color: var(--tbody-th-color);
 }
-.bear-react-table__root[data-mode="table"][data-hover][data-odd-even] tbody tr[data-nth-type="even"]:hover th{
+.acrool-react-table__root[data-mode="table"][data-hover][data-odd-even] tbody tr[data-nth-type="even"]:hover th{
     background-color: var(--tbody-th-bg-color, var(--tr-even-bg-hover-color));
 }
 
 
-.bear-react-table__root tbody[data-loading] td,
-.bear-react-table__root tbody[data-no-data] td{
+.acrool-react-table__root tbody[data-loading] td,
+.acrool-react-table__root tbody[data-no-data] td{
     align-items: center;
     justify-content: center;
     min-height: 105px;
 }
 
 
-.bear-react-table__loading-text{
+.acrool-react-table__loading-text{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -356,7 +356,7 @@
 
 }
 
-.bear-react-table__not-data{
+.acrool-react-table__not-data{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -365,12 +365,12 @@
     min-height: 65px;
 }
 
-.bear-react-table__not-data-desc{
+.acrool-react-table__not-data-desc{
     font-size: 14px;
     color: var(--text-color);
 }
 
-.bear-react-table__not-data-title{
+.acrool-react-table__not-data-title{
     font-size: 20px;
     color: var(--text-color);
 }
@@ -380,22 +380,22 @@
 /** -------------------------------
  *             Footer
  * ------------------------------ */
-.bear-react-table__root tfoot td{
+.acrool-react-table__root tfoot td{
     height: var(--footer-line-height, var(--line-height));
     border-bottom: none;
 }
 
-.bear-react-table__root tfoot td:first-child{
+.acrool-react-table__root tfoot td:first-child{
     border-bottom-left-radius: var(--border-radius);
 }
-.bear-react-table__root tfoot td:last-child{
+.acrool-react-table__root tfoot td:last-child{
     border-bottom-right-radius: var(--border-radius);
 }
 
 /** -------------------------------
  *             Paginate
  * ------------------------------ */
-.bear-react-table__paginate{
+.acrool-react-table__paginate{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -405,14 +405,14 @@
     gap: .5rem;
     margin-top: 1.2rem;
 }
-.bear-react-table__paginate-info{
+.acrool-react-table__paginate-info{
     text-align: center;
     margin-bottom: 10px;
     order: 3;
     white-space:nowrap;
 }
 
-.bear-react-table__paginate-limit{
+.acrool-react-table__paginate-limit{
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
@@ -426,21 +426,21 @@
     color: var(--text-color);
     background: var(--bg-color);
 }
-.bear-react-table__paginate-limit:focus {
+.acrool-react-table__paginate-limit:focus {
     outline: 0;
     box-shadow: none;
 }
 
 
-.bear-react-table__paginate-page-ul{
+.acrool-react-table__paginate-page-ul{
     display: flex;
     flex-direction: row;
     justify-self: flex-end;
     align-items: center;
 }
-.bear-react-table__paginate-page-li,
-.bear-react-table__paginate-page-picker,
-.bear-react-table__paginate-page-nav{
+.acrool-react-table__paginate-page-li,
+.acrool-react-table__paginate-page-picker,
+.acrool-react-table__paginate-page-nav{
     border-radius: 0;
     outline: none;
     -webkit-appearance: button;
@@ -460,40 +460,40 @@
     background-color: var(--page-bg-color);
     border: none;
 }
-.bear-react-table__paginate-page-nav {
+.acrool-react-table__paginate-page-nav {
     min-width: auto;
     width: 100%;
     white-space: nowrap;
 }
-.bear-react-table__paginate-page-li{
+.acrool-react-table__paginate-page-li{
     display: none;
 }
-.bear-react-table__paginate-page-li:not(:disabled):hover,
-.bear-react-table__paginate-page-picker:not(:disabled):hover,
-.bear-react-table__paginate-page-nav:not(:disabled):hover{
+.acrool-react-table__paginate-page-li:not(:disabled):hover,
+.acrool-react-table__paginate-page-picker:not(:disabled):hover,
+.acrool-react-table__paginate-page-nav:not(:disabled):hover{
     color: var(--text-contrast-color);
     background-color: var(--page-bg-hover-color);
     border: none;
 }
-.bear-react-table__paginate-page-li:focus,
-.bear-react-table__paginate-page-nav:focus{
+.acrool-react-table__paginate-page-li:focus,
+.acrool-react-table__paginate-page-nav:focus{
     outline: none;
 }
 
-.bear-react-table__paginate-page-li[data-active]{
+.acrool-react-table__paginate-page-li[data-active]{
     color: var(--primary-contrast-color, var(--default-primary-contrast-color));
     background-color: var(--primary-color, var(--default-primary-color));
 }
 
-.bear-react-table__paginate-page-picker{
+.acrool-react-table__paginate-page-picker{
     color: #bdbdbd;
 }
-.bear-react-table__paginate-page-picker,
-.bear-react-table__paginate-page-nav{
+.acrool-react-table__paginate-page-picker,
+.acrool-react-table__paginate-page-nav{
     padding: 0 10px;
     flex: 1;
 }
-.bear-react-table__paginate-page-picker select{
+.acrool-react-table__paginate-page-picker select{
     opacity: 0;
     position: absolute;
     left: 0;
@@ -502,49 +502,49 @@
     bottom: 0;
     cursor: pointer;
 }
-.bear-react-table__paginate-page-picker:disabled select{
+.acrool-react-table__paginate-page-picker:disabled select{
     pointer-events: none;
 }
-.bear-react-table__paginate-page-nav:disabled{
+.acrool-react-table__paginate-page-nav:disabled{
     cursor: not-allowed;
     opacity: .7;
 }
-.bear-react-table__paginate-page-nav:first-child{
+.acrool-react-table__paginate-page-nav:first-child{
     border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
-.bear-react-table__paginate-page-picker:last-child{
+.acrool-react-table__paginate-page-picker:last-child{
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 
 
 @media (min-width: 768px) {
-    .bear-react-table__paginate {
+    .acrool-react-table__paginate {
         grid-template-columns: auto auto 1fr;
     }
-    .bear-react-table__paginate-info{
+    .acrool-react-table__paginate-info{
         text-align: left;
         margin-bottom: 0;
         order: initial;
     }
-    .bear-react-table__paginate-info > span {
+    .acrool-react-table__paginate-info > span {
         display: inline-block;
 
     }
-    .bear-react-table__paginate-info > span:after {
+    .acrool-react-table__paginate-info > span:after {
         content: ',';
     }
-    .bear-react-table__paginate-limit{
+    .acrool-react-table__paginate-limit{
         margin-bottom: 0;
     }
-    .bear-react-table__paginate-page-ul{
+    .acrool-react-table__paginate-page-ul{
         margin-bottom: 0;
     }
-    .bear-react-table__paginate-page-picker,
-    .bear-react-table__paginate-page-nav{
+    .acrool-react-table__paginate-page-picker,
+    .acrool-react-table__paginate-page-nav{
         width: auto;
         flex: 0 0 auto;
     }
-    .bear-react-table__paginate-page-li{
+    .acrool-react-table__paginate-page-li{
         display: flex;
     }
 }
@@ -555,15 +555,15 @@
 /** -------------------------------
  *       RWD Cell Mode
  * ------------------------------ */
-.bear-react-table__root[data-mode="cell"] table{
+.acrool-react-table__root[data-mode="cell"] table{
     display: block;
     border: none;
 }
-.bear-react-table__root[data-mode="cell"] thead, .bear-react-table__root[data-mode="cell"] tfoot {
+.acrool-react-table__root[data-mode="cell"] thead, .acrool-react-table__root[data-mode="cell"] tfoot {
     display: none;
 }
 
-.bear-react-table__root[data-mode="cell"] tbody tr {
+.acrool-react-table__root[data-mode="cell"] tbody tr {
     margin-bottom: 1rem;
     height: auto;
     background-color: inherit;
@@ -571,26 +571,26 @@
     display: block;
     width: 100%;
 }
-.bear-react-table__root[data-mode="cell"] tbody tr[data-collapse]{
+.acrool-react-table__root[data-mode="cell"] tbody tr[data-collapse]{
     margin-top: -1rem;
 }
-.bear-react-table__root[data-mode="cell"] tbody tr[data-collapse] th:empty,
-.bear-react-table__root[data-mode="cell"] tbody tr[data-collapse] td:empty {
+.acrool-react-table__root[data-mode="cell"] tbody tr[data-collapse] th:empty,
+.acrool-react-table__root[data-mode="cell"] tbody tr[data-collapse] td:empty {
    display: none;
 }
 
-.bear-react-table__root[data-mode="cell"] tbody th,
-.bear-react-table__root[data-mode="cell"] tbody td {
+.acrool-react-table__root[data-mode="cell"] tbody th,
+.acrool-react-table__root[data-mode="cell"] tbody td {
     background-color: var(--tr-bg-color);
 }
-.bear-react-table__root[data-mode="cell"][data-odd-even] tbody th[data-nth-type="even"],
-.bear-react-table__root[data-mode="cell"][data-odd-even] tbody td[data-nth-type="even"] {
+.acrool-react-table__root[data-mode="cell"][data-odd-even] tbody th[data-nth-type="even"],
+.acrool-react-table__root[data-mode="cell"][data-odd-even] tbody td[data-nth-type="even"] {
     background-color: var(--tr-even-bg-color);
 }
 
 /* value */
-.bear-react-table__root[data-mode="cell"] tbody th,
-.bear-react-table__root[data-mode="cell"] tbody td {
+.acrool-react-table__root[data-mode="cell"] tbody th,
+.acrool-react-table__root[data-mode="cell"] tbody td {
     display: flex;
     text-align: right;
     margin-left: auto;
@@ -602,14 +602,14 @@
 }
 
 /* value */
-.bear-react-table__root[data-mode="cell"] tbody th:empty,
-.bear-react-table__root[data-mode="cell"] tbody td:empty {
+.acrool-react-table__root[data-mode="cell"] tbody th:empty,
+.acrool-react-table__root[data-mode="cell"] tbody td:empty {
     display: none;
 }
 
 /* title */
-.bear-react-table__root[data-mode="cell"] tbody th:before,
-.bear-react-table__root[data-mode="cell"] tbody td:before {
+.acrool-react-table__root[data-mode="cell"] tbody th:before,
+.acrool-react-table__root[data-mode="cell"] tbody td:before {
     text-align: left;
     margin-right: auto;
 

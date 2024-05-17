@@ -1,12 +1,12 @@
 import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 
-import Table, {TablePaginate, TOnChangePage, IPaginateMeta, genericsTitleData} from 'bear-react-table';
+import Table, {TablePaginate, TOnChangePage, IPaginateMeta, genericsTitleData} from 'acrool-react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
 import './bootstrap-base.min.css';
-import 'bear-react-table/dist/index.css';
+import 'acrool-react-table/dist/index.css';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
 
@@ -123,7 +123,7 @@ function App() {
     return (
         <div className="App">
 
-            <h1>Bear React Table</h1>
+            <h1>Acrool React Table</h1>
             <div>
                 <button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</button>
                 <TableContainer className="d-flex flex-row my-2">
@@ -214,6 +214,7 @@ function App() {
                         />
 
                             extend Paginate
+
                         <TablePaginate
                             isDark
                             locale="zh-TW"

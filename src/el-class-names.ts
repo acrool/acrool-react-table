@@ -1,5 +1,5 @@
 const elClassNames = {
-    elClassPrefix: 'bear-react-table',
+    elClassPrefix: 'acrool-react-table',
 };
 
 

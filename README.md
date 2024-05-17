@@ -1,7 +1,7 @@
-# Bear React Table
+# Acrool React Table
 
-<a href="https://bear-react-table.pages.dev/" title="Bear React Table - CSS Gird Of React Table Design">
-    <img src="https://bear-react-table.pages.dev/img/banner.webp" alt="Bear React Table Logo"/>
+<a href="https://acrool-react-table.pages.dev/" title="Acrool React Table - CSS Gird Of React Table Design">
+    <img src="https://acrool-react-table.pages.dev/img/banner.webp" alt="Acrool React Table Logo"/>
 </a>
 
 <p align="center">
@@ -10,46 +10,46 @@
 
 <div align="center">
 
-[![NPM](https://img.shields.io/npm/v/bear-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/bear-react-table)
-[![npm downloads](https://img.shields.io/npm/dm/bear-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/bear-react-table)
-[![npm](https://img.shields.io/npm/dt/bear-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/bear-react-table)
-[![npm](https://img.shields.io/npm/l/bear-react-table?style=for-the-badge)](https://github.com/imagine10255/bear-react-table/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/v/acrool-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/acrool-react-table)
+[![npm downloads](https://img.shields.io/npm/dm/acrool-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/acrool-react-table)
+[![npm](https://img.shields.io/npm/dt/acrool-react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/acrool-react-table)
+[![npm](https://img.shields.io/npm/l/acrool-react-table?style=for-the-badge)](https://github.com/imagine10255/acrool-react-table/blob/main/LICENSE)
 
 </div>
 
 ## Documentation
 
-- [Getting Started](https://bear-react-table.pages.dev/docs/getting-started)
-- [Faq](https://bear-react-table.pages.dev/docs/category/faqs)
-- [Components](https://bear-react-table.pages.dev/docs/category/components)
-- [Features](https://bear-react-table.pages.dev/docs/category/features)
+- [Getting Started](https://acrool-react-table.pages.dev/docs/getting-started)
+- [Faq](https://acrool-react-table.pages.dev/docs/category/faqs)
+- [Components](https://acrool-react-table.pages.dev/docs/category/components)
+- [Features](https://acrool-react-table.pages.dev/docs/category/features)
 
 
 ## Installation
 
 ```bash
-yarn add bear-react-table
+yarn add acrool-react-table
 ```
 
 ## Usage
 
 add in your main.tsx
 ```tst
-import 'bear-react-table/dist/index.css';
+import 'acrool-react-table/dist/index.css';
 
 ```
 
 then in your page
 ```tsx
-import {Table} from 'bear-react-table';
+import {Table} from 'acrool-react-table';
 
 
 const data = [
-    {id: 1, text: 'Imagine', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-1.jpg'},
-    {id: 1, text: 'Gary', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-2.jpg'},
-    {id: 1, text: 'Selin', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-3.jpg'},
-    {id: 1, text: 'Amy', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-4.jpg'},
-    {id: 1, text: 'Keria', avatar: 'https://bear-react-table.pages.dev/img/avatar/female-5.jpg'},
+    {id: 1, text: 'Imagine', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-1.jpg'},
+    {id: 1, text: 'Gary', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-2.jpg'},
+    {id: 1, text: 'Selin', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-3.jpg'},
+    {id: 1, text: 'Amy', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-4.jpg'},
+    {id: 1, text: 'Keria', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-5.jpg'},
 ];
 
 const BaseUsed = () => {
@@ -81,7 +81,7 @@ const BaseUsed = () => {
 
 There is also a codesandbox template that you can fork and play with it:
 
-[![Edit react-editext-template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/bear-react-table-n0s8su?file=/src/App.tsx)
+[![Edit react-editext-template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/acrool-react-table-n0s8su?file=/src/App.tsx)
 
 
 ## License
