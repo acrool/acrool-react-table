@@ -5,7 +5,6 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
 import TablePaginate from './TablePaginate';
-import elClassNames from './el-class-names';
 import {getTemplate, getColSpan} from './utils';
 
 import styles from './styles.module.scss';
