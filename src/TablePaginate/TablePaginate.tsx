@@ -1,12 +1,11 @@
 import React, {useCallback} from 'react';
 import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
-import elClassNames from '../el-class-names';
 import {IPage, IPaginateInfo, TOnChangePage} from '../types';
 import Select from './_components/Select';
 import clsx from 'clsx';
 import useLocale from '../locales';
-
+import styles from './table-paginate.module.scss';
 
 interface IProps {
     isDark?: boolean
@@ -88,7 +87,7 @@ const TablePaginate = ({
         for(let i = startPage; i <= endPage; i+=1){
             const isActive = i === meta.currentPage;
             buttonPageDom.push(<button
-                className={elClassNames.paginatePageLi}
+                className={styles.paginatePageLi}
                 key={`table-page-button-${i}`}
                 data-active={isActive ? '': undefined}
                 type="button"
@@ -101,10 +100,10 @@ const TablePaginate = ({
 
 
 
-        return <div className={elClassNames.paginatePageUl}>
+        return <div className={styles.paginatePageUl}>
 
             <button
-                className={elClassNames.paginatePageNav}
+                className={styles.paginatePageNav}
                 type="button"
                 disabled={meta.currentPage <= 1}
                 onClick={() => handleChangePage(meta.currentPage - 1)}
@@ -116,7 +115,7 @@ const TablePaginate = ({
 
 
             <button
-                className={elClassNames.paginatePageNav}
+                className={styles.paginatePageNav}
                 type="button"
                 disabled={meta.currentPage >= totalPages}
                 onClick={() => handleChangePage(meta.currentPage + 1)}
@@ -125,7 +124,7 @@ const TablePaginate = ({
             </button>
 
             <button
-                className={elClassNames.paginatePagePicker}
+                className={styles.paginatePagePicker}
                 type="button"
                 disabled={totalPages <= 1}
             >
@@ -141,7 +140,7 @@ const TablePaginate = ({
 
 
     const renderInfo = () => {
-        return <div className={elClassNames.paginateInfo}>
+        return <div className={styles.paginateInfo}>
             {i18n('com.table.showPage', {args: {
                 start: formatCurrency(paginateInfo.start),
                 end: formatCurrency(paginateInfo.end),
@@ -166,7 +165,7 @@ const TablePaginate = ({
 
 
     return (
-        <div className={clsx(elClassNames.paginate, {'dark-theme': isDark} )}>
+        <div className={clsx(styles.root, {[styles.darkTheme]: isDark} )}>
             {renderInfo()}
             {renderLimit()}
             {renderNav()}

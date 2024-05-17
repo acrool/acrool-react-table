@@ -1,8 +1,6 @@
 import React, {useCallback} from 'react';
 import {IOption} from './types';
-import CSS from 'csstype';
-import elClassNames from '../../../el-class-names';
-
+import styles from '../../table-paginate.module.scss';
 
 interface IProps {
     title?: string;
@@ -52,7 +50,7 @@ const Select = ({
 
     return (
         <select
-            className={elClassNames.paginatePageLimit}
+            className={styles.paginateLimit}
             name={name}
             value={String(value)}
             onChange={handleOnChange}

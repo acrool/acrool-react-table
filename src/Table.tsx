@@ -5,13 +5,14 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
 import TablePaginate from './TablePaginate';
-import elClassNames from './el-class-names';
 import {getTemplate, getColSpan} from './utils';
 
-import './styles.css';
+import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from 'bear-jsutils/object';
+
+
 
 
 
@@ -131,9 +132,9 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             <tr>
                 <td {...getColSpan(objectKeys(title).length)}>
                     {!!renderNoData ?
-                        renderNoData : <div className={elClassNames.notData}>
-                            <div className={elClassNames.notDataTitle}>Not Found</div>
-                            <div className={elClassNames.notDataDesc}>Choose a different filter to view results</div>
+                        renderNoData : <div className={styles.notData}>
+                            <div className={styles.notDataTitle}>Not Found</div>
+                            <div className={styles.notDataDesc}>Choose a different filter to view results</div>
                         </div>
                     }
                 </td>
@@ -219,9 +220,9 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
     return (
         <div className={clsx(
-            elClassNames.root,
+            styles.root,
             className,
-            {'dark-theme': isDark},
+            {[styles.darkTheme]: isDark},
         )}
         ref={tableRef}
         data-mode="table"
@@ -254,7 +255,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             </table>
 
             {isFetching && (data && data.length > 0) && (
-                <div className="acrool-react-table__loading-text">
+                <div className={styles.loadingText}>
                     {renderFetching}
                 </div>
             )}

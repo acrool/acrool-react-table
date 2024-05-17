@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@swc/plugin-styled-components": "1.5.67",
-        "acrool-react-table": "link:..",
+        "@acrool/react-table": "link:..",
         "dayjs": "^1.11.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

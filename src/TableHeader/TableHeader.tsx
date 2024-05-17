@@ -5,8 +5,8 @@ import {
     TBodyDataFieldKey,
     IOrderByType
 } from '../types';
-import elClassNames from '../el-class-names';
 import {objectKeys} from 'bear-jsutils/object';
+import styles from '../styles.module.scss';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -52,7 +52,7 @@ const TableHeader = <K extends TBodyDataFieldKey>({
                         }: undefined}
                     >
                         {titleRow.text}
-                        <div className={elClassNames.sortColumn}/>
+                        <div className={styles.sortColumn}/>
                     </th>
                 );
             });
