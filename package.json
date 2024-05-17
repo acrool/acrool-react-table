@@ -1,6 +1,6 @@
 {
   "name": "@acrool/react-table",
-  "version": "4.3.13-alpha.1",
+  "version": "4.3.13-alpha.2",
   "description": "Table library based for Reactjs",
   "keywords": [
     "react",
@@ -79,8 +79,8 @@
     "vite": "^4.2.0",
     "vite-plugin-dts": "^2.1.0",
     "vite-plugin-eslint": "^1.8.1",
-      "vite-plugin-svgr": "^4.2.0",
-      "vite-svg-loader": "^5.1.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-svg-loader": "^5.1.0"
   },
   "config": {
     "commitizen": {
