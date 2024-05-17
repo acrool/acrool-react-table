@@ -6,8 +6,11 @@ import Select from './_components/Select';
 import clsx from 'clsx';
 import useLocale from '../locales';
 import styles from './table-paginate.module.scss';
+import CSS from 'csstype';
 
 interface IProps {
+    className?: string
+    style?: CSS.Properties
     isDark?: boolean
     locale?: string
     meta: Required<IPage>
@@ -22,6 +25,7 @@ interface IProps {
  */
 const TablePaginate = ({
     isDark = false,
+    className,
     locale,
     meta,
     info = {
@@ -165,7 +169,7 @@ const TablePaginate = ({
 
 
     return (
-        <div className={clsx(styles.root, {[styles.darkTheme]: isDark} )}>
+        <div className={clsx(styles.root, {[styles.darkTheme]: isDark}, className )}>
             {renderInfo()}
             {renderLimit()}
             {renderNav()}
