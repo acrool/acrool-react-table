@@ -3,6 +3,7 @@
   "version": "4.3.13-alpha.5",
   "description": "Table library based for Reactjs",
   "keywords": [
+    "acrool",
     "react",
     "typescript",
     "table"
@@ -47,7 +48,7 @@
     "release:alpha": "standard-version --prerelease alpha"
   },
   "peerDependencies": {
-    "clsx": "2.1.1",
+    "clsx": "2.x",
     "react": "^18.x",
     "react-dom": "^18.x",
     "@types/throttle-debounce": "^5.x",
@@ -63,7 +64,7 @@
     "bear-jsutils": "3.2.0",
     "react": "^18.x",
     "react-dom": "^18.x",
-    "clsx": "^2.0.0",
+    "clsx": "^2.x",
     "cz-git": "^1.6.1",
     "eslint": "^8.37.0",
     "eslint-config-react-app": "^7.0.1",

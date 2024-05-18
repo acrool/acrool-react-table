@@ -21,7 +21,7 @@ export default defineConfig({
         modules: {
             localsConvention: 'camelCase',
             scopeBehaviour: 'local',
-            generateScopedName: 'acrool-table__[name]__[local]',
+            generateScopedName: 'acrool-react-table__[name]__[local]',
         }
     },
     build: {
