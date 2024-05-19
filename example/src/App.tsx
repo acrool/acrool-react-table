@@ -1,7 +1,7 @@
 import {useState, useCallback} from 'react';
 import dayjs from 'dayjs';
 
-import Table, {TablePaginate, TOnChangePage, IPaginateMeta, genericsTitleData} from '@acrool/react-table';
+import Table, {Paginate, TOnChangePage, IPaginateMeta, genericsTitleData} from '@acrool/react-table';
 import {data, IPaginateData} from './config/data';
 
 import './App.css';
@@ -88,7 +88,6 @@ function App() {
 
     const tableData = genericsTitleData(
         {
-            plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
             avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
             name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
             amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
@@ -99,15 +98,17 @@ function App() {
             return {
                 id: row.id,
                 detail: {
-                    config: {plus: {colSpan: 2, dataAlign: 'right'}},
+                    // config: {
+                    //     name: {colSpan: 1, dataAlign: 'left'},
+                    //     amount: {colSpan: 2, dataAlign: 'right'},
+                    // },
                     data: [
-                        {plus: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
-                        {plus: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+                        {name: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
+                        {name: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
                     ],
                 },
                 onClickRow: collapse => collapse(),
                 field: {
-                    plus: 'xxx',
                     avatar: <Avatar src={row.avatar}/>,
                     name: row.name,
                     amount: `$ ${formatCurrency(row.amount)}`,
@@ -215,7 +216,7 @@ function App() {
 
                             extend Paginate
 
-                        <TablePaginate
+                        <Paginate
                             isDark
                             locale="zh-TW"
                             meta={paginateMeta}
@@ -268,8 +269,8 @@ const CollapseButton = styled.button`
 const Avatar = styled.img`
    border-radius: 99em;
     overflow: hidden;
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
 `;
 
 const TableContainer = styled.div`
@@ -278,8 +279,8 @@ const TableContainer = styled.div`
     table {
         //--vertical-border-color: var(--border-color);
         --header-border-color: var(--border-color);
-        --tbody-th-bg-color: #4a63b6;
+        //--tbody-th-bg-color: #4a63b6;
         --tbody-th-color-color: #0a278a;
-        --border-color: #9ca3af;
+        --border-color: rgba(66, 66, 66, 0.27);
     }
 `;

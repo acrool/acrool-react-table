@@ -10,11 +10,10 @@
 
 <div align="center">
 
-[![NPM](https://img.shields.io/npm/v/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm downloads](https://img.shields.io/npm/dm/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm](https://img.shields.io/npm/dt/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm](https://img.shields.io/npm/l/@acrool/react-table?style=for-the-badge)](https://github.com/imagine10255/@acrool/react-table/blob/main/LICENSE)
-
+[![NPM](https://img.shields.io/npm/v/%40acrool%2Freact-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm downloads](https://img.shields.io/npm/dm/%40acrool%2Freact-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm](https://img.shields.io/npm/dt/%40acrool%2Freact-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm](https://img.shields.io/npm/l/%40acrool%2Freact-table?style=for-the-badge)](https://github.com/acrool/acrool-react-table/blob/main/LICENSE)
 </div>
 
 ## Documentation

@@ -1,7 +1,7 @@
-import React, {ReactNode, useCallback} from 'react';
+import React, {ReactNode} from 'react';
 import {formatCurrency} from 'bear-jsutils/number';
 import {AlignCenterIcon} from '../Icon';
-import {IPage, IPaginateInfo, TOnChangePage} from '../types';
+import {IPage, IPaginateInfo} from '../types';
 import Select from './_components/Select';
 import clsx from 'clsx';
 import useLocale from '../locales';
@@ -16,7 +16,7 @@ interface IProps {
     meta: Required<IPage>
     info?: IPaginateInfo
     onChangePage: (paginateMeta: Required<IPage>) => void
-    pageLimitOptions: number[]
+    pageLimitOptions?: number[]
     nextText?: ReactNode,
     prevText?: ReactNode,
 }

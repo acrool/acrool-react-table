@@ -2678,10 +2678,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-bear-jsutils@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/bear-jsutils/-/bear-jsutils-3.2.0.tgz#cdc5ce3cd8d539132c72ddbfabcb57eec2d3e38a"
-  integrity sha512-cjgu6zAz7aCWx2Kv8HXidBpOv+hKpP5cUfLZbSRzHB+S3gv8baKO7sPtQrK+RN6ooPfTDMb+B+WsjN3hBtT7Ew==
+bear-jsutils@3.2.5-alpha.10:
+  version "3.2.5-alpha.10"
+  resolved "https://registry.yarnpkg.com/bear-jsutils/-/bear-jsutils-3.2.5-alpha.10.tgz#b020d9242dd0c9313d7e7c5a52dc95b9a81d941b"
+  integrity sha512-JP5m8Svo1CaQgFQmIW8y7nQ3gUgzjn2pZ+9fTRRjCV+2O+MfNBUmeQX+IZU8jOL+5EoW5FsR8Ufwg2KLrx/Idw==
 
 binary-extensions@^2.0.0:
   version "2.3.0"

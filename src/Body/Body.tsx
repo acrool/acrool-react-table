@@ -23,7 +23,7 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
 /**
  * Table Body
  */
-const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
+const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
 }: IProps<K, I>) => {
@@ -74,12 +74,15 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
                         const fieldConfig = {
                             ...titleRow,
-                            ...config[titleKey],
+                            ...config?.[titleKey],
                         };
                         const fieldValue = detailFields[titleKey];
                         const colSpan = fieldConfig?.colSpan ?? 1;
+                        const isHidden = fieldConfig.isHidden;
 
-
+                        if(isHidden){
+                            return curr;
+                        }
                         if(ignore > 0){
                             ignore -= 1;
                             return curr;
@@ -93,6 +96,7 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             ...curr,
                             <td
                                 key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
+                                data-detail=""
                                 className={titleRow.className}
                                 // aria-label={titleRow.text}
                                 data-align={fieldConfig?.dataAlign}
@@ -258,4 +262,4 @@ const TableBody = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     </tbody>;
 };
 
-export default TableBody;
+export default Body;

@@ -14,7 +14,7 @@ interface IProps <K extends TBodyDataFieldKey>{
  * Table Footer
  * 額外顯示資訊 例如統計
  */
-const TableFooter = <K extends TBodyDataFieldKey>({
+const Footer = <K extends TBodyDataFieldKey>({
     title,
     data,
 }: IProps<K>) => {
@@ -61,4 +61,4 @@ const TableFooter = <K extends TBodyDataFieldKey>({
     </tfoot>;
 };
 
-export default TableFooter;
+export default Footer;

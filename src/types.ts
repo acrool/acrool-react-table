@@ -47,7 +47,7 @@ export type TBodyDataField<K extends TBodyDataFieldKey> = {
 }
 
 type TBodyDataDetail<K extends TBodyDataFieldKey> = {
-    config: {
+    config?: {
         [P in K]?: IConfig
     },
     data: Array<{

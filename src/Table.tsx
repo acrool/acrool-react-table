@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, CSSProperties, useCallback} from 'react';
 
 import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
-import TableHeader from './TableHeader';
-import TableBody from './TableBody';
-import TableFooter from './TableFooter';
+import TableHeader from './Header';
+import TableBody from './Body';
+import TableFooter from './Footer';
 import Paginate from './Paginate';
 import {getTemplate, getColSpan} from './utils';
 

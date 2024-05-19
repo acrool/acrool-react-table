@@ -21,7 +21,7 @@ interface IProps<K extends TBodyDataFieldKey> {
 /**
  * Table Header
  */
-const TableHeader = <K extends TBodyDataFieldKey>({
+const Header = <K extends TBodyDataFieldKey>({
     title,
     order,
     orderByType = {asc: 'ASC', desc: 'DESC'},
@@ -67,6 +67,6 @@ const TableHeader = <K extends TBodyDataFieldKey>({
     </thead>;
 };
 
-export default TableHeader;
+export default Header;
 
 
