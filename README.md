@@ -38,7 +38,7 @@ import '@acrool/react-table/dist/index.css';
 
 then in your page
 ```tsx
-import {Table} from 'acrool-react-table';
+import AcroolTable from '@acrool/react-table';
 
 
 const data = [
@@ -52,7 +52,7 @@ const data = [
 const BaseUsed = () => {
     
     const renderTable = () => {
-        return <Table
+        return <AcroolTable
             title={{
                 avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
                 name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
