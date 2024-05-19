@@ -1,8 +1,6 @@
 # Acrool React Table
 
-<a href="https://acrool-react-table.pages.dev/" title="Acrool React Table - CSS Gird Of React Table Design">
-    <img src="https://acrool-react-table.pages.dev/img/banner.webp" alt="Acrool React Table Logo"/>
-</a>
+<img src="./preview.png" align="center" style="width: 700px;max-width: 100%"/>
 
 <p align="center">
     CSS Gird Of React Table Design

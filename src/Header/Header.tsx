@@ -6,7 +6,7 @@ import {
     IOrderByType
 } from '../types';
 import {objectKeys} from 'bear-jsutils/object';
-import styles from '../styles.module.scss';
+import styles from '../table.module.scss';
 
 
 interface IProps<K extends TBodyDataFieldKey> {

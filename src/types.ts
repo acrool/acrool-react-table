@@ -1,5 +1,6 @@
 import {ReactNode, MouseEvent, MouseEventHandler} from 'react';
 import CSS from 'csstype';
+import {IPaginateVisibleProps} from "./Paginate/types";
 
 
 export interface IConfig {
@@ -103,7 +104,7 @@ export type TCollapseEvent = (e: MouseEvent) => void
 /** -------------------------------
  *             Table
  * ------------------------------ */
-export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey> {
+export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey> extends IPaginateVisibleProps {
     className?: string
     style?: CSS.Properties
     isDark?: boolean

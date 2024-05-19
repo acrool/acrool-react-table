@@ -7,8 +7,9 @@ import clsx from 'clsx';
 import useLocale from '../locales';
 import styles from './paginate.module.scss';
 import CSS from 'csstype';
+import {IPaginateVisibleProps} from "./types";
 
-interface IProps {
+interface IProps extends IPaginateVisibleProps{
     className?: string
     style?: CSS.Properties
     isDark?: boolean
@@ -38,6 +39,9 @@ const Paginate = ({
     pageLimitOptions = [8, 40, 72, 150],
     nextText,
     prevText,
+
+    isVisiblePageInfo = true,
+    isVisiblePageLimitOptions = true,
 }: IProps) => {
     const {i18n} = useLocale(locale);
 
@@ -174,8 +178,8 @@ const Paginate = ({
 
     return (
         <div className={clsx(styles.root, {[styles.darkTheme]: isDark}, className )}>
-            {renderInfo()}
-            {renderLimit()}
+            {isVisiblePageInfo && renderInfo()}
+            {isVisiblePageLimitOptions && renderLimit()}
             {renderNav()}
         </div>
     );

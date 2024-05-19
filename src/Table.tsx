@@ -7,7 +7,7 @@ import TableFooter from './Footer';
 import Paginate from './Paginate';
 import {getTemplate, getColSpan} from './utils';
 
-import styles from './styles.module.scss';
+import styles from './table.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from 'bear-jsutils/object';
@@ -55,6 +55,9 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     orderByType,
     renderNoData,
     renderFetching = 'Loading...',
+
+    isVisiblePageLimitOptions,
+    isVisiblePageInfo,
 }: ITableProps<I, K>) => {
 
     const meta = {
@@ -214,54 +217,64 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             info={paginateInfo}
             onChangePage={handleOnChangePage}
             pageLimitOptions={pageLimitOptions}
+
+            isVisiblePageInfo={isVisiblePageInfo}
+            isVisiblePageLimitOptions={isVisiblePageLimitOptions}
         />;
     };
 
+    const extendStyles = {
+        ...style,
+        '--header-line-height': headerLineHeight,
+        '--body-line-height': bodyLineHeight,
+        '--cell-line-height': cellLineHeight,
+        '--footer-line-height': footerLineHeight,
+        ...getTemplate(title, gap),
+    } as CSSProperties;
 
     return (
         <div className={clsx(
             styles.root,
             className,
-            {[styles.darkTheme]: isDark},
         )}
-        ref={tableRef}
-        data-mode="table"
         data-fetching={isFetching ? '': undefined}
-        data-header={isVisibleHeader ? '': undefined}
-        data-footer={!!footer ? '': undefined}
-        data-hover={!!isEnableHover ? '': undefined}
-        data-overflow={!!isOverflow ? '': undefined}
-        data-sticky={!!isStickyHeader ? '': undefined}
-        data-odd-even={!!isEnableOddEven ? '': undefined}
-        data-border={!!isVisibleBorder ? '': undefined}
-        data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
-        style={{
-            ...style,
-            '--header-line-height': headerLineHeight,
-            '--body-line-height': bodyLineHeight,
-            '--cell-line-height': cellLineHeight,
-            '--footer-line-height': footerLineHeight,
-            ...getTemplate(title, gap),
-        } as CSSProperties}>
-            <table>
-                {/* Header */}
-                {renderHeader()}
+        ref={tableRef}
+        >
+            <div className={clsx(
+                styles.container,
+                {[styles.darkTheme]: isDark},
+            )}>
+                <table
+                    data-mode="table"
+                    data-header={isVisibleHeader ? '': undefined}
+                    data-footer={!!footer ? '': undefined}
+                    data-hover={!!isEnableHover ? '': undefined}
+                    data-overflow={!!isOverflow ? '': undefined}
+                    data-sticky={!!isStickyHeader ? '': undefined}
+                    data-odd-even={!!isEnableOddEven ? '': undefined}
+                    data-border={!!isVisibleBorder ? '': undefined}
+                    data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
+                    style={extendStyles}
+                >
+                    {/* Header */}
+                    {renderHeader()}
 
-                {/* Body */}
-                {renderBody()}
+                    {/* Body */}
+                    {renderBody()}
 
-                {/* Footer */}
-                {renderFooter()}
-            </table>
+                    {/* Footer */}
+                    {renderFooter()}
+                </table>
 
-            {isFetching && (data && data.length > 0) && (
                 <div className={styles.loadingText}>
                     {renderFetching}
                 </div>
-            )}
+            </div>
 
-            {/* Paginate */}
-            {renderPaginate()}
+            <div className={styles.footerContainer}>
+                {/* Paginate */}
+                {renderPaginate()}
+            </div>
         </div>
 
     );

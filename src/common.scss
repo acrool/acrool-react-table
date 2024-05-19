@@ -10,6 +10,7 @@
     --default-primary-color: #535bf2;
     --default-primary-contrast-color: #fff;
 
+    --mask-bgcolor: rgba(255, 255, 255, 0.3);
     --bg-color: #fff;
     --text-color: #000;
     --sort-column: #000;
@@ -29,6 +30,7 @@
 }
 
 %dark-theme{
+    --mask-bgcolor: rgba(43, 48, 53, 0.3);
     --bg-color: #2b3035;
     --text-color: rgb(154, 160, 172);
     --text-contrast-color: #fff;
