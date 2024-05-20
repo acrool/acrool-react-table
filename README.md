@@ -73,6 +73,57 @@ const BaseUsed = () => {
         {renderTable()}
     </div>;
 };
+
+
+
+const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
+
+    if(order){
+        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+    }
+
+    const pageStart = (currentPage -1) * pageLimit;
+    return data.slice(pageStart, pageStart + pageLimit );
+};
+
+
+const BasePag = () => {
+    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
+        currentPage: 1,
+        pageLimit: 8,
+        order: {
+            orderField: 'id',
+            orderBy: 'DESC',
+        }
+    });
+    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit, paginateMeta.order));
+
+    
+    const paginateInfo = {
+        totalItems: data.length,
+        totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
+    };
+    
+    const handleFetchPaginate: TOnChangePage = (meta) => {
+        setIsFetching(true);
+        setPaginateMeta(meta);
+
+        const {currentPage, pageLimit, order} = meta;
+
+        setTimeout(() => {
+            setPaginateData(getPageData(currentPage, pageLimit, order));
+            setIsFetching(false);
+        }, 400);
+    };
+    
+    return <Paginate
+        isDark
+        locale="zh-TW"
+        meta={paginateMeta}
+        info={paginateInfo}
+        onChangePage={handleFetchPaginate}
+    />;
+};
 ```
 
 
