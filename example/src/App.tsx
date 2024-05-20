@@ -7,7 +7,7 @@ import {data, IPaginateData} from './config/data';
 
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
-import {GridThemeProvider} from "@acrool/react-grid";
+import {GridThemeProvider} from '@acrool/react-grid';
 
 
 
@@ -132,10 +132,16 @@ function App() {
             // isEnableOddEven={false}
             title={tableData.title}
             tableCellMediaSize={768}
-            footer={{
-                name: {value: 'Total'},
-                amount: {value: calcAmount(data), dataAlign: 'right'},
-            }}
+            footer={[
+                {
+                    name: {value: 'Total'},
+                    amount: {value: calcAmount(data), dataAlign: 'right'},
+                },
+                {
+                    name: {value: 'Total'},
+                    amount: {value: calcAmount(data), dataAlign: 'right'},
+                }
+            ]}
             data={tableData.data}
             onChangePage={handleFetchPaginate}
             paginateMeta={paginateMeta}
@@ -170,11 +176,18 @@ function App() {
                     column3:     {text: 'Column3',   col: '120px'},
                 }}
                 tableCellMediaSize={768}
-                footer={{
-                    // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                    name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
-                    amount: {value: calcAmount(data), dataAlign: 'right'},
-                }}
+                footer={[
+                    {
+                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                        amount: {value: calcAmount(data), dataAlign: 'right'},
+                    },
+                    {
+                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                        amount: {value: calcAmount(data), dataAlign: 'right'},
+                    }
+                ]}
                 data={paginateData.map((row, index) => {
                     return {
                         id: row.id,
@@ -223,7 +236,7 @@ function App() {
                 info={paginateInfo}
                 onChangePage={handleFetchPaginate}
             />
-        </>
+        </>;
     };
 
     return (
@@ -234,13 +247,13 @@ function App() {
                 <Button type="button" onClick={() => setIsFetching(curr => !curr)}>isFetching</Button>
                 <TableContainer className="d-flex flex-row my-2 w-100">
 
-                    <div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>
-                        {renderLightTable()}
-                    </div>
-
-                    {/*<div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
-                    {/*    {renderDarkTable()}*/}
+                    {/*<div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>*/}
+                    {/*    {renderLightTable()}*/}
                     {/*</div>*/}
+
+                    <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
+                        {renderDarkTable()}
+                    </div>
                 </TableContainer>
 
 

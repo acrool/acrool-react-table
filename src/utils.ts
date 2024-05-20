@@ -1,4 +1,4 @@
-import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody, TTitleCol} from './types';
+import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody, TTitleCol, TBodyDataField} from './types';
 import {CSSProperties} from 'react';
 import {objectKeys} from 'bear-jsutils/object';
 

@@ -179,6 +179,37 @@
 
 
 /** -------------------------------
+ *         Stocky Column
+ * ------------------------------ */
+
+.root table {
+
+    th, td{
+        &[data-sticky]{
+            position: sticky;
+            left: var(--sticky-left);
+            z-index: 6!important;
+
+            &:after{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                transition: box-shadow 0.3s;
+                content: "";
+                pointer-events: none;
+                box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
+
+                right: 0;
+                transform: translateX(100%);
+            }
+        }
+    }
+}
+
+
+
+/** -------------------------------
  *             Header
  * ------------------------------ */
 .root table {
@@ -212,25 +243,7 @@
                 color: var(--sort-column);
             }
 
-            &[data-sticky]{
-                position: sticky;
-                left: var(--sticky-left);
-                z-index: 6!important;
 
-                &:after{
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    width: 100%;
-                    transition: box-shadow 0.3s;
-                    content: "";
-                    pointer-events: none;
-                    box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
-
-                    right: 0;
-                    transform: translateX(100%);
-                }
-            }
 
         }
     }
@@ -289,29 +302,6 @@
             align-items: center;
             justify-content: center;
             min-height: 105px;
-        }
-
-        th, td{
-            // 欄位沾黏
-            &[data-sticky]{
-                position: sticky;
-                left: var(--sticky-left);
-                z-index: 1;
-
-                &:after{
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    width: 100%;
-                    transition: box-shadow 0.3s;
-                    content: "";
-                    pointer-events: none;
-                    box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
-
-                    right: 0;
-                    transform: translateX(100%);
-                }
-            }
         }
     }
 

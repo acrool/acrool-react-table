@@ -113,7 +113,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isFetching?: boolean
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
-    footer?: TFooter<K> // ex: calc total...
+    footer?: TFooter<K>[] // ex: calc total...
     headerLineHeight?: TLineHeight,
     bodyLineHeight?: TLineHeight,
     footerLineHeight?: TLineHeight,
