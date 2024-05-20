@@ -1,4 +1,4 @@
-import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody} from './types';
+import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody, TTitleCol} from './types';
 import {CSSProperties} from 'react';
 import {objectKeys} from 'bear-jsutils/object';
 
@@ -38,6 +38,35 @@ export const getColSpan = (colSpan: number) => {
         } as CSSProperties
     };
 };
+
+
+
+
+/**
+ * 計算 sticky left
+ * @param calcLeft
+ */
+export const getCalcStickyLeft = (calcLeft: TTitleCol[]) => {
+
+
+    const formatVal = calcLeft.map(row => {
+        if(typeof row === 'number'){
+            return `${row}px`;
+        }
+        // 正則判斷必須是 px % em rem 才可以，否則回傳 undefined;
+        if(typeof row === 'string' && /(\d+)(px|%|em|rem)/.test(row)){
+            return row;
+        }
+        return undefined;
+    }).filter(str => str);
+
+    return {
+        style: {
+            '--sticky-left': `calc(${formatVal.join(' + ')})`,
+        } as CSSProperties
+    };
+};
+
 
 
 

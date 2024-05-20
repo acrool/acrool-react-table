@@ -21,22 +21,22 @@ const Footer = <K extends TBodyDataFieldKey>({
 
     const renderFooterData = () => {
         if(data){
-            let ignoreMerge = 0;
+            let colMergeAfterIgnoreLength = 0;
             return objectKeys(title)
-                ?.filter(titleKey => title[titleKey].isHidden !== true)
+                ?.filter(titleKey => !title[titleKey].isHidden)
                 ?.reduce((curr: ReactNode[], titleKey) => {
                     const titleRow = title[titleKey];
 
                     const field = data[titleKey];
                     const colSpan = field?.colSpan ?? 1;
 
-                    if(ignoreMerge > 0){
-                        ignoreMerge -= 1;
+                    if(colMergeAfterIgnoreLength > 0){
+                        colMergeAfterIgnoreLength -= 1;
                         return curr;
                     }
 
                     if(colSpan > 1){
-                        ignoreMerge = colSpan - 1;
+                        colMergeAfterIgnoreLength = colSpan - 1;
                     }
 
                     return [

@@ -9,9 +9,9 @@ import {
     TTableTitle,
     TBodyDataFieldKey,
     TBodyDataField,
-    TCollapseEvent
+    TCollapseEvent, TTitleCol
 } from '../types';
-import {getColSpan} from '../utils';
+import {getCalcStickyLeft, getColSpan} from '../utils';
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -66,11 +66,12 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             const config = dataRow.detail.config;
 
             return dataRow.detail.data.map((detailFields, detailIndex) => {
-                let ignore = 0;
+                let colMergeAfterIgnoreLength = 0;
 
                 const tds = objectKeys(title)
                     ?.reduce((curr: JSX.Element[], titleKey) => {
                         const titleRow = title[titleKey];
+
 
                         const fieldConfig = {
                             ...titleRow,
@@ -83,13 +84,13 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         if(isHidden){
                             return curr;
                         }
-                        if(ignore > 0){
-                            ignore -= 1;
+                        if(colMergeAfterIgnoreLength > 0){
+                            colMergeAfterIgnoreLength -= 1;
                             return curr;
                         }
 
                         if(colSpan > 1){
-                            ignore = colSpan - 1;
+                            colMergeAfterIgnoreLength = colSpan - 1;
                         }
 
                         return [
@@ -99,8 +100,8 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                                 data-detail=""
                                 className={titleRow.className}
                                 // aria-label={titleRow.text}
-                                data-align={fieldConfig?.dataAlign}
-                                data-vertical={titleRow?.dataVertical}
+                                data-align={fieldConfig.dataAlign}
+                                data-vertical={titleRow.dataVertical}
                                 {...getColSpan(colSpan)}
                             >
                                 {fieldValue}
@@ -178,11 +179,16 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             // 避免忽略行，CSS無法跳過，所以自行計算
             let cellTdIndex = 0;
 
-            let ignore = 0;
+            // 忽略合併行數
+            let colMergeAfterIgnoreLength = 0;
 
-            const tds = objectKeys(title)
-                ?.filter(titleKey => title[titleKey].isHidden !== true)
-                ?.reduce((curr: JSX.Element[], titleKey) => {
+            // 計算沾黏的位置
+            let calcLeft: TTitleCol[] = ['0px'];
+
+            const titleKeys = objectKeys(title);
+            const tds = titleKeys
+                ?.filter(titleKey => !title[titleKey].isHidden)
+                ?.reduce((curr: JSX.Element[], titleKey, idx) => {
                     const titleField = dataRow.field[titleKey];
                     const config = getConfig(titleField);
 
@@ -195,13 +201,20 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const field = dataRow.field[titleKey];
                     const colSpan = fieldConfig?.colSpan ?? 1;
 
-                    if(ignore > 0){
-                        ignore -= 1;
+                    if(colMergeAfterIgnoreLength > 0){
+                        colMergeAfterIgnoreLength -= 1;
                         return curr;
                     }
 
                     if(colSpan > 1){
-                        ignore = colSpan - 1;
+                        colMergeAfterIgnoreLength = colSpan - 1;
+                    }
+
+                    // 上一個
+                    const prevCol = title[titleKeys[idx - 1]]?.col;
+                    const prevIsSticky = title[titleKeys[idx - 1]]?.isSticky;
+                    if(prevIsSticky && idx > 0 && prevCol){
+                        calcLeft.push(prevCol);
                     }
 
 
@@ -217,14 +230,21 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const children = getBodyData(field, collapseIds.includes(dataRow.id), collapseEvent);
 
 
+                    const {style: colSpanStyles} = getColSpan(colSpan);
+                    const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
                         className: titleRow.className,
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-nth-type': nthType,
                         'data-align': fieldConfig?.dataAlign,
-                        'data-vertical': titleRow?.dataVertical,
-                        ...getColSpan(colSpan),
+                        'data-vertical': titleRow.dataVertical,
+                        'data-sticky': titleRow.isSticky ? '': undefined,
+                        colSpan,
+                        style: {
+                            ...colSpanStyles,
+                            ...stickyLeftStyles,
+                        },
                         children,
                     };
                     return [

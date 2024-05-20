@@ -12,8 +12,9 @@
         "styled-components": "5.3.9"
     },
     "dependencies": {
-        "@swc/plugin-styled-components": "1.5.67",
         "@acrool/react-table": "link:..",
+        "@acrool/react-grid": "5.0.14-alpha.2",
+        "@swc/plugin-styled-components": "1.5.67",
         "dayjs": "^1.11.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

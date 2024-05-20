@@ -4,11 +4,10 @@ import dayjs from 'dayjs';
 import Table, {Paginate, TOnChangePage, IPaginateMeta, genericsTitleData} from '@acrool/react-table';
 import {data, IPaginateData} from './config/data';
 
-import './App.css';
-import './bootstrap-base.min.css';
-import '@acrool/react-table/dist/index.css';
+
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
+import {GridThemeProvider} from "@acrool/react-grid";
 
 
 
@@ -121,124 +120,135 @@ function App() {
 
 
 
+    const renderLightTable = () => {
+        return <Table
+            isDark={false}
+            locale="ja-JP"
+            isFetching={isFetching}
+            gap="8px"
+            // isVisibleHeader={false}
+            isStickyHeader
+            isVisibleBorder={true}
+            // isEnableOddEven={false}
+            title={tableData.title}
+            tableCellMediaSize={768}
+            footer={{
+                name: {value: 'Total'},
+                amount: {value: calcAmount(data), dataAlign: 'right'},
+            }}
+            data={tableData.data}
+            onChangePage={handleFetchPaginate}
+            paginateMeta={paginateMeta}
+            paginateInfo={paginateInfo}
+        />;
+    };
+
+
+    const renderDarkTable = () => {
+        return <>
+            <Table
+                style={{width: '100%', overflow: 'auto'}}
+                isDark
+                locale="zh-TW"
+                isFetching={isFetching}
+                gap="8px"
+                isStickyHeader
+                // isVisibleBorder={false}
+                isVisibleVerticalBorder
+                isOverflow
+                isEnableHover={false}
+                title={{
+                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+                    name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+                    amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
+                    role:     {text: 'Role',   col: '120px'},
+                    createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+                    joined:  {text: 'Joined',  col: '80px'},
+                    column1:     {text: 'Column1',   col: '120px'},
+                    column2:     {text: 'Column2',   col: '120px'},
+                    column3:     {text: 'Column3',   col: '120px'},
+                }}
+                tableCellMediaSize={768}
+                footer={{
+                    // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                    name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                    amount: {value: calcAmount(data), dataAlign: 'right'},
+                }}
+                data={paginateData.map((row, index) => {
+                    return {
+                        id: row.id,
+                        detail: <>
+                            <div>{row.name}</div>
+                            <div>{row.amount}</div>
+                            <div>{row.role}</div>
+                        </>,
+                        onClickRow: () => console.log(`click row id: ${row.id}`),
+                        field: {
+                            plus: (args) => <CollapseButton
+                                type="button" onClick={args.collapse}
+                                data-active={args.isActive ? '':undefined}
+                            >
+                                {args.isActive ? '-': '+'}
+                            </CollapseButton>,
+                            avatar: <Avatar src={row.avatar}/>,
+                            // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
+                            name: row.name,
+                            role: row.role,
+                            createdAt: dayjs(row.createdAt).format('MM/DD'),
+                            joined: row.isJoined ? 'Y':'N',
+                            amount: {
+                                colSpan: index === 0 ? 4: 1,
+                                dataAlign: index === 0 ? 'center': 'right',
+                                value: `$ ${formatCurrency(row.amount)}`,
+                            },
+                            column1: 'test',
+                            column2: 'test',
+                            column3: 'test',
+                        },
+                    };
+                })}
+                isVisiblePaginate={false}
+                onChangePage={handleFetchPaginate}
+                paginateMeta={paginateMeta}
+                paginateInfo={paginateInfo}
+            />
+
+            Extend Paginate
+
+            <Paginate
+                isDark
+                locale="zh-TW"
+                meta={paginateMeta}
+                info={paginateInfo}
+                onChangePage={handleFetchPaginate}
+            />
+        </>
+    };
+
     return (
-        <div className="App">
+        <GridThemeProvider>
+            <div className="App align-items-center justify-content-center d-flex flex-column">
 
-            <h1>Acrool React Table</h1>
-            <div>
-                <button type="button" color="primary" onClick={() => setIsFetching(curr => !curr)}>isFetching</button>
-                <TableContainer className="d-flex flex-row my-2">
-                    <div style={{backgroundColor: '#fff', flex: 1, padding: '20px'}}>
-                        <Table
-                            isDark={false}
-                            locale="ja-JP"
-                            isFetching={isFetching}
-                            gap="8px"
-                            // isVisibleHeader={false}
-                            isStickyHeader
-                            isVisibleBorder={true}
-                            // isEnableOddEven={false}
-                            title={tableData.title}
-                            tableCellMediaSize={768}
-                            footer={{
-                                name: {value: 'Total'},
-                                amount: {value: calcAmount(data), dataAlign: 'right'},
-                            }}
-                            data={tableData.data}
-                            onChangePage={handleFetchPaginate}
-                            paginateMeta={paginateMeta}
-                            paginateInfo={paginateInfo}
-                        />
+                <Title>Acrool React Table</Title>
+                <Button type="button" onClick={() => setIsFetching(curr => !curr)}>isFetching</Button>
+                <TableContainer className="d-flex flex-row my-2 w-100">
+
+                    <div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>
+                        {renderLightTable()}
                     </div>
 
-                    <div style={{backgroundColor: '#000', flex: 1, padding: '20px'}}>
-
-                        <Table
-                            isDark
-                            locale="zh-TW"
-                            isFetching={isFetching}
-                            gap="8px"
-                            isStickyHeader
-                            // isVisibleBorder={false}
-                            isVisibleVerticalBorder
-                            isOverflow
-                            isEnableHover={false}
-                            title={{
-                                plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-                                amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
-                                role:     {text: 'Role',   col: '120px'},
-                                createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
-                                joined:  {text: 'Joined',  col: '80px'},
-                            }}
-                            tableCellMediaSize={768}
-                            footer={{
-                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                                name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
-                                amount: {value: calcAmount(data), dataAlign: 'right'},
-                            }}
-                            data={paginateData.map((row, index) => {
-                                return {
-                                    id: row.id,
-                                    detail: <>
-                                        <div>{row.name}</div>
-                                        <div>{row.amount}</div>
-                                        <div>{row.role}</div>
-                                    </>,
-                                    onClickRow: () => console.log(`click row id: ${row.id}`),
-                                    field: {
-                                        plus: (args) => <CollapseButton
-                                            type="button" onClick={args.collapse}
-                                            data-active={args.isActive ? '':undefined}
-                                        >
-                                            {args.isActive ? '-': '+'}
-                                        </CollapseButton>,
-                                        avatar: <Avatar src={row.avatar}/>,
-                                        // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
-                                        name: row.name,
-                                        role: row.role,
-                                        createdAt: dayjs(row.createdAt).format('MM/DD'),
-                                        joined: row.isJoined ? 'Y':'N',
-                                        amount: {
-                                            colSpan: index === 0 ? 4: 1,
-                                            dataAlign: index === 0 ? 'center': 'right',
-                                            value: `$ ${formatCurrency(row.amount)}`,
-                                        },
-                                    },
-                                };
-                            })}
-                            isVisiblePaginate={false}
-                            onChangePage={handleFetchPaginate}
-                            paginateMeta={paginateMeta}
-                            paginateInfo={paginateInfo}
-                        />
-
-                            extend Paginate
-
-                        <Paginate
-                            isDark
-                            locale="zh-TW"
-                            meta={paginateMeta}
-                            info={paginateInfo}
-                            onChangePage={handleFetchPaginate}
-                        />
-
-                    </div>
+                    {/*<div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
+                    {/*    {renderDarkTable()}*/}
+                    {/*</div>*/}
                 </TableContainer>
 
 
 
 
-                <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
             </div>
-            <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-            </p>
+        </GridThemeProvider>
 
-        </div>
     );
 }
 
@@ -283,4 +293,16 @@ const TableContainer = styled.div`
         --tbody-th-color-color: #0a278a;
         --border-color: rgba(66, 66, 66, 0.27);
     }
+`;
+
+const Button = styled.button`
+    color: #fff;
+    background-color: #e83e8c;
+    border-radius: 4px;
+`;
+
+const Title = styled.h1`
+    color: #2b70b4;
+    text-align: center;
+    margin: 20px;
 `;
