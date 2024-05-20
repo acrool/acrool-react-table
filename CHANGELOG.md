@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.13-alpha.8](https://github.com/acrool/acrool-react-table/compare/v4.3.13-alpha.7...v4.3.13-alpha.8) (2024-05-20)
+
+
+### Bug Fixes
+
+* styles fail ([20eae63](https://github.com/acrool/acrool-react-table/commit/20eae63a1fdd4c5eefd4cd764d84565f936a8d5a))
+
 ### [4.3.13-alpha.7](https://github.com/acrool/acrool-react-table/compare/v4.3.13-alpha.6...v4.3.13-alpha.7) (2024-05-19)
 
 ### [4.3.13-alpha.6](https://github.com/acrool/acrool-react-table/compare/v4.3.13-alpha.5...v4.3.13-alpha.6) (2024-05-18)
