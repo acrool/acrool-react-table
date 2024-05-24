@@ -51,7 +51,6 @@
     "clsx": "2.x",
     "react": "^18.x",
     "react-dom": "^18.x",
-    "@types/throttle-debounce": "^5.x",
     "throttle-debounce": "^5.x"
   },
   "devDependencies": {
