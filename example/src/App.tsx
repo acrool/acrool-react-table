@@ -7,7 +7,8 @@ import {data, IPaginateData} from './config/data';
 
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
-import {GridThemeProvider} from '@acrool/react-grid';
+import {Col, Container, GridThemeProvider, Row} from '@acrool/react-grid';
+import {ETheme} from "../../src";
 
 
 
@@ -127,15 +128,15 @@ function App() {
             isFetching={isFetching}
             gap="8px"
             // isVisibleHeader={false}
-            isStickyHeader
-            isVisibleBorder={true}
+            // isStickyHeader
+            // isVisibleBorder={true}
             // isEnableOddEven={false}
             title={tableData.title}
-            tableCellMediaSize={768}
+            // tableCellMediaSize={768}
             footer={[
                 {
-                    name: {value: 'Total'},
-                    amount: {value: calcAmount(data), dataAlign: 'right'},
+                    name: {value: 'Fax'},
+                    amount: {value: 10, dataAlign: 'right'},
                 },
                 {
                     name: {value: 'Total'},
@@ -150,37 +151,38 @@ function App() {
     };
 
 
-    const renderDarkTable = () => {
+    const renderTable = (isDark?: boolean, theme?: ETheme) => {
         return <>
             <Table
                 style={{width: '100%', overflow: 'auto'}}
-                isDark
+                isDark={isDark}
+                theme={theme}
                 locale="zh-TW"
                 isFetching={isFetching}
                 gap="8px"
-                isStickyHeader
+                // isStickyHeader
                 // isVisibleBorder={false}
-                isVisibleVerticalBorder
-                isOverflow
-                isEnableHover={false}
+                // isVisibleVerticalBorder
+                // isOverflow
+                // isEnableHover={false}
                 title={{
-                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
-                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
+                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
                     name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
                     amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
                     role:     {text: 'Role',   col: '120px'},
                     createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
                     joined:  {text: 'Joined',  col: '80px'},
-                    column1:     {text: 'Column1',   col: '120px'},
-                    column2:     {text: 'Column2',   col: '120px'},
-                    column3:     {text: 'Column3',   col: '120px'},
+                    // column1:     {text: 'Column1',   col: '120px'},
+                    // column2:     {text: 'Column2',   col: '120px'},
+                    // column3:     {text: 'Column3',   col: '120px'},
                 }}
-                tableCellMediaSize={768}
+                // tableCellMediaSize={768}
                 footer={[
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
-                        amount: {value: calcAmount(data), dataAlign: 'right'},
+                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
+                        amount: {value: 10, dataAlign: 'right'},
                     },
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
@@ -215,9 +217,9 @@ function App() {
                                 dataAlign: index === 0 ? 'center': 'right',
                                 value: `$ ${formatCurrency(row.amount)}`,
                             },
-                            column1: 'test',
-                            column2: 'test',
-                            column3: 'test',
+                            // column1: 'test',
+                            // column2: 'test',
+                            // column3: 'test',
                         },
                     };
                 })}
@@ -245,15 +247,49 @@ function App() {
 
                 <Title>Acrool React Table</Title>
                 <Button type="button" onClick={() => setIsFetching(curr => !curr)}>isFetching</Button>
-                <TableContainer className="d-flex flex-row my-2 w-100">
+                <TableContainer fluid>
 
-                    {/*<div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>*/}
-                    {/*    {renderLightTable()}*/}
-                    {/*</div>*/}
+                    <Row>
+                        <Col col>
+                            <div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>
+                                {renderLightTable()}
+                            </div>
 
-                    <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
-                        {renderDarkTable()}
-                    </div>
+                        </Col>
+
+                        <Col col>
+                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
+                                {renderTable(true)}
+                            </div>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col col>
+                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
+                                {renderTable(false,ETheme.acrool)}
+                            </div>
+                        </Col>
+                        <Col col>
+                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
+                                {renderTable(true,ETheme.acrool)}
+                            </div>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col col>
+                            <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>
+                                {renderTable(false,ETheme.game)}
+                            </div>
+                        </Col>
+                        <Col col>
+                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
+                                {/*{renderTable(true,ETheme.acrool)}*/}
+                            </div>
+                        </Col>
+                    </Row>
+
                 </TableContainer>
 
 
@@ -296,15 +332,17 @@ const Avatar = styled.img`
     height: 35px;
 `;
 
-const TableContainer = styled.div`
+const TableContainer = styled(Container)`
     --primary-color: #17a254;
 
     table {
         //--vertical-border-color: var(--border-color);
-        --header-border-color: var(--border-color);
+        //--header-border-color: var(--border-color);
         //--tbody-th-bg-color: #4a63b6;
-        --tbody-th-color-color: #0a278a;
-        --border-color: rgba(66, 66, 66, 0.27);
+        //--tbody-th-color-color: #0a278a;
+        //--border-color: rgba(66, 66, 66, 0.27);
+
+        //--border-radius: 50px;
     }
 `;
 

@@ -1,0 +1,44 @@
+
+/** -------------------------------
+ *             Header
+ * ------------------------------ */
+
+.acrool-table[data-theme="acrool"].dark-theme {
+    --mask-bgcolor: rgba(43, 48, 53, 0.3);
+    --bg-color: #2b3035;
+    --text-color: rgb(154, 160, 172);
+    --text-contrast-color: #fff;
+    --sort-column: #fff;
+
+    --page-text-color: rgb(125, 132, 144);
+    --page-bg-color: #495057;
+    --page-bg-hover-color: #6b7279;
+
+    --border-color: #343a40;
+    --header-border-color: #585858;
+    --cell-border-color: #4d4d4d;
+
+    --tr-bg-color: #2b3035;
+    --tr-bg-hover-color: #1f1f1f;
+    --tr-even-bg-color: #262a2e;
+    --tr-even-bg-hover-color: #1f1f1f;
+}
+
+.acrool-table[data-theme="acrool"] table{
+   border-radius: var(--border-radius);
+   border: 1px solid var(--border-color);
+}
+
+
+
+
+/** -------------------------------
+ *             Body
+ * ------------------------------ */
+
+
+
+
+/** -------------------------------
+ *             Footer
+ * ------------------------------ */
