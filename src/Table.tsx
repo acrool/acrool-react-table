@@ -234,49 +234,41 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
     return (
         <div className={clsx(
-            styles.root,
             className,
+            styles.root,
+            {[styles.darkTheme]: isDark},
         )}
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
-            <div className={clsx(
-                styles.container,
-                {[styles.darkTheme]: isDark},
-            )}>
-                <table
-                    data-mode="table"
-                    data-header={isVisibleHeader ? '': undefined}
-                    data-footer={!!footer ? '': undefined}
-                    data-hover={!!isEnableHover ? '': undefined}
-                    data-overflow={!!isOverflow ? '': undefined}
-                    data-sticky={!!isStickyHeader ? '': undefined}
-                    data-odd-even={!!isEnableOddEven ? '': undefined}
-                    data-border={!!isVisibleBorder ? '': undefined}
-                    data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
-                    style={extendStyles}
-                >
-                    {/* Header */}
-                    {renderHeader()}
+            <table
+                data-mode="table"
+                data-header={isVisibleHeader ? '': undefined}
+                data-footer={!!footer ? '': undefined}
+                data-hover={!!isEnableHover ? '': undefined}
+                data-overflow={!!isOverflow ? '': undefined}
+                data-sticky={!!isStickyHeader ? '': undefined}
+                data-odd-even={!!isEnableOddEven ? '': undefined}
+                data-border={!!isVisibleBorder ? '': undefined}
+                data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
+                style={extendStyles}
+            >
+                {/* Header */}
+                {renderHeader()}
 
-                    {/* Body */}
-                    {renderBody()}
+                {/* Body */}
+                {renderBody()}
 
-                    {/* Footer */}
-                    {renderFooter()}
-                </table>
+                {/* Footer */}
+                {renderFooter()}
+            </table>
 
-                <div className={styles.loadingText}>
-                    {renderFetching}
-                </div>
+            <div className={styles.loadingText}>
+                {renderFetching}
             </div>
 
-            <div className={styles.footerContainer}>
-                {/* Paginate */}
-                {renderPaginate()}
-            </div>
+            {renderPaginate()}
         </div>
-
     );
 };
 
