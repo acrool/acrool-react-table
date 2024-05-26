@@ -12,6 +12,7 @@ import {
     TCollapseEvent, TTitleCol
 } from '../types';
 import {getCalcStickyLeft, getColSpan} from '../utils';
+import clsx from "clsx";
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -199,13 +200,13 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         ...config,
                     };
                     const field = dataRow.field[titleKey];
-                    const colSpan = fieldConfig?.colSpan ?? 1;
 
                     if(colMergeAfterIgnoreLength > 0){
                         colMergeAfterIgnoreLength -= 1;
                         return curr;
                     }
 
+                    const colSpan = fieldConfig?.colSpan ?? 1;
                     if(colSpan > 1){
                         colMergeAfterIgnoreLength = colSpan - 1;
                     }
@@ -218,7 +219,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     }
 
 
-                    const isTh = cellTdIndex === 0;
 
                     let nthType = undefined;
                     if(isNotEmpty(field)){
@@ -231,16 +231,16 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const {style: colSpanStyles} = getColSpan(colSpan);
-                    const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
+                    const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft, titleRow.isSticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
-                        className: titleRow.className,
+                        className: nthType === 'even' ? 'even': undefined,
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
-                        'data-nth-type': nthType,
+                        // 'data-nth-type': nthType,
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': titleRow.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
-                        colSpan,
+                        // colSpan,
                         style: {
                             ...colSpanStyles,
                             ...stickyLeftStyles,
@@ -249,7 +249,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     };
                     return [
                         ...curr,
-                        isTh ? <th {...args}/>: <td {...args}/>,
+                        <td {...args}/>,
                     ];
                 }, []);
 
@@ -263,7 +263,8 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         }
                     }}
                     data-disabled={dataRow.disabled}
-                    data-nth-type={index % 2 === 0 ? 'odd': 'even'}
+                    className={index % 2 === 0 ? undefined: 'even'}
+                    // data-nth-type={index % 2 === 0 ? 'odd': 'even'}
                     role={dataRow.onClickRow ? 'button': undefined}
                 >
                     {tds}

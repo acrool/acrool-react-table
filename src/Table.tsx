@@ -26,6 +26,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isDark,
     locale = 'en-US',
     isFetching = false,
+    theme,
     title,
     data,
     footer,
@@ -236,8 +237,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         <div className={clsx(
             className,
             styles.root,
-            {[styles.darkTheme]: isDark},
+            'acrool-table',
+            {'dark-theme': isDark},
         )}
+        data-theme={theme}
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
@@ -249,7 +252,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
                 data-overflow={!!isOverflow ? '': undefined}
                 data-sticky={!!isStickyHeader ? '': undefined}
                 data-odd-even={!!isEnableOddEven ? '': undefined}
-                data-border={!!isVisibleBorder ? '': undefined}
+                // data-border={!!isVisibleBorder ? '': undefined}
                 data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
                 style={extendStyles}
             >

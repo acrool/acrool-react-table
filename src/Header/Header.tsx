@@ -78,7 +78,7 @@ const Header = <K extends TBodyDataFieldKey>({
                 }
 
                 const {style: colSpanStyles} = getColSpan(colSpan);
-                const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
+                const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft, titleRow.isSticky);
                 const args = {
                     key: `theadTh_${titleKey}`,
                     className: titleRow.className,
@@ -87,8 +87,8 @@ const Header = <K extends TBodyDataFieldKey>({
                     'data-align': fieldConfig?.dataAlign,
                     'data-vertical': titleRow.dataVertical,
                     'data-sticky': titleRow.isSticky ? '': undefined,
-                    'data-enable-sort': isEnableSort ? '': undefined,
-                    colSpan,
+                    'data-sort': isEnableSort ? '': undefined,
+                    // colSpan,
                     style: {
                         ...colSpanStyles,
                         ...stickyLeftStyles,

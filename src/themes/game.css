@@ -1,44 +1,53 @@
+.acrool-table[data-theme="game"] {
+    --border-radius: 12px;
+    --body-border-radius: 4px;
+    --line-height: 42px;
+
+    /*--tr-bg-color: #fff;*/
+
+    background-color: #dde0ff;
+    box-shadow: rgb(77, 66, 149) -1px -6px 0 1px inset;
+
+    border: 1px solid #000;
+    border-bottom-width: 2px;
+    border-radius: 12px;
+}
+
+.acrool-table[data-theme="game"] table{
+    padding: 10px;
+    row-gap: 6px;
+}
+
 
 /** -------------------------------
  *             Header
  * ------------------------------ */
 
-.acrool-table[data-theme="acrool"].dark-theme {
-    --mask-bgcolor: rgba(43, 48, 53, 0.3);
-    --bg-color: #2b3035;
-    --text-color: rgb(154, 160, 172);
-    --text-contrast-color: #fff;
-    --sort-column: #fff;
-
-    --page-text-color: rgb(125, 132, 144);
-    --page-bg-color: #495057;
-    --page-bg-hover-color: #6b7279;
-
-    --border-color: #343a40;
-    --header-border-color: #585858;
-    --cell-border-color: #4d4d4d;
-
-    --tr-bg-color: #2b3035;
-    --tr-bg-hover-color: #1f1f1f;
-    --tr-even-bg-color: #262a2e;
-    --tr-even-bg-hover-color: #1f1f1f;
-}
-
-.acrool-table[data-theme="acrool"] table{
-   border-radius: var(--border-radius);
-   border: 1px solid var(--border-color);
-}
-
-
-
 
 /** -------------------------------
  *             Body
  * ------------------------------ */
+.acrool-table[data-theme="game"] tbody tr td{
+    border: 1px solid #ebf7fa;
+    border-top-color: #000;
+    border-bottom-color: #000;
 
+    background-color: #fff;
+}
+.acrool-table[data-theme="game"] tbody tr td {
+    border-left: none;
+}
 
+.acrool-table[data-theme="game"] tbody tr td:last-child{
+    border-right-color: #000;
+    border-radius: 0 var(--body-border-radius) var(--body-border-radius) 0;
+}
 
+.acrool-table[data-theme="game"] tbody tr td:first-child{
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-radius: var(--body-border-radius) 0 0 var(--body-border-radius);
+    background-color: #ebf7fa;
+}
 
-/** -------------------------------
- *             Footer
- * ------------------------------ */
