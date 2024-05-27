@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.13-alpha.11](https://github.com/acrool/acrool-react-table/compare/v4.3.13-alpha.10...v4.3.13-alpha.11) (2024-05-27)
+
 ### [4.3.13-alpha.10](https://github.com/acrool/acrool-react-table/compare/v4.3.13-alpha.9...v4.3.13-alpha.10) (2024-05-24)
 
 ### [4.3.13-alpha.9](https://github.com/acrool/acrool-react-table/compare/v4.3.13-alpha.8...v4.3.13-alpha.9) (2024-05-20)
