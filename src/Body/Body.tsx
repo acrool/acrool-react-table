@@ -240,7 +240,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': titleRow.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
-                        // colSpan,
+                        colSpan,
                         style: {
                             ...colSpanStyles,
                             ...stickyLeftStyles,

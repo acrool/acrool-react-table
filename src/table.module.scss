@@ -27,7 +27,7 @@
         width: 100%;
         padding: 0;
 
-        display: grid;
+        //display: grid;
         border-collapse: collapse;
         grid-template-columns: var(--grid-template);
         grid-template-rows: 1fr;
@@ -70,7 +70,7 @@
 .root {
     table {
         thead, tbody, tfoot, tr {
-            display: contents;
+            //display: contents;
         }
     }
 }
@@ -85,7 +85,7 @@
     thead th,
     tfoot td,
     tbody td{
-        display: flex;
+        //display: flex;
         align-items: center;
         justify-content: flex-start;
 

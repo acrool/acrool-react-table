@@ -16,6 +16,9 @@
 .acrool-table[data-theme="game"] table{
     padding: 10px;
     row-gap: 6px;
+
+    border-collapse: separate;
+    border-spacing: 0 10px;
 }
 
 
@@ -28,14 +31,23 @@
  *             Body
  * ------------------------------ */
 .acrool-table[data-theme="game"] tbody tr td{
-    border: 1px solid #ebf7fa;
-    border-top-color: #000;
-    border-bottom-color: #000;
+    border: 1px solid #000;
+    border-left: none;
+    border-right: none;
 
     background-color: #fff;
+    position: relative;
 }
-.acrool-table[data-theme="game"] tbody tr td {
-    border-left: none;
+.acrool-table[data-theme="game"] tbody tr td:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: calc(100% - 2px);
+    width: 1px;
+    transform: translateY(-50%);
+    background-color: #ebf7fa;
+
 }
 
 .acrool-table[data-theme="game"] tbody tr td:last-child{
@@ -48,6 +60,8 @@
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     border-radius: var(--body-border-radius) 0 0 var(--body-border-radius);
+
+    box-shadow: inset 0px 0px 0px 1px #fff;
     background-color: #ebf7fa;
 }
 
