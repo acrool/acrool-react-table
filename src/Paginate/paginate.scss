@@ -1,5 +1,3 @@
-@import "../common.scss";
-
 /** -------------------------------
  *             Paginate
  * ------------------------------ */
@@ -14,11 +12,11 @@
 }
 
 .root {
-    @extend %light-theme;
+    //@extend %light-theme;
 }
 
 .root.dark-theme {
-    @extend %dark-theme;
+    //@extend %dark-theme;
 }
 
 
