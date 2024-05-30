@@ -212,7 +212,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return null;
         }
 
-        console.log('renderPageButton22', renderPageButton);
 
         return <Paginate
             isDark={isDark}
@@ -240,7 +239,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         ...getTemplate(title, gap),
     } as CSSProperties;
 
-    console.log('renderPageButton', renderPageButton);
 
     return (
         <div className={clsx(
