@@ -1,4 +1,4 @@
-import {TFooter, TTableTitle, TBodyDataFieldKey, TLineHeight, TTitleCol} from '../types';
+import {TFooter, TTableTitle, TBodyDataFieldKey, TTitleCol} from '../types';
 import {getCalcStickyLeft, getColSpan} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
 

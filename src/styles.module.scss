@@ -1,3 +1,6 @@
+@import "./Paginate/paginate";
+
+
 .root,
 .root *,
 .root *::before,
@@ -17,6 +20,10 @@
     width: 100%;
     position: relative;
 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     table{
         color: var(--text-color);
         font-size: 13px;
@@ -27,19 +34,10 @@
         width: 100%;
         padding: 0;
 
-        //display: grid;
-        border-collapse: collapse;
+        display: grid;
+        //border-collapse: collapse;
         grid-template-columns: var(--grid-template);
         grid-template-rows: 1fr;
-
-
-        &[data-overflow]{
-            overflow: auto;
-        }
-
-        &[data-sticky]{
-            overflow: visible;
-        }
 
     }
 
@@ -70,7 +68,7 @@
 .root {
     table {
         thead, tbody, tfoot, tr {
-            //display: contents;
+            display: contents;
         }
     }
 }
@@ -85,7 +83,7 @@
     thead th,
     tfoot td,
     tbody td{
-        //display: flex;
+        display: flex;
         align-items: center;
         justify-content: flex-start;
 
@@ -96,7 +94,7 @@
         padding: 0 var(--grid-gap);
         grid-column: auto / span var(--grid-column-span);
 
-        background-color: var(--bg-color);
+        //background-color: var(--bg-color);
 
         &[data-align="left"]{
             justify-content: flex-start;
@@ -227,7 +225,7 @@
             }
 
             td{
-                background-color: var(--tr-bg-color);
+                //background-color: var(--tr-bg-color);
                 height: var(--body-line-height, var(--line-height));
                 font-weight: normal;
             }

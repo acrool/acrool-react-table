@@ -5,9 +5,10 @@ import {IPage, IPaginateInfo} from '../types';
 import Select from './_components/Select';
 import clsx from 'clsx';
 import useLocale from '../locales';
-import styles from './paginate.module.scss';
+import styles from '../styles.module.scss';
 import CSS from 'csstype';
-import {IPaginateVisibleProps} from "./types";
+import {IPaginateVisibleProps} from './types';
+
 
 interface IProps extends IPaginateVisibleProps{
     className?: string
@@ -18,8 +19,8 @@ interface IProps extends IPaginateVisibleProps{
     info?: IPaginateInfo
     onChangePage: (paginateMeta: Required<IPage>) => void
     pageLimitOptions?: number[]
-    nextText?: ReactNode,
-    prevText?: ReactNode,
+    nextPageText?: ReactNode,
+    prevPageText?: ReactNode,
 }
 
 
@@ -37,11 +38,13 @@ const Paginate = ({
     },
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
-    nextText,
-    prevText,
+    nextPageText,
+    prevPageText,
 
     isVisiblePageInfo = true,
-    isVisiblePageLimitOptions = true,
+    isVisiblePageLimit = true,
+    isVisiblePagePicker = true,
+    renderPageButton,
 }: IProps) => {
     const {i18n} = useLocale(locale);
 
@@ -98,61 +101,80 @@ const Paginate = ({
 
         for(let i = startPage; i <= endPage; i+=1){
             const isActive = i === meta.currentPage;
-            buttonPageDom.push(<button
-                className={styles.pageLi}
-                key={`table-page-button-${i}`}
-                data-active={isActive ? '': undefined}
-                type="button"
-                onClick={() => handleChangePage(i)}
-                disabled={isActive}
-            >
-                {i}
-            </button>);
+
+            if(renderPageButton){
+                buttonPageDom.push(renderPageButton({
+                    className: styles.paginatePageLi,
+                    key: `${styles.paginatePageLi}-${i}`,
+                    'data-active': isActive ? '': undefined,
+                    onClick: () => handleChangePage(i),
+                    disabled: isActive,
+                    children: i,
+                }));
+
+            }else{
+                buttonPageDom.push(<button
+                    className={styles.paginatePageLi}
+                    key={`${styles.paginatePageLi}-${i}`}
+                    data-active={isActive ? '': undefined}
+                    type="button"
+                    onClick={() => handleChangePage(i)}
+                    disabled={isActive}
+                >
+                    {i}
+                </button>);
+            }
+
+
+
         }
 
 
 
-        return <div className={styles.pageUl}>
+        return <div className={styles.paginatePageUl}>
 
             <button
-                className={styles.pageNav}
+                className={styles.paginatePageNav}
                 type="button"
                 disabled={meta.currentPage <= 1}
                 onClick={() => handleChangePage(meta.currentPage - 1)}
             >
-                {prevText ?? i18n('com.table.prev', {def: 'Prev'})}
+                {prevPageText ?? i18n('com.table.prev', {def: 'Prev'})}
             </button>
 
             {buttonPageDom}
 
 
             <button
-                className={styles.pageNav}
+                className={styles.paginatePageNav}
                 type="button"
                 disabled={meta.currentPage >= totalPages}
                 onClick={() => handleChangePage(meta.currentPage + 1)}
             >
-                {nextText ?? i18n('com.table.next', {def: 'Next'})}
+                {nextPageText ?? i18n('com.table.next', {def: 'Next'})}
             </button>
 
-            <button
-                className={styles.pagePicker}
-                type="button"
-                disabled={totalPages <= 1}
-            >
-                <AlignCenterIcon/>
-                <Select
-                    options={pages}
-                    value={meta.currentPage}
-                    onChange={(value) => handleChangePage(Number(value))}
-                />
-            </button>
+
+            {isVisiblePagePicker &&
+                <button
+                    className={styles.paginatePagePicker}
+                    type="button"
+                    disabled={totalPages <= 1}
+                >
+                    <AlignCenterIcon/>
+                    <Select
+                        options={pages}
+                        value={meta.currentPage}
+                        onChange={(value) => handleChangePage(Number(value))}
+                    />
+                </button>
+            }
         </div>;
     };
 
 
     const renderInfo = () => {
-        return <div className={styles.info}>
+        return <div className={styles.paginateInfo}>
             {i18n('com.table.showPage', {args: {
                 start: formatCurrency(paginateInfo.start),
                 end: formatCurrency(paginateInfo.end),
@@ -177,9 +199,14 @@ const Paginate = ({
 
 
     return (
-        <div className={clsx(styles.root, {[styles.darkTheme]: isDark}, className )}>
+        <div className={clsx(
+            styles.paginate,
+            'acrool-paginate',
+            {'dark-theme': isDark},
+            className)
+        }>
             {isVisiblePageInfo && renderInfo()}
-            {isVisiblePageLimitOptions && renderLimit()}
+            {isVisiblePageLimit && renderLimit()}
             {renderNav()}
         </div>
     );

@@ -7,7 +7,7 @@ import TableFooter from './Footer';
 import Paginate from './Paginate';
 import {getTemplate, getColSpan} from './utils';
 
-import styles from './table.module.scss';
+import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from 'bear-jsutils/object';
@@ -41,14 +41,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     },
     paginateMeta,
     isVisibleHeader = true,
-    isVisibleBorder = true,
-    isVisibleVerticalBorder = false,
     isVisiblePaginate = true,
-    isEnableHover = true,
-    isEnableOddEven = true,
     isEnableChangePageScrollTop = true,
     isOverflow = true,
-    isStickyHeader = false,
+    // isStickyHeader = false,
     tableCellMediaSize,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
@@ -57,9 +53,14 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     renderNoData,
     renderFetching = 'Loading...',
 
-    isVisiblePageLimitOptions,
-    isVisiblePageInfo,
+    nextPageText,
+    prevPageText,
+    renderPageButton,
+    isVisiblePagePicker = true,
+    isVisiblePageLimit = true,
+    isVisiblePageInfo = true,
 }: ITableProps<I, K>) => {
+
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -211,6 +212,8 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return null;
         }
 
+        console.log('renderPageButton22', renderPageButton);
+
         return <Paginate
             isDark={isDark}
             locale={locale}
@@ -220,7 +223,11 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             pageLimitOptions={pageLimitOptions}
 
             isVisiblePageInfo={isVisiblePageInfo}
-            isVisiblePageLimitOptions={isVisiblePageLimitOptions}
+            isVisiblePageLimit={isVisiblePageLimit}
+            isVisiblePagePicker={isVisiblePagePicker}
+            nextPageText={nextPageText}
+            prevPageText={prevPageText}
+            renderPageButton={renderPageButton}
         />;
     };
 
@@ -233,12 +240,14 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         ...getTemplate(title, gap),
     } as CSSProperties;
 
+    console.log('renderPageButton', renderPageButton);
+
     return (
         <div className={clsx(
-            className,
             styles.root,
             'acrool-table',
             {'dark-theme': isDark},
+            className,
         )}
         data-theme={theme}
         data-fetching={isFetching ? '': undefined}
@@ -248,12 +257,8 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
                 data-mode="table"
                 data-header={isVisibleHeader ? '': undefined}
                 data-footer={!!footer ? '': undefined}
-                data-hover={!!isEnableHover ? '': undefined}
                 data-overflow={!!isOverflow ? '': undefined}
-                data-sticky={!!isStickyHeader ? '': undefined}
-                data-odd-even={!!isEnableOddEven ? '': undefined}
-                // data-border={!!isVisibleBorder ? '': undefined}
-                data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
+                // data-sticky={!!isStickyHeader ? '': undefined}
                 style={extendStyles}
             >
                 {/* Header */}

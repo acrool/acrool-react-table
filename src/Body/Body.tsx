@@ -12,7 +12,6 @@ import {
     TCollapseEvent, TTitleCol
 } from '../types';
 import {getCalcStickyLeft, getColSpan} from '../utils';
-import clsx from "clsx";
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -234,13 +233,13 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft, titleRow.isSticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
-                        className: nthType === 'even' ? 'even': undefined,
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
+                        'data-even': nthType === 'even' ? '': undefined,
                         // 'data-nth-type': nthType,
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': titleRow.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
-                        colSpan,
+                        // colSpan,
                         style: {
                             ...colSpanStyles,
                             ...stickyLeftStyles,
@@ -263,7 +262,8 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         }
                     }}
                     data-disabled={dataRow.disabled}
-                    className={index % 2 === 0 ? undefined: 'even'}
+
+                    data-even={index % 2 === 0 ? undefined: ''}
                     // data-nth-type={index % 2 === 0 ? 'odd': 'even'}
                     role={dataRow.onClickRow ? 'button': undefined}
                 >

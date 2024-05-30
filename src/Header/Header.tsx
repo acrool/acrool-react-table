@@ -6,9 +6,8 @@ import {
     IOrderByType, TTitleCol
 } from '../types';
 import {objectKeys} from 'bear-jsutils/object';
-import styles from '../table.module.scss';
+import styles from '../styles.module.scss';
 import {getCalcStickyLeft, getColSpan} from '../utils';
-import {isNotEmpty} from 'bear-jsutils/equal';
 import React from 'react';
 
 

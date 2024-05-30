@@ -178,18 +178,18 @@ function App() {
                     // column3:     {text: 'Column3',   col: '120px'},
                 }}
                 // tableCellMediaSize={768}
-                footer={[
-                    {
-                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
-                        amount: {value: 10, dataAlign: 'right'},
-                    },
-                    {
-                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
-                        amount: {value: calcAmount(data), dataAlign: 'right'},
-                    }
-                ]}
+                // footer={[
+                //     {
+                //         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                //         name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
+                //         amount: {value: 10, dataAlign: 'right'},
+                //     },
+                //     {
+                //         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                //         name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                //         amount: {value: calcAmount(data), dataAlign: 'right'},
+                //     }
+                // ]}
                 data={paginateData.map((row, index) => {
                     return {
                         id: row.id,
@@ -223,21 +223,29 @@ function App() {
                         },
                     };
                 })}
-                isVisiblePaginate={false}
+                isVisiblePageInfo={false}
+                isVisiblePageLimit={false}
+                isVisiblePagePicker={false}
                 onChangePage={handleFetchPaginate}
                 paginateMeta={paginateMeta}
                 paginateInfo={paginateInfo}
+                renderPageButton={(args) => <button
+                    {...args}
+                >
+                    <div className="decorate"/>
+                    <span>{args.children}</span>
+                </button>}
             />
 
-            Extend Paginate
+            {/*Extend Paginate*/}
 
-            <Paginate
-                isDark
-                locale="zh-TW"
-                meta={paginateMeta}
-                info={paginateInfo}
-                onChangePage={handleFetchPaginate}
-            />
+            {/*<Paginate*/}
+            {/*    isDark*/}
+            {/*    locale="zh-TW"*/}
+            {/*    meta={paginateMeta}*/}
+            {/*    info={paginateInfo}*/}
+            {/*    onChangePage={handleFetchPaginate}*/}
+            {/*/>*/}
         </>;
     };
 
@@ -249,33 +257,33 @@ function App() {
                 <Button type="button" onClick={() => setIsFetching(curr => !curr)}>isFetching</Button>
                 <TableContainer fluid>
 
-                    <Row>
-                        <Col col>
-                            <div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderLightTable()}
-                            </div>
+                    {/*<Row>*/}
+                    {/*    <Col col>*/}
+                    {/*        <div style={{backgroundColor: '#fff', flex: 1, width: '100%', padding: '20px'}}>*/}
+                    {/*            {renderLightTable()}*/}
+                    {/*        </div>*/}
 
-                        </Col>
+                    {/*    </Col>*/}
 
-                        <Col col>
-                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderTable(true)}
-                            </div>
-                        </Col>
-                    </Row>
+                    {/*    <Col col>*/}
+                    {/*        <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
+                    {/*            {renderTable(true)}*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
+                    {/*</Row>*/}
 
-                    <Row>
-                        <Col col>
-                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderTable(false,ETheme.acrool)}
-                            </div>
-                        </Col>
-                        <Col col>
-                            <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderTable(true,ETheme.acrool)}
-                            </div>
-                        </Col>
-                    </Row>
+                    {/*<Row>*/}
+                    {/*    <Col col>*/}
+                    {/*        <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
+                    {/*            {renderTable(false,ETheme.acrool)}*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
+                    {/*    <Col col>*/}
+                    {/*        <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
+                    {/*            {renderTable(true,ETheme.acrool)}*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
+                    {/*</Row>*/}
 
                     <Row>
                         <Col col>
