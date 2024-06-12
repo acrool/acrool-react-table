@@ -10,6 +10,11 @@ export interface IConfig {
 }
 export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 
+export enum ETableMode {
+    table = 'table',
+    cell = 'cell',
+}
+
 /** -------------------------------
  *             Title
  * ------------------------------ */

@@ -128,7 +128,7 @@ function App() {
             isFetching={isFetching}
             gap="8px"
             // isVisibleHeader={false}
-            // isStickyHeader
+            isStickyHeader
             // isVisibleBorder={true}
             // isEnableOddEven={false}
             title={tableData.title}
@@ -159,7 +159,7 @@ function App() {
                 locale="zh-TW"
                 isFetching={isFetching}
                 gap="8px"
-                // isStickyHeader
+                isStickyHeader
 
                 isVisibleHeader={isVisibleHeader}
                 // isVisibleBorder={false}
@@ -178,7 +178,7 @@ function App() {
                     // column2:     {text: 'Column2',   col: '120px'},
                     // column3:     {text: 'Column3',   col: '120px'},
                 }}
-                tableCellMediaSize={768}
+                // tableCellMediaSize={768}
                 footer={[
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
@@ -287,11 +287,11 @@ function App() {
                     {/*</Row>*/}
 
                     <Row>
-                        <Col col>
-                            <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderTable(true)}
-                            </div>
-                        </Col>
+                        {/*<Col col>*/}
+                        {/*    <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>*/}
+                        {/*        {renderTable(true)}*/}
+                        {/*    </div>*/}
+                        {/*</Col>*/}
                         <Col col>
                             <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
                                 {renderTable(true, true)}

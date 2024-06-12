@@ -264,7 +264,7 @@
 /** -------------------------------
  *       RWD Cell Mode
  * ------------------------------ */
-.root table[data-mode="cell"]{
+.root[data-mode="cell"] table{
     display: block;
     border: none;
 
@@ -284,8 +284,6 @@
 
             &[data-collapse]{
                 margin-top: -1rem;
-
-
                 th:empty,
                 td:empty {
                     display: none;
@@ -295,35 +293,35 @@
 
         td {
             background-color: var(--tr-bg-color);
+            display: flex;
+            text-align: right;
+            margin-left: auto;
+            height: var(--cell-line-height, 35px);
+            width: 100%;
+            padding: var(--grid-gap);
+
+
+            &:empty {
+                display: none;
+            }
+
+            &:before {
+                text-align: left;
+                margin-right: auto;
+
+                content: attr(aria-label);
+                font-weight: bold;
+            }
         }
     }
 
     &[data-odd-even]{
         tbody{
             td {
-                display: flex;
-                text-align: right;
-                margin-left: auto;
-                height: var(--cell-line-height, 35px);
-                width: 100%;
-                padding: var(--grid-gap);
-
-
                 &[data-nth-type="even"] {
                     background-color: var(--tr-even-bg-color);
                 }
 
-                &:empty {
-                    display: none;
-                }
-
-                &:before {
-                    text-align: left;
-                    margin-right: auto;
-
-                    content: attr(aria-label);
-                    font-weight: bold;
-                }
             }
         }
     }

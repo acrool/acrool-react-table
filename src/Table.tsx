@@ -1,20 +1,16 @@
-import React, {useEffect, useRef, CSSProperties, useCallback} from 'react';
+import React, {CSSProperties, useCallback, useRef, useState} from 'react';
 
-import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
+import {ETableMode, ITableProps, TBodyDataFieldKey, TBodyDataID, TOnChangePage, TOnChangeSortField} from './types';
 import TableHeader from './Header';
 import TableBody from './Body';
 import TableFooter from './Footer';
 import Paginate from './Paginate';
-import {getTemplate, getColSpan} from './utils';
+import {getColSpan, getTemplate} from './utils';
 
 import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from 'bear-jsutils/object';
-
-
-
-
 
 
 /**
@@ -60,6 +56,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePageInfo = true,
 }: ITableProps<I, K>) => {
 
+    const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -76,17 +73,13 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 更新尺寸時是否改為 cell 模式
      */
     const handleOnResize = () => {
-        if(tableRef.current && tableCellMediaSize){
-            if(window.innerWidth <= tableCellMediaSize){
-                console.log('tableCellMediaSize', tableRef.current);
-                if(tableRef.current.dataset['mode'] === 'table'){
-                    tableRef.current.dataset['mode'] = 'cell';
+        if(tableCellMediaSize){
+            setTableMode(curr => {
+                if(window.innerWidth <= tableCellMediaSize && tableMode === ETableMode.table){
+                    return ETableMode.cell;
                 }
-            }else{
-                if(tableRef.current.dataset['mode'] === 'cell') {
-                    tableRef.current.dataset['mode'] = 'table';
-                }
-            }
+                return ETableMode.table;
+            });
         }
     };
 
@@ -247,7 +240,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             className,
         )}
         style={extendStyles}
-        data-mode="table"
+        data-mode={tableMode}
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         data-overflow={!!isOverflow ? '': undefined}
@@ -259,13 +252,13 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
                 // data-sticky={!!isStickyHeader ? '': undefined}
             >
                 {/* Header */}
-                {renderHeader()}
+                {tableMode === ETableMode.table && renderHeader()}
 
                 {/* Body */}
                 {renderBody()}
 
                 {/* Footer */}
-                {renderFooter()}
+                {tableMode === ETableMode.table && renderFooter()}
             </table>
 
             <div className={styles.loadingText}>
