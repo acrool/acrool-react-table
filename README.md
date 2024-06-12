@@ -33,8 +33,16 @@ yarn add @acrool/react-table
 add in your main.tsx
 ```tst
 import '@acrool/react-table/dist/index.css';
-
 ```
+
+## Option theme
+
+add in your main.tsx, after dist/index.css
+
+- Acrool
+  - import '@acrool/react-table/dist/theme/acrool.css';
+- Game
+  - import '@acrool/react-table/dist/theme/game.css';
 
 then in your page
 ```tsx
