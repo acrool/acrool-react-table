@@ -278,7 +278,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     };
 
 
-    return <tbody>
+    return <tbody className="acrool-table__content">
         {renderBodyData()}
     </tbody>;
 };

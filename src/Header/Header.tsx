@@ -157,7 +157,7 @@ const Header = <K extends TBodyDataFieldKey>({
     };
 
 
-    return <thead>
+    return <thead className="acrool-table__content">
         <tr>
             {renderTitle()}
         </tr>

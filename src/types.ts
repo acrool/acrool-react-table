@@ -102,11 +102,6 @@ export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => voi
 
 export type TCollapseEvent = (e: MouseEvent) => void
 
-export enum ETheme {
-    acrool = 'acrool',
-    game = 'game',
-}
-
 /** -------------------------------
  *             Table
  * ------------------------------ */
@@ -116,7 +111,6 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isDark?: boolean
     locale?: string
     isFetching?: boolean
-    theme?: ETheme
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
     footer?: TFooter<K>[] // ex: calc total...

@@ -97,7 +97,7 @@ const Footer = <K extends TBodyDataFieldKey>({
         });
     };
 
-    return <tfoot>
+    return <tfoot className="acrool-table__content">
         {renderBodyData()}
     </tfoot>;
 };

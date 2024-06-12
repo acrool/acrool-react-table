@@ -26,7 +26,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isDark,
     locale = 'en-US',
     isFetching = false,
-    theme,
     title,
     data,
     footer,
@@ -79,6 +78,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const handleOnResize = () => {
         if(tableRef.current && tableCellMediaSize){
             if(window.innerWidth <= tableCellMediaSize){
+                console.log('tableCellMediaSize', tableRef.current);
                 if(tableRef.current.dataset['mode'] === 'table'){
                     tableRef.current.dataset['mode'] = 'cell';
                 }
@@ -133,7 +133,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生沒資料時的顯示
      */
     const renderCustomNoData = () => {
-        return <tbody data-no-data="">
+        return <tbody className="acrool-table__content" data-no-data="">
             <tr>
                 <td {...getColSpan(objectKeys(title).length)}>
                     {!!renderNoData ?
@@ -172,7 +172,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
         if(!data || data?.length === 0){
             if(isFetching){
-                return <tbody data-loading="">
+                return <tbody className="acrool-table__content" data-loading="">
                     <tr>
                         <td {...getColSpan(objectKeys(title).length)}>{renderFetching}</td>
                     </tr>
@@ -231,7 +231,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     };
 
     const extendStyles = {
-        ...style,
         '--header-line-height': headerLineHeight,
         '--body-line-height': bodyLineHeight,
         '--cell-line-height': cellLineHeight,
@@ -247,17 +246,17 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             {'dark-theme': isDark},
             className,
         )}
-        data-theme={theme}
+        style={extendStyles}
+        data-mode="table"
+        data-header={isVisibleHeader ? '': undefined}
+        data-footer={!!footer ? '': undefined}
+        data-overflow={!!isOverflow ? '': undefined}
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
             <table
-                data-mode="table"
-                data-header={isVisibleHeader ? '': undefined}
-                data-footer={!!footer ? '': undefined}
-                data-overflow={!!isOverflow ? '': undefined}
+                style={style}
                 // data-sticky={!!isStickyHeader ? '': undefined}
-                style={extendStyles}
             >
                 {/* Header */}
                 {renderHeader()}

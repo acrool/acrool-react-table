@@ -151,16 +151,17 @@ function App() {
     };
 
 
-    const renderTable = (isDark?: boolean, theme?: ETheme) => {
+    const renderTable = (isDark?: boolean, isVisibleHeader = false) => {
         return <>
             <Table
                 style={{width: '100%', overflow: 'auto'}}
                 isDark={isDark}
-                theme={theme}
                 locale="zh-TW"
                 isFetching={isFetching}
                 gap="8px"
                 // isStickyHeader
+
+                isVisibleHeader={isVisibleHeader}
                 // isVisibleBorder={false}
                 // isVisibleVerticalBorder
                 // isOverflow
@@ -177,19 +178,19 @@ function App() {
                     // column2:     {text: 'Column2',   col: '120px'},
                     // column3:     {text: 'Column3',   col: '120px'},
                 }}
-                // tableCellMediaSize={768}
-                // footer={[
-                //     {
-                //         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                //         name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
-                //         amount: {value: 10, dataAlign: 'right'},
-                //     },
-                //     {
-                //         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                //         name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
-                //         amount: {value: calcAmount(data), dataAlign: 'right'},
-                //     }
-                // ]}
+                tableCellMediaSize={768}
+                footer={[
+                    {
+                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
+                        amount: {value: 10, dataAlign: 'right'},
+                    },
+                    {
+                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                        amount: {value: calcAmount(data), dataAlign: 'right'},
+                    }
+                ]}
                 data={paginateData.map((row, index) => {
                     return {
                         id: row.id,
@@ -288,12 +289,12 @@ function App() {
                     <Row>
                         <Col col>
                             <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderTable(true, ETheme.game)}
+                                {renderTable(true)}
                             </div>
                         </Col>
                         <Col col>
                             <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
-                                {/*{renderTable(true,ETheme.acrool)}*/}
+                                {renderTable(true, true)}
                             </div>
                         </Col>
                     </Row>
