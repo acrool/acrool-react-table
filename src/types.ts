@@ -65,6 +65,7 @@ type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 export type TBodyDataID = string | number;
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
+    className?: string,
     detail?: JSX.Element | TBodyDataDetail<K>,
     disabled?: boolean,
     onClickRow?: (collapse: () => void) => void,

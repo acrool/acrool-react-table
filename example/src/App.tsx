@@ -154,8 +154,8 @@ function App() {
     const renderTable = (isDark?: boolean, isVisibleHeader = false) => {
         return <>
             <Table
-                // style={{width: '100%', overflow: 'auto'}}
-                style={{width: '100%', '--header-top': 0, '--header-position': 'sticky'}}
+                style={{width: '100%', overflow: 'auto'}}
+                // style={{width: '100%', '--header-top': 0, '--header-position': 'sticky'}}
                 isDark={isDark}
                 locale="zh-TW"
                 isFetching={isFetching}
@@ -195,6 +195,7 @@ function App() {
                 data={paginateData.map((row, index) => {
                     return {
                         id: row.id,
+                        className: 'status-danger',
                         detail: <>
                             <div>{row.name}</div>
                             <div>{row.amount}</div>
@@ -344,6 +345,10 @@ const Avatar = styled.img`
 
 const TableContainer = styled(Container)`
     --primary-color: #17a254;
+
+    //.status-danger{
+    //    border-left-color: #e83e8c !important;
+    //}
 
     table {
         //--vertical-border-color: var(--border-color);

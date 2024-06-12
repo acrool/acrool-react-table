@@ -98,7 +98,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             <td
                                 key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
                                 data-detail=""
-                                className={titleRow.className}
+                                // className={titleRow.className}
                                 // aria-label={titleRow.text}
                                 data-align={fieldConfig.dataAlign}
                                 data-vertical={titleRow.dataVertical}
@@ -233,6 +233,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft, titleRow.isSticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
+                        className: dataRow.className,
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-even': nthType === 'even' ? '': undefined,
                         // 'data-nth-type': nthType,
