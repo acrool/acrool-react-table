@@ -288,7 +288,7 @@ function App() {
                     <Row>
                         <Col col>
                             <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>
-                                {renderTable(false,ETheme.game)}
+                                {renderTable(true, ETheme.game)}
                             </div>
                         </Col>
                         <Col col>

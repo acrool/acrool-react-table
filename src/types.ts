@@ -129,11 +129,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     paginateMeta?: IPaginateMeta
 
     isVisibleHeader?: boolean
-    isVisibleBorder?: boolean
-    isVisibleVerticalBorder?: boolean
     isVisiblePaginate?: boolean
-    isEnableHover?: boolean
-    isEnableOddEven?: boolean
     isEnableChangePageScrollTop?: boolean
     isOverflow?: boolean
     isStickyHeader?: boolean

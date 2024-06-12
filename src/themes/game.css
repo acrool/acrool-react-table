@@ -36,6 +36,10 @@
     border-left: none;
     border-right: none;
 
+    font-size: 12px;
+    font-weight: bold;
+
+
     background-color: #fff;
     position: relative;
 }

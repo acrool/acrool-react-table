@@ -63,14 +63,23 @@
 
 
 /** -------------------------------
+ *             Header
+ * ------------------------------ */
+
+.acrool-table thead tr th{
+    border: 1px solid var(--border-color);
+    background-color: var(--tr-bg-color);
+}
+
+
+
+/** -------------------------------
  *             Body
  * ------------------------------ */
 
-.acrool-table tbody tr td{
+.acrool-table tbody tr td,
+.acrool-table thead tr th{
     border: 1px solid var(--border-color);
-    background-color: #fff;
-}
-.acrool-table tbody tr td {
     border-left: none;
     border-right: none;
     border-bottom: none;
