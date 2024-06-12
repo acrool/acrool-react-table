@@ -154,7 +154,8 @@ function App() {
     const renderTable = (isDark?: boolean, isVisibleHeader = false) => {
         return <>
             <Table
-                style={{width: '100%', overflow: 'auto'}}
+                // style={{width: '100%', overflow: 'auto'}}
+                style={{width: '100%', '--header-top': 0, '--header-position': 'sticky'}}
                 isDark={isDark}
                 locale="zh-TW"
                 isFetching={isFetching}

@@ -249,7 +249,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         >
             <table
                 style={style}
-                // data-sticky={!!isStickyHeader ? '': undefined}
             >
                 {/* Header */}
                 {tableMode === ETableMode.table && renderHeader()}

@@ -162,6 +162,10 @@
 .root table {
     thead {
         th{
+            position: var(--header-position);
+            top: var(--header-top, 0);
+            z-index: var(--stick-z-index, 5);
+
             height: var(--header-line-height, var(--line-height));
 
             &[data-sort]{
@@ -183,11 +187,6 @@
         }
     }
 
-    &[data-sticky] thead th{
-        position: sticky;
-        top: var(--stick-top, 0);
-        z-index: var(--stick-z-index, 5);
-    }
 }
 
 
