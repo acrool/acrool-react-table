@@ -1,0 +1,207 @@
+.acrool-table {
+    --border-radius: 12px;
+    --body-border-radius: 4px;
+    --line-height: 42px;
+
+    /*--tr-bg-color: #fff;*/
+
+    background-color: #dde0ff;
+    box-shadow: #717bec -1px -10px 0 1px inset;
+    padding-bottom: 20px;
+
+    border: 1px solid #000;
+    border-bottom-width: 2px;
+    border-radius: 12px;
+}
+
+.acrool-table table{
+    padding: 10px;
+    row-gap: 6px;
+
+    /*border-collapse: separate;*/
+    /*border-spacing: 0 10px;*/
+}
+
+
+/** -------------------------------
+ *             Header
+ * ------------------------------ */
+
+
+/** -------------------------------
+ *             Body
+ * ------------------------------ */
+.acrool-table tbody tr td{
+    border: 1px solid #000;
+    border-left: none;
+    border-right: none;
+
+    font-size: 12px;
+    font-weight: bold;
+
+
+    background-color: #fff;
+    position: relative;
+}
+.acrool-table tbody tr td:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: calc(100% - 2px);
+    width: 1px;
+    transform: translateY(-50%);
+    background-color: #ebf7fa;
+
+}
+
+/* 處理Border */
+.acrool-table tbody tr td:last-child{
+    border-right: 1px solid #000;
+    border-radius: 0 var(--body-border-radius) var(--body-border-radius) 0;
+}
+.acrool-table tbody tr td:first-child{
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-radius: var(--body-border-radius) 0 0 var(--body-border-radius);
+}
+
+/* 首欄背景 */
+.acrool-table tbody tr:not([data-collapse]) td:first-child{
+    box-shadow: inset 0 0 0 1px #fff;
+    background-color: #ebf7fa;
+}
+
+
+
+
+
+/** -------------------------------
+ *             Paginate
+ * ------------------------------ */
+
+.acrool-react-table__paginate-page-ul{
+    column-gap: 16px;
+}
+
+.acrool-react-table__paginate-page-nav,
+.acrool-react-table__paginate-page-li{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    z-index: 0;
+
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.acrool-react-table__paginate-page-nav{
+    width: auto;
+}
+
+ /*底下立體區塊*/
+.acrool-react-table__paginate-page-nav:before,
+.acrool-react-table__paginate-page-li:before{
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: flex;
+
+    width: calc(100% + 2px);
+    height: calc(100% + 4px);  /* 底部露出的高度 */
+    z-index: -1;
+    border: 1px solid #000;
+    border-radius: 4px;
+    border-bottom-width: 2px;
+    background-color: #959595;
+
+}
+
+/*主體背景*/
+.acrool-react-table__paginate-page-nav:after,
+.acrool-react-table__paginate-page-li:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    background-color: #d0d0d0;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+
+.acrool-react-table__paginate-page-li[data-active]:after{
+    background-color: #ffd900;
+}
+.acrool-react-table__paginate-page-li[data-active]:before {
+    background-color: #ffa700;
+}
+
+.acrool-react-table__paginate-page-nav > span,
+.acrool-react-table__paginate-page-li > span {
+    position: relative;
+    z-index: 1;
+}
+
+/* 裝飾按鈕 */
+.acrool-react-table__paginate-page-nav .decorate,
+.acrool-react-table__paginate-page-li .decorate{
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+/* 反光 */
+.acrool-react-table__paginate-page-nav .decorate:before,
+.acrool-react-table__paginate-page-li .decorate:before{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    border-radius: calc(4px);
+    width: calc(100% - 2px);
+    height: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 2px;
+    background-image: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0));
+}
+
+/* 中間陰影 */
+.acrool-react-table__paginate-page-nav .decorate:after,
+.acrool-react-table__paginate-page-li .decorate:after{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    border-radius: calc(3px);
+    width: calc(100% - 4px);
+    height: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background-image: linear-gradient(to bottom, #959595, rgba(149, 149, 149, 0));
+}
+
+
+/* 中間陰影 */
+.acrool-react-table__paginate-page-li[data-active] .decorate:after{
+    background-image: linear-gradient(to bottom, #ffa700, rgba(255, 167, 0, 0));
+}
+

@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {IOption} from './types';
-import styles from '../../paginate.module.scss';
+import styles from '../../../styles.module.scss';
 
 interface IProps {
     title?: string;
@@ -50,7 +50,7 @@ const Select = ({
 
     return (
         <select
-            className={styles.limit}
+            className={styles.paginateLimit}
             name={name}
             value={String(value)}
             onChange={handleOnChange}

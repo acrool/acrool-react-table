@@ -1,20 +1,16 @@
-import React, {useEffect, useRef, CSSProperties, useCallback} from 'react';
+import React, {CSSProperties, useCallback, useRef, useState} from 'react';
 
-import {TOnChangeSortField, TOnChangePage, ITableProps, TBodyDataFieldKey, TBodyDataID} from './types';
+import {ETableMode, ITableProps, TBodyDataFieldKey, TBodyDataID, TOnChangePage, TOnChangeSortField} from './types';
 import TableHeader from './Header';
 import TableBody from './Body';
 import TableFooter from './Footer';
 import Paginate from './Paginate';
-import {getTemplate, getColSpan} from './utils';
+import {getColSpan, getTemplate} from './utils';
 
-import styles from './table.module.scss';
+import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from 'bear-jsutils/object';
-
-
-
-
 
 
 /**
@@ -40,14 +36,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     },
     paginateMeta,
     isVisibleHeader = true,
-    isVisibleBorder = true,
-    isVisibleVerticalBorder = false,
     isVisiblePaginate = true,
-    isEnableHover = true,
-    isEnableOddEven = true,
     isEnableChangePageScrollTop = true,
     isOverflow = true,
-    isStickyHeader = false,
+    // isStickyHeader = false,
     tableCellMediaSize,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
@@ -56,9 +48,15 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     renderNoData,
     renderFetching = 'Loading...',
 
-    isVisiblePageLimitOptions,
-    isVisiblePageInfo,
+    nextPageText,
+    prevPageText,
+    renderPageButton,
+    isVisiblePagePicker = true,
+    isVisiblePageLimit = true,
+    isVisiblePageInfo = true,
 }: ITableProps<I, K>) => {
+
+    const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -75,16 +73,13 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 更新尺寸時是否改為 cell 模式
      */
     const handleOnResize = () => {
-        if(tableRef.current && tableCellMediaSize){
-            if(window.innerWidth <= tableCellMediaSize){
-                if(tableRef.current.dataset['mode'] === 'table'){
-                    tableRef.current.dataset['mode'] = 'cell';
+        if(tableCellMediaSize){
+            setTableMode(curr => {
+                if(window.innerWidth <= tableCellMediaSize && tableMode === ETableMode.table){
+                    return ETableMode.cell;
                 }
-            }else{
-                if(tableRef.current.dataset['mode'] === 'cell') {
-                    tableRef.current.dataset['mode'] = 'table';
-                }
-            }
+                return ETableMode.table;
+            });
         }
     };
 
@@ -131,7 +126,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生沒資料時的顯示
      */
     const renderCustomNoData = () => {
-        return <tbody data-no-data="">
+        return <tbody className="acrool-table__content" data-no-data="">
             <tr>
                 <td {...getColSpan(objectKeys(title).length)}>
                     {!!renderNoData ?
@@ -170,7 +165,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
         if(!data || data?.length === 0){
             if(isFetching){
-                return <tbody data-loading="">
+                return <tbody className="acrool-table__content" data-loading="">
                     <tr>
                         <td {...getColSpan(objectKeys(title).length)}>{renderFetching}</td>
                     </tr>
@@ -210,6 +205,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return null;
         }
 
+
         return <Paginate
             isDark={isDark}
             locale={locale}
@@ -219,12 +215,15 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             pageLimitOptions={pageLimitOptions}
 
             isVisiblePageInfo={isVisiblePageInfo}
-            isVisiblePageLimitOptions={isVisiblePageLimitOptions}
+            isVisiblePageLimit={isVisiblePageLimit}
+            isVisiblePagePicker={isVisiblePagePicker}
+            nextPageText={nextPageText}
+            prevPageText={prevPageText}
+            renderPageButton={renderPageButton}
         />;
     };
 
     const extendStyles = {
-        ...style,
         '--header-line-height': headerLineHeight,
         '--body-line-height': bodyLineHeight,
         '--cell-line-height': cellLineHeight,
@@ -232,51 +231,41 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         ...getTemplate(title, gap),
     } as CSSProperties;
 
+
     return (
         <div className={clsx(
             styles.root,
+            'acrool-table',
+            {'dark-theme': isDark},
             className,
         )}
+        style={extendStyles}
+        data-mode={tableMode}
+        data-header={isVisibleHeader ? '': undefined}
+        data-footer={!!footer ? '': undefined}
+        data-overflow={!!isOverflow ? '': undefined}
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
-            <div className={clsx(
-                styles.container,
-                {[styles.darkTheme]: isDark},
-            )}>
-                <table
-                    data-mode="table"
-                    data-header={isVisibleHeader ? '': undefined}
-                    data-footer={!!footer ? '': undefined}
-                    data-hover={!!isEnableHover ? '': undefined}
-                    data-overflow={!!isOverflow ? '': undefined}
-                    data-sticky={!!isStickyHeader ? '': undefined}
-                    data-odd-even={!!isEnableOddEven ? '': undefined}
-                    data-border={!!isVisibleBorder ? '': undefined}
-                    data-vertical-border={!!isVisibleVerticalBorder ? '': undefined}
-                    style={extendStyles}
-                >
-                    {/* Header */}
-                    {renderHeader()}
+            <table
+                style={style}
+            >
+                {/* Header */}
+                {tableMode === ETableMode.table && renderHeader()}
 
-                    {/* Body */}
-                    {renderBody()}
+                {/* Body */}
+                {renderBody()}
 
-                    {/* Footer */}
-                    {renderFooter()}
-                </table>
+                {/* Footer */}
+                {tableMode === ETableMode.table && renderFooter()}
+            </table>
 
-                <div className={styles.loadingText}>
-                    {renderFetching}
-                </div>
+            <div className={styles.loadingText}>
+                {renderFetching}
             </div>
 
-            <div className={styles.footerContainer}>
-                {/* Paginate */}
-                {renderPaginate()}
-            </div>
+            {renderPaginate()}
         </div>
-
     );
 };
 

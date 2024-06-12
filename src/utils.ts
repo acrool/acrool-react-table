@@ -34,7 +34,7 @@ export const getColSpan = (colSpan: number) => {
     return {
         colSpan,
         style: {
-            '--grid-column-span': colSpan,
+            '--grid-column-span': colSpan > 1 ? colSpan: undefined,
         } as CSSProperties
     };
 };
@@ -44,9 +44,10 @@ export const getColSpan = (colSpan: number) => {
 
 /**
  * 計算 sticky left
+ * @param isSticky
  * @param calcLeft
  */
-export const getCalcStickyLeft = (calcLeft: TTitleCol[]) => {
+export const getCalcStickyLeft = (calcLeft: TTitleCol[], isSticky?: boolean) => {
 
 
     const formatVal = calcLeft.map(row => {
@@ -62,7 +63,7 @@ export const getCalcStickyLeft = (calcLeft: TTitleCol[]) => {
 
     return {
         style: {
-            '--sticky-left': `calc(${formatVal.join(' + ')})`,
+            '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
         } as CSSProperties
     };
 };

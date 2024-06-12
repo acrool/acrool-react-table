@@ -5,6 +5,7 @@ import * as path from 'node:path';
 import {visualizer} from 'rollup-plugin-visualizer';
 import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
+import copy from 'rollup-plugin-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,13 +16,20 @@ export default defineConfig({
         dts({
             insertTypesEntry: true,
         }),
+        copy({
+            targets: [
+                {src: 'src/themes/*', dest: 'dist/themes'}
+            ],
+            hook: 'writeBundle'
+        }) as Plugin,
         visualizer() as Plugin,
     ],
     css: {
+        devSourcemap: process.env.NODE_ENV === 'production',
         modules: {
             localsConvention: 'camelCase',
             scopeBehaviour: 'local',
-            generateScopedName: 'acrool-react-table__[name]__[local]',
+            generateScopedName: 'acrool-react-table__[local]',
         }
     },
     build: {

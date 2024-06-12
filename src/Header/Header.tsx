@@ -6,9 +6,8 @@ import {
     IOrderByType, TTitleCol
 } from '../types';
 import {objectKeys} from 'bear-jsutils/object';
-import styles from '../table.module.scss';
+import styles from '../styles.module.scss';
 import {getCalcStickyLeft, getColSpan} from '../utils';
-import {isNotEmpty} from 'bear-jsutils/equal';
 import React from 'react';
 
 
@@ -78,7 +77,7 @@ const Header = <K extends TBodyDataFieldKey>({
                 }
 
                 const {style: colSpanStyles} = getColSpan(colSpan);
-                const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
+                const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft, titleRow.isSticky);
                 const args = {
                     key: `theadTh_${titleKey}`,
                     className: titleRow.className,
@@ -87,8 +86,8 @@ const Header = <K extends TBodyDataFieldKey>({
                     'data-align': fieldConfig?.dataAlign,
                     'data-vertical': titleRow.dataVertical,
                     'data-sticky': titleRow.isSticky ? '': undefined,
-                    'data-enable-sort': isEnableSort ? '': undefined,
-                    colSpan,
+                    'data-sort': isEnableSort ? '': undefined,
+                    // colSpan,
                     style: {
                         ...colSpanStyles,
                         ...stickyLeftStyles,
@@ -158,7 +157,7 @@ const Header = <K extends TBodyDataFieldKey>({
     };
 
 
-    return <thead>
+    return <thead className="acrool-table__content">
         <tr>
             {renderTitle()}
         </tr>

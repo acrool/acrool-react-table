@@ -10,6 +10,11 @@ export interface IConfig {
 }
 export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 
+export enum ETableMode {
+    table = 'table',
+    cell = 'cell',
+}
+
 /** -------------------------------
  *             Title
  * ------------------------------ */
@@ -60,6 +65,7 @@ type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 export type TBodyDataID = string | number;
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
+    className?: string,
     detail?: JSX.Element | TBodyDataDetail<K>,
     disabled?: boolean,
     onClickRow?: (collapse: () => void) => void,
@@ -123,11 +129,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     paginateMeta?: IPaginateMeta
 
     isVisibleHeader?: boolean
-    isVisibleBorder?: boolean
-    isVisibleVerticalBorder?: boolean
     isVisiblePaginate?: boolean
-    isEnableHover?: boolean
-    isEnableOddEven?: boolean
     isEnableChangePageScrollTop?: boolean
     isOverflow?: boolean
     isStickyHeader?: boolean
