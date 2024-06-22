@@ -1,12 +1,19 @@
 import {TFooter, TTableTitle, TBodyDataFieldKey, TTitleCol} from '../types';
 import {getCalcStickyLeft, getColSpan} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
+import {getColSpanConfig, getStickyLeftConfig} from "./utils";
 
 
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
     data?: TFooter<K>[]
 }
+
+
+
+
+
+
 
 
 /**
@@ -26,49 +33,29 @@ const Footer = <K extends TBodyDataFieldKey>({
 
         return data?.map((dataRow, index) => {
 
-            // 避免忽略行，CSS無法跳過，所以自行計算
-            let cellTdIndex = 0;
-
-            // 忽略合併行數
-            let colMergeAfterIgnoreLength = 0;
-
-            // 計算沾黏的位置
-            let calcLeft: TTitleCol[] = ['0px'];
+            const colSpanConfig = getColSpanConfig(title, data);
+            const stickyLeftConfig = getStickyLeftConfig(title, data);
 
             const titleKeys = objectKeys(title);
             const tds = titleKeys
                 ?.filter(titleKey => !title[titleKey].isHidden)
                 ?.reduce((curr: JSX.Element[], titleKey, idx) => {
                     const footerField = dataRow[titleKey];
-
                     const titleRow = title[titleKey];
 
-                    const colSpan = titleRow?.colSpan ?? 1;
+                    const colSpan = colSpanConfig?.[index]?.[titleKey];
 
-                    if(colMergeAfterIgnoreLength > 0){
-                        colMergeAfterIgnoreLength -= 1;
+                    // 被合併為 undefined
+                    if(typeof colSpan === 'undefined'){
                         return curr;
                     }
 
-                    if(colSpan > 1){
-                        colMergeAfterIgnoreLength = colSpan - 1;
-                    }
-
-                    // 上一個
-                    const prevCol = title[titleKeys[idx - 1]]?.col;
-                    const prevIsSticky = title[titleKeys[idx - 1]]?.isSticky;
-                    if(prevIsSticky && idx > 0 && prevCol){
-                        calcLeft.push(prevCol);
-                    }
-
-
-
-
+                    const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
                     const children = footerField?.value;
 
-
                     const {style: colSpanStyles} = getColSpan(colSpan);
-                    const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
+                    const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, titleRow.isSticky);
+
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
                         className: titleRow.className,
@@ -76,7 +63,7 @@ const Footer = <K extends TBodyDataFieldKey>({
                         'data-align': titleRow?.dataAlign,
                         'data-vertical': titleRow.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
-                        colSpan,
+                        colSpan: colSpan > 1 ? colSpan: undefined,
                         style: {
                             ...colSpanStyles,
                             ...stickyLeftStyles,

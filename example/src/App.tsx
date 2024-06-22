@@ -168,10 +168,10 @@ function App() {
                 // isOverflow
                 // isEnableHover={false}
                 title={{
-                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
-                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
-                    name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-                    amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
+                    plus:     {text: '=== Name (Merge) ===',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true, colSpan: 3},
+                    avatar:   {text: '',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+                    name:     {text: '',   col: 150,  isEnableSort: true, titleAlign: 'center', dataAlign: 'left', isSticky: true},
+                    amount:   {text: 'Amount', col: 'auto',  titleAlign: 'right',  dataAlign: 'right'},
                     role:     {text: 'Role',   col: '120px'},
                     createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
                     joined:  {text: 'Joined',  col: '80px'},
@@ -193,6 +193,8 @@ function App() {
                     }
                 ]}
                 data={paginateData.map((row, index) => {
+                    const isMergeColSpan = index === 0;
+
                     return {
                         id: row.id,
                         className: 'status-danger',
@@ -216,9 +218,9 @@ function App() {
                             createdAt: dayjs(row.createdAt).format('MM/DD'),
                             joined: row.isJoined ? 'Y':'N',
                             amount: {
-                                colSpan: index === 0 ? 4: 1,
-                                dataAlign: index === 0 ? 'center': 'right',
-                                value: `$ ${formatCurrency(row.amount)}`,
+                                colSpan: isMergeColSpan ? 4: 1,
+                                dataAlign: isMergeColSpan ? 'center': 'right',
+                                value: `$ ${formatCurrency(row.amount)} ${isMergeColSpan ? '(Merge colspan)' : ''}`,
                             },
                             // column1: 'test',
                             // column2: 'test',
