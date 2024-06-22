@@ -1,12 +1,12 @@
 import {ReactNode, MouseEvent, MouseEventHandler} from 'react';
 import CSS from 'csstype';
-import {IPaginateVisibleProps} from "./Paginate/types";
+import {IPaginateVisibleProps} from './Paginate/types';
 
 
 export interface IConfig {
     colSpan?: number,
-    dataAlign?: 'left'|'center'|'right',
-    dataVertical?: 'top'|'center'|'bottom',
+    dataAlign?: 'left'|'center'|'right'
+    dataVertical?: 'top'|'center'|'bottom'
 }
 export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 

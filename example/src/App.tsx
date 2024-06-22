@@ -8,7 +8,6 @@ import {data, IPaginateData} from './config/data';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
 import {Col, Container, GridThemeProvider, Row} from '@acrool/react-grid';
-import {ETheme} from "../../src";
 
 
 
@@ -168,9 +167,9 @@ function App() {
                 // isOverflow
                 // isEnableHover={false}
                 title={{
-                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
-                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
-                    name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+                    name:     {text: 'Name',   col: 'auto',  isEnableSort: true, isSticky: true},
                     amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
                     role:     {text: 'Role',   col: '120px'},
                     createdAt:{text: 'Crated', col: '110px', isEnableSort: true},

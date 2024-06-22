@@ -68,7 +68,7 @@ const Footer = <K extends TBodyDataFieldKey>({
 
 
                     const {style: colSpanStyles} = getColSpan(colSpan);
-                    const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
+                    const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft, titleRow.isSticky);
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
                         className: titleRow.className,
@@ -76,7 +76,7 @@ const Footer = <K extends TBodyDataFieldKey>({
                         'data-align': titleRow?.dataAlign,
                         'data-vertical': titleRow.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
-                        colSpan,
+                        // colSpan,
                         style: {
                             ...colSpanStyles,
                             ...stickyLeftStyles,

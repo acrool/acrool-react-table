@@ -24,6 +24,10 @@
     flex-direction: column;
     gap: 10px;
 
+    &[data-overflow]{
+        overflow: auto;
+    }
+
     table{
         color: var(--text-color);
         font-size: 13px;
