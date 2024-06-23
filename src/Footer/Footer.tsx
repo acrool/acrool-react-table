@@ -1,7 +1,7 @@
 import {TFooter, TTableTitle, TBodyDataFieldKey, TTitleCol} from '../types';
-import {getCalcStickyLeft, getColSpan} from '../utils';
+import {getCalcStickyLeft, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
-import {getColSpanConfig, getStickyLeftConfig} from "./utils";
+import {getFooterColSpanConfig, getConfig, getStickyLeftConfig} from './utils';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
@@ -33,7 +33,7 @@ const Footer = <K extends TBodyDataFieldKey>({
 
         return data?.map((dataRow, index) => {
 
-            const colSpanConfig = getColSpanConfig(title, data);
+            const colSpanConfig = getFooterColSpanConfig(title, data);
             const stickyLeftConfig = getStickyLeftConfig(title, data);
 
             const titleKeys = objectKeys(title);
@@ -41,7 +41,15 @@ const Footer = <K extends TBodyDataFieldKey>({
                 ?.filter(titleKey => !title[titleKey].isHidden)
                 ?.reduce((curr: JSX.Element[], titleKey, idx) => {
                     const footerField = dataRow[titleKey];
+                    const config = getConfig(footerField);
                     const titleRow = title[titleKey];
+
+
+                    const fieldConfig = {
+                        ...titleRow,
+                        ...config,
+                    };
+
 
                     const colSpan = colSpanConfig?.[index]?.[titleKey];
 
@@ -53,15 +61,15 @@ const Footer = <K extends TBodyDataFieldKey>({
                     const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
                     const children = footerField?.value;
 
-                    const {style: colSpanStyles} = getColSpan(colSpan);
+                    const colSpanStyles = getColSpanStyles(colSpan);
                     const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, titleRow.isSticky);
 
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
-                        className: titleRow.className,
+                        className: fieldConfig.className,
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
-                        'data-align': titleRow?.dataAlign,
-                        'data-vertical': titleRow.dataVertical,
+                        'data-align': fieldConfig?.dataAlign,
+                        'data-vertical': fieldConfig.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         style: {

@@ -1,5 +1,21 @@
-import {TBodyDataFieldKey, TFooter, TTableTitle, TTitleCol} from '../types';
+import {TBodyDataField, TBodyDataFieldKey, TFooter, TTableTitle, TTitleCol} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
+
+
+
+
+/**
+ * 取得欄位設定
+ * @param titleField
+ */
+export const getConfig = <K extends TBodyDataFieldKey>(titleField: TFooter<K>[K]) => {
+    if(typeof titleField === 'object' &&
+        (titleField !== null && 'value' in titleField)
+    ){
+        return titleField;
+    }
+    return undefined;
+};
 
 
 /**
@@ -7,7 +23,7 @@ import {objectKeys} from 'bear-jsutils/object';
  * @param title
  * @param data
  */
-export const getColSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>, data?: TFooter<K>[]) => {
+export const getFooterColSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>, data?: TFooter<K>[]) => {
 
     return data?.map((dataRow, index) => {
         // 忽略合併行數
@@ -16,8 +32,11 @@ export const getColSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle
         return titleKeys
             ?.filter(titleKey => !title[titleKey].isHidden)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
-                const titleRow = title[titleKey];
-                const colSpan = titleRow?.colSpan ?? 1;
+                const footerField = dataRow[titleKey];
+                const config = getConfig(footerField);
+
+                const colSpan = config?.colSpan ?? 1;
+
 
                 // 被合併忽略
                 if(colMergeAfterIgnoreLength > 0){

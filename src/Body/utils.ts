@@ -12,21 +12,33 @@ import {objectKeys} from 'bear-jsutils/object';
 
 
 
-const getBodyConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
-    if(typeof bodyField === 'object'){
-        const setting: IConfig = {};
-        if('colSpan' in bodyField){
-            setting['colSpan'] = bodyField.colSpan;
-        }
-        if('dataAlign' in bodyField){
-            setting['dataAlign'] = bodyField.dataAlign;
-        }
-        if('dataVertical' in bodyField){
-            setting['dataVertical'] = bodyField.dataVertical;
-        }
-        return setting;
+
+
+/**
+ * 取得欄位設定
+ * @param titleField
+ */
+export const getConfig = <K extends TBodyDataFieldKey>(titleField: TBodyDataField<K>[K]) => {
+    if(typeof titleField === 'object' &&
+        (titleField !== null && 'value' in titleField)
+    ){
+        return titleField;
     }
     return undefined;
+};
+
+
+/**
+ * 取得 Colspan 設定
+ * @param bodyField
+ */
+const getBodyColspanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
+    if(typeof bodyField === 'object'){
+        if('colSpan' in bodyField){
+            return bodyField.colSpan ?? 1;
+        }
+    }
+    return 1;
 };
 
 
@@ -45,10 +57,7 @@ export const getColSpanConfig = <K extends TBodyDataFieldKey, I extends TBodyDat
             ?.filter(titleKey => !title[titleKey].isHidden)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 const bodyField = dataRow.field[titleKey];
-
-                const bodyConfig = getBodyConfig(bodyField);
-                const colSpan = bodyConfig?.colSpan ?? 1;
-
+                const colSpan = getBodyColspanConfig(bodyField);
 
                 // 被合併忽略
                 if(colMergeAfterIgnoreLength > 0){

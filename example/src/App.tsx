@@ -170,7 +170,7 @@ function App() {
                 title={{
                     plus:     {text: '=== Name (Merge) ===',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true, colSpan: 3},
                     avatar:   {text: '',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
-                    name:     {text: '',   col: 150,  isEnableSort: true, titleAlign: 'center', dataAlign: 'left', isSticky: true},
+                    name:     {text: '',   col: 150,  isEnableSort: true, titleAlign: 'center', isSticky: true, dataAlign: 'left'},
                     amount:   {text: 'Amount', col: 'auto',  titleAlign: 'right',  dataAlign: 'right'},
                     role:     {text: 'Role',   col: '120px'},
                     createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
@@ -183,12 +183,21 @@ function App() {
                 footer={[
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
-                        amount: {value: 10, dataAlign: 'right'},
+                        plus: {
+                            colSpan: 3,
+                            value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
+                        },
+                        amount: {
+                            dataAlign: 'right',
+                            value: 10,
+                        },
                     },
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                        plus: {
+                            colSpan: 3,
+                            value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>
+                        },
                         amount: {value: calcAmount(data), dataAlign: 'right'},
                     }
                 ]}

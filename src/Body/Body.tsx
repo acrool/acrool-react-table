@@ -1,6 +1,5 @@
 import React, {Fragment, useState, MouseEvent, CSSProperties, ReactNode} from 'react';
 import {removeByIndex} from 'bear-jsutils/array';
-import {isNotEmpty} from 'bear-jsutils/equal';
 import {objectKeys} from 'bear-jsutils/object';
 
 import {
@@ -9,10 +8,10 @@ import {
     TTableTitle,
     TBodyDataFieldKey,
     TBodyDataField,
-    TCollapseEvent, TTitleCol
+    TCollapseEvent
 } from '../types';
-import {getCalcStickyLeft, getColSpan} from '../utils';
-import {getColSpanConfig, getStickyLeftConfig} from './utils';
+import {getCalcStickyLeft, getColSpanStyles} from '../utils';
+import {getColSpanConfig, getConfig, getStickyLeftConfig} from './utils';
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -94,6 +93,8 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             colMergeAfterIgnoreLength = colSpan - 1;
                         }
 
+                        const colSpanStyles = getColSpanStyles(colSpan);
+
                         return [
                             ...curr,
                             <td
@@ -103,7 +104,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                                 // aria-label={titleRow.text}
                                 data-align={fieldConfig.dataAlign}
                                 data-vertical={titleRow.dataVertical}
-                                {...getColSpan(colSpan)}
+                                style={colSpanStyles}
                             >
                                 {fieldValue}
                             </td>
@@ -121,7 +122,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         }
 
         return <tr data-collapse="">
-            <td {...getColSpan(objectKeys(title).length)}>
+            <td style={{...getColSpanStyles(objectKeys(title).length)}}>
                 {dataRow.detail as ReactNode}
             </td>
         </tr>;
@@ -151,18 +152,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     };
 
 
-    /**
-     * 取得欄位設定
-     * @param titleField
-     */
-    const getConfig = (titleField: TBodyDataField<K>[K]) => {
-        if(typeof titleField === 'object' &&
-            (titleField !== null && 'value' in titleField)
-        ){
-            return titleField;
-        }
-        return undefined;
-    };
 
 
     /**
@@ -195,6 +184,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const config = getConfig(bodyField);
                     const titleRow = title[titleKey];
 
+
                     const fieldConfig = {
                         ...titleRow,
                         ...config,
@@ -219,7 +209,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const children = getBodyData(field, collapseIds.includes(dataRow.id), collapseEvent);
 
 
-                    const {style: colSpanStyles} = getColSpan(colSpan);
+                    const colSpanStyles = getColSpanStyles(colSpan);
                     const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, titleRow.isSticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
@@ -228,7 +218,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         'data-even': nthType === 'even' ? '': undefined,
                         // 'data-nth-type': nthType,
                         'data-align': fieldConfig?.dataAlign,
-                        'data-vertical': titleRow.dataVertical,
+                        'data-vertical': fieldConfig.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         style: {

@@ -30,13 +30,10 @@ export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: strin
  * 產生合併欄位屬性
  * @param colSpan
  */
-export const getColSpan = (colSpan: number) => {
+export const getColSpanStyles = (colSpan: number) => {
     return {
-        colSpan,
-        style: {
-            '--grid-column-span': colSpan > 1 ? colSpan: undefined,
-        } as CSSProperties
-    };
+        '--grid-column-span': colSpan > 1 ? colSpan: undefined,
+    } as CSSProperties;
 };
 
 

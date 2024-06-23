@@ -7,7 +7,7 @@ import {
 } from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 import styles from '../styles.module.scss';
-import {getCalcStickyLeft, getColSpan} from '../utils';
+import {getCalcStickyLeft, getColSpanStyles} from '../utils';
 import React from 'react';
 import {getColSpanConfig, getStickyLeftConfig} from './utils';
 
@@ -64,7 +64,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
 
-                const {style: colSpanStyles} = getColSpan(colSpan);
+                const colSpanStyles = getColSpanStyles(colSpan);
                 const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, fieldConfig.isSticky);
                 const args = {
                     key: `theadTh_${titleKey}`,
@@ -98,49 +98,6 @@ const Header = <K extends TBodyDataFieldKey>({
                     />,
                 ];
             }, []);
-
-
-
-        // .map((titleKey, idx) => {
-        //     const titleRow = title[titleKey];
-        //     const isEnableSort = titleRow.isEnableSort;
-        //     const sortType = order?.orderField === titleKey && order?.orderBy.toLowerCase() === 'asc' ? 'ascending':
-        //         order?.orderField === titleKey && order?.orderBy?.toLowerCase() === 'desc' ? 'descending':
-        //             undefined;
-        //
-        //     const {style: stickyLeftStyles} = getCalcStickyLeft(calcLeft);
-        //
-        //
-        //
-        //     // 上一個
-        //     const prevCol = title[titleKeys[idx - 1]]?.col;
-        //     const prevIsSticky = title[titleKeys[idx - 1]]?.isSticky;
-        //     if(prevIsSticky && idx > 0 && prevCol){
-        //         calcLeft.push(prevCol);
-        //     }
-        //
-        //     return (
-        //         <th
-        //             key={`columnTitle_${titleKey}`}
-        //             data-align={titleRow.titleAlign}
-        //             data-sticky={titleRow.isSticky ? '': undefined}
-        //             aria-sort={sortType}
-        //             data-enable-sort={isEnableSort ? '': undefined}
-        //             style={{
-        //                 ...stickyLeftStyles,
-        //             }}
-        //             onClick={isEnableSort ? () => {
-        //                 onChangeSortField({
-        //                     orderField: titleKey,
-        //                     orderBy: (order?.orderBy?.toLowerCase() === 'desc' && order.orderField === titleKey) ? orderByType?.asc: orderByType?.desc
-        //                 });
-        //             }: undefined}
-        //         >
-        //             {titleRow.text}
-        //             <div className={styles.sortColumn}/>
-        //         </th>
-        //     );
-        // });
 
     };
 
