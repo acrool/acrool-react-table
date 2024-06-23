@@ -282,7 +282,9 @@
             width: 100%;
 
             &[data-collapse]{
-                margin-top: -1rem;
+                //margin-top: -1rem;
+                margin-top: -10px;
+                
                 th:empty,
                 td:empty {
                     display: none;
