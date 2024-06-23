@@ -127,7 +127,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      */
     const renderCustomNoData = () => {
         const colSpanStyles = getColSpanStyles(objectKeys(title).length);
-        return <tbody className="acrool-table__content" data-no-data="">
+        return <tbody className="acrool-react-table__content" data-no-data="">
             <tr>
                 <td style={colSpanStyles}>
                     {!!renderNoData ?
@@ -167,7 +167,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         if(!data || data?.length === 0){
             if(isFetching){
                 const colSpanStyle = getColSpanStyles(objectKeys(title).length);
-                return <tbody className="acrool-table__content" data-loading="">
+                return <tbody className="acrool-react-table__content" data-loading="">
                     <tr>
                         <td style={colSpanStyle}>{renderFetching}</td>
                     </tr>
@@ -188,7 +188,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      */
     const renderFooter = () => {
 
-        if(!!footer === false){
+        if(!footer){
             return null;
         }
 

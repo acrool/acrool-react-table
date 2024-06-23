@@ -6,7 +6,7 @@ import {getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from
 
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
-    data?: TFooter<K>[]
+    data: TFooter<K>[]
 }
 
 
@@ -31,7 +31,8 @@ const Footer = <K extends TBodyDataFieldKey>({
      */
     const renderFooterData = () => {
 
-        return data?.map((dataRow, index) => {
+
+        return data.map((dataRow, index) => {
 
             const colSpanConfig = getFooterColSpanConfig(title, data);
             const stickyLeftConfig = getFooterStickyLeftConfig(title, data);
@@ -92,7 +93,7 @@ const Footer = <K extends TBodyDataFieldKey>({
         });
     };
 
-    return <tfoot className="acrool-table__content">
+    return <tfoot className="acrool-react-table__content">
         {renderFooterData()}
     </tfoot>;
 };

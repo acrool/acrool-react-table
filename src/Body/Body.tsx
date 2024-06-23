@@ -4,7 +4,7 @@ import {objectKeys} from 'bear-jsutils/object';
 
 import {ITableBody, TBodyDataID, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
-import {getBodyColSpanConfig, getBodyConfig, getBodyDetailConfig, getBodyStickyLeftConfig} from './utils';
+import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './utils';
 import BodyDetail from './BodyDetail';
 
 
@@ -42,92 +42,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             });
         };
     };
-
-
-    /**
-     * 渲染額外展開內容
-     */
-    // const renderDetailData = (dataRow: ITableBody<K, I>) => {
-    //     if(!!dataRow.detail === false){
-    //         return null;
-    //     }
-    //
-    //     if(!collapseIds?.includes(dataRow.id)){
-    //         return null;
-    //     }
-    //
-    //     // 使用 Detail.data | config 設定
-    //     if(dataRow?.detail && 'data' in dataRow.detail){
-    //         const config = dataRow.detail.config;
-    //
-    //         const colSpanConfig = getBodyColSpanConfig(title, data);
-    //
-    //
-    //         return dataRow.detail.data.map((detailFields, detailIndex) => {
-    //             let colMergeAfterIgnoreLength = 0;
-    //
-    //             const tds = objectKeys(title)
-    //                 ?.filter(titleKey => !title[titleKey].isHidden)
-    //                 ?.reduce((curr: JSX.Element[], titleKey) => {
-    //                     const titleRow = title[titleKey];
-    //                     const config = getBodyDetailConfig(dataRow.detail);
-    //                     const fieldConfig = {
-    //                         ...titleRow,
-    //                         ...config,
-    //                     };
-    //
-    //
-    //                     console.log('fieldConfig', fieldConfig);
-    //                     const fieldValue = detailFields[titleKey];
-    //                     const colSpan = fieldConfig?.colSpan ?? 1;
-    //                     const isHidden = fieldConfig.isHidden;
-    //
-    //                     if(isHidden){
-    //                         return curr;
-    //                     }
-    //                     if(colMergeAfterIgnoreLength > 0){
-    //                         colMergeAfterIgnoreLength -= 1;
-    //                         return curr;
-    //                     }
-    //
-    //                     if(colSpan > 1){
-    //                         colMergeAfterIgnoreLength = colSpan - 1;
-    //                     }
-    //
-    //                     const colSpanStyles = getColSpanStyles(colSpan);
-    //
-    //                     return [
-    //                         ...curr,
-    //                         <td
-    //                             key={`tbodyDetailTd_${dataRow.id}_${detailIndex}_${titleKey}`}
-    //                             data-detail=""
-    //                             data-align={fieldConfig.dataAlign}
-    //                             data-vertical={titleRow.dataVertical}
-    //                             style={colSpanStyles}
-    //                         >
-    //                             {fieldValue}
-    //                         </td>
-    //                     ];
-    //                 }, []);
-    //
-    //             return <tr
-    //                 key={`tbodyDetailTr_${dataRow.id}_${detailIndex}`}
-    //                 data-collapse=""
-    //             >
-    //                 {tds}
-    //             </tr>;
-    //         });
-    //
-    //     }
-    //
-    //     const colSpanStyles = getColSpanStyles(objectKeys(title).length);
-    //
-    //     return <tr data-collapse="">
-    //         <td style={colSpanStyles}>
-    //             {dataRow.detail as ReactNode}
-    //         </td>
-    //     </tr>;
-    // };
 
 
     /**
@@ -260,7 +174,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     };
 
 
-    return <tbody className="acrool-table__content">
+    return <tbody className="acrool-react-table__content">
         {renderBodyData()}
     </tbody>;
 };

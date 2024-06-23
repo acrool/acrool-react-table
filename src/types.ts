@@ -50,7 +50,7 @@ interface TFieldFuncArgs {isActive: boolean, collapse: MouseEventHandler}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
 export type TBodyDataField<K extends TBodyDataFieldKey> = {
-    [P in K]: TFieldValue | TFieldFunc | { value: TFieldValue } & IConfig;
+    [P in K]?: TFieldValue | TFieldFunc | { value: TFieldValue } & IConfig;
 }
 
 export type TBodyDataDetail<K extends TBodyDataFieldKey> = {

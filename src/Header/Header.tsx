@@ -96,7 +96,7 @@ const Header = <K extends TBodyDataFieldKey>({
     };
 
 
-    return <thead className="acrool-table__content">
+    return <thead className="acrool-react-table__content">
         <tr>
             {renderTitle()}
         </tr>

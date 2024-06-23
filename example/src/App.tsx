@@ -8,7 +8,8 @@ import {data, IPaginateData} from './config/data';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
 import {Col, Container, GridThemeProvider, Row} from '@acrool/react-grid';
-import {ETheme} from '../../src';
+import {TBodyDataDetail} from '../../src';
+
 
 
 
@@ -204,15 +205,16 @@ function App() {
                 data={paginateData.map((row, index) => {
                     const isMergeColSpan = index === 0;
 
+
                     return {
                         id: row.id,
                         className: 'status-danger',
                         // detail: <>
                         //     <div>{row.name}, {row.amount}, {row.role}</div>
                         // </>,
-                        detail: [
+                        detail:  [
                             {
-                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                                avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
                                 plus: {
                                     colSpan: 3,
                                     value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
@@ -231,17 +233,6 @@ function App() {
                                 amount: {value: calcAmount(data), dataAlign: 'right'},
                             }
                         ],
-                        // detail: {
-                        //     config: {
-                        //         amount: {
-                        //             colSpan: 2,
-                        //         }
-                        //     },
-                        //     data: [
-                        //         {plus: 'Detail Plus 1'},
-                        //         {plus: 'Detail Plus 2'},
-                        //     ]
-                        // },
                         onClickRow: () => console.log(`click row id: ${row.id}`),
                         field: {
                             plus: (args) => <CollapseButton
