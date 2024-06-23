@@ -1,15 +1,9 @@
-import {
-    IOrder,
-    TOnChangeSortField,
-    TTableTitle,
-    TBodyDataFieldKey,
-    IOrderByType, TTitleCol
-} from '../types';
+import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, IOrderByType} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 import styles from '../styles.module.scss';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import React from 'react';
-import {getColSpanConfig, getStickyLeftConfig} from './utils';
+import {getHeaderColSpanConfig, getHeaderStickyLeftConfig} from './utils';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -35,8 +29,8 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
 
-        const colSpanConfig = getColSpanConfig(title);
-        const stickyLeftConfig = getStickyLeftConfig(title);
+        const colSpanConfig = getHeaderColSpanConfig(title);
+        const stickyLeftConfig = getHeaderStickyLeftConfig(title);
 
 
 

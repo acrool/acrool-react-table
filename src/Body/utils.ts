@@ -1,13 +1,4 @@
-import {
-    IConfig,
-    ITableBody,
-    TBodyDataField,
-    TBodyDataFieldKey,
-    TBodyDataID,
-    TFooter,
-    TTableTitle,
-    TTitleCol
-} from '../types';
+import {ITableBody, TBodyDataField, TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 
 
@@ -18,7 +9,7 @@ import {objectKeys} from 'bear-jsutils/object';
  * 取得欄位設定
  * @param titleField
  */
-export const getConfig = <K extends TBodyDataFieldKey>(titleField: TBodyDataField<K>[K]) => {
+export const getBodyConfig = <K extends TBodyDataFieldKey>(titleField: TBodyDataField<K>[K]) => {
     if(typeof titleField === 'object' &&
         (titleField !== null && 'value' in titleField)
     ){
@@ -47,7 +38,7 @@ const getBodyColspanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyData
  * @param title
  * @param data
  */
-export const getColSpanConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+export const getBodyColSpanConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
 
     return data?.map((dataRow, index) => {
         // 忽略合併行數
@@ -85,7 +76,7 @@ export const getColSpanConfig = <K extends TBodyDataFieldKey, I extends TBodyDat
  * @param title
  * @param data
  */
-export const getStickyLeftConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+export const getBodyStickyLeftConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
 
     return data?.map((dataRow, index) => {
         // 忽略合併行數

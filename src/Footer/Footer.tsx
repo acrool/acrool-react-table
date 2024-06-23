@@ -1,7 +1,7 @@
-import {TFooter, TTableTitle, TBodyDataFieldKey, TTitleCol} from '../types';
+import {TFooter, TTableTitle, TBodyDataFieldKey} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
-import {getFooterColSpanConfig, getConfig, getStickyLeftConfig} from './utils';
+import {getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
@@ -34,14 +34,14 @@ const Footer = <K extends TBodyDataFieldKey>({
         return data?.map((dataRow, index) => {
 
             const colSpanConfig = getFooterColSpanConfig(title, data);
-            const stickyLeftConfig = getStickyLeftConfig(title, data);
+            const stickyLeftConfig = getFooterStickyLeftConfig(title, data);
 
             const titleKeys = objectKeys(title);
             const tds = titleKeys
                 ?.filter(titleKey => !title[titleKey].isHidden)
                 ?.reduce((curr: JSX.Element[], titleKey, idx) => {
                     const footerField = dataRow[titleKey];
-                    const config = getConfig(footerField);
+                    const config = getFooterConfig(footerField);
                     const titleRow = title[titleKey];
 
 

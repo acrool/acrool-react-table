@@ -1,17 +1,10 @@
-import React, {Fragment, useState, MouseEvent, CSSProperties, ReactNode} from 'react';
+import React, {Fragment, useState, MouseEvent, ReactNode} from 'react';
 import {removeByIndex} from 'bear-jsutils/array';
 import {objectKeys} from 'bear-jsutils/object';
 
-import {
-    ITableBody,
-    TBodyDataID,
-    TTableTitle,
-    TBodyDataFieldKey,
-    TBodyDataField,
-    TCollapseEvent
-} from '../types';
+import {ITableBody, TBodyDataID, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
-import {getColSpanConfig, getConfig, getStickyLeftConfig} from './utils';
+import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './utils';
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -159,8 +152,8 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
      */
     const renderBodyData = () => {
 
-        const colSpanConfig = getColSpanConfig(title, data);
-        const stickyLeftConfig = getStickyLeftConfig(title, data);
+        const colSpanConfig = getBodyColSpanConfig(title, data);
+        const stickyLeftConfig = getBodyStickyLeftConfig(title, data);
 
 
         return data?.map((dataRow, index) => {
@@ -181,7 +174,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                 ?.filter(titleKey => !title[titleKey].isHidden)
                 ?.reduce((curr: JSX.Element[], titleKey, idx) => {
                     const bodyField = dataRow.field[titleKey];
-                    const config = getConfig(bodyField);
+                    const config = getBodyConfig(bodyField);
                     const titleRow = title[titleKey];
 
 

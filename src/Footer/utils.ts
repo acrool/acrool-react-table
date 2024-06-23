@@ -1,4 +1,4 @@
-import {TBodyDataField, TBodyDataFieldKey, TFooter, TTableTitle, TTitleCol} from '../types';
+import {TBodyDataFieldKey, TFooter, TTableTitle, TTitleCol} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 
 
@@ -8,7 +8,7 @@ import {objectKeys} from 'bear-jsutils/object';
  * 取得欄位設定
  * @param titleField
  */
-export const getConfig = <K extends TBodyDataFieldKey>(titleField: TFooter<K>[K]) => {
+export const getFooterConfig = <K extends TBodyDataFieldKey>(titleField: TFooter<K>[K]) => {
     if(typeof titleField === 'object' &&
         (titleField !== null && 'value' in titleField)
     ){
@@ -33,7 +33,7 @@ export const getFooterColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
             ?.filter(titleKey => !title[titleKey].isHidden)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 const footerField = dataRow[titleKey];
-                const config = getConfig(footerField);
+                const config = getFooterConfig(footerField);
 
                 const colSpan = config?.colSpan ?? 1;
 
@@ -64,7 +64,7 @@ export const getFooterColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
  * @param title
  * @param data
  */
-export const getStickyLeftConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>, data?: TFooter<K>[]) => {
+export const getFooterStickyLeftConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>, data?: TFooter<K>[]) => {
 
     return data?.map((dataRow, index) => {
         // 忽略合併行數

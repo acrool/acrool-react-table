@@ -12,29 +12,13 @@ import {objectKeys} from 'bear-jsutils/object';
 
 
 
-const getBodyConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
-    if(typeof bodyField === 'object'){
-        const setting: IConfig = {};
-        if('colSpan' in bodyField){
-            setting['colSpan'] = bodyField.colSpan;
-        }
-        if('dataAlign' in bodyField){
-            setting['dataAlign'] = bodyField.dataAlign;
-        }
-        if('dataVertical' in bodyField){
-            setting['dataVertical'] = bodyField.dataVertical;
-        }
-        return setting;
-    }
-    return undefined;
-};
 
 
 /**
  * 取得處理合併設定
  * @param title
  */
-export const getColSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>) => {
+export const getHeaderColSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>) => {
 
     let colMergeAfterIgnoreLength = 0;
     const titleKeys = objectKeys(title);
@@ -70,7 +54,7 @@ export const getColSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle
  * @param title
  * @param data
  */
-export const getStickyLeftConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+export const getHeaderStickyLeftConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
 // 忽略合併行數
     const calcLeft: TTitleCol[] = ['0px'];
 
