@@ -1,4 +1,12 @@
-import {ITableBody, TBodyDataField, TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from '../types';
+import {
+    ITableBody,
+    TBodyDataDetail,
+    TBodyDataField,
+    TBodyDataFieldKey,
+    TBodyDataID,
+    TTableTitle,
+    TTitleCol
+} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 
 
@@ -12,6 +20,20 @@ import {objectKeys} from 'bear-jsutils/object';
 export const getBodyConfig = <K extends TBodyDataFieldKey>(titleField: TBodyDataField<K>[K]) => {
     if(typeof titleField === 'object' &&
         (titleField !== null && 'value' in titleField)
+    ){
+        return titleField;
+    }
+    return undefined;
+};
+
+
+/**
+ * 取得欄位設定
+ * @param titleField
+ */
+export const getBodyDetailConfig = <K extends TBodyDataFieldKey>(titleField?: JSX.Element | TBodyDataDetail<K>) => {
+    if(typeof titleField === 'object' &&
+        (titleField !== null && 'config' in titleField)
     ){
         return titleField;
     }

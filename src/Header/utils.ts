@@ -1,13 +1,4 @@
-import {
-    IConfig,
-    ITableBody,
-    TBodyDataField,
-    TBodyDataFieldKey,
-    TBodyDataID,
-    TFooter,
-    TTableTitle,
-    TTitleCol
-} from '../types';
+import {ITableBody, TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 
 

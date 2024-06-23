@@ -1,12 +1,13 @@
-import {TFooter, TTableTitle, TBodyDataFieldKey} from '../types';
+import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
-import {getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
+import {getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from '../Footer/utils';
+import {ReactNode} from 'react';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
-    data?: TFooter<K>[]
+    data: JSX.Element | TBodyDataDetail<K>[]
 }
 
 
@@ -17,21 +18,17 @@ interface IProps <K extends TBodyDataFieldKey>{
 
 
 /**
- * Table Footer
- * 額外顯示資訊 例如統計
+ * Table Body Detail
+ * 額外顯示資訊 例如 詳細
  */
-const Footer = <K extends TBodyDataFieldKey>({
+const BodyDetail = <K extends TBodyDataFieldKey>({
     title,
     data,
 }: IProps<K>) => {
 
 
-    /**
-     * 產生表格內容
-     */
-    const renderFooterData = () => {
-
-        return data?.map((dataRow, index) => {
+    if(Array.isArray(data)){
+        const content = data.map((dataRow, index) => {
 
             const colSpanConfig = getFooterColSpanConfig(title, data);
             const stickyLeftConfig = getFooterStickyLeftConfig(title, data);
@@ -40,10 +37,11 @@ const Footer = <K extends TBodyDataFieldKey>({
             const tds = titleKeys
                 ?.filter(titleKey => !title[titleKey].isHidden)
                 ?.reduce((curr: JSX.Element[], titleKey, idx) => {
-                    const footerField = dataRow[titleKey];
-                    const config = getFooterConfig(footerField);
+                    const datDetailField = dataRow[titleKey];
+                    const config = getFooterConfig(datDetailField);
                     const titleRow = title[titleKey];
 
+                    console.log('datDetailField', dataRow);
 
                     const fieldConfig = {
                         ...titleRow,
@@ -59,7 +57,7 @@ const Footer = <K extends TBodyDataFieldKey>({
                     }
 
                     const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
-                    const children = footerField?.value;
+                    const children = datDetailField?.value;
 
                     const colSpanStyles = getColSpanStyles(colSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
@@ -90,11 +88,21 @@ const Footer = <K extends TBodyDataFieldKey>({
                 {tds}
             </tr>);
         });
-    };
 
-    return <tfoot className="acrool-table__content">
-        {renderFooterData()}
-    </tfoot>;
+        return <>
+            {content}
+        </>;
+    }
+
+
+    // 單純資料(非列表)
+    const colSpanStyles = getColSpanStyles(objectKeys(title).length);
+    return <tr data-collapse="">
+        <td style={colSpanStyles}>
+            {data as ReactNode}
+        </td>
+    </tr>;
+
 };
 
-export default Footer;
+export default BodyDetail;

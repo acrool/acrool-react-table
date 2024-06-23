@@ -53,20 +53,24 @@ export type TBodyDataField<K extends TBodyDataFieldKey> = {
     [P in K]: TFieldValue | TFieldFunc | { value: TFieldValue } & IConfig;
 }
 
-type TBodyDataDetail<K extends TBodyDataFieldKey> = {
-    config?: {
-        [P in K]?: IConfig
-    },
-    data: Array<{
-        [P in K]?: TFieldValue;
-    }>,
+export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
+    [P in K]?: { value: TFieldValue } & IConfig;
 }
+//
+// export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
+//     config?: {
+//         [P in K]?: IConfig
+//     },
+//     data: Array<{
+//         [P in K]?: TFieldValue;
+//     }>,
+// }
 
 export type TBodyDataID = string | number;
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
     className?: string,
-    detail?: JSX.Element | TBodyDataDetail<K>,
+    detail?: JSX.Element | TBodyDataDetail<K>[],
     disabled?: boolean,
     onClickRow?: (collapse: () => void) => void,
     field: TBodyDataField<K>
