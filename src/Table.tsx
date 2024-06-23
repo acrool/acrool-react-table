@@ -237,7 +237,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     return (
         <div className={clsx(
             styles.root,
-            'acrool-table',
             {'dark-theme': isDark},
             className,
         )}
