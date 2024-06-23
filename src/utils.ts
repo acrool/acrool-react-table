@@ -30,13 +30,10 @@ export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: strin
  * 產生合併欄位屬性
  * @param colSpan
  */
-export const getColSpan = (colSpan: number) => {
+export const getColSpanStyles = (colSpan: number) => {
     return {
-        colSpan,
-        style: {
-            '--grid-column-span': colSpan > 1 ? colSpan: undefined,
-        } as CSSProperties
-    };
+        '--grid-column-span': colSpan > 1 ? colSpan: undefined,
+    } as CSSProperties;
 };
 
 
@@ -47,7 +44,7 @@ export const getColSpan = (colSpan: number) => {
  * @param isSticky
  * @param calcLeft
  */
-export const getCalcStickyLeft = (calcLeft: TTitleCol[], isSticky?: boolean) => {
+export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], isSticky?: boolean) => {
 
 
     const formatVal = calcLeft.map(row => {
@@ -62,10 +59,8 @@ export const getCalcStickyLeft = (calcLeft: TTitleCol[], isSticky?: boolean) => 
     }).filter(str => str);
 
     return {
-        style: {
-            '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
-        } as CSSProperties
-    };
+        '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
+    } as CSSProperties
 };
 
 

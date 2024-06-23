@@ -8,7 +8,7 @@ import {data, IPaginateData} from './config/data';
 import styled from 'styled-components';
 import {formatCurrency} from 'bear-jsutils/number';
 import {Col, Container, GridThemeProvider, Row} from '@acrool/react-grid';
-import {ETheme} from "../../src";
+import {ETheme} from '../../src';
 
 
 
@@ -168,10 +168,10 @@ function App() {
                 // isOverflow
                 // isEnableHover={false}
                 title={{
-                    plus:     {text: '',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
-                    avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: false},
-                    name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-                    amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
+                    plus:     {text: '=== Name (Merge) ===',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true, colSpan: 3},
+                    avatar:   {text: '',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+                    name:     {text: '',   col: 150,  isEnableSort: true, titleAlign: 'center', isSticky: true, dataAlign: 'left'},
+                    amount:   {text: 'Amount', col: 'auto',  titleAlign: 'right',  dataAlign: 'right'},
                     role:     {text: 'Role',   col: '120px'},
                     createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
                     joined:  {text: 'Joined',  col: '80px'},
@@ -183,24 +183,65 @@ function App() {
                 footer={[
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>},
-                        amount: {value: 10, dataAlign: 'right'},
+                        plus: {
+                            colSpan: 3,
+                            value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
+                        },
+                        amount: {
+                            dataAlign: 'right',
+                            value: 10,
+                        },
                     },
                     {
                         // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        name: {value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>},
+                        plus: {
+                            colSpan: 3,
+                            value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>
+                        },
                         amount: {value: calcAmount(data), dataAlign: 'right'},
                     }
                 ]}
                 data={paginateData.map((row, index) => {
+                    const isMergeColSpan = index === 0;
+
                     return {
                         id: row.id,
                         className: 'status-danger',
-                        detail: <>
-                            <div>{row.name}</div>
-                            <div>{row.amount}</div>
-                            <div>{row.role}</div>
-                        </>,
+                        // detail: <>
+                        //     <div>{row.name}, {row.amount}, {row.role}</div>
+                        // </>,
+                        detail: [
+                            {
+                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                                plus: {
+                                    colSpan: 3,
+                                    value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
+                                },
+                                amount: {
+                                    dataAlign: 'right',
+                                    value: 10,
+                                },
+                            },
+                            {
+                                // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                                plus: {
+                                    colSpan: 3,
+                                    value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>
+                                },
+                                amount: {value: calcAmount(data), dataAlign: 'right'},
+                            }
+                        ],
+                        // detail: {
+                        //     config: {
+                        //         amount: {
+                        //             colSpan: 2,
+                        //         }
+                        //     },
+                        //     data: [
+                        //         {plus: 'Detail Plus 1'},
+                        //         {plus: 'Detail Plus 2'},
+                        //     ]
+                        // },
                         onClickRow: () => console.log(`click row id: ${row.id}`),
                         field: {
                             plus: (args) => <CollapseButton
@@ -216,9 +257,9 @@ function App() {
                             createdAt: dayjs(row.createdAt).format('MM/DD'),
                             joined: row.isJoined ? 'Y':'N',
                             amount: {
-                                colSpan: index === 0 ? 4: 1,
-                                dataAlign: index === 0 ? 'center': 'right',
-                                value: `$ ${formatCurrency(row.amount)}`,
+                                colSpan: isMergeColSpan ? 4: 1,
+                                dataAlign: isMergeColSpan ? 'center': 'right',
+                                value: `$ ${formatCurrency(row.amount)} ${isMergeColSpan ? '(Merge colspan)' : ''}`,
                             },
                             // column1: 'test',
                             // column2: 'test',

@@ -1,4 +1,4 @@
-.acrool-table {
+.acrool-react-table__root {
     --border-radius: 12px;
     --body-border-radius: 4px;
     --line-height: 42px;
@@ -14,7 +14,7 @@
     border-radius: 12px;
 }
 
-.acrool-table table{
+.acrool-react-table__root table{
     padding: 10px;
     row-gap: 6px;
 
@@ -31,7 +31,7 @@
 /** -------------------------------
  *             Body
  * ------------------------------ */
-.acrool-table tbody tr td{
+.acrool-react-table__root tbody tr td{
     border: 1px solid #000;
     border-left: none;
     border-right: none;
@@ -43,7 +43,7 @@
     background-color: #fff;
     position: relative;
 }
-.acrool-table tbody tr td:after {
+.acrool-react-table__root tbody tr td:after {
     content: '';
     position: absolute;
     right: 0;
@@ -56,11 +56,11 @@
 }
 
 /* 處理Border */
-.acrool-table tbody tr td:last-child{
+.acrool-react-table__root tbody tr td:last-child{
     border-right: 1px solid #000;
     border-radius: 0 var(--body-border-radius) var(--body-border-radius) 0;
 }
-.acrool-table tbody tr td:first-child{
+.acrool-react-table__root tbody tr td:first-child{
     border-left: 1px solid #000;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
@@ -68,7 +68,7 @@
 }
 
 /* 首欄背景 */
-.acrool-table tbody tr:not([data-collapse]) td:first-child{
+.acrool-react-table__root tbody tr:not([data-collapse]) td:first-child{
     box-shadow: inset 0 0 0 1px #fff;
     background-color: #ebf7fa;
 }
