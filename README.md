@@ -1,18 +1,29 @@
 # Acrool React Table
 
-<img src="./preview.png" align="center" style="width: 700px;max-width: 100%"/>
+<a href="https://acrool-react-table.pages.dev/" title="Acrool React Table - CSS Gird Of React Table Design">
+    <img src="https://acrool-react-table.pages.dev/img/og.webp" alt="Acrool React Table Logo" />
+</a>
 
 <p align="center">
-    CSS Gird Of React Table Design
+    CSS IN JS following Bootstrap RWD design, composed of React + Styled Component
 </p>
 
 <div align="center">
 
-[![NPM](https://img.shields.io/npm/v/%40acrool%2Freact-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm downloads](https://img.shields.io/npm/dm/%40acrool%2Freact-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm](https://img.shields.io/npm/dt/%40acrool%2Freact-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm](https://img.shields.io/npm/l/%40acrool%2Freact-table?style=for-the-badge)](https://github.com/acrool/acrool-react-table/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/v/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm](https://img.shields.io/bundlejs/size/@acrool/react-table?style=for-the-badge)](https://github.com/imagine10255/@acrool/react-table/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/l/@acrool/react-table?style=for-the-badge)](https://github.com/imagine10255/@acrool/react-table/blob/main/LICENSE)
+
+[![npm downloads](https://img.shields.io/npm/dm/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+[![npm](https://img.shields.io/npm/dt/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
+
+
 </div>
+
+
+
+<img src="./preview.png" align="center" style="width: 700px;max-width: 100%"/>
+
 
 ## Documentation
 
