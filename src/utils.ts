@@ -44,7 +44,7 @@ export const getColSpanStyles = (colSpan: number) => {
  * @param isSticky
  * @param calcLeft
  */
-export const getCalcStickyLeft = (calcLeft: TTitleCol[], isSticky?: boolean) => {
+export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], isSticky?: boolean) => {
 
 
     const formatVal = calcLeft.map(row => {
@@ -59,10 +59,8 @@ export const getCalcStickyLeft = (calcLeft: TTitleCol[], isSticky?: boolean) => 
     }).filter(str => str);
 
     return {
-        style: {
-            '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
-        } as CSSProperties
-    };
+        '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
+    } as CSSProperties
 };
 
 

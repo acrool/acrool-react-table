@@ -7,7 +7,7 @@ import {
 } from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 import styles from '../styles.module.scss';
-import {getCalcStickyLeft, getColSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import React from 'react';
 import {getColSpanConfig, getStickyLeftConfig} from './utils';
 
@@ -65,7 +65,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
                 const colSpanStyles = getColSpanStyles(colSpan);
-                const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, fieldConfig.isSticky);
+                const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, fieldConfig.isSticky);
                 const args = {
                     key: `theadTh_${titleKey}`,
                     className: fieldConfig.className,

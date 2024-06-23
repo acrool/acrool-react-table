@@ -10,7 +10,7 @@ import {
     TBodyDataField,
     TCollapseEvent
 } from '../types';
-import {getCalcStickyLeft, getColSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {getColSpanConfig, getConfig, getStickyLeftConfig} from './utils';
 
 
@@ -210,7 +210,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const colSpanStyles = getColSpanStyles(colSpan);
-                    const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, titleRow.isSticky);
+                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
                         className: dataRow.className,

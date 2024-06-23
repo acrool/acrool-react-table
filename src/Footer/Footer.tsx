@@ -1,5 +1,5 @@
 import {TFooter, TTableTitle, TBodyDataFieldKey, TTitleCol} from '../types';
-import {getCalcStickyLeft, getColSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
 import {getFooterColSpanConfig, getConfig, getStickyLeftConfig} from './utils';
 
@@ -62,7 +62,7 @@ const Footer = <K extends TBodyDataFieldKey>({
                     const children = footerField?.value;
 
                     const colSpanStyles = getColSpanStyles(colSpan);
-                    const {style: stickyLeftStyles} = getCalcStickyLeft(stickyLeft, titleRow.isSticky);
+                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
 
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
