@@ -5,14 +5,14 @@
 </a>
 
 <p align="center">
-    CSS IN JS following Bootstrap RWD design, composed of React + Styled Component
+    CSS Gird Of React Table Design
 </p>
 
 <div align="center">
 
 [![NPM](https://img.shields.io/npm/v/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
-[![npm](https://img.shields.io/bundlejs/size/@acrool/react-table?style=for-the-badge)](https://github.com/imagine10255/@acrool/react-table/blob/main/LICENSE)
-[![npm](https://img.shields.io/npm/l/@acrool/react-table?style=for-the-badge)](https://github.com/imagine10255/@acrool/react-table/blob/main/LICENSE)
+[![npm](https://img.shields.io/bundlejs/size/@acrool/react-table?style=for-the-badge)](https://github.com/acrool/react-table/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/l/@acrool/react-table?style=for-the-badge)](https://github.com/acrool/acrool-react-table/blob/main/LICENSE)
 
 [![npm downloads](https://img.shields.io/npm/dm/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
 [![npm](https://img.shields.io/npm/dt/@acrool/react-table.svg?style=for-the-badge)](https://www.npmjs.com/package/@acrool/react-table)
@@ -153,4 +153,4 @@ There is also a codesandbox template that you can fork and play with it:
 
 ## License
 
-MIT © [imagine10255](https://github.com/imagine10255)
+MIT © [Acrool](https://github.com/acrool) & [Imagine](https://github.com/imagine10255)
