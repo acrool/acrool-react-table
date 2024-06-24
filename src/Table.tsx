@@ -38,7 +38,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisibleHeader = true,
     isVisiblePaginate = true,
     isEnableChangePageScrollTop = true,
-    isOverflow = true,
+    // isOverflow = true,
     // isStickyHeader = false,
     tableCellMediaSize,
     onChangePage,
@@ -244,7 +244,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-mode={tableMode}
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
-        data-overflow={!!isOverflow ? '': undefined}
+        // data-overflow={!!isOverflow ? '': undefined}
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
