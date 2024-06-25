@@ -67,98 +67,22 @@ add in your main.tsx, after dist/index.css
 
 then in your page
 ```tsx
-import AcroolTable from '@acrool/react-table';
+import Table from '@acrool/react-table';
 
 
-const data = [
-    {id: 1, text: 'Imagine', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-1.jpg'},
-    {id: 1, text: 'Gary', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-2.jpg'},
-    {id: 1, text: 'Selin', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-3.jpg'},
-    {id: 1, text: 'Amy', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-4.jpg'},
-    {id: 1, text: 'Keria', avatar: 'https://acrool-react-table.pages.dev/img/avatar/female-5.jpg'},
-];
-
-const BaseUsed = () => {
-    
-    const renderTable = () => {
-        return <AcroolTable
-            title={{
-                avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-                name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
-            }}
-            data={data.map(row => {
-                return {
-                    id: row.id,
-                    field: {
-                        avatar: <Avatar src={row.avatar}/>,
-                        name: row.name,
-                    },
-                };
-            })}
-        />;
-    }
-    
-    return <div>
-        {renderTable()}
-    </div>;
-};
-
-
-
-const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
-
-    if(order){
-        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
-    }
-
-    const pageStart = (currentPage -1) * pageLimit;
-    return data.slice(pageStart, pageStart + pageLimit );
-};
-
-
-const BasePag = () => {
-    const [paginateMeta, setPaginateMeta] = useState<IPaginateMeta>({
-        currentPage: 1,
-        pageLimit: 8,
-        order: {
-            orderField: 'id',
-            orderBy: 'DESC',
-        }
-    });
-    const [paginateData, setPaginateData] = useState<IPaginateData[]>(getPageData(paginateMeta.currentPage, paginateMeta.pageLimit, paginateMeta.order));
-
-    
-    const paginateInfo = {
-        totalItems: data.length,
-        totalPages: Math.ceil(data.length / paginateMeta.pageLimit),
-    };
-    
-    const handleFetchPaginate: TOnChangePage = (meta) => {
-        setIsFetching(true);
-        setPaginateMeta(meta);
-
-        const {currentPage, pageLimit, order} = meta;
-
-        setTimeout(() => {
-            setPaginateData(getPageData(currentPage, pageLimit, order));
-            setIsFetching(false);
-        }, 400);
-    };
-    
-    return <Paginate
-        isDark
-        locale="zh-TW"
-        meta={paginateMeta}
-        info={paginateInfo}
-        onChangePage={handleFetchPaginate}
+const Example = () => {
+    return <Table
+        title={{
+            name:   {text: 'Title', col: 100},
+            desc:   {text: 'Text', col: true},
+        }}
+        data={[
+            {id: 1, field: {name: 'Image Chiu', desc: 'this is a frontend coder'}},
+            {id: 2, field: {name: 'Gary Chien', desc: 'this is a backend coder'}},
+        ]}
     />;
 };
 ```
-
-
-There is also a codesandbox template that you can fork and play with it:
-
-[![Edit react-editext-template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/acrool-react-table-n0s8su?file=/src/App.tsx)
 
 
 ## License
