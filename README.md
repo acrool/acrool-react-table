@@ -22,15 +22,26 @@
 
 
 
-<img src="./preview.png" align="center" style="width: 700px;max-width: 100%"/>
-
-
 ## Documentation
 
 - [Getting Started](https://acrool-react-table.pages.dev/docs/getting-started)
 - [Faq](https://acrool-react-table.pages.dev/docs/category/faqs)
 - [Components](https://acrool-react-table.pages.dev/docs/category/components)
 - [Features](https://acrool-react-table.pages.dev/docs/category/features)
+
+
+## Features
+
+- Use `React` + `CSS Grid`
+- Easier to use, help memory
+- Separate theme styles, making it easier to customize styles
+- Provide `Cell` Display Mode
+- Support `Sticky`
+- Support Header `Sort`
+- Support `Paginate` and can be used independently
+- Support `Detail`
+- Support `Footer`
+- Support `NextJS 14` (v5.0.3+)
 
 
 ## Installation
