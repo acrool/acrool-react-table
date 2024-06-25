@@ -42,18 +42,17 @@ yarn add @acrool/react-table
 ## Usage
 
 add in your main.tsx
-```tst
+```tsx
 import '@acrool/react-table/dist/index.css';
+import '@acrool/react-table/dist/theme/acrool.css'; // (Options theme) 
 ```
 
 ## Option theme
 
 add in your main.tsx, after dist/index.css
 
-- Acrool
-  - import '@acrool/react-table/dist/theme/acrool.css';
-- Game
-  - import '@acrool/react-table/dist/theme/game.css';
+- Acrool: @acrool/react-table/dist/theme/acrool.css
+- Game: @acrool/react-table/dist/theme/game.css
 
 then in your page
 ```tsx
