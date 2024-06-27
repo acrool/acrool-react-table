@@ -1,7 +1,8 @@
-import {TFooter, TTableTitle, TBodyDataFieldKey} from '../types';
+import {TFooter, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
-import {getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
+import {getFooterClassNameConfig, getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
+import {ReactNode} from "react";
 
 
 interface IProps <K extends TBodyDataFieldKey>{
@@ -24,6 +25,25 @@ const Footer = <K extends TBodyDataFieldKey>({
     title,
     data,
 }: IProps<K>) => {
+
+
+    /**
+     * 取得資料內容
+     * @param field
+     * @param isActive
+     * @param collapse
+     */
+    const getFooterData = (field: TBodyDataField<K>[K]) => {
+        if(typeof field === 'boolean'){
+            return String(field);
+        }
+
+        if(typeof field === 'object' && field !== null && 'value' in field){
+            return field.value;
+        }
+
+        return field as ReactNode;
+    };
 
 
     /**
@@ -60,14 +80,14 @@ const Footer = <K extends TBodyDataFieldKey>({
                     }
 
                     const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
-                    const children = footerField?.value;
+                    const children = getFooterData(footerField);
 
                     const colSpanStyles = getColSpanStyles(colSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
 
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
-                        className: fieldConfig.className,
+                        className: getFooterClassNameConfig(footerField),
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,

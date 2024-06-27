@@ -91,16 +91,13 @@ const Example = () => {
         paginateData.map(row => {
             return {
                 id: row.id,
-                detail: {
-                    // config: {
-                    //     name: {colSpan: 1, dataAlign: 'left'},
-                    //     amount: {colSpan: 2, dataAlign: 'right'},
-                    // },
-                    data: [
-                        {name: 'Deposit', amount: `$ ${formatCurrency(123456)}`},
-                        {name: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
-                    ],
-                },
+                detail: [
+                    {
+                        name: {value: 'Deposit', className: 'detail-css'},
+                        amount: `$ ${formatCurrency(123456)}`
+                    },
+                    {name: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+                ],
                 onClickRow: collapse => collapse(),
                 field: {
                     avatar: <Avatar src={row.avatar}/>,
@@ -129,8 +126,8 @@ const Example = () => {
             // tableCellMediaSize={768}
             footer={[
                 {
-                    name: {value: 'Fax'},
-                    amount: {value: 10, dataAlign: 'right'},
+                    name: 'Fax',
+                    amount: {value: 10, dataAlign: 'right', className: 'footer-css'},
                 },
                 {
                     name: {value: 'Total'},
@@ -210,6 +207,7 @@ const Example = () => {
                                 avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
                                 plus: {
                                     colSpan: 3,
+                                    className: 'detail-css',
                                     value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
                                 },
                                 amount: {
@@ -237,7 +235,10 @@ const Example = () => {
                             avatar: <Avatar src={row.avatar}/>,
                             // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
                             name: row.name,
-                            role: row.role,
+                            role: {
+                                value: row.role,
+                                className: 'my-role-css'
+                            },
                             createdAt: dayjs(row.createdAt).format('MM/DD'),
                             joined: row.isJoined ? 'Y':'N',
                             amount: {
@@ -314,14 +315,14 @@ const Example = () => {
                 {/*</Row>*/}
 
                 <Row>
-                    {/*<Col col>*/}
-                    {/*    <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>*/}
-                    {/*        {renderTable(true)}*/}
-                    {/*    </div>*/}
-                    {/*</Col>*/}
+                    <Col col>
+                        <div style={{backgroundColor: '#3e5078', flex: 1, width: '100%', padding: '20px'}}>
+                            {renderLightTable()}
+                        </div>
+                    </Col>
                     <Col col>
                         <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
-                            {renderTable(true, true)}
+                            {/*{renderTable(true, true)}*/}
                         </div>
                     </Col>
                 </Row>

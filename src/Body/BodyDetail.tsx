@@ -1,7 +1,12 @@
-import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail} from '../types';
+import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail, TBodyDataField, TCollapseEvent} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
-import {getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from '../Footer/utils';
+import {
+    getFooterClassNameConfig,
+    getFooterColSpanConfig,
+    getFooterConfig,
+    getFooterStickyLeftConfig
+} from '../Footer/utils';
 import {ReactNode} from 'react';
 
 
@@ -26,6 +31,25 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
     data,
 }: IProps<K>) => {
 
+    /**
+     * 取得資料內容
+     * @param field
+     * @param isActive
+     * @param collapse
+     */
+    const getBodyDetailData = (field: TBodyDataField<K>[K]) => {
+
+        if(typeof field === 'boolean'){
+            return String(field);
+        }
+
+        if(typeof field === 'object' && field !== null && 'value' in field){
+            return field.value;
+        }
+
+        return field as ReactNode;
+    };
+
 
     if(Array.isArray(data)){
         const content = data.map((dataRow, index) => {
@@ -41,12 +65,12 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     const config = getFooterConfig(datDetailField);
                     const titleRow = title[titleKey];
 
-                    console.log('datDetailField', dataRow);
 
                     const fieldConfig = {
                         ...titleRow,
                         ...config,
                     };
+
 
 
                     const colSpan = colSpanConfig?.[index]?.[titleKey];
@@ -57,14 +81,15 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     }
 
                     const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
-                    const children = datDetailField?.value;
+                    // const children = datDetailField?.value;
+                    const children = getBodyDetailData(datDetailField);
 
                     const colSpanStyles = getColSpanStyles(colSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
 
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
-                        className: fieldConfig.className,
+                        className: getFooterClassNameConfig(datDetailField),
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,

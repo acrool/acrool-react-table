@@ -128,7 +128,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
-                        className: dataRow.className,
+                        className: fieldConfig.className,
                         'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-even': nthType === 'even' ? '': undefined,
                         'data-align': fieldConfig?.dataAlign,

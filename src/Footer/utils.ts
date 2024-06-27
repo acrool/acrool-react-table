@@ -1,4 +1,4 @@
-import {TBodyDataFieldKey, TFooter, TTableTitle, TTitleCol} from '../types';
+import {TBodyDataField, TBodyDataFieldKey, TFooter, TTableTitle, TTitleCol} from '../types';
 import {objectKeys} from 'bear-jsutils/object';
 
 
@@ -10,13 +10,39 @@ import {objectKeys} from 'bear-jsutils/object';
  */
 export const getFooterConfig = <K extends TBodyDataFieldKey>(titleField: TFooter<K>[K]) => {
     if(typeof titleField === 'object' &&
-        (titleField !== null && 'value' in titleField)
+        (titleField !== null && 'colSpan' in titleField)
     ){
         return titleField;
     }
     return undefined;
 };
 
+
+/**
+ * 取得欄位設定
+ * @param bodyField
+ */
+export const getFooterClassNameConfig = <K extends TBodyDataFieldKey>(bodyField: TBodyDataField<K>[K]) => {
+    if(typeof bodyField === 'object'){
+        if('className' in bodyField){
+            return bodyField.className;
+        }
+    }
+    return undefined;
+};
+
+/**
+ * 取得 Colspan 設定
+ * @param bodyField
+ */
+const getFooterColspanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
+    if(typeof bodyField === 'object'){
+        if('colSpan' in bodyField){
+            return bodyField.colSpan ?? 1;
+        }
+    }
+    return 1;
+};
 
 /**
  * 取得處理合併設定
@@ -33,10 +59,7 @@ export const getFooterColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
             ?.filter(titleKey => !title[titleKey].isHidden)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 const footerField = dataRow[titleKey];
-                const config = getFooterConfig(footerField);
-
-                const colSpan = config?.colSpan ?? 1;
-
+                const colSpan = getFooterColspanConfig(footerField) ;
 
                 // 被合併忽略
                 if(colMergeAfterIgnoreLength > 0){

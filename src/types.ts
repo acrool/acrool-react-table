@@ -1,12 +1,13 @@
 import {ReactNode, MouseEvent, MouseEventHandler} from 'react';
 import CSS from 'csstype';
-import {IPaginateVisibleProps} from "./Paginate/types";
+import {IPaginateVisibleProps} from './Paginate/types';
 
 
 export interface IConfig {
     colSpan?: number,
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
+    className?: string,
 }
 export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 
@@ -54,7 +55,7 @@ export type TBodyDataField<K extends TBodyDataFieldKey> = {
 }
 
 export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
-    [P in K]?: { value: TFieldValue } & IConfig;
+    [P in K]?: TFieldValue | { value: TFieldValue } & IConfig;
 }
 //
 // export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
@@ -69,7 +70,6 @@ export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 export type TBodyDataID = string | number;
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
-    className?: string,
     detail?: JSX.Element | TBodyDataDetail<K>[],
     disabled?: boolean,
     onClickRow?: (collapse: () => void) => void,
@@ -81,7 +81,7 @@ export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> 
  *             Footer
  * ------------------------------ */
 export type TFooter<K extends TBodyDataFieldKey> = {
-    [P in K]?: { value: TFieldValue } & IConfig;
+    [P in K]?: TFieldValue | { value: TFieldValue } & IConfig;
 }
 
 
