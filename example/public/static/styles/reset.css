@@ -1,19 +1,9 @@
 *, *::before, *::after {box-sizing: border-box;-webkit-box-sizing: border-box;line-height: normal; }
-*, html, body{font-family: 'Muli','Roboto', 'Microsoft YaHei', 'Microsoft JhengHei';outline: none; touch-action: manipulation;font-feature-settings:"liga" 0;-webkit-font-smoothing: antialiased;}
-html {height: 100%;line-height: 1.15;-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);-ms-overflow-style: scrollbar;}
-body {height: inherit;margin: 0;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;text-align: left;background-color: #272c31;}
 
-/*修正Gantt滿版*/
-/*#root{height: inherit;}*/
-/*body, #root{*/
-/*    display: flex;*/
-    /*flex-direction: column;*/
-/*}*/
-
-#root{
-    /*flex: 1;*/
-    min-width: 375px;
+body{
+    background-color: #000;
 }
+
 
 html {
     scrollbar-face-color: #646464;
@@ -44,7 +34,7 @@ a{
     outline: 0!important;
     text-decoration: none;
 }
-a:active {color: #fff;text-decoration: none;}
+a:active {color: inherit;text-decoration: none;}
 a:not([href]) {text-decoration: none;}
 a:not([href]):hover {text-decoration: none;}
 a:focus, a:hover, a:active {
@@ -56,17 +46,6 @@ a:focus, a:hover, a:active {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {display: block;}
 [tabindex="-1"]:focus:not(:focus-visible) {outline: 0 !important;}
 
-/* text */
-hr {box-sizing: content-box;height: 0;overflow: visible;}
-hr {margin-top: 1rem;margin-bottom: 1rem;border: 0;border-top: 1px solid rgba(105,105,105, .1);}
-h1, h2, h3, h4, h5, h6 {margin-top: 0;margin-bottom: 0.5rem;}
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {margin-bottom: 0;font-weight: 500;}
-h1, .h1 {font-size: 2.5rem;}
-h2, .h2 {font-size: 2rem;}
-h3, .h3 {font-size: 1.75rem;}
-h4, .h4 {font-size: 1.5rem;}
-h5, .h5 {font-size: 1.25rem;}
-h6, .h6 {font-size: 1rem;}
 
 p {margin-top: 0;margin-bottom: 0;}
 abbr[title], abbr[data-original-title] {text-decoration: underline;-webkit-text-decoration: underline dotted;text-decoration: underline dotted;cursor: help;border-bottom: 0;-webkit-text-decoration-skip-ink: none;text-decoration-skip-ink: none;}
@@ -133,101 +112,15 @@ summary {display: list-item;cursor: pointer;}
 template {display: none;}
 [hidden] {display: none !important;}
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:active {
-     -webkit-animation-name: autofill;
-     -webkit-animation-fill-mode: both;
-     transition: background-color 5000s ease-in-out 0s;
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+    transition: background-color 5000s ease-in-out 0s;
 }
 /* 修復 chrome auto輸入之後的樣式 */
 @-webkit-keyframes autofill { to {background: none;} }
 
 :root {
-     /*noinspection CssUnresolvedCustomProperty*/
-     --vh100: calc(var(--vh, 1vh) * 100);
+    /*noinspection CssUnresolvedCustomProperty*/
+    --vh100: calc(var(--vh, 1vh) * 100);
 }
 
-/* 列印 */
-@media print{
-    * {
-      -webkit-print-color-adjust: exact !important;
-    }
-    /*不換行*/
-    .no-print-break {
-        break-inside: avoid;
-    }
-    .print-break {
-        page-break-after: always;
-    }
-    /*不顯示*/
-    .no-print {
-        display: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        page-break-after:avoid;
-        page-break-inside:avoid
-    }
-    h1+p, h2+p, h3+p {
-        page-break-before: avoid;
-    }
-    a {
-        page-break-inside:avoid
-    }
-    img{
-        page-break-after: avoid;
-        page-break-inside: avoid;
-    }
-    table, blockquote{
-        page-break-inside: avoid;
-    }
-    ul, ol, dl {
-        page-break-before:avoid;
-    }
-    /* 如架構本身用一組一組的 DIV 包住，也可強制設定每組 DIV 會各自切成一頁 */
-    div.pageBlock{
-        page-break-before: always;
-    }
-    header nav, footer, video, audio, object, embed {
-        display: none;
-    }
-    body{
-        width: 100%;
-        margin: 0;
-        float: none;
-        line-height: 1.5;
-        font-size: 12pt;
-    }
-    img {
-        max-width: 100%;
-    }
-    a:link, a:visited, a {
-        background: transparent;
-        color: #222;
-        font-weight: bold;
-        text-decoration: underline;
-        text-align: left;
-        word-wrap: break-word; /*避免網址過長超出頁面*/
-    }
-    a[href^="http://"]:after, a[href^="https://"]:after {
-        content: " (" attr(href) ") ";
-    }
-    thead{
-        display: table-header-group; /* 表格即使分頁也會顯示表頭 */
-    }
-
-    body{
-        -webkit-print-color-adjust: exact;
-        /*background-image: url('...') !important; !*如果背景圖沒顯示請加必殺技 !important*!*/
-    }
-
-}
-
-@page {
-    size: A4 portrait;
-    /*margin-top: 3cm;*/
-}
-
-@page :first {
-    /*margin-left: 4cm;*/
-}

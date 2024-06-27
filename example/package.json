@@ -15,16 +15,20 @@
         "@acrool/react-table": "link:..",
         "@acrool/react-grid": "5.0.14-alpha.2",
         "@swc/plugin-styled-components": "1.5.67",
+        "@types/styled-components": "^5.1.26",
+        "@types/dom-to-image": "^2.6.7",
         "dayjs": "^1.11.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "styled-components": "5.3.9"
+        "styled-components": "5.3.9",
+        "dom-to-image": "^2.6.0"
     },
     "devDependencies": {
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",
         "@vitejs/plugin-react-swc": "^3.0.0",
         "typescript": "^4.9.3",
-        "vite": "^4.2.0"
+        "vite": "^4.2.0",
+        "vite-plugin-svgr": "^4.2.0"
     }
 }
