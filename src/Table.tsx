@@ -261,7 +261,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
                 {tableMode === ETableMode.table && renderFooter()}
             </table>
 
-            <div className={styles.loadingText}>
+            <div className={styles.loadingMaskWrapper}>
                 {renderFetching}
             </div>
 

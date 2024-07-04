@@ -284,7 +284,7 @@
             &[data-collapse]{
                 //margin-top: -1rem;
                 margin-top: -10px;
-                
+
                 th:empty,
                 td:empty {
                     display: none;
@@ -336,12 +336,13 @@
  * ------------------------------ */
 
 .root[data-fetching]{
-    .loading-text{
+    .loading-mask-wrapper{
         opacity: 1;
+        pointer-events: auto;
     }
 }
 
-.loading-text{
+.loading-mask-wrapper{
     pointer-events: none;
     position: absolute;
     display: flex;
