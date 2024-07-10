@@ -312,7 +312,7 @@
 
                 content: attr(aria-label);
                 font-weight: bold;
-
+                flex: 0 0 auto;
             }
 
             &:before, .cellTd {
