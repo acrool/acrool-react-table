@@ -123,7 +123,7 @@ const Example = () => {
             // isVisibleBorder={true}
             // isEnableOddEven={false}
             title={tableData.title}
-            // tableCellMediaSize={768}
+            tableCellMediaSize={768}
             footer={[
                 {
                     name: 'Fax',
@@ -320,11 +320,11 @@ const Example = () => {
                             {renderLightTable()}
                         </div>
                     </Col>
-                    <Col col>
-                        <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>
+                    {/*<Col col>*/}
+                    {/*    <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
                             {/*{renderTable(true, true)}*/}
-                        </div>
-                    </Col>
+                        {/*</div>*/}
+                    {/*</Col>*/}
                 </Row>
 
             </TableContainer>

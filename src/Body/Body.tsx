@@ -1,16 +1,26 @@
-import React, {Fragment, useState, MouseEvent, ReactNode} from 'react';
+import React, {Fragment, MouseEvent, ReactNode, useState} from 'react';
 import {removeByIndex} from 'bear-jsutils/array';
 import {objectKeys} from 'bear-jsutils/object';
 
-import {ITableBody, TBodyDataID, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent} from '../types';
+import {
+    ETableMode,
+    ITableBody,
+    TBodyDataField,
+    TBodyDataFieldKey,
+    TBodyDataID,
+    TCollapseEvent,
+    TTableTitle
+} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './utils';
 import BodyDetail from './BodyDetail';
+import styles from '../styles.module.scss';
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
+    tableMode: ETableMode
 }
 
 
@@ -20,6 +30,7 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
 const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
+    tableMode,
 }: IProps<K, I>) => {
 
     const [collapseIds, setCollapse] = useState<I[]>([]);
@@ -139,7 +150,9 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             ...colSpanStyles,
                             ...stickyLeftStyles,
                         },
-                        children,
+                        children: tableMode === ETableMode.cell ?
+                            <div className={styles.cellTd}>{children}</div>:
+                            children,
                     };
                     return [
                         ...curr,
@@ -166,7 +179,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                 {(collapseIds?.includes(dataRow.id) && dataRow.detail) &&
-                    <BodyDetail title={title} data={dataRow.detail}/>
+                    <BodyDetail title={title} data={dataRow.detail} tableMode={tableMode}/>
                 }
 
             </Fragment>);

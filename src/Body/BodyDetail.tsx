@@ -1,4 +1,4 @@
-import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail, TBodyDataField, TCollapseEvent} from '../types';
+import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail, TBodyDataField, TCollapseEvent, ETableMode} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
 import {
@@ -7,12 +7,14 @@ import {
     getFooterConfig,
     getFooterStickyLeftConfig
 } from '../Footer/utils';
-import {ReactNode} from 'react';
+import React, {ReactNode} from 'react';
+import styles from '../styles.module.scss';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
     data: JSX.Element | TBodyDataDetail<K>[]
+    tableMode: ETableMode
 }
 
 
@@ -29,13 +31,12 @@ interface IProps <K extends TBodyDataFieldKey>{
 const BodyDetail = <K extends TBodyDataFieldKey>({
     title,
     data,
+    tableMode,
 }: IProps<K>) => {
 
     /**
      * 取得資料內容
      * @param field
-     * @param isActive
-     * @param collapse
      */
     const getBodyDetailData = (field: TBodyDataField<K>[K]) => {
 
@@ -99,7 +100,9 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                             ...colSpanStyles,
                             ...stickyLeftStyles,
                         },
-                        children,
+                        children: tableMode === ETableMode.cell ?
+                            <div className={styles.cellTd}>{children}</div>:
+                            children,
                     };
                     return [
                         ...curr,

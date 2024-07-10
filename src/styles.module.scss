@@ -299,7 +299,7 @@
             margin-left: auto;
             height: var(--cell-line-height, auto);
             width: 100%;
-            padding: var(--grid-gap);
+            padding: 0;
 
 
             &:empty {
@@ -312,6 +312,11 @@
 
                 content: attr(aria-label);
                 font-weight: bold;
+
+            }
+
+            &:before, .cellTd {
+                padding: var(--grid-gap);
             }
         }
     }

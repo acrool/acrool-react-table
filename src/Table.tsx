@@ -178,6 +178,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         }
 
         return <TableBody
+            tableMode={tableMode}
             title={title}
             data={data}
         />;
