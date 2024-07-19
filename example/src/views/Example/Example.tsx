@@ -83,7 +83,7 @@ const Example = () => {
     const tableData = genericsTitleData(
         {
             avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-            name:     {text: 'Name',   col: 'auto',  isEnableSort: true},
+            name:     {text: <Name>Name</Name>,   col: 'auto',  isEnableSort: true},
             amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
             role:     {text: 'Role',   col: '120px', isHidden: true},
             createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
@@ -322,8 +322,8 @@ const Example = () => {
                     </Col>
                     {/*<Col col>*/}
                     {/*    <div style={{backgroundColor: '#000', flex: 1, width: '100%', padding: '20px'}}>*/}
-                            {/*{renderTable(true, true)}*/}
-                        {/*</div>*/}
+                    {/*{renderTable(true, true)}*/}
+                    {/*</div>*/}
                     {/*</Col>*/}
                 </Row>
 
@@ -339,6 +339,10 @@ const Example = () => {
 export default Example;
 
 
+
+const Name = styled.div`
+    color: #e83e8c;
+`;
 
 
 const CollapseButton = styled.button`

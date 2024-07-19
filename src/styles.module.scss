@@ -306,16 +306,17 @@
                 display: none;
             }
 
-            &:before {
-                text-align: left;
-                margin-right: auto;
 
-                content: attr(aria-label);
-                font-weight: bold;
-                flex: 0 0 auto;
-            }
+            .cellTd {
 
-            &:before, .cellTd {
+                &:nth-child(1) {
+                    text-align: left;
+                    margin-right: auto;
+
+                    content: attr(aria-label);
+                    font-weight: bold;
+                    flex: 0 0 auto;
+                }
                 padding: var(--grid-gap);
             }
         }
