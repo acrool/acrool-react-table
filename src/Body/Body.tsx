@@ -140,7 +140,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
                         className: fieldConfig.className,
-                        'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-even': nthType === 'even' ? '': undefined,
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
@@ -150,8 +149,10 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                             ...colSpanStyles,
                             ...stickyLeftStyles,
                         },
-                        children: tableMode === ETableMode.cell ?
-                            <div className={styles.cellTd}>{children}</div>:
+                        children: tableMode === ETableMode.cell ? <>
+                            <div className={styles.cellTd}>{titleRow.text}</div>
+                            <div className={styles.cellTd}>{children}</div>
+                        </>:
                             children,
                     };
                     return [
