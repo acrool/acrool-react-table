@@ -9,6 +9,7 @@ import {
 } from '../Footer/utils';
 import React, {ReactNode} from 'react';
 import styles from '../styles.module.scss';
+import {isEmpty} from 'bear-jsutils/equal';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
@@ -91,7 +92,6 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
                         className: getFooterClassNameConfig(datDetailField),
-                        'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
@@ -104,6 +104,12 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                             <div className={styles.cellTd}>{children}</div>:
                             children,
                     };
+
+                    if(tableMode === ETableMode.cell && isEmpty(children)){
+                        return [
+                            ...curr,
+                        ];
+                    }
                     return [
                         ...curr,
                         <td {...args}/>,
@@ -111,7 +117,8 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                 }, []);
 
             return (<tr
-                key={`tfootTr_${index}`}
+                key={`detailTr_${index}`}
+                className={styles.cellDetailTr}
             >
                 {tds}
             </tr>);
@@ -125,7 +132,7 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
 
     // 單純資料(非列表)
     const colSpanStyles = getColSpanStyles(objectKeys(title).length);
-    return <tr data-collapse="">
+    return <tr>
         <td style={colSpanStyles}>
             {data as ReactNode}
         </td>

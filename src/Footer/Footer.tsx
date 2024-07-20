@@ -1,13 +1,15 @@
-import {TFooter, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent} from '../types';
+import {TFooter, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent, ETableMode} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {objectKeys} from 'bear-jsutils/object';
 import {getFooterClassNameConfig, getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
-import {ReactNode} from "react";
+import React, {ReactNode} from 'react';
+import styles from '../styles.module.scss';
 
 
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
     data: TFooter<K>[]
+    tableMode: ETableMode
 }
 
 
@@ -24,6 +26,7 @@ interface IProps <K extends TBodyDataFieldKey>{
 const Footer = <K extends TBodyDataFieldKey>({
     title,
     data,
+    tableMode,
 }: IProps<K>) => {
 
 
@@ -88,7 +91,6 @@ const Footer = <K extends TBodyDataFieldKey>({
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
                         className: getFooterClassNameConfig(footerField),
-                        'aria-label': typeof titleRow.text === 'string' ? titleRow.text: '',
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
                         'data-sticky': titleRow.isSticky ? '': undefined,
@@ -97,7 +99,11 @@ const Footer = <K extends TBodyDataFieldKey>({
                             ...colSpanStyles,
                             ...stickyLeftStyles,
                         },
-                        children,
+                        children: tableMode === ETableMode.cell ? <>
+                            <div className={styles.cellTd}>{titleRow.text}</div>
+                            <div className={styles.cellTd}>{children}</div>
+                        </>:
+                            children,
                     };
                     return [
                         ...curr,
