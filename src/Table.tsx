@@ -196,6 +196,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         return <TableFooter
             title={title}
             data={footer}
+            tableMode={tableMode}
         />;
     };
 

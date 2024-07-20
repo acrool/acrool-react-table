@@ -161,10 +161,14 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     ];
                 }, []);
 
+
+            const isCollapse = collapseIds?.includes(dataRow.id);
+
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
             >
                 <tr
+                    data-collapse={isCollapse ? '': undefined}
                     onClick={(event) => {
                         if(dataRow.onClickRow) {
                             dataRow.onClickRow(() => collapseEvent(event));
@@ -179,7 +183,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                 </tr>
 
 
-                {(collapseIds?.includes(dataRow.id) && dataRow.detail) &&
+                {(isCollapse && dataRow.detail) &&
                     <BodyDetail title={title} data={dataRow.detail} tableMode={tableMode}/>
                 }
 

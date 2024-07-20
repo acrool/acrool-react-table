@@ -274,20 +274,41 @@
 
     tbody {
         tr {
-            margin-bottom: 1rem;
+            margin-top: 1rem;
             height: auto;
             background-color: inherit;
             border: none;
             display: block;
             width: 100%;
 
-            &[data-collapse]{
-                //margin-top: -1rem;
-                margin-top: -10px;
+            &:first-child{
+                margin-top: 0;
+            }
 
-                th:empty,
-                td:empty {
+            &[data-collapse]{
+
+                td:last-child{
+                    border-bottom-right-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+            }
+
+
+            &.cellDetailTr{
+                margin-top: 0;
+                display: flex;
+
+                &:last-child{
                     display: none;
+                }
+
+                td:first-child{
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+                td:last-child{
+                    border-bottom-right-radius: 0;
+                    border-bottom-left-radius: 0;
                 }
             }
         }
@@ -315,10 +336,13 @@
 
                     content: attr(aria-label);
                     font-weight: bold;
-                    flex: 0 0 auto;
                 }
+
+                flex: 1;
                 padding: var(--grid-gap);
             }
+
+
         }
     }
 
