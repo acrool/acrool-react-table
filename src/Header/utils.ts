@@ -1,5 +1,5 @@
 import {ITableBody, TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from '../types';
-import {objectKeys} from 'bear-jsutils/object';
+import {objectKeys} from '@acrool/js-utils/object';
 
 
 

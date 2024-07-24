@@ -1,4 +1,4 @@
-import {objectKeys} from 'bear-jsutils/object';
+import {objectKeys} from '@acrool/js-utils/object';
 
 interface ILocale {
     [locale: string]: {

@@ -10,7 +10,7 @@ import {getColSpanStyles, getTemplate} from './utils';
 import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
-import {objectKeys} from 'bear-jsutils/object';
+import {objectKeys} from '@acrool/js-utils/object';
 
 
 /**

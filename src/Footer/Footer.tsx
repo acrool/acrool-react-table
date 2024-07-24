@@ -1,6 +1,6 @@
 import {TFooter, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent, ETableMode} from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
-import {objectKeys} from 'bear-jsutils/object';
+import {objectKeys} from '@acrool/js-utils/object';
 import {getFooterClassNameConfig, getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
 import React, {ReactNode} from 'react';
 import styles from '../styles.module.scss';

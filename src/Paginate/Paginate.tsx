@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {formatCurrency} from 'bear-jsutils/number';
+import {formatCurrency} from '@acrool/js-utils/number';
 import {AlignCenterIcon} from '../Icon';
 import {IPage, IPaginateInfo} from '../types';
 import Select from './_components/Select';

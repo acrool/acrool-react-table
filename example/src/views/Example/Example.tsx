@@ -3,7 +3,7 @@ import {Col, Container, Row} from '@acrool/react-grid';
 import styled from 'styled-components';
 import Table, {genericsTitleData, IPaginateMeta, TOnChangePage} from '@acrool/react-table';
 import {data, IPaginateData} from '../../config/data';
-import {formatCurrency} from 'bear-jsutils/number';
+import {formatCurrency} from '@acrool/js-utils/number';
 import dayjs from 'dayjs';
 
 

@@ -1,6 +1,6 @@
 import React, {Fragment, MouseEvent, ReactNode, useState} from 'react';
-import {removeByIndex} from 'bear-jsutils/array';
-import {objectKeys} from 'bear-jsutils/object';
+import {removeByIndex} from '@acrool/js-utils/array';
+import {objectKeys} from '@acrool/js-utils/object';
 
 import {
     ETableMode,

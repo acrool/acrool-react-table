@@ -1,6 +1,6 @@
 import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody, TTitleCol, TBodyDataField} from './types';
 import {CSSProperties} from 'react';
-import {objectKeys} from 'bear-jsutils/object';
+import {objectKeys} from '@acrool/js-utils/object';
 
 
 export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: string): CSSProperties => {
@@ -60,7 +60,7 @@ export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], isSticky?: boolea
 
     return {
         '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
-    } as CSSProperties
+    } as CSSProperties;
 };
 
 

@@ -1,5 +1,5 @@
 import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, IOrderByType} from '../types';
-import {objectKeys} from 'bear-jsutils/object';
+import {objectKeys} from '@acrool/js-utils/object';
 import styles from '../styles.module.scss';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import React from 'react';
