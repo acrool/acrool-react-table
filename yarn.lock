@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@acrool/js-utils@^3.2.x":
+"@acrool/js-utils@^3.2.6":
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/@acrool/js-utils/-/js-utils-3.2.6.tgz#042979ba14a3cb743bbc78e2f12165b597108cc9"
   integrity sha512-qvzT5tzUxdA3fwJfXemloJ0tEbIqop574JiinCCbw9SnRUz10w1LRGh5Nb2RaA7QNN7bNdle7bSeTvyCcL8Shg==
@@ -6797,7 +6797,7 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
-throttle-debounce@^5.x:
+throttle-debounce@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-5.0.2.tgz#ec5549d84e053f043c9fd0f2a6dd892ff84456b1"
   integrity sha512-B71/4oyj61iNH0KeCamLuE2rmKuTO5byTOSVwECM5FA7TiAiAW+UqTKZ9ERueC4qvgSttUhdmq1mXC3kJqGX7A==
