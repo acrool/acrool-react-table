@@ -52,10 +52,12 @@
   },
   "peerDependencies": {
     "react": "^18.x",
-    "react-dom": "^18.x",
-    "throttle-debounce": "^5.x",
-    "@acrool/js-utils": "^3.2.x",
-    "clsx": "^2.x"
+    "react-dom": "^18.x"
+  },
+  "dependencies": {
+    "@acrool/js-utils": "^3.2.7",
+    "clsx": "^2.1.1",
+    "throttle-debounce": "^5.0.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
@@ -64,9 +66,6 @@
     "@types/react-dom": "^18.0.11",
     "@types/throttle-debounce": "^5.x",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "throttle-debounce": "^5.0.2",
-    "@acrool/js-utils": "^3.2.6",
-    "clsx": "^2.x",
     "cz-git": "^1.6.1",
     "eslint": "^8.37.0",
     "eslint-config-react-app": "^7.0.1",
