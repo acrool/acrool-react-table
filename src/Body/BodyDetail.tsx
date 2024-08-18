@@ -61,7 +61,7 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
 
             const titleKeys = objectKeys(title);
             const tds = titleKeys
-                ?.filter(titleKey => !title[titleKey].isHidden)
+                ?.filter(titleKey => !title[titleKey].isHidden && !title[titleKey].isRowSpan)
                 ?.reduce((curr: JSX.Element[], titleKey, idx) => {
                     const datDetailField = dataRow[titleKey];
                     const config = getFooterConfig(datDetailField);

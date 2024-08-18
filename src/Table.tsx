@@ -57,6 +57,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 }: ITableProps<I, K>) => {
 
     const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
+    const [collapseIds, setCollapse] = useState<I[]>([]);
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -149,11 +150,26 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return null;
         }
 
+
+        let dataLength = data?.length ?? 0;
+        if(collapseIds.length > 0 && data){
+            dataLength = data.reduce((curr, row) => {
+                if(collapseIds.includes(row.id)){
+                    if(row.detail && Array.isArray(row.detail)){
+                        return curr + row.detail.length;
+                    }
+                    return curr + 1;
+                }
+                return curr;
+            }, data.length);
+        }
+
         return <TableHeader
             title={title}
             onChangeSortField={handleOnOrderField}
             order={meta.order}
             orderByType={orderByType}
+            dataLength={dataLength}
         />;
     };
 
@@ -181,6 +197,9 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             tableMode={tableMode}
             title={title}
             data={data}
+            collapseIds={collapseIds}
+            onChangeCollapseIds={setCollapse}
+
         />;
     };
 

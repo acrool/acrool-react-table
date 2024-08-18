@@ -39,6 +39,40 @@ export const getHeaderColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
         }, {});
 };
 
+/**
+ * 取得處理合併設定
+ * @param title
+ */
+export const getHeaderRowSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>) => {
+
+    // let rowMergeAfterIgnoreLength = 0;
+    const titleKeys = objectKeys(title);
+
+    return titleKeys
+        ?.filter(titleKey => !title[titleKey].isHidden)
+        ?.reduce((curr: Record<string, any>, titleKey, idx) => {
+            const fieldConfig = title[titleKey];
+            const isRowSpan = fieldConfig?.isRowSpan ?? false;
+
+            // 被合併忽略
+            // if(rowMergeAfterIgnoreLength > 0){
+            //     rowMergeAfterIgnoreLength -= 1;
+            //     return curr;
+            // }
+
+            // 如果大於1, 下一個忽略
+            // if(rowSpan > 1){
+            //     rowMergeAfterIgnoreLength = rowSpan - 1;
+            // }
+
+            return {
+                ...curr,
+                [titleKey]: isRowSpan
+            };
+
+        }, {});
+};
+
 
 /**
  * 取得沾黏的設定

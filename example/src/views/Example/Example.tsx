@@ -82,6 +82,7 @@ const Example = () => {
 
     const tableData = genericsTitleData(
         {
+            no:     {text: 1, isRowSpan: true, col: 50,      titleAlign: 'center', dataAlign: 'center'},
             avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
             name:     {text: <Name>Name</Name>,   col: 'auto',  isEnableSort: true},
             amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
@@ -100,6 +101,7 @@ const Example = () => {
                 ],
                 onClickRow: collapse => collapse(),
                 field: {
+                    no: '',
                     avatar: <Avatar src={row.avatar}/>,
                     name: row.name,
                     amount: `$ ${formatCurrency(row.amount)}`,
@@ -124,16 +126,16 @@ const Example = () => {
             // isEnableOddEven={false}
             title={tableData.title}
             tableCellMediaSize={768}
-            footer={[
-                {
-                    name: 'Fax',
-                    amount: {value: 10, dataAlign: 'right', className: 'footer-css'},
-                },
-                {
-                    name: {value: 'Total'},
-                    amount: {value: calcAmount(data), dataAlign: 'right'},
-                }
-            ]}
+            // footer={[
+            //     {
+            //         name: 'Fax',
+            //         amount: {value: 10, dataAlign: 'right', className: 'footer-css'},
+            //     },
+            //     {
+            //         name: {value: 'Total'},
+            //         amount: {value: calcAmount(data), dataAlign: 'right'},
+            //     }
+            // ]}
             data={tableData.data}
             onChangePage={handleFetchPaginate}
             paginateMeta={paginateMeta}

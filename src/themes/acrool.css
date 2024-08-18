@@ -8,6 +8,7 @@
     --grid-template: 1fr;
     --grid-gap: 0;
     --grid-column-span: 1;
+    --grid-row-span: 1;
 
     --default-primary-color: #535bf2;
     --default-primary-contrast-color: #fff;
@@ -101,6 +102,7 @@
 .acrool-react-table__root[data-mode="table"] .acrool-react-table__content:first-child tr:first-child th:first-child,
 .acrool-react-table__root[data-mode="table"] .acrool-react-table__content:first-child tr:first-child td:first-child {
     border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
 }
 .acrool-react-table__root[data-mode="table"] .acrool-react-table__content:first-child tr:first-child th:last-child,
 .acrool-react-table__root[data-mode="table"] .acrool-react-table__content:first-child tr:first-child td:last-child {

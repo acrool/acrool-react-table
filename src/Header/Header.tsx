@@ -1,9 +1,9 @@
 import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, IOrderByType} from '../types';
 import {objectKeys} from '@acrool/js-utils/object';
 import styles from '../styles.module.scss';
-import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles, getColSpanStyles, getRowSpanStyles} from '../utils';
 import React from 'react';
-import {getHeaderColSpanConfig, getHeaderStickyLeftConfig} from './utils';
+import {getHeaderColSpanConfig, getHeaderRowSpanConfig, getHeaderStickyLeftConfig} from './utils';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -12,6 +12,7 @@ interface IProps<K extends TBodyDataFieldKey> {
     isStickyHeader?: boolean
     order?: IOrder
     orderByType?: IOrderByType
+    dataLength: number
 }
 
 
@@ -22,6 +23,7 @@ const Header = <K extends TBodyDataFieldKey>({
     title,
     order,
     orderByType = {asc: 'ASC', desc: 'DESC'},
+    dataLength,
     onChangeSortField = () => {},
 }: IProps<K>) => {
 
@@ -30,6 +32,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
         const colSpanConfig = getHeaderColSpanConfig(title);
+        const rowSpanConfig = getHeaderRowSpanConfig(title);
         const stickyLeftConfig = getHeaderStickyLeftConfig(title);
 
 
@@ -46,6 +49,7 @@ const Header = <K extends TBodyDataFieldKey>({
                         undefined;
 
                 const colSpan = colSpanConfig?.[titleKey];
+                const isRowSpan = rowSpanConfig?.[titleKey];
 
 
                 // 被合併為 undefined
@@ -59,6 +63,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
                 const colSpanStyles = getColSpanStyles(colSpan);
+                const rowSpanStyles = isRowSpan ? getRowSpanStyles(dataLength): undefined;
                 const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, fieldConfig.isSticky);
                 const args = {
                     key: `theadTh_${titleKey}`,
@@ -69,9 +74,11 @@ const Header = <K extends TBodyDataFieldKey>({
                     'data-vertical': fieldConfig.dataVertical,
                     'data-sticky': fieldConfig.isSticky ? '': undefined,
                     'data-sort': isEnableSort ? '': undefined,
-                    colSpan: colSpan > 1 ? colSpan: undefined,
+                    // colSpan: colSpan > 1 ? colSpan: undefined,
+                    'data-row-span': isRowSpan ? '': undefined,
                     style: {
                         ...colSpanStyles,
+                        ...rowSpanStyles,
                         ...stickyLeftStyles,
                     },
                     children: <>

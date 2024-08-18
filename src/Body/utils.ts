@@ -67,7 +67,7 @@ export const getBodyColSpanConfig = <K extends TBodyDataFieldKey, I extends TBod
         let colMergeAfterIgnoreLength = 0;
         const titleKeys = objectKeys(title);
         return titleKeys
-            ?.filter(titleKey => !title[titleKey].isHidden)
+            ?.filter(titleKey => !title[titleKey].isHidden && !title[titleKey].isRowSpan)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 const bodyField = dataRow.field[titleKey];
                 const colSpan = getBodyColspanConfig(bodyField);

@@ -4,10 +4,11 @@ import {IPaginateVisibleProps} from './Paginate/types';
 
 
 export interface IConfig {
-    colSpan?: number,
-    dataAlign?: 'left'|'center'|'right',
-    dataVertical?: 'top'|'center'|'bottom',
-    className?: string,
+    colSpan?: number
+    isRowSpan?: boolean
+    dataAlign?: 'left'|'center'|'right'
+    dataVertical?: 'top'|'center'|'bottom'
+    className?: string
 }
 export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 
@@ -24,13 +25,13 @@ export type TTitleCol = true|'auto'|number|`${number}${TSizeUnit}`|'min-content'
 
 
 export interface ITitleField extends IConfig {
-    className?: string,
-    col: TTitleCol,
-    text?: string|number|ReactNode,
-    titleAlign?: 'left'|'center'|'right',
-    isEnableSort?: boolean,
-    isSticky?: boolean,
-    isHidden?: boolean,
+    className?: string
+    col: TTitleCol
+    text?: string|number|ReactNode
+    titleAlign?: 'left'|'center'|'right'
+    isEnableSort?: boolean
+    isSticky?: boolean
+    isHidden?: boolean
 }
 
 export type TTableTitle<K extends string> = {

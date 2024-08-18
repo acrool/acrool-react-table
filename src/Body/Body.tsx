@@ -21,6 +21,8 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
     tableMode: ETableMode
+    collapseIds: I[]
+    onChangeCollapseIds: (fn: (ids: I[]) => I[]) => void
 }
 
 
@@ -31,9 +33,10 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
     tableMode,
+    collapseIds,
+    onChangeCollapseIds
 }: IProps<K, I>) => {
 
-    const [collapseIds, setCollapse] = useState<I[]>([]);
 
 
     /**
@@ -44,7 +47,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         return (event?: MouseEvent) => {
             event?.stopPropagation();
 
-            setCollapse(ids => {
+            onChangeCollapseIds(ids => {
                 const index = ids.findIndex(rowId => rowId === id);
                 if(index >= 0){
                     return removeByIndex(ids, index);
