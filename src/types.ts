@@ -46,7 +46,7 @@ export interface IOrderByType {asc: string, desc: string}
  * ------------------------------ */
 
 export type TBodyDataFieldKey = string;
-type TFieldValue = string | number | boolean | JSX.Element;
+export type TFieldValue = string | number | boolean | JSX.Element;
 interface TFieldFuncArgs {isActive: boolean, collapse: MouseEventHandler}
 type TFieldFunc = (args: TFieldFuncArgs) => TFieldValue;
 
