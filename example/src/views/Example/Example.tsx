@@ -98,7 +98,7 @@ const Example = () => {
                     },
                     {name: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
                 ],
-                onClickRow: collapse => collapse(),
+                onClickRow: (id, collapse) => collapse(),
                 field: {
                     avatar: <Avatar src={row.avatar}/>,
                     name: row.name,
