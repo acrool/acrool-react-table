@@ -68,13 +68,13 @@ export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 // }
 
 export type TBodyDataID = string | number;
-export type onClickRow<I> = (id: I, collapse?: () => void) => void;
+export type TOnClickRow = <I extends TBodyDataID>(id: I, collapse: () => void) => void;
 
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
     detail?: JSX.Element | TBodyDataDetail<K>[],
     disabled?: boolean,
-    onClickRow?: onClickRow<I>,
+    onClickRow?: TOnClickRow,
     field: TBodyDataField<K>
 }
 
