@@ -20,7 +20,8 @@ export enum ETableMode {
  *             Title
  * ------------------------------ */
 export type TSizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
-export type TTitleCol = true|'auto'|number|`${number}${TSizeUnit}`|'min-content'|'max-content'|`minmax('${number}${TSizeUnit}', '${number}${TSizeUnit}')`;
+export type TSizeUnitOrNumber = number|`${number}${TSizeUnit}`;
+export type TTitleCol = true|'auto'|TSizeUnitOrNumber|'min-content'|'max-content'|`minmax(${TSizeUnitOrNumber}, ${TSizeUnitOrNumber})`;
 
 
 export interface ITitleField extends IConfig {
