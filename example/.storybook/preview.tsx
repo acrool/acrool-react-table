@@ -12,7 +12,7 @@ const preview: Preview = {
   parameters: {
       darkMode: {
           dark: { ...themes.dark, appPreviewBg: '#000' },
-          light: { ...themes.normal }
+          light: { ...themes.dark, appPreviewBg: '#fff' }
       },
     controls: {
       matchers: {

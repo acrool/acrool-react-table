@@ -3,10 +3,10 @@ import {useDarkMode} from 'storybook-dark-mode';
 
 import Table from '@acrool/react-table';
 import React from 'react';
-import {calcAmount} from './utils';
-import {CollapseButton, Name} from './Common';
+import {calcAmount} from '../../utils';
+import {CollapseButton, Name} from '../../Common';
 
-import {getPageData, baseData} from './data';
+import {getPageData, baseData} from '../../data';
 import {fn} from '@storybook/test';
 
 
