@@ -2,13 +2,14 @@ import type {Meta, StoryObj} from '@storybook/react';
 
 import Table, {genericsTitleData, IPaginateMeta, TOnChangePage} from '@acrool/react-table';
 import React, {useCallback, useState} from 'react';
-import {calcAmount, getPageData} from './data';
+import {calcAmount, getPageData} from './utils';
 import {Avatar, CollapseButton} from './Common';
 import {formatCurrency} from '@acrool/js-utils/number';
 // import {fn} from '@storybook/test';
 // import {useArgs} from '@storybook/preview-api';
 // import {generatorArray} from '@acrool/js-utils/array';
 import dayjs from 'dayjs';
+import {tableData} from './data';
 // import {formatCurrency} from '@acrool/js-utils/number';
 // import styled from 'styled-components';
 // import {data, mockSort} from './data';
@@ -62,71 +63,7 @@ const meta = {
                 orderBy: 'DESC',
             }
         },
-        title: {
-            plus:     {text: '=== Name (Merge) ===',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true, colSpan: 3},
-            avatar:   {text: '',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
-            name:     {text: '',   col: 150,  isEnableSort: true, titleAlign: 'center', isSticky: true, dataAlign: 'left'},
-            amount:   {text: 'Amount', col: 'auto',  titleAlign: 'right',  dataAlign: 'right'},
-            role:     {text: 'Role',   col: '120px'},
-            createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
-            joined:  {text: 'Joined',  col: '80px'},
-        },
-        data: paginateData.map((row, index) => {
-            const isMergeColSpan = index === 0;
-
-            return {
-                id: row.id,
-                className: 'status-danger',
-                // detail: <>
-                //     <div>{row.name}, {row.amount}, {row.role}</div>
-                // </>,
-                detail:  [
-                    {
-                        avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        plus: {
-                            colSpan: 3,
-                            className: 'detail-css',
-                            value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
-                        },
-                        amount: {
-                            dataAlign: 'right',
-                            value: 10,
-                        },
-                    },
-                    {
-                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
-                        plus: {
-                            colSpan: 3,
-                            value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>
-                        },
-                        amount: {value: calcAmount(paginateData), dataAlign: 'right'},
-                    }
-                ],
-                onClickRow: () => console.log(`click row id: ${row.id}`),
-                field: {
-                    plus: (args) => <CollapseButton
-                        type="button" onClick={args.collapse}
-                        data-active={args.isActive ? '':undefined}
-                    >
-                        {args.isActive ? '-': '+'}
-                    </CollapseButton>,
-                    avatar: <Avatar src={row.avatar}/>,
-                    // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
-                    name: row.name,
-                    role: {
-                        value: row.role,
-                        className: 'my-role-css'
-                    },
-                    createdAt: dayjs(row.createdAt).format('MM/DD'),
-                    joined: row.isJoined ? 'Y':'N',
-                    amount: {
-                        colSpan: isMergeColSpan ? 4: 1,
-                        dataAlign: isMergeColSpan ? 'center': 'right',
-                        value: `$ ${formatCurrency(row.amount)} ${isMergeColSpan ? '(Merge colspan)' : ''}`,
-                    },
-                },
-            };
-        })
+        ...tableData,
     },
     // render: function Render(args) {
     //     // const [{currentPage, pageLimit, order}, updatePaginateMeta] = useArgs<IPaginateMeta>();
@@ -280,6 +217,93 @@ type Story = StoryObj<typeof meta>;
 
 
 export const Primary: Story = {};
+
+
+
+export const WithMergeCol: Story = {
+    args: {
+        gap: '8px',
+        isDark: false,
+        isFetching: false,
+        locale: 'en-US',
+        isStickyHeader: false,
+        isVisibleHeader: true,
+
+        paginateMeta: {
+            currentPage: 1,
+            pageLimit: 8,
+            order: {
+                orderField: 'id',
+                orderBy: 'DESC',
+            }
+        },
+        title: {
+            plus:     {text: '=== Name (Merge) ===',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true, colSpan: 3},
+            avatar:   {text: '',      col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true},
+            name:     {text: '',   col: 150,  isEnableSort: true, titleAlign: 'center', isSticky: true, dataAlign: 'left'},
+            amount:   {text: 'Amount', col: 'auto',  titleAlign: 'right',  dataAlign: 'right'},
+            role:     {text: 'Role',   col: '120px'},
+            createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+            joined:  {text: 'Joined',  col: '80px'},
+        },
+        data: paginateData.map((row, index) => {
+            const isMergeColSpan = index === 0;
+
+            return {
+                id: row.id,
+                className: 'status-danger',
+                // detail: <>
+                //     <div>{row.name}, {row.amount}, {row.role}</div>
+                // </>,
+                detail:  [
+                    {
+                        avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        plus: {
+                            colSpan: 3,
+                            className: 'detail-css',
+                            value: <div style={{color: '#fff', fontWeight: 700}}>Fax</div>
+                        },
+                        amount: {
+                            dataAlign: 'right',
+                            value: 10,
+                        },
+                    },
+                    {
+                        // avatar: {value: '12313', colSpan: 7, dataAlign: 'right'},
+                        plus: {
+                            colSpan: 3,
+                            value: <div style={{color: '#fff', fontWeight: 700}}>Total</div>
+                        },
+                        amount: {value: calcAmount(paginateData), dataAlign: 'right'},
+                    }
+                ],
+                onClickRow: () => console.log(`click row id: ${row.id}`),
+                field: {
+                    plus: (args) => <CollapseButton
+                        type="button" onClick={args.collapse}
+                        data-active={args.isActive ? '':undefined}
+                    >
+                        {args.isActive ? '-': '+'}
+                    </CollapseButton>,
+                    avatar: <Avatar src={row.avatar}/>,
+                    // name: {value: row.name, colSpan: 2, dataAlign: 'right'},
+                    name: row.name,
+                    role: {
+                        value: row.role,
+                        className: 'my-role-css'
+                    },
+                    createdAt: dayjs(row.createdAt).format('MM/DD'),
+                    joined: row.isJoined ? 'Y':'N',
+                    amount: {
+                        colSpan: isMergeColSpan ? 4: 1,
+                        dataAlign: isMergeColSpan ? 'center': 'right',
+                        value: `$ ${formatCurrency(row.amount)} ${isMergeColSpan ? '(Merge colspan)' : ''}`,
+                    },
+                },
+            };
+        })
+    },
+};
 
 
 
