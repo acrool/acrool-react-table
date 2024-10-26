@@ -152,6 +152,12 @@
             }
         }
     }
+    th{
+        &[data-sticky]{
+            z-index: 7!important;
+        }
+    }
+
 }
 
 
