@@ -11,8 +11,8 @@ const meta = {
     },
     argTypes: {},
     args: {
-        name: 'Acrool React Datepicker',
-        repositoryUrl: 'https://github.com/acrool/acrool-react-datepicker',
+        name: 'Acrool React Table',
+        repositoryUrl: 'https://github.com/acrool/acrool-react-table',
     },
 } satisfies Meta<typeof Banner>;
 
