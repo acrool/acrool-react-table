@@ -1,34 +1,49 @@
 {
-    "name": "example",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
-    },
-    "resolutions": {
-        "styled-components": "5.3.9"
-    },
-    "dependencies": {
-        "@acrool/react-table": "link:..",
-        "@acrool/react-grid": "5.0.14-alpha.2",
-        "@swc/plugin-styled-components": "1.5.67",
-        "@types/styled-components": "^5.1.26",
-        "@types/dom-to-image": "^2.6.7",
-        "dayjs": "^1.11.7",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "styled-components": "5.3.9",
-        "dom-to-image": "^2.6.0"
-    },
-    "devDependencies": {
-        "@types/react": "^18.0.28",
-        "@types/react-dom": "^18.0.11",
-        "@vitejs/plugin-react-swc": "^3.0.0",
-        "typescript": "^4.9.3",
-        "vite": "^4.2.0",
-        "vite-plugin-svgr": "^4.2.0"
-    }
+  "name": "example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "pages:dev": "wrangler pages dev --proxy 3000 -- yarn dev",
+    "pages:deploy": "NODE_VERSION=18 yarn build-storybook && wrangler pages deploy ./storybook-static --project-name=acrool-react-datepicker --branch main"
+  },
+  "resolutions": {
+    "styled-components": "5.3.9"
+  },
+  "dependencies": {
+    "@acrool/js-utils": "^3.2.12",
+    "@acrool/react-grid": "^5.2.5-alpha.1",
+    "@acrool/react-table": "link:..",
+    "@swc/core": "^1.3.68",
+    "@swc/plugin-styled-components": "^1.5.68",
+    "@types/dom-to-image": "^2.6.7",
+    "@types/styled-components": "^5.1.26",
+    "dom-to-image": "^2.6.0",
+    "react": "link:../node_modules/react",
+    "react-dom": "link:../node_modules/react-dom",
+    "styled-components": "5.3.9",
+    "sass": "^1.77.1",
+    "@chromatic-com/storybook": "^1.5.0",
+    "@emotion/is-prop-valid": "^1.2.2",
+    "@storybook/addon-essentials": "^8.1.10",
+    "@storybook/addon-interactions": "^8.1.10",
+    "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-onboarding": "^8.1.10",
+    "@storybook/blocks": "^8.1.10",
+    "@storybook/react": "^8.1.10",
+    "@storybook/react-vite": "^8.1.10",
+    "@storybook/test": "^8.1.10",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "storybook": "^8.1.10",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-plugin-svgr": "^4.2.0",
+    "wrangler": "3.26.0"
+  }
 }
