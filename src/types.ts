@@ -20,7 +20,8 @@ export enum ETableMode {
  *             Title
  * ------------------------------ */
 export type TSizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
-export type TTitleCol = true|'auto'|number|`${number}${TSizeUnit}`|'min-content'|'max-content'|`minmax('${number}${TSizeUnit}', '${number}${TSizeUnit}')`;
+export type TSizeUnitOrNumber = number|`${number}${TSizeUnit}`;
+export type TTitleCol = true|'auto'|TSizeUnitOrNumber|'min-content'|'max-content'|`minmax(${TSizeUnitOrNumber}, ${TSizeUnitOrNumber})`;
 
 
 export interface ITitleField extends IConfig {
@@ -68,11 +69,13 @@ export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 // }
 
 export type TBodyDataID = string | number;
+export type TOnClickRow = <I extends TBodyDataID>(id: I, collapse: () => void) => void;
+
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
     detail?: JSX.Element | TBodyDataDetail<K>[],
     disabled?: boolean,
-    onClickRow?: (collapse: () => void) => void,
+    onClickRow?: TOnClickRow,
     field: TBodyDataField<K>
 }
 

@@ -171,7 +171,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     data-collapse={isCollapse ? '': undefined}
                     onClick={(event) => {
                         if(dataRow.onClickRow) {
-                            dataRow.onClickRow(() => collapseEvent(event));
+                            dataRow.onClickRow(dataRow.id, () => collapseEvent(event));
                         }
                     }}
                     data-disabled={dataRow.disabled}
