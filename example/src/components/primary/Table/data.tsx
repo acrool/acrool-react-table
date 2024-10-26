@@ -3,6 +3,7 @@ import {formatCurrency} from '@acrool/js-utils/number';
 import {genericsTitleData} from '@acrool/react-table';
 import {Avatar, Name} from './Common';
 import dayjs from 'dayjs';
+import {mockSort} from './utils';
 
 export interface IPaginateData {
     id: number,
@@ -74,16 +75,77 @@ export const data: IPaginateData[] = [
 
 
 
+/**
+ * Mock: 取得每頁資料
+ * @param currentPage
+ * @param pageLimit
+ * @param order
+ */
+export const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
+
+    if(order){
+        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+    }
+
+    const pageStart = (currentPage -1) * pageLimit;
+    return data.slice(pageStart, pageStart + pageLimit );
+};
+
+
+export const baseData = genericsTitleData(
+    {
+        // avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+        // name:     {text: 'Name',   col: 'auto'},
+        // amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
+        // role:     {text: 'Role',   col: '120px', isHidden: true},
+        // createdAt:{text: 'Crated', col: '110px'},
+
+        // plus:     {text: '=== Name (Merge) ===',       col: 50,      titleAlign: 'center', dataAlign: 'center', isSticky: true, colSpan: 3},
+        id:   {text: 'No',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+        avatar:   {text: 'Avatar',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
+        name:     {text: 'Name',   col: 150,  titleAlign: 'center', dataAlign: 'left'},
+        amount:   {text: 'Amount', col: 'auto',  titleAlign: 'right',  dataAlign: 'right'},
+        role:     {text: 'Role',   col: '120px'},
+        createdAt:{text: 'Crated', col: '110px'},
+        joined:  {text: 'Joined',  col: '80px'},
+    },
+    getPageData(1, 10).map(row => {
+        return {
+            id: row.id,
+            // detail: [
+            //     {
+            //         name: {value: 'Deposit', className: 'detail-css'},
+            //         amount: `$ ${formatCurrency(123456)}`
+            //     },
+            //     {name: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
+            // ],
+            // onClickRow: (id, collapse) => {
+            //     console.log('id', id);
+            //     collapse();
+            // },
+            field: {
+                id: row.id,
+                avatar: <Avatar src={row.avatar}/>,
+                name: row.name,
+                amount: `$ ${formatCurrency(row.amount)}`,
+                role: row.role,
+                createdAt: dayjs(row.createdAt).format('MM/DD'),
+                joined: row.isJoined
+            },
+        };
+    })
+);
+
 
 export const tableData = genericsTitleData(
     {
         avatar:   {text: '#',      col: 50,      titleAlign: 'center', dataAlign: 'center'},
-        name:     {text: <Name>Name</Name>,   col: 'auto',  isEnableSort: true},
+        name:     {text: 'Name',   col: 'auto'},
         amount:   {text: 'Amount', col: '100px',  titleAlign: 'right',  dataAlign: 'right'},
         role:     {text: 'Role',   col: '120px', isHidden: true},
-        createdAt:{text: 'Crated', col: '110px', isEnableSort: true},
+        createdAt:{text: 'Crated', col: '110px'},
     },
-    data.map(row => {
+    getPageData(1, 10).map(row => {
         return {
             id: row.id,
             detail: [

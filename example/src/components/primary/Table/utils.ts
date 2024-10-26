@@ -30,19 +30,3 @@ export const calcAmount = (rows: IPaginateData[]) => {
     return formatCurrency(rows.reduce((curr, row) => curr + row.amount,0));
 };
 
-
-/**
- * Mock: 取得每頁資料
- * @param currentPage
- * @param pageLimit
- * @param order
- */
-export const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
-
-    if(order){
-        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
-    }
-
-    const pageStart = (currentPage -1) * pageLimit;
-    return data.slice(pageStart, pageStart + pageLimit );
-};
