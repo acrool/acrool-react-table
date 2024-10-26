@@ -13,7 +13,7 @@ export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: strin
                 return `${row.col}px`;
             }
             if(row.col === true){
-                return '1fr';
+                return 'minmax(0, 1fr)';
             }
             return row.col ?? 'auto';
         }).join(' ');
