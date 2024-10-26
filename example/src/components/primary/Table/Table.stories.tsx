@@ -1,4 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
+import {useDarkMode} from 'storybook-dark-mode';
 
 import Table from '@acrool/react-table';
 import React from 'react';
@@ -49,6 +50,14 @@ const meta = {
             }
         },
         ...baseData,
+    },
+    render: function Render(args) {
+        const isDark = useDarkMode();
+        return <Table
+            {...args}
+            isDark={isDark}
+
+        />;
     },
 } satisfies Meta<typeof Table>;
 
