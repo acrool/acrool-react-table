@@ -39,7 +39,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePaginate = true,
     isEnableChangePageScrollTop = true,
     // isOverflow = true,
-    // isStickyHeader = false,
+    isStickyHeader = false,
     tableCellMediaSize,
     onChangePage,
     pageLimitOptions = [8, 40, 72, 150],
@@ -152,6 +152,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         return <TableHeader
             title={title}
             onChangeSortField={handleOnOrderField}
+            isStickyHeader={isStickyHeader}
             order={meta.order}
             orderByType={orderByType}
         />;

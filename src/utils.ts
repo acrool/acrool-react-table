@@ -40,6 +40,18 @@ export const getColSpanStyles = (colSpan: number) => {
 
 
 /**
+ * 計算 sticky top
+ * @param isSticky
+ */
+export const getCalcStickyTopStyles = (isSticky?: boolean) => {
+    return {
+        '--sticky-top': isSticky ? 0: undefined,
+    } as CSSProperties;
+};
+
+
+
+/**
  * 計算 sticky left
  * @param isSticky
  * @param calcLeft
