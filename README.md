@@ -97,9 +97,9 @@ if need use `null` value, options type
 ```
 
 
-There is also a example that you can play with it:
+There is also a storybook that you can play with it:
 
-[![Play react-editext-example](https://raw.githubusercontent.com/acrool/acrool-react-table-storybook/main/play-in-example-button.svg)](https://acrool-react-table-storybook.pages.dev)
+[![Play react-editext-example](https://raw.githubusercontent.com/acrool/acrool-react-table/main/play-in-example-button.svg)](https://acrool-react-table-storybook.pages.dev)
 
 
 ## License
