@@ -67,7 +67,7 @@ const Header = <K extends TBodyDataFieldKey>({
                     className: fieldConfig.className,
                     'aria-label': typeof fieldConfig.text === 'string' ? fieldConfig.text: '',
                     'aria-sort': sortType,
-                    'data-align': fieldConfig?.dataAlign,
+                    'data-align': fieldConfig?.titleAlign,
                     'data-vertical': fieldConfig.dataVertical,
                     'data-sticky': isStickyHeader || fieldConfig.isSticky ? '': undefined,
                     'data-sort': isEnableSort ? '': undefined,

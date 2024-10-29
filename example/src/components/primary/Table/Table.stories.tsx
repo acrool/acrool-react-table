@@ -78,6 +78,15 @@ export const WithTitleJSX: Story = {
         }
     }
 };
+
+export const WithTitleAlign: Story = {
+    args: {
+        title: {
+            ...baseData.title,
+            name: {text: 'Name', col: 'auto', titleAlign: 'right'},
+        }
+    }
+};
 export const WithFieldCSSClass: Story = {
     args: {
         title: {
