@@ -141,10 +141,10 @@
     background-color: var(--tr-even-bg-color);
 }
 
-.acrool-react-table__root[data-mode="table"] tr:hover td{
+.acrool-react-table__root[data-mode="table"] tbody tr:hover td{
     background-color: var(--tr-bg-hover-color);
 }
-.acrool-react-table__root[data-mode="table"] tr[data-even]:hover td{
+.acrool-react-table__root[data-mode="table"] tbody tr[data-even]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
 
