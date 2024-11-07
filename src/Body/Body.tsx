@@ -15,6 +15,7 @@ import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './utils';
 import BodyDetail from './BodyDetail';
 import styles from '../styles.module.scss';
+import BodyTr from './BodyTr';
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -167,20 +168,14 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             return (<Fragment
                 key={`tbodyTr_${dataRow.id}`}
             >
-                <tr
-                    data-collapse={isCollapse ? '': undefined}
-                    onClick={(event) => {
-                        if(dataRow.onClickRow) {
-                            dataRow.onClickRow(dataRow.id, () => collapseEvent(event));
-                        }
-                    }}
-                    data-disabled={dataRow.disabled}
-
-                    data-even={index % 2 === 0 ? undefined: ''}
-                    role={dataRow.onClickRow ? 'button': undefined}
+                <BodyTr
+                    isCollapse={isCollapse}
+                    dataRow={dataRow}
+                    isEven={index % 2 !== 0}
+                    collapseEvent={collapseEvent}
                 >
                     {tds}
-                </tr>
+                </BodyTr>
 
 
                 {(isCollapse && dataRow.detail) &&
