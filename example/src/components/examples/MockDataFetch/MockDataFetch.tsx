@@ -13,7 +13,8 @@ import dayjs from 'dayjs';
 const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
 
     if(order){
-        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+        // 改到原始資料
+        // data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
     }
 
     const pageStart = (currentPage -1) * pageLimit;

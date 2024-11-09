@@ -11,14 +11,14 @@ import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from '@acrool/js-utils/object';
-import {arrayMove, sortableKeyboardCoordinates} from '@dnd-kit/sortable';
+import {arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
 import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 
 import {
     closestCenter,
     DndContext,
     KeyboardSensor,
-    MouseSensor,
+    MouseSensor, PointerSensor,
     TouchSensor,
     useSensor,
     useSensors
@@ -70,8 +70,11 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const [activeId, setActiveId] = useState<I|null>();
 
     const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
-    const init: I[] = useMemo(() => data?.map(row => row.id) ?? [], [data]);
-    const [items, setItems] = useState<I[]>(init);
+    const items = useMemo<I[]>(() => {
+        return data?.map(row => row.id) ?? [];
+    }, [data]);
+
+
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -82,9 +85,12 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
 
     const sensors = useSensors(
-        useSensor(MouseSensor, {}),
-        useSensor(TouchSensor, {}),
-        useSensor(KeyboardSensor, {})
+        useSensor(PointerSensor),
+        // useSensor(MouseSensor, {}),
+        // useSensor(TouchSensor, {}),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
     );
 
     const handleDragStart = (event: any) => {
@@ -94,9 +100,11 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const handleDragEnd = (event: any) => {
         const {active, over} = event;
         if (onChangeData && active.id !== over.id) {
+            console.log('xxxx', active.id, over.id);
             onChangeData((data) => {
                 const oldIndex = items.indexOf(active.id);
                 const newIndex = items.indexOf(over.id);
+                console.log('oldIndex', oldIndex, newIndex);
                 return arrayMove(data, oldIndex, newIndex);
             });
         }
@@ -208,24 +216,23 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const renderBody = () => {
 
 
-        if(!data || data?.length === 0){
-            if(isFetching){
-                const colSpanStyle = getColSpanStyles(objectKeys(title).length);
-                return <tbody className="acrool-react-table__content" data-loading="">
-                    <tr>
-                        <td style={colSpanStyle}>{renderFetching}</td>
-                    </tr>
-                </tbody>;
-            }
-
-            return renderCustomNoData();
-        }
+        // if(!data || data?.length === 0){
+        //     if(isFetching){
+        //         const colSpanStyle = getColSpanStyles(objectKeys(title).length);
+        //         return <tbody className="acrool-react-table__content" data-loading="">
+        //             <tr>
+        //                 <td style={colSpanStyle}>{renderFetching}</td>
+        //             </tr>
+        //         </tbody>;
+        //     }
+        //
+        //     return renderCustomNoData();
+        // }
 
         return <TableBody
             tableMode={tableMode}
             title={title}
             data={data}
-            items={items}
         />;
     };
 
@@ -297,24 +304,34 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         >
             <DndContext
                 sensors={sensors}
-                onDragEnd={handleDragEnd}
-                onDragStart={handleDragStart}
-                onDragCancel={handleDragCancel}
                 collisionDetection={closestCenter}
-                modifiers={[restrictToVerticalAxis]}
+                onDragEnd={handleDragEnd}
+
+                // sensors={sensors}
+                // onDragEnd={handleDragEnd}
+                // onDragStart={handleDragStart}
+                // onDragCancel={handleDragCancel}
+                // collisionDetection={closestCenter}
+                // modifiers={[restrictToVerticalAxis]}
             >
-                <table
-                    style={style}
+                <SortableContext
+                    items={items}
+                    strategy={verticalListSortingStrategy}
                 >
-                    {/* Header */}
-                    {tableMode === ETableMode.table && renderHeader()}
+                    <table
+                        style={style}
+                    >
+                        {/* Header */}
+                        {tableMode === ETableMode.table && renderHeader()}
 
-                    {/* Body */}
-                    {renderBody()}
+                        {/* Body */}
 
-                    {/* Footer */}
-                    {tableMode === ETableMode.table && renderFooter()}
-                </table>
+                        {renderBody()}
+
+                        {/* Footer */}
+                        {tableMode === ETableMode.table && renderFooter()}
+                    </table>
+                </SortableContext>
             </DndContext>
 
 

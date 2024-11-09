@@ -16,16 +16,13 @@ import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './ut
 import BodyDetail from './BodyDetail';
 import styles from '../styles.module.scss';
 import BodyTr from './BodyTr';
-import {
-    SortableContext,
-    verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
+
+
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
     tableMode: ETableMode
-    items: any[]
 }
 
 
@@ -36,7 +33,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
     tableMode,
-    items,
 }: IProps<K, I>) => {
 
     const [collapseIds, setCollapse] = useState<I[]>([]);
@@ -170,12 +166,11 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
             const isCollapse = collapseIds?.includes(dataRow.id);
 
-            return (<SortableContext
-                key={`tbodyTr_${dataRow.id}`}
-                items={items}
-                strategy={verticalListSortingStrategy}
+            return (<React.Fragment
+                key={dataRow.id}
             >
                 <BodyTr
+
                     isCollapse={isCollapse}
                     dataRow={dataRow}
                     // isEven={index % 2 !== 0}
@@ -187,7 +182,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     <BodyDetail title={title} data={dataRow.detail} tableMode={tableMode}/>
                 }
 
-            </SortableContext>);
+            </React.Fragment>);
         });
     };
 

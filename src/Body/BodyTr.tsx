@@ -39,8 +39,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     } = useSortable({
         id: dataRow.id as string
     });
-    
-    console.log('transform', transform);
+
     const style = {
         transform: CSS.Transform.toString(transform),
         transition: transition
@@ -66,7 +65,6 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     // {...attributes}
     // {...listeners}
 
-    console.log('style', style);
     return <tr
         ref={setNodeRef}
         style={style}

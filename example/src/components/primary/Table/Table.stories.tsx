@@ -83,32 +83,6 @@ export const WithTitleJSX: Story = {
 
 const {data: initData, title} = {...baseData};
 
-export const WithSort: Story = {
-    args: {},
-    render: function Render(args) {
-        const isDark = useDarkMode();
-
-
-        const [data, setData] = useState<typeof initData>(initData);
-
-        // const onChangeData: ITableProps<string, string>['onChangeData'] = (fn: any) => {
-        //     console.log('fn', fn);
-        //     updateArgs({data: fn(_.data)});
-        //     // return (data: ITableBody<string, string>[]) => {
-        //     //     console.log('data', data);
-        //     //     updateArgs({data: data});
-        //     // };
-        // };
-
-        return <Table
-            {...args}
-            isDark={isDark}
-            onChangeData={setData}
-            title={title}
-            data={data}
-        />;
-    },
-};
 export const WithTitleAlign: Story = {
     args: {
         title: {
