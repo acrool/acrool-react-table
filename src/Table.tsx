@@ -1,4 +1,4 @@
-import React, {CSSProperties, useCallback, useRef, useState} from 'react';
+import React, {CSSProperties, useCallback, useMemo, useRef, useState} from 'react';
 
 import {ETableMode, ITableProps, TBodyDataFieldKey, TBodyDataID, TOnChangePage, TOnChangeSortField} from './types';
 import TableHeader from './Header';
@@ -11,7 +11,18 @@ import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from '@acrool/js-utils/object';
+import {arrayMove, sortableKeyboardCoordinates} from '@dnd-kit/sortable';
+import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 
+import {
+    closestCenter,
+    DndContext,
+    KeyboardSensor,
+    MouseSensor,
+    TouchSensor,
+    useSensor,
+    useSensors
+} from '@dnd-kit/core';
 
 /**
  * Table
@@ -24,6 +35,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isFetching = false,
     title,
     data,
+    onChangeData,
     footer,
     headerLineHeight,
     bodyLineHeight,
@@ -55,8 +67,11 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePageLimit = true,
     isVisiblePageInfo = true,
 }: ITableProps<I, K>) => {
+    const [activeId, setActiveId] = useState<I|null>();
 
     const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
+    const init: I[] = useMemo(() => data?.map(row => row.id) ?? [], [data]);
+    const [items, setItems] = useState<I[]>(init);
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -64,6 +79,34 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         order: paginateMeta?.order
     };
     const tableRef = useRef<HTMLDivElement>(null);
+
+
+    const sensors = useSensors(
+        useSensor(MouseSensor, {}),
+        useSensor(TouchSensor, {}),
+        useSensor(KeyboardSensor, {})
+    );
+
+    const handleDragStart = (event: any) => {
+        setActiveId(event.active.id);
+    };
+
+    const handleDragEnd = (event: any) => {
+        const {active, over} = event;
+        if (onChangeData && active.id !== over.id) {
+            onChangeData((data) => {
+                const oldIndex = items.indexOf(active.id);
+                const newIndex = items.indexOf(over.id);
+                return arrayMove(data, oldIndex, newIndex);
+            });
+        }
+
+        setActiveId(null);
+    };
+
+    const handleDragCancel = () => {
+        setActiveId(null);
+    };
 
 
     useWindowResizeEffect(() => handleOnResize(), [tableCellMediaSize]);
@@ -182,6 +225,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             tableMode={tableMode}
             title={title}
             data={data}
+            items={items}
         />;
     };
 
@@ -251,18 +295,28 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
-            <table
-                style={style}
+            <DndContext
+                sensors={sensors}
+                onDragEnd={handleDragEnd}
+                onDragStart={handleDragStart}
+                onDragCancel={handleDragCancel}
+                collisionDetection={closestCenter}
+                modifiers={[restrictToVerticalAxis]}
             >
-                {/* Header */}
-                {tableMode === ETableMode.table && renderHeader()}
+                <table
+                    style={style}
+                >
+                    {/* Header */}
+                    {tableMode === ETableMode.table && renderHeader()}
 
-                {/* Body */}
-                {renderBody()}
+                    {/* Body */}
+                    {renderBody()}
 
-                {/* Footer */}
-                {tableMode === ETableMode.table && renderFooter()}
-            </table>
+                    {/* Footer */}
+                    {tableMode === ETableMode.table && renderFooter()}
+                </table>
+            </DndContext>
+
 
             <div className={styles.loadingMaskWrapper}>
                 {renderFetching}

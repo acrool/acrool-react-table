@@ -126,6 +126,8 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isFetching?: boolean
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
+    onChangeData?: (newDataFn: (newDate: ITableBody<K, I>[]) => ITableBody<K, I>[]) => void,
+    // onChangeData?: (newDate: ITableBody<K, I>[]) => ITableBody<K, I>[],
     footer?: TFooter<K>[] // ex: calc total...
     headerLineHeight?: TLineHeight,
     bodyLineHeight?: TLineHeight,
@@ -147,4 +149,5 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     orderByType?: IOrderByType
     renderNoData?: JSX.Element|string
     renderFetching?: JSX.Element|string
+
 }

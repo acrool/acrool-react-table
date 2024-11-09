@@ -1,13 +1,14 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {useDarkMode} from 'storybook-dark-mode';
 
-import Table from '@acrool/react-table';
-import React from 'react';
+import Table, {ITableBody, ITableProps} from '@acrool/react-table';
+import React, {useState} from 'react';
 import {calcAmount} from '../../utils';
 import {CollapseButton, Name} from '../../Common';
 
 import {getPageData, baseData} from '../../data';
 import {fn} from '@storybook/test';
+import {useArgs} from '@storybook/preview-api';
 
 
 const paginateData = getPageData(1, 10, {orderField: 'name', orderBy: 'DESC'});
@@ -53,10 +54,11 @@ const meta = {
     },
     render: function Render(args) {
         const isDark = useDarkMode();
+
+
         return <Table
             {...args}
             isDark={isDark}
-
         />;
     },
 } satisfies Meta<typeof Table>;
@@ -79,6 +81,34 @@ export const WithTitleJSX: Story = {
     }
 };
 
+const {data: initData, title} = {...baseData};
+
+export const WithSort: Story = {
+    args: {},
+    render: function Render(args) {
+        const isDark = useDarkMode();
+
+
+        const [data, setData] = useState<typeof initData>(initData);
+
+        // const onChangeData: ITableProps<string, string>['onChangeData'] = (fn: any) => {
+        //     console.log('fn', fn);
+        //     updateArgs({data: fn(_.data)});
+        //     // return (data: ITableBody<string, string>[]) => {
+        //     //     console.log('data', data);
+        //     //     updateArgs({data: data});
+        //     // };
+        // };
+
+        return <Table
+            {...args}
+            isDark={isDark}
+            onChangeData={setData}
+            title={title}
+            data={data}
+        />;
+    },
+};
 export const WithTitleAlign: Story = {
     args: {
         title: {

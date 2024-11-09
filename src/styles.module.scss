@@ -34,10 +34,10 @@
         width: 100%;
         padding: 0;
 
-        display: grid;
         //border-collapse: collapse;
-        grid-template-columns: var(--grid-template);
-        grid-template-rows: 1fr;
+        //display: grid;
+        //grid-template-columns: var(--grid-template);
+        //grid-template-rows: 1fr;
 
     }
 
@@ -67,8 +67,13 @@
  * ------------------------------ */
 .root {
     table {
-        thead, tbody, tfoot, tr {
+        thead, tbody, tfoot {
             display: contents;
+        }
+        tr{
+            display: grid;
+            grid-template-columns: var(--grid-template);
+            grid-template-rows: 1fr;
         }
     }
 }

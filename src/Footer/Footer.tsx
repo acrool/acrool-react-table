@@ -55,7 +55,7 @@ const Footer = <K extends TBodyDataFieldKey>({
     const renderFooterData = () => {
 
 
-        return data.map((dataRow, index) => {
+        return data?.map((dataRow, index) => {
 
             const colSpanConfig = getFooterColSpanConfig(title, data);
             const stickyLeftConfig = getFooterStickyLeftConfig(title, data);
