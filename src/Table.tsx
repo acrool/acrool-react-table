@@ -1,4 +1,4 @@
-import React, {CSSProperties, useCallback, useRef, useState} from 'react';
+import React, {CSSProperties, useCallback, useMemo, useRef, useState} from 'react';
 
 import {ETableMode, ITableProps, TBodyDataFieldKey, TBodyDataID, TOnChangePage, TOnChangeSortField} from './types';
 import TableHeader from './Header';
@@ -11,6 +11,18 @@ import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from '@acrool/js-utils/object';
+import {arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
+
+import {
+    closestCenter,
+    DndContext, DragEndEvent, DragOverlay,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors
+} from '@dnd-kit/core';
+import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
+import {Props} from "@dnd-kit/core/dist/components/DndContext/DndContext";
 
 
 /**
@@ -24,6 +36,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isFetching = false,
     title,
     data,
+    onChangeData,
     footer,
     headerLineHeight,
     bodyLineHeight,
@@ -38,6 +51,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisibleHeader = true,
     isVisiblePaginate = true,
     isEnableChangePageScrollTop = true,
+    isEnableDragSortable = false,
     // isOverflow = true,
     isStickyHeader = false,
     tableCellMediaSize,
@@ -55,8 +69,18 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePageLimit = true,
     isVisiblePageInfo = true,
 }: ITableProps<I, K>) => {
-
     const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
+    const items = useMemo<I[]>(() => {
+        return data?.map(row => row.id) ?? [];
+    }, [data]);
+
+    const formatTitle = isEnableDragSortable ?
+        {
+            drag:   {text: '', col: 35,      titleAlign: 'center', dataAlign: 'center'},
+            ...title,
+        }
+        : title;
+
 
     const meta = {
         currentPage: paginateMeta?.currentPage ?? 1,
@@ -66,7 +90,29 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const tableRef = useRef<HTMLDivElement>(null);
 
 
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
     useWindowResizeEffect(() => handleOnResize(), [tableCellMediaSize]);
+
+
+    /**
+     * 處理拖動
+     * @param event
+     */
+    const handleDragEnd: Props['onDragEnd'] = (event) => {
+        const {active, over} = event;
+        if (onChangeData && over && active.id !== over?.id) {
+            onChangeData((data) => {
+                const oldIndex = items.indexOf(active.id as I);
+                const newIndex = items.indexOf(over.id as I);
+                return arrayMove(data, oldIndex, newIndex);
+            });
+        }
+    };
 
 
     /**
@@ -150,7 +196,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         }
 
         return <TableHeader
-            title={title}
+            title={formatTitle}
             onChangeSortField={handleOnOrderField}
             isStickyHeader={isStickyHeader}
             order={meta.order}
@@ -178,12 +224,19 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return renderCustomNoData();
         }
 
-        return <TableBody
-            tableMode={tableMode}
-            title={title}
-            data={data}
-        />;
+        return <SortableContext
+            items={items}
+            strategy={verticalListSortingStrategy}
+        >
+            <TableBody
+                tableMode={tableMode}
+                title={title}
+                data={data}
+                isEnableDragSortable={isEnableDragSortable}
+            />
+        </SortableContext>;
     };
+
 
     /**
      * 產生表格內容
@@ -228,12 +281,45 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         />;
     };
 
+
+    const renderMain = () => {
+
+        const tableNode = (
+            <table
+                style={style}
+            >
+                {/* Header */}
+                {tableMode === ETableMode.table && renderHeader()}
+
+                {/* Body */}
+                {renderBody()}
+
+                {/* Footer */}
+                {tableMode === ETableMode.table && renderFooter()}
+            </table>
+        );
+
+        if(isEnableDragSortable){
+            return <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                modifiers={[restrictToVerticalAxis]}
+            >
+                {tableNode}
+            </DndContext>;
+        }
+
+        return tableNode;
+    };
+
+
     const extendStyles = {
         '--header-line-height': headerLineHeight,
         '--body-line-height': bodyLineHeight,
         '--cell-line-height': cellLineHeight,
         '--footer-line-height': footerLineHeight,
-        ...getTemplate(title, gap),
+        ...getTemplate(formatTitle, gap),
     } as CSSProperties;
 
 
@@ -251,18 +337,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}
         >
-            <table
-                style={style}
-            >
-                {/* Header */}
-                {tableMode === ETableMode.table && renderHeader()}
-
-                {/* Body */}
-                {renderBody()}
-
-                {/* Footer */}
-                {tableMode === ETableMode.table && renderFooter()}
-            </table>
+            {renderMain()}
 
             <div className={styles.loadingMaskWrapper}>
                 {renderFetching}

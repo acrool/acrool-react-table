@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-svgr/client" />
+
 /**
  * Default CSS definition for typescript,
  * will be overridden with file-specific definitions by rollup
@@ -9,6 +11,7 @@ declare module '*.css' {
 }
 
 interface SvgrComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
+
 
 declare module '*.svg' {
     const svgUrl: string;

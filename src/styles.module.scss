@@ -24,8 +24,12 @@
     flex-direction: column;
     gap: 10px;
 
+
     table{
         color: var(--text-color);
+        background-color: var(--bg-color);
+        border-radius: var(--border-radius);
+        overflow: hidden;
         font-size: 13px;
         text-align: left;
 
@@ -34,10 +38,10 @@
         width: 100%;
         padding: 0;
 
-        display: grid;
         //border-collapse: collapse;
-        grid-template-columns: var(--grid-template);
-        grid-template-rows: 1fr;
+        //display: grid;
+        //grid-template-columns: var(--grid-template);
+        //grid-template-rows: 1fr;
 
     }
 
@@ -67,8 +71,13 @@
  * ------------------------------ */
 .root {
     table {
-        thead, tbody, tfoot, tr {
+        thead, tbody, tfoot {
             display: contents;
+        }
+        tr{
+            display: grid;
+            grid-template-columns: var(--grid-template);
+            grid-template-rows: 1fr;
         }
     }
 }
@@ -228,6 +237,10 @@
             &[role="button"]{
                 cursor: pointer;
             }
+            &[data-dragging]{
+                z-index: 1;
+                position: relative;
+            }
 
             td{
                 //background-color: var(--tr-bg-color);
@@ -370,6 +383,18 @@
 /** -------------------------------
  *             Other
  * ------------------------------ */
+
+.dragHandle{
+    &:hover{
+        cursor: grab;
+    }
+
+    &[data-dragging]{
+        cursor: grabbing;
+    }
+
+}
+
 
 .root[data-fetching]{
     .loading-mask-wrapper{
