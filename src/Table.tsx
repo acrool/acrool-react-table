@@ -22,7 +22,6 @@ import {
     useSensors
 } from '@dnd-kit/core';
 import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
-import {Props} from "@dnd-kit/core/dist/components/DndContext/DndContext";
 
 
 /**
@@ -36,7 +35,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isFetching = false,
     title,
     data,
-    onChangeData,
+    onChangeSortable,
     footer,
     headerLineHeight,
     bodyLineHeight,
@@ -103,14 +102,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 處理拖動
      * @param event
      */
-    const handleDragEnd: Props['onDragEnd'] = (event) => {
+    const handleDragEnd = (event: DragEndEvent) => {
         const {active, over} = event;
-        if (onChangeData && over && active.id !== over?.id) {
-            onChangeData((data) => {
-                const oldIndex = items.indexOf(active.id as I);
-                const newIndex = items.indexOf(over.id as I);
-                return arrayMove(data, oldIndex, newIndex);
-            });
+        if (onChangeSortable && over && active.id !== over?.id) {
+            onChangeSortable(active.id as I, over.id as I);
         }
     };
 

@@ -73,7 +73,7 @@ export type TOnClickRow = <I extends TBodyDataID>(id: I, collapse: () => void) =
 
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
-    detail?: JSX.Element | TBodyDataDetail<K>[],
+    detail?: ReactNode | TBodyDataDetail<K>[],
     disabled?: boolean,
     onClickRow?: TOnClickRow,
     field: TBodyDataField<K>
@@ -115,6 +115,9 @@ export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => voi
 
 export type TCollapseEvent = (e: MouseEvent) => void
 
+export type TOnChangeSortable<I = any> = (activeId: I, overId: I) => void;
+
+
 /** -------------------------------
  *             Table
  * ------------------------------ */
@@ -126,13 +129,12 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isFetching?: boolean
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
-    onChangeData?: (newDataFn: (newDate: ITableBody<K, I>[]) => ITableBody<K, I>[]) => void,
-    // onChangeData?: (newDate: ITableBody<K, I>[]) => ITableBody<K, I>[],
+    onChangeSortable?: TOnChangeSortable<I>
     footer?: TFooter<K>[] // ex: calc total...
-    headerLineHeight?: TLineHeight,
-    bodyLineHeight?: TLineHeight,
-    footerLineHeight?: TLineHeight,
-    cellLineHeight?: TLineHeight,
+    headerLineHeight?: TLineHeight
+    bodyLineHeight?: TLineHeight
+    footerLineHeight?: TLineHeight
+    cellLineHeight?: TLineHeight
     gap?: string
     paginateInfo?: IPaginateInfo
     paginateMeta?: IPaginateMeta

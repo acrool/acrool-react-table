@@ -3,6 +3,7 @@ import Table from '@acrool/react-table';
 import {baseData, data as initData} from '../../data';
 import {Avatar} from '../../Common';
 import {formatCurrency} from '@acrool/js-utils/number';
+import {arrayMove} from '@dnd-kit/sortable';
 
 
 const args = {
@@ -31,10 +32,19 @@ const args = {
 };
 
 
+
 const DndSortTable = () => {
 
     const [data, setData] = useState<typeof initData>(initData);
 
+
+    const handleOnChangeSortable = (activeId: number, overId: number) => {
+        setData(curr => {
+            const oldIndex = curr.findIndex(row => row.id === activeId);
+            const newIndex = curr.findIndex(row => row.id === overId);
+            return arrayMove(data, oldIndex, newIndex);
+        });
+    };
 
     return <Table
         {...args}
@@ -61,8 +71,7 @@ const DndSortTable = () => {
                 },
             };
         })}
-        // @ts-ignore
-        onChangeData={setData}
+        onChangeSortable={handleOnChangeSortable}
     />;
 };
 

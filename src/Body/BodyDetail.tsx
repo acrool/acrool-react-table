@@ -14,7 +14,7 @@ import {isEmpty} from '@acrool/js-utils/equal';
 
 interface IProps <K extends TBodyDataFieldKey>{
     title: TTableTitle<K>
-    data: JSX.Element | TBodyDataDetail<K>[]
+    data: ReactNode | TBodyDataDetail<K>[]
     tableMode: ETableMode
 }
 
