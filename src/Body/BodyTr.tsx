@@ -74,7 +74,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         role={dataRow.onClickRow ? 'button': undefined}
     >
         {isEnableDragSortable &&
-            <td>
+            <td data-drag="">
                 <DragHandle
                     {...attributes}
                     {...listeners}

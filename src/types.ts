@@ -129,7 +129,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isFetching?: boolean
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
-    onChangeSortable?: TOnChangeSortable<I>
+    onChangeSortable?: TOnChangeSortable
     footer?: TFooter<K>[] // ex: calc total...
     headerLineHeight?: TLineHeight
     bodyLineHeight?: TLineHeight

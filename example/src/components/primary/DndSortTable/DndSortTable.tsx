@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import Table from '@acrool/react-table';
+import Table, {arrayMove} from '@acrool/react-table';
 import {baseData, data as initData} from '../../data';
 import {Avatar} from '../../Common';
 import {formatCurrency} from '@acrool/js-utils/number';
-import {arrayMove} from '@dnd-kit/sortable';
 
 
 const args = {
