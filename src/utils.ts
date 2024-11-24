@@ -123,3 +123,6 @@ export const genericsTitleData = <K extends TBodyDataFieldKey, I extends TBodyDa
     return {title, data};
 };
 
+export {arrayMove} from '@dnd-kit/sortable';
+
+

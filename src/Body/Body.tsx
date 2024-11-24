@@ -15,12 +15,15 @@ import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
 import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './utils';
 import BodyDetail from './BodyDetail';
 import styles from '../styles.module.scss';
+import BodyTr from './BodyTr';
+
 
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     title: TTableTitle<K>
     data?: ITableBody<K, I>[]
     tableMode: ETableMode
+    isEnableDragSortable?: boolean
 }
 
 
@@ -31,6 +34,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     title,
     data,
     tableMode,
+    isEnableDragSortable,
 }: IProps<K, I>) => {
 
     const [collapseIds, setCollapse] = useState<I[]>([]);
@@ -105,7 +109,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             const titleKeys = objectKeys(title);
             const tds = titleKeys
                 ?.filter(titleKey => !title[titleKey].isHidden)
-                ?.reduce((curr: JSX.Element[], titleKey, idx) => {
+                ?.reduce((curr: any[], titleKey, idx) => {
                     const bodyField = dataRow.field[titleKey];
                     const config = getBodyConfig(bodyField);
                     const titleRow = title[titleKey];
@@ -157,37 +161,29 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     };
                     return [
                         ...curr,
-                        <td {...args}/>,
+                        args,
                     ];
                 }, []);
 
 
             const isCollapse = collapseIds?.includes(dataRow.id);
 
-            return (<Fragment
-                key={`tbodyTr_${dataRow.id}`}
+            return (<React.Fragment
+                key={dataRow.id}
             >
-                <tr
-                    data-collapse={isCollapse ? '': undefined}
-                    onClick={(event) => {
-                        if(dataRow.onClickRow) {
-                            dataRow.onClickRow(dataRow.id, () => collapseEvent(event));
-                        }
-                    }}
-                    data-disabled={dataRow.disabled}
-
-                    data-even={index % 2 === 0 ? undefined: ''}
-                    role={dataRow.onClickRow ? 'button': undefined}
-                >
-                    {tds}
-                </tr>
-
-
+                <BodyTr
+                    isEnableDragSortable={isEnableDragSortable}
+                    isCollapse={isCollapse}
+                    dataRow={dataRow}
+                    isEven={index % 2 !== 0}
+                    collapseEvent={collapseEvent}
+                    tds={tds}
+                />
                 {(isCollapse && dataRow.detail) &&
                     <BodyDetail title={title} data={dataRow.detail} tableMode={tableMode}/>
                 }
 
-            </Fragment>);
+            </React.Fragment>);
         });
     };
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Container} from "@acrool/react-grid";
+import {Container} from '@acrool/react-grid';
 
 export const Name = styled.div`
     color: #e83e8c;

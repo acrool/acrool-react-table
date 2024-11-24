@@ -13,7 +13,9 @@ import dayjs from 'dayjs';
 const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
 
     if(order){
-        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+        const formatData = [...data].sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+        const pageStart = (currentPage -1) * pageLimit;
+        return formatData.slice(pageStart, pageStart + pageLimit);
     }
 
     const pageStart = (currentPage -1) * pageLimit;

@@ -84,7 +84,10 @@ export const data: IPaginateData[] = [
 export const getPageData = (currentPage: number, pageLimit: number, order?: {orderField: string, orderBy: string}) => {
 
     if(order){
-        data.sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+        // 改到原始資料
+        const formatData = [...data].sort((a, b) => mockSort(order.orderBy, order.orderField, a,b));
+        const pageStart = (currentPage -1) * pageLimit;
+        return formatData.slice(pageStart, pageStart + pageLimit);
     }
 
     const pageStart = (currentPage -1) * pageLimit;
