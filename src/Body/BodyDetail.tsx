@@ -87,14 +87,14 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     const children = getBodyDetailData(datDetailField);
 
                     const colSpanStyles = getColSpanStyles(colSpan);
-                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
+                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
 
                     const args = {
                         key: `tfootTd_${index}_${titleKey}`,
                         className: getFooterClassNameConfig(datDetailField),
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
-                        'data-sticky': titleRow.isSticky ? '': undefined,
+                        'data-sticky': titleRow.sticky,
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         style: {
                             ...colSpanStyles,

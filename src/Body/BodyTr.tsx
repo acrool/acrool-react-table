@@ -40,7 +40,8 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         setNodeRef,
         isDragging
     } = useSortable({
-        id: dataRow.id as string
+        id: dataRow.id as string,
+        disabled: !isEnableDragSortable,
     });
 
     const style = {

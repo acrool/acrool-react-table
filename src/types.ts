@@ -30,7 +30,7 @@ export interface ITitleField extends IConfig {
     text?: string|number|ReactNode,
     titleAlign?: 'left'|'center'|'right',
     isEnableSort?: boolean,
-    isSticky?: boolean,
+    sticky?: 'left'|'right',
     isHidden?: boolean,
 }
 

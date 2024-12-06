@@ -29,7 +29,7 @@
         color: var(--text-color);
         background-color: var(--bg-color);
         border-radius: var(--border-radius);
-        overflow: hidden;
+        //overflow: hidden;
         font-size: 13px;
         text-align: left;
 
@@ -144,14 +144,37 @@
  * ------------------------------ */
 
 .root table {
+    tr[data-sticky-top]{
+        position: sticky;
+        top: 0;
+        z-index: 6!important;
+    }
 
     th, td{
-        &[data-sticky]{
-            position: sticky;
+        &[data-sticky="left"] {
             left: var(--sticky-left);
-            z-index: 6!important;
 
             &:after{
+                box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
+                right: 0;
+                transform: translateX(100%);
+            }
+        }
+        &[data-sticky="right"] {
+            right: var(--sticky-right);
+
+            &:after{
+                box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.3);
+                left: 0;
+                transform: translateX(-100%);
+            }
+        }
+        &[data-sticky]{
+            position: sticky;
+            z-index: 6!important;
+            top: var(--sticky-top);
+
+            &[data-first-sticky]:after{
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -159,16 +182,7 @@
                 transition: box-shadow 0.3s;
                 content: "";
                 pointer-events: none;
-                box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
-
-                right: 0;
-                transform: translateX(100%);
             }
-        }
-    }
-    th{
-        &[data-sticky]{
-            z-index: 7!important;
         }
     }
 

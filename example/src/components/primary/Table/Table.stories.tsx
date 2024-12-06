@@ -103,13 +103,58 @@ export const WithFieldSort: Story = {
         }
     }
 };
+
 export const WithStickyHeader: Story = {
     args: {
         style: {maxHeight: '500px', overflow: 'auto'},
         isStickyHeader: true,
         title: {
             ...baseData.title,
-            name: {text: 'Name', col: 'auto', isSticky: true},
+        }
+    }
+};
+
+export const WithStickyLeft: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto'},
+        title: {
+            ...baseData.title,
+            id: {...baseData.title.id, sticky: 'left'},
+            avatar: {...baseData.title.avatar, sticky: 'left'},
+            name: {...baseData.title.name, sticky: 'left'},
+        }
+    }
+};
+
+export const WithSingleStickyLeft: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto'},
+        title: {
+            ...baseData.title,
+            id: {...baseData.title.id, col: 100, sticky: 'left'},
+        }
+    }
+};
+
+
+
+export const WithStickyRight: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto', border: '1px solid red'},
+        title: {
+            ...baseData.title,
+            createdAt: {...baseData.title.createdAt, sticky: 'right'},
+            joined: {...baseData.title.joined, sticky: 'right'},
+        }
+    }
+};
+
+export const WithSingleStickyRight: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto', border: '1px solid red'},
+        title: {
+            ...baseData.title,
+            joined: {...baseData.title.joined, sticky: 'right'},
         }
     }
 };
