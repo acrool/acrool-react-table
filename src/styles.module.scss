@@ -146,9 +146,11 @@
 .root table {
 
     th, td{
+        &[data-sticky="left"] {
+            left: var(--sticky-left);
+        }
         &[data-sticky]{
             position: sticky;
-            left: var(--sticky-left);
             z-index: 6!important;
 
             &:after{

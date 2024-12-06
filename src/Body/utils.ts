@@ -109,7 +109,7 @@ export const getBodyStickyLeftConfig = <K extends TBodyDataFieldKey, I extends T
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 // 上一個
                 const prevCol = title[titleKeys[idx - 1]]?.col;
-                const prevIsSticky = title[titleKeys[idx - 1]]?.isSticky;
+                const prevIsSticky = title[titleKeys[idx - 1]]?.sticky === 'left';
 
                 if(prevIsSticky && idx > 0 && prevCol){
                     calcLeft.push(prevCol);

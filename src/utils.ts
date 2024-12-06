@@ -53,10 +53,10 @@ export const getCalcStickyTopStyles = (isSticky?: boolean) => {
 
 /**
  * 計算 sticky left
- * @param isSticky
  * @param calcLeft
+ * @param sticky
  */
-export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], isSticky?: boolean) => {
+export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], sticky?: 'left'|'right') => {
 
 
     const formatVal = calcLeft.map(row => {
@@ -71,7 +71,8 @@ export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], isSticky?: boolea
     }).filter(str => str);
 
     return {
-        '--sticky-left': isSticky ? `calc(${formatVal.join(' + ')})`: undefined,
+        '--sticky-left': sticky === 'left' ? `calc(${formatVal.join(' + ')})`: undefined,
+        '--sticky-right': sticky === 'right' ? `calc(${formatVal.join(' + ')})`: undefined,
     } as CSSProperties;
 };
 

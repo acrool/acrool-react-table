@@ -61,7 +61,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
                 const colSpanStyles = getColSpanStyles(colSpan);
                 const stickyTopStyles = getCalcStickyTopStyles(isStickyHeader);
-                const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, fieldConfig.isSticky);
+                const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, fieldConfig.sticky);
                 const args = {
                     key: `theadTh_${titleKey}`,
                     className: fieldConfig.className,
@@ -69,7 +69,7 @@ const Header = <K extends TBodyDataFieldKey>({
                     'aria-sort': sortType,
                     'data-align': fieldConfig?.titleAlign,
                     'data-vertical': fieldConfig.dataVertical,
-                    'data-sticky': isStickyHeader || fieldConfig.isSticky ? '': undefined,
+                    'data-sticky': isStickyHeader ? '': fieldConfig.sticky,
                     'data-sort': isEnableSort ? '': undefined,
                     colSpan: colSpan > 1 ? colSpan: undefined,
                     style: {

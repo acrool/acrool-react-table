@@ -110,7 +110,7 @@ export const WithStickyHeader: Story = {
         isStickyHeader: true,
         title: {
             ...baseData.title,
-            name: {text: 'Name', col: 'auto', isSticky: true},
+            name: {text: 'Name', col: 'auto', sticky: 'left'},
         }
     }
 };
@@ -120,9 +120,9 @@ export const WithStickyLeft: Story = {
         style: {maxWidth: '400px', overflow: 'auto'},
         title: {
             ...baseData.title,
-            id: {...baseData.title.id, isSticky: true},
-            avatar: {...baseData.title.avatar, isSticky: true},
-            name: {...baseData.title.name, isSticky: true},
+            id: {...baseData.title.id, sticky: 'left'},
+            avatar: {...baseData.title.avatar, sticky: 'left'},
+            name: {...baseData.title.name, sticky: 'left'},
         }
     }
 };
@@ -132,7 +132,7 @@ export const WithSingleStickyLeft: Story = {
         style: {maxWidth: '400px', overflow: 'auto'},
         title: {
             ...baseData.title,
-            name: {text: 'Name', col: 100, isSticky: true},
+            name: {text: 'Name', col: 100, sticky: 'left'},
         }
     }
 };

@@ -140,14 +140,14 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const colSpanStyles = getColSpanStyles(colSpan);
-                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.isSticky);
+                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
                         className: fieldConfig.className,
                         'data-even': nthType === 'even' ? '': undefined,
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
-                        'data-sticky': titleRow.isSticky ? '': undefined,
+                        'data-sticky': titleRow.sticky,
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         style: {
                             ...colSpanStyles,
