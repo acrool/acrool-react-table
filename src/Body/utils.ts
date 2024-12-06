@@ -94,7 +94,7 @@ export const getBodyColSpanConfig = <K extends TBodyDataFieldKey, I extends TBod
 
 
 /**
- * 取得沾黏的設定
+ * 取得沾黏的設定 (Left)
  * @param title
  * @param data
  */
@@ -105,8 +105,8 @@ export const getBodyStickyLeftConfig = <K extends TBodyDataFieldKey, I extends T
         const calcLeft: TTitleCol[] = ['0px'];
         const titleKeys = objectKeys(title);
         return titleKeys
-            ?.filter(titleKey => !title[titleKey].isHidden)
-            ?.reduce((curr: Record<string, any>, titleKey, idx) => {
+            .filter(titleKey => !title[titleKey].isHidden)
+            .reduce((curr: Record<string, any>, titleKey, idx) => {
                 // 上一個
                 const prevCol = title[titleKeys[idx - 1]]?.col;
                 const prevIsSticky = title[titleKeys[idx - 1]]?.sticky === 'left';
@@ -119,6 +119,39 @@ export const getBodyStickyLeftConfig = <K extends TBodyDataFieldKey, I extends T
                     ...curr,
                     [titleKey]: [
                         ...calcLeft,
+                    ]
+                };
+            }, {});
+    });
+};
+
+
+/**
+ * 取得沾黏的設定 (Right)
+ * @param title
+ * @param data
+ */
+export const getBodyStickyRightConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+
+    return data?.map((dataRow, index) => {
+        // 忽略合併行數
+        const calcRight: TTitleCol[] = ['0px'];
+        const titleKeys = objectKeys(title).reverse();
+        return titleKeys
+            .filter(titleKey => !title[titleKey].isHidden)
+            .reduce((curr: Record<string, any>, titleKey, idx) => {
+                // 上一個
+                const prevCol = title[titleKeys[idx - 1]]?.col;
+                const prevIsSticky = title[titleKeys[idx - 1]]?.sticky === 'right';
+
+                if(prevIsSticky && idx > 0 && prevCol){
+                    calcRight.push(prevCol);
+                }
+
+                return {
+                    ...curr,
+                    [titleKey]: [
+                        ...calcRight,
                     ]
                 };
             }, {});

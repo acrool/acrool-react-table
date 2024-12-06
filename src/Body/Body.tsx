@@ -12,7 +12,7 @@ import {
     TTableTitle
 } from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
-import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig} from './utils';
+import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig, getBodyStickyRightConfig} from './utils';
 import BodyDetail from './BodyDetail';
 import styles from '../styles.module.scss';
 import BodyTr from './BodyTr';
@@ -91,7 +91,9 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
         const colSpanConfig = getBodyColSpanConfig(title, data);
         const stickyLeftConfig = getBodyStickyLeftConfig(title, data);
+        const stickyRightConfig = getBodyStickyRightConfig(title, data);
 
+        console.log('stickyRightConfig', stickyRightConfig);
 
         return data?.map((dataRow, index) => {
             if(typeof dataRow?.id === 'undefined'){
@@ -130,6 +132,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         return curr;
                     }
                     const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
+                    const stickyRight = stickyRightConfig?.[index]?.[titleKey];
 
 
 
@@ -140,7 +143,9 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const colSpanStyles = getColSpanStyles(colSpan);
-                    const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
+                    const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft: stickyRight, fieldConfig.sticky);
+
+
                     const args = {
                         key: `tbodyTd_${dataRow.id}_${titleKey}`,
                         className: fieldConfig.className,

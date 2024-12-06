@@ -3,7 +3,7 @@ import {objectKeys} from '@acrool/js-utils/object';
 import styles from '../styles.module.scss';
 import {getCalcStickyLeftStyles, getCalcStickyTopStyles, getColSpanStyles} from '../utils';
 import React from 'react';
-import {getHeaderColSpanConfig, getHeaderStickyLeftConfig} from './utils';
+import {getHeaderColSpanConfig, getHeaderStickyLeftConfig, getHeaderStickyRightConfig} from './utils';
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -32,6 +32,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
         const colSpanConfig = getHeaderColSpanConfig(title);
         const stickyLeftConfig = getHeaderStickyLeftConfig(title);
+        const stickyRightConfig = getHeaderStickyRightConfig(title);
 
 
 
@@ -56,12 +57,14 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
                 const stickyLeft = stickyLeftConfig?.[titleKey];
+                const stickyRight = stickyRightConfig?.[titleKey];
 
 
 
                 const colSpanStyles = getColSpanStyles(colSpan);
                 const stickyTopStyles = getCalcStickyTopStyles(isStickyHeader);
-                const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, fieldConfig.sticky);
+                const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft: stickyRight, fieldConfig.sticky);
+
                 const args = {
                     key: `theadTh_${titleKey}`,
                     className: fieldConfig.className,

@@ -132,7 +132,30 @@ export const WithSingleStickyLeft: Story = {
         style: {maxWidth: '400px', overflow: 'auto'},
         title: {
             ...baseData.title,
-            name: {text: 'Name', col: 100, sticky: 'left'},
+            name: {...baseData.title.name, col: 100, sticky: 'left'},
+        }
+    }
+};
+
+
+
+export const WithStickyRight: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto', border: '1px solid red'},
+        title: {
+            ...baseData.title,
+            createdAt: {...baseData.title.createdAt, sticky: 'right'},
+            joined: {...baseData.title.joined, sticky: 'right'},
+        }
+    }
+};
+
+export const WithSingleStickyRight: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto', border: '1px solid red'},
+        title: {
+            ...baseData.title,
+            joined: {...baseData.title.joined, sticky: 'right'},
         }
     }
 };

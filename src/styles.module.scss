@@ -148,6 +148,21 @@
     th, td{
         &[data-sticky="left"] {
             left: var(--sticky-left);
+
+            &:after{
+                box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
+                right: 0;
+                transform: translateX(100%);
+            }
+        }
+        &[data-sticky="right"] {
+            right: var(--sticky-right);
+
+            &:after{
+                box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.3);
+                left: 0;
+                transform: translateX(-100%);
+            }
         }
         &[data-sticky]{
             position: sticky;
@@ -161,10 +176,6 @@
                 transition: box-shadow 0.3s;
                 content: "";
                 pointer-events: none;
-                box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
-
-                right: 0;
-                transform: translateX(100%);
             }
         }
     }
