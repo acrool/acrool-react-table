@@ -45,11 +45,15 @@ export const getHeaderColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
  * @param title
  * @param data
  */
-export const getHeaderStickyLeftConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+export const getHeaderStickyLeftConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>) => {
 // 忽略合併行數
     const calcLeft: TTitleCol[] = ['0px'];
 
     const titleKeys = objectKeys(title);
+    const stickyKeys = titleKeys.filter(titleKey => title[titleKey]?.sticky === 'left');
+    const lastStickyKey = stickyKeys.at(stickyKeys.length - 1);
+
+
     return titleKeys
         .filter(titleKey => !title[titleKey].isHidden)
         .reduce((curr: Record<string, any>, titleKey, idx) => {
@@ -63,9 +67,12 @@ export const getHeaderStickyLeftConfig = <K extends TBodyDataFieldKey, I extends
 
             return {
                 ...curr,
-                [titleKey]: [
-                    ...calcLeft,
-                ]
+                [titleKey]: {
+                    widths: [
+                        ...calcLeft,
+                    ],
+                    isFirst: lastStickyKey === titleKey
+                }
             };
 
         }, {});
@@ -77,11 +84,15 @@ export const getHeaderStickyLeftConfig = <K extends TBodyDataFieldKey, I extends
  * @param title
  * @param data
  */
-export const getHeaderStickyRightConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+export const getHeaderStickyRightConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>) => {
 // 忽略合併行數
     const calcRight: TTitleCol[] = ['0px'];
 
     const titleKeys = objectKeys(title).reverse();
+
+    const stickyKeys = titleKeys.filter(titleKey => title[titleKey]?.sticky === 'right');
+    const lastStickyKey = stickyKeys.at(stickyKeys.length - 1);
+
     return titleKeys
         .filter(titleKey => !title[titleKey].isHidden)
         .reduce((curr: Record<string, any>, titleKey, idx) => {
@@ -95,11 +106,15 @@ export const getHeaderStickyRightConfig = <K extends TBodyDataFieldKey, I extend
 
             return {
                 ...curr,
-                [titleKey]: [
-                    ...calcRight,
-                ]
+                [titleKey]: {
+                    widths: [
+                        ...calcRight,
+                    ],
+                    isFirst: lastStickyKey === titleKey
+                }
             };
 
         }, {});
 
 };
+

@@ -110,7 +110,6 @@ export const WithStickyHeader: Story = {
         isStickyHeader: true,
         title: {
             ...baseData.title,
-            name: {text: 'Name', col: 'auto', sticky: 'left'},
         }
     }
 };
@@ -132,7 +131,7 @@ export const WithSingleStickyLeft: Story = {
         style: {maxWidth: '400px', overflow: 'auto'},
         title: {
             ...baseData.title,
-            name: {...baseData.title.name, col: 100, sticky: 'left'},
+            id: {...baseData.title.id, col: 100, sticky: 'left'},
         }
     }
 };

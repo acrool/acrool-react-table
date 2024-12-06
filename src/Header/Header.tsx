@@ -62,8 +62,8 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
                 const colSpanStyles = getColSpanStyles(colSpan);
-                const stickyTopStyles = getCalcStickyTopStyles(isStickyHeader);
-                const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft: stickyRight, fieldConfig.sticky);
+                // const stickyTopStyles = getCalcStickyTopStyles(isStickyHeader);
+                const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft.widths: stickyRight.widths, fieldConfig.sticky);
 
                 const args = {
                     key: `theadTh_${titleKey}`,
@@ -72,12 +72,13 @@ const Header = <K extends TBodyDataFieldKey>({
                     'aria-sort': sortType,
                     'data-align': fieldConfig?.titleAlign,
                     'data-vertical': fieldConfig.dataVertical,
-                    'data-sticky': isStickyHeader ? '': fieldConfig.sticky,
+                    'data-sticky': fieldConfig.sticky,
+                    'data-first-sticky': (stickyLeft.isFirst || stickyRight.isFirst)? '':undefined,
                     'data-sort': isEnableSort ? '': undefined,
                     colSpan: colSpan > 1 ? colSpan: undefined,
                     style: {
                         ...colSpanStyles,
-                        ...stickyTopStyles,
+                        // ...stickyTopStyles,
                         ...stickyLeftStyles,
                     },
                     children: <>
@@ -103,7 +104,7 @@ const Header = <K extends TBodyDataFieldKey>({
 
 
     return <thead className="acrool-react-table__content">
-        <tr>
+        <tr data-sticky-top={isStickyHeader ? '': undefined}>
             {renderTitle()}
         </tr>
     </thead>;

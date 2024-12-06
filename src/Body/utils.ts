@@ -104,6 +104,9 @@ export const getBodyStickyLeftConfig = <K extends TBodyDataFieldKey, I extends T
         // 忽略合併行數
         const calcLeft: TTitleCol[] = ['0px'];
         const titleKeys = objectKeys(title);
+        const stickyKeys = titleKeys.filter(titleKey => title[titleKey]?.sticky === 'left');
+        const lastStickyKey = stickyKeys.at(stickyKeys.length - 1);
+
         return titleKeys
             .filter(titleKey => !title[titleKey].isHidden)
             .reduce((curr: Record<string, any>, titleKey, idx) => {
@@ -117,9 +120,12 @@ export const getBodyStickyLeftConfig = <K extends TBodyDataFieldKey, I extends T
 
                 return {
                     ...curr,
-                    [titleKey]: [
-                        ...calcLeft,
-                    ]
+                    [titleKey]:{
+                        widths: [
+                            ...calcLeft,
+                        ],
+                        isFirst: lastStickyKey === titleKey
+                    }
                 };
             }, {});
     });
@@ -137,6 +143,8 @@ export const getBodyStickyRightConfig = <K extends TBodyDataFieldKey, I extends 
         // 忽略合併行數
         const calcRight: TTitleCol[] = ['0px'];
         const titleKeys = objectKeys(title).reverse();
+        const stickyKeys = titleKeys.filter(titleKey => title[titleKey]?.sticky === 'right');
+        const lastStickyKey = stickyKeys.at(stickyKeys.length - 1);
         return titleKeys
             .filter(titleKey => !title[titleKey].isHidden)
             .reduce((curr: Record<string, any>, titleKey, idx) => {
@@ -150,9 +158,12 @@ export const getBodyStickyRightConfig = <K extends TBodyDataFieldKey, I extends 
 
                 return {
                     ...curr,
-                    [titleKey]: [
-                        ...calcRight,
-                    ]
+                    [titleKey]: {
+                        widths: [
+                            ...calcRight,
+                        ],
+                        isFirst: lastStickyKey === titleKey
+                    }
                 };
             }, {});
     });

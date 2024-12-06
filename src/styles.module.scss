@@ -144,6 +144,11 @@
  * ------------------------------ */
 
 .root table {
+    tr[data-sticky-top]{
+        position: sticky;
+        top: 0;
+        z-index: 6!important;
+    }
 
     th, td{
         &[data-sticky="left"] {
@@ -167,8 +172,9 @@
         &[data-sticky]{
             position: sticky;
             z-index: 6!important;
+            top: var(--sticky-top);
 
-            &:after{
+            &[data-first-sticky]:after{
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -177,11 +183,6 @@
                 content: "";
                 pointer-events: none;
             }
-        }
-    }
-    th{
-        &[data-sticky]{
-            z-index: 7!important;
         }
     }
 

@@ -56,10 +56,9 @@ export const getCalcStickyTopStyles = (isSticky?: boolean) => {
  * @param calcLeft
  * @param sticky
  */
-export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], sticky?: 'left'|'right') => {
+export const getCalcStickyLeftStyles = (calcLeft?: TTitleCol[], sticky?: 'left'|'right') => {
 
-
-    const formatVal = calcLeft.map(row => {
+    const formatVal = calcLeft?.map(row => {
         if(typeof row === 'number'){
             return `${row}px`;
         }
@@ -68,7 +67,7 @@ export const getCalcStickyLeftStyles = (calcLeft: TTitleCol[], sticky?: 'left'|'
             return row;
         }
         return undefined;
-    }).filter(str => str);
+    }).filter(str => str) ?? [];
 
     return {
         '--sticky-left': sticky === 'left' ? `calc(${formatVal.join(' + ')})`: undefined,

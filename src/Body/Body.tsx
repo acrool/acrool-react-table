@@ -93,7 +93,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         const stickyLeftConfig = getBodyStickyLeftConfig(title, data);
         const stickyRightConfig = getBodyStickyRightConfig(title, data);
 
-        console.log('stickyRightConfig', stickyRightConfig);
 
         return data?.map((dataRow, index) => {
             if(typeof dataRow?.id === 'undefined'){
@@ -143,7 +142,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const colSpanStyles = getColSpanStyles(colSpan);
-                    const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft: stickyRight, fieldConfig.sticky);
+                    const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft.widths: stickyRight.widths, fieldConfig.sticky);
 
 
                     const args = {
@@ -153,6 +152,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
                         'data-sticky': titleRow.sticky,
+                        'data-first-sticky': (stickyLeft.isFirst || stickyRight.isFirst)? '':undefined,
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         style: {
                             ...colSpanStyles,
