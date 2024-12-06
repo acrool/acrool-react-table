@@ -103,6 +103,7 @@ export const WithFieldSort: Story = {
         }
     }
 };
+
 export const WithStickyHeader: Story = {
     args: {
         style: {maxHeight: '500px', overflow: 'auto'},
@@ -110,6 +111,28 @@ export const WithStickyHeader: Story = {
         title: {
             ...baseData.title,
             name: {text: 'Name', col: 'auto', isSticky: true},
+        }
+    }
+};
+
+export const WithStickyLeft: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto'},
+        title: {
+            ...baseData.title,
+            id: {...baseData.title.id, isSticky: true},
+            avatar: {...baseData.title.avatar, isSticky: true},
+            name: {...baseData.title.name, isSticky: true},
+        }
+    }
+};
+
+export const WithSingleStickyLeft: Story = {
+    args: {
+        style: {maxWidth: '400px', overflow: 'auto'},
+        title: {
+            ...baseData.title,
+            name: {text: 'Name', col: 100, isSticky: true},
         }
     }
 };

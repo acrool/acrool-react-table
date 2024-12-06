@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from '@acrool/js-utils/object';
-import {arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
+import {SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
 
 import {
     closestCenter,
@@ -281,7 +281,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
         const tableNode = (
             <table
-                style={style}
             >
                 {/* Header */}
                 {tableMode === ETableMode.table && renderHeader()}
@@ -315,6 +314,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         '--cell-line-height': cellLineHeight,
         '--footer-line-height': footerLineHeight,
         ...getTemplate(formatTitle, gap),
+        ...style,
     } as CSSProperties;
 
 
