@@ -1,4 +1,4 @@
-import React, {Fragment, MouseEvent, ReactNode, useState} from 'react';
+import React, {Fragment, MouseEvent, ReactNode, useMemo, useState} from 'react';
 import {removeByIndex} from '@acrool/js-utils/array';
 import {objectKeys} from '@acrool/js-utils/object';
 
@@ -8,7 +8,7 @@ import {
     TBodyDataField,
     TBodyDataFieldKey,
     TBodyDataID,
-    TCollapseEvent,
+    TCollapseEvent, TOnChangeSortable,
     TTableTitle
 } from '../types';
 import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
@@ -16,6 +16,17 @@ import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig, getBodySti
 import BodyDetail from './BodyDetail';
 import styles from '../styles.module.scss';
 import BodyTr from './BodyTr';
+import {
+    closestCenter,
+    DndContext,
+    DragEndEvent,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors
+} from '@dnd-kit/core';
+import {SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
+import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 
 
 
@@ -24,6 +35,7 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     data?: ITableBody<K, I>[]
     tableMode: ETableMode
     isEnableDragSortable?: boolean
+    onChangeSortable?: TOnChangeSortable
 }
 
 
@@ -35,9 +47,20 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     data,
     tableMode,
     isEnableDragSortable,
+    onChangeSortable,
 }: IProps<K, I>) => {
+    const items = useMemo<I[]>(() => {
+        return data?.map(row => row.id) ?? [];
+    }, [data]);
 
     const [collapseIds, setCollapse] = useState<I[]>([]);
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
 
 
     /**
@@ -83,6 +106,16 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
 
+    /**
+     * 處理拖動
+     * @param event
+     */
+    const handleDragEnd = (event: DragEndEvent) => {
+        const {active, over} = event;
+        if (onChangeSortable && over && active.id !== over?.id) {
+            onChangeSortable(active.id as I, over.id as I);
+        }
+    };
 
     /**
      * 產生表格內容
@@ -192,10 +225,29 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         });
     };
 
+    if(!isEnableDragSortable){
+        return <tbody className="acrool-react-table__content">
+            {renderBodyData()}
+        </tbody>;
+    }
 
-    return <tbody className="acrool-react-table__content">
-        {renderBodyData()}
-    </tbody>;
+    return <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToVerticalAxis]}
+        accessibility={{container: document.body}}
+    >
+        <tbody className="acrool-react-table__content">
+            <SortableContext
+                items={items}
+                strategy={verticalListSortingStrategy}
+                disabled={!isEnableDragSortable}
+            >
+                {renderBodyData()}
+            </SortableContext>
+        </tbody>
+    </DndContext>;
 };
 
 export default Body;

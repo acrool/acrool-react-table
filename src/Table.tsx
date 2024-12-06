@@ -11,17 +11,6 @@ import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
 import clsx from 'clsx';
 import {objectKeys} from '@acrool/js-utils/object';
-import {SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
-
-import {
-    closestCenter,
-    DndContext, DragEndEvent, DragOverlay,
-    KeyboardSensor,
-    PointerSensor,
-    useSensor,
-    useSensors
-} from '@dnd-kit/core';
-import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 
 
 /**
@@ -69,9 +58,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePageInfo = true,
 }: ITableProps<I, K>) => {
     const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
-    const items = useMemo<I[]>(() => {
-        return data?.map(row => row.id) ?? [];
-    }, [data]);
+
 
     const formatTitle = isEnableDragSortable ?
         {
@@ -89,25 +76,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     const tableRef = useRef<HTMLDivElement>(null);
 
 
-    const sensors = useSensors(
-        useSensor(PointerSensor),
-        useSensor(KeyboardSensor, {
-            coordinateGetter: sortableKeyboardCoordinates,
-        })
-    );
+
     useWindowResizeEffect(() => handleOnResize(), [tableCellMediaSize]);
 
 
-    /**
-     * 處理拖動
-     * @param event
-     */
-    const handleDragEnd = (event: DragEndEvent) => {
-        const {active, over} = event;
-        if (onChangeSortable && over && active.id !== over?.id) {
-            onChangeSortable(active.id as I, over.id as I);
-        }
-    };
 
 
     /**
@@ -219,17 +191,13 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             return renderCustomNoData();
         }
 
-        return <SortableContext
-            items={items}
-            strategy={verticalListSortingStrategy}
-        >
-            <TableBody
-                tableMode={tableMode}
-                title={title}
-                data={data}
-                isEnableDragSortable={isEnableDragSortable}
-            />
-        </SortableContext>;
+        return <TableBody
+            tableMode={tableMode}
+            title={title}
+            data={data}
+            isEnableDragSortable={isEnableDragSortable}
+            onChangeSortable={onChangeSortable}
+        />;
     };
 
 
@@ -279,9 +247,8 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
 
     const renderMain = () => {
 
-        const tableNode = (
-            <table
-            >
+        return (
+            <table>
                 {/* Header */}
                 {tableMode === ETableMode.table && renderHeader()}
 
@@ -292,19 +259,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
                 {tableMode === ETableMode.table && renderFooter()}
             </table>
         );
-
-        if(isEnableDragSortable){
-            return <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                modifiers={[restrictToVerticalAxis]}
-            >
-                {tableNode}
-            </DndContext>;
-        }
-
-        return tableNode;
     };
 
 
