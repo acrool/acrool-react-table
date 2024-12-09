@@ -103,8 +103,8 @@ const Header = <K extends TBodyDataFieldKey>({
     };
 
 
-    return <thead className="acrool-react-table__content">
-        <tr data-sticky-top={isStickyHeader ? '': undefined}>
+    return <thead className="acrool-react-table__content" data-sticky-top={isStickyHeader ? '': undefined}>
+        <tr>
             {renderTitle()}
         </tr>
     </thead>;

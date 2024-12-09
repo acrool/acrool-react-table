@@ -1,10 +1,10 @@
 import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail, TBodyDataField, TCollapseEvent, ETableMode} from '../types';
-import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles, getColSpanStyles, getRowSpanStyles} from '../utils';
 import {objectKeys} from '@acrool/js-utils/object';
 import {
     getFooterClassNameConfig,
     getFooterColSpanConfig,
-    getFooterConfig,
+    getFooterConfig, getFooterRowSpanConfig,
     getFooterStickyLeftConfig
 } from '../Footer/utils';
 import React, {ReactNode} from 'react';
@@ -56,6 +56,7 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
     if(Array.isArray(data)){
         const content = data.map((dataRow, index) => {
 
+            const rowSpanConfig = getFooterRowSpanConfig(title, data);
             const colSpanConfig = getFooterColSpanConfig(title, data);
             const stickyLeftConfig = getFooterStickyLeftConfig(title, data);
 
@@ -76,6 +77,7 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
 
 
                     const colSpan = colSpanConfig?.[index]?.[titleKey];
+                    const rowSpan = rowSpanConfig?.[index]?.[titleKey];
 
                     // 被合併為 undefined
                     if(typeof colSpan === 'undefined'){
@@ -87,6 +89,7 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     const children = getBodyDetailData(datDetailField);
 
                     const colSpanStyles = getColSpanStyles(colSpan);
+                    const rowSpanStyles = getRowSpanStyles(rowSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
 
                     const args = {
@@ -96,8 +99,10 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                         'data-vertical': fieldConfig.dataVertical,
                         'data-sticky': titleRow.sticky,
                         colSpan: colSpan > 1 ? colSpan: undefined,
+                        rowSpan: rowSpan > 1 ? rowSpan: undefined,
                         style: {
                             ...colSpanStyles,
+                            ...rowSpanStyles,
                             ...stickyLeftStyles,
                         },
                         children: tableMode === ETableMode.cell ?

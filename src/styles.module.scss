@@ -72,12 +72,12 @@
 .root {
     table {
         thead, tbody, tfoot {
-            display: contents;
-        }
-        tr{
             display: grid;
             grid-template-columns: var(--grid-template);
             grid-template-rows: 1fr;
+        }
+        tr{
+            display: contents;
         }
     }
 }
@@ -102,6 +102,7 @@
 
         padding: 0 var(--grid-gap);
         grid-column: auto / span var(--grid-column-span);
+        grid-row: auto / span var(--grid-row-span);
 
         //background-color: var(--bg-color);
 
@@ -144,7 +145,7 @@
  * ------------------------------ */
 
 .root table {
-    tr[data-sticky-top]{
+    thead[data-sticky-top]{
         position: sticky;
         top: 0;
         z-index: 6!important;
@@ -253,10 +254,10 @@
 
         tr{
             // 收合展開
-            &[role="button"]{
+            &[role="button"] td{
                 cursor: pointer;
             }
-            &[data-dragging]{
+            &[data-dragging] td{
                 z-index: 1;
                 position: relative;
             }
@@ -311,12 +312,14 @@
     }
 
     tbody {
+        display: block;
         tr {
+
+            display: block;
             margin-top: 1rem;
             height: auto;
             background-color: inherit;
             border: none;
-            display: block;
             width: 100%;
 
             &:first-child{

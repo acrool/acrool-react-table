@@ -11,8 +11,14 @@ import {
     TCollapseEvent, TOnChangeSortable,
     TTableTitle
 } from '../types';
-import {getCalcStickyLeftStyles, getColSpanStyles} from '../utils';
-import {getBodyColSpanConfig, getBodyConfig, getBodyStickyLeftConfig, getBodyStickyRightConfig} from './utils';
+import {getCalcStickyLeftStyles, getColSpanStyles, getRowSpanStyles} from '../utils';
+import {
+    getBodyColSpanConfig,
+    getBodyConfig,
+    getBodyRowSpanConfig,
+    getBodyStickyLeftConfig,
+    getBodyStickyRightConfig
+} from './utils';
 import BodyDetail from './BodyDetail';
 import styles from '../styles.module.scss';
 import BodyTr from './BodyTr';
@@ -123,9 +129,12 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     const renderBodyData = () => {
 
         const colSpanConfig = getBodyColSpanConfig(title, data);
+        const rowSpanConfig = getBodyRowSpanConfig(title, data);
         const stickyLeftConfig = getBodyStickyLeftConfig(title, data);
         const stickyRightConfig = getBodyStickyRightConfig(title, data);
 
+        console.log('rowSpanConfig', rowSpanConfig);
+        // console.log('colSpanConfig', colSpanConfig);
 
         return data?.map((dataRow, index) => {
             if(typeof dataRow?.id === 'undefined'){
@@ -158,9 +167,15 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const colSpan = colSpanConfig?.[index]?.[titleKey];
+                    const rowSpan = rowSpanConfig?.[index]?.[titleKey];
+
 
                     // 被合併為 undefined
                     if(typeof colSpan === 'undefined'){
+                        return curr;
+                    }
+                    // 被合併為 undefined
+                    if(typeof rowSpan === 'undefined'){
                         return curr;
                     }
                     const stickyLeft = stickyLeftConfig?.[index]?.[titleKey];
@@ -175,6 +190,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
                     const colSpanStyles = getColSpanStyles(colSpan);
+                    const rowSpanStyles = getRowSpanStyles(rowSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft.widths: stickyRight.widths, fieldConfig.sticky);
 
 
@@ -187,8 +203,10 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         'data-sticky': titleRow.sticky,
                         'data-first-sticky': (stickyLeft.isFirst || stickyRight.isFirst)? '':undefined,
                         colSpan: colSpan > 1 ? colSpan: undefined,
+                        rowSpan: rowSpan > 1 ? rowSpan: undefined,
                         style: {
                             ...colSpanStyles,
+                            ...rowSpanStyles,
                             ...stickyLeftStyles,
                         },
                         children: tableMode === ETableMode.cell ? <>

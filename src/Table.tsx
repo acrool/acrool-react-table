@@ -40,6 +40,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePaginate = true,
     isEnableChangePageScrollTop = true,
     isEnableDragSortable = false,
+    isEnableHover = false,
     // isOverflow = true,
     isStickyHeader = false,
     tableCellMediaSize,
@@ -280,6 +281,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         )}
         style={extendStyles}
         data-mode={tableMode}
+        data-hover={isEnableHover ? '': undefined}
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
         // data-overflow={!!isOverflow ? '': undefined}
