@@ -35,10 +35,23 @@ export const getFooterClassNameConfig = <K extends TBodyDataFieldKey>(bodyField:
  * 取得 Colspan 設定
  * @param bodyField
  */
-const getFooterColspanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
+const _getFooterColSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
         if('colSpan' in bodyField){
             return bodyField.colSpan ?? 1;
+        }
+    }
+    return 1;
+};
+
+/**
+ * 取得 Rowspan 設定
+ * @param bodyField
+ */
+const _getFooterRowSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
+    if(typeof bodyField === 'object'){
+        if('rowSpan' in bodyField){
+            return bodyField.rowSpan ?? 1;
         }
     }
     return 1;
@@ -59,7 +72,7 @@ export const getFooterColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
             ?.filter(titleKey => !title[titleKey].isHidden)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 const footerField = dataRow[titleKey];
-                const colSpan = getFooterColspanConfig(footerField) ;
+                const colSpan = _getFooterColSpanConfig(footerField) ;
 
                 // 被合併忽略
                 if(colMergeAfterIgnoreLength > 0){
@@ -75,6 +88,44 @@ export const getFooterColSpanConfig = <K extends TBodyDataFieldKey>(title: TTabl
                 return {
                     ...curr,
                     [titleKey]: colSpan
+                };
+
+            }, {});
+    });
+};
+
+
+/**
+ * 取得處理合併設定
+ * @param title
+ * @param data
+ */
+export const getFooterRowSpanConfig = <K extends TBodyDataFieldKey>(title: TTableTitle<K>, data?: TFooter<K>[]) => {
+
+    return data?.map((dataRow, index) => {
+        // 忽略合併行數
+        let rowMergeAfterIgnoreLength = 0;
+        const titleKeys = objectKeys(title);
+        return titleKeys
+            ?.filter(titleKey => !title[titleKey].isHidden)
+            ?.reduce((curr: Record<string, any>, titleKey, idx) => {
+                const footerField = dataRow[titleKey];
+                const rowSpan = _getFooterRowSpanConfig(footerField) ;
+
+                // 被合併忽略
+                if(rowMergeAfterIgnoreLength > 0){
+                    rowMergeAfterIgnoreLength -= 1;
+                    return curr;
+                }
+
+                // 如果大於1, 下一個忽略
+                if(rowSpan > 1){
+                    rowMergeAfterIgnoreLength = rowSpan - 1;
+                }
+
+                return {
+                    ...curr,
+                    [titleKey]: rowSpan
                 };
 
             }, {});

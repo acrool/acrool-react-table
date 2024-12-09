@@ -184,6 +184,28 @@ export const WithMergeField: Story = {
     }
 };
 
+
+export const WithRowSpanField: Story = {
+    args: {
+        title: {
+            ...baseData.title,
+        },
+        data: baseData.data.map((row, idx) => {
+            return {
+                ...row,
+                field: {
+                    ...row.field,
+                    name: idx === 1 ? {
+                        rowSpan: 2,
+                        // colSpan: 2,
+                        value: `${row.field.name}(M)`,
+                    }: row.field.name,
+                }
+            };
+        })
+    }
+};
+
 export const WithDetail: Story = {
     args: {
         title: {

@@ -112,7 +112,7 @@ export const baseData = genericsTitleData(
         createdAt:{text: 'Crated', col: '110px'},
         joined:  {text: 'Joined',  col: '80px'},
     },
-    getPageData(1, 10).map(row => {
+    getPageData(1, 3).map(row => {
         return {
             id: row.id,
             // detail: [

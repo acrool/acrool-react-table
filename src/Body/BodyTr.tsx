@@ -50,6 +50,9 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     };
 
 
+    /**
+     * Render Table td
+     */
     const renderTds = () => {
         return tds.map((args, idx) => {
             return <td key={args.key} {...args}/>;

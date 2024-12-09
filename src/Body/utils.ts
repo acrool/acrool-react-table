@@ -45,10 +45,23 @@ export const getBodyDetailConfig = <K extends TBodyDataFieldKey>(titleField?: JS
  * 取得 Colspan 設定
  * @param bodyField
  */
-const getBodyColspanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
+const _getBodyColSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
         if('colSpan' in bodyField){
             return bodyField.colSpan ?? 1;
+        }
+    }
+    return 1;
+};
+
+/**
+ * 取得 Colspan 設定
+ * @param bodyField
+ */
+const _getBodyRowSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
+    if(typeof bodyField === 'object'){
+        if('rowSpan' in bodyField){
+            return bodyField.rowSpan ?? 1;
         }
     }
     return 1;
@@ -70,12 +83,15 @@ export const getBodyColSpanConfig = <K extends TBodyDataFieldKey, I extends TBod
             ?.filter(titleKey => !title[titleKey].isHidden)
             ?.reduce((curr: Record<string, any>, titleKey, idx) => {
                 const bodyField = dataRow.field[titleKey];
-                const colSpan = getBodyColspanConfig(bodyField);
+                const colSpan = _getBodyColSpanConfig(bodyField);
 
                 // 被合併忽略
                 if(colMergeAfterIgnoreLength > 0){
                     colMergeAfterIgnoreLength -= 1;
-                    return curr;
+                    return {
+                        ...curr,
+                        [titleKey]: undefined
+                    };
                 }
 
                 // 如果大於1, 下一個忽略
@@ -86,6 +102,51 @@ export const getBodyColSpanConfig = <K extends TBodyDataFieldKey, I extends TBod
                 return {
                     ...curr,
                     [titleKey]: colSpan
+                };
+
+            }, {});
+    });
+};
+
+
+/**
+ * 取得處理合併設定
+ * @param title
+ * @param data
+ */
+export const getBodyRowSpanConfig = <K extends TBodyDataFieldKey, I extends TBodyDataID>(title: TTableTitle<K>, data?: ITableBody<K, I>[]) => {
+
+    let rowMergeAfterIgnore: Record<string, number> = {};
+
+    return data?.map((dataRow, index) => {
+        // 忽略合併行數
+        const titleKeys = objectKeys(title);
+
+
+        return titleKeys
+            ?.filter(titleKey => !title[titleKey].isHidden)
+            ?.reduce((curr: Record<string, any>, titleKey, idx) => {
+                const bodyField = dataRow.field[titleKey];
+                const rowSpan = _getBodyRowSpanConfig(bodyField);
+
+console.log('rowMergeAfterIgnore[titleKey]', rowMergeAfterIgnore[titleKey]);
+                // 被合併忽略
+                if(rowMergeAfterIgnore[titleKey] && rowMergeAfterIgnore[titleKey] > 0){
+                    rowMergeAfterIgnore[titleKey] -= 1;
+                    return {
+                        ...curr,
+                        [titleKey]: undefined
+                    };
+                }
+
+                // 如果大於1, 下一個忽略
+                if(rowSpan > 1){
+                    rowMergeAfterIgnore[titleKey] = rowSpan - 1;
+                }
+
+                return {
+                    ...curr,
+                    [titleKey]: rowSpan
                 };
 
             }, {});

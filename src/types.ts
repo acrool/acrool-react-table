@@ -5,6 +5,7 @@ import {IPaginateVisibleProps} from './Paginate/types';
 
 export interface IConfig {
     colSpan?: number,
+    rowSpan?: number,
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
     className?: string,

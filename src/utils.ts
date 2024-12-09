@@ -36,6 +36,16 @@ export const getColSpanStyles = (colSpan: number) => {
     } as CSSProperties;
 };
 
+/**
+ * 產生合併欄位屬性
+ * @param rowSpan
+ */
+export const getRowSpanStyles = (rowSpan: number) => {
+    return {
+        '--grid-row-span': rowSpan > 1 ? rowSpan: undefined,
+    } as CSSProperties;
+};
+
 
 
 
