@@ -5,10 +5,6 @@
     --line-height: 50px;
     --border-radius: .4rem;
 
-    --grid-template: 1fr;
-    --grid-gap: 0;
-    --grid-column-span: 1;
-
     --default-primary-color: #535bf2;
     --default-primary-contrast-color: #fff;
 
@@ -141,10 +137,10 @@
     background-color: var(--tr-even-bg-color);
 }
 
-.acrool-react-table__root[data-mode="table"] tbody tr:hover td{
+.acrool-react-table__root[data-mode="table"][data-hover] tbody tr:hover td{
     background-color: var(--tr-bg-hover-color);
 }
-.acrool-react-table__root[data-mode="table"] tbody tr[data-even]:hover td{
+.acrool-react-table__root[data-mode="table"][data-hover] tbody tr[data-even]:hover td{
     background-color: var(--tr-even-bg-hover-color);
 }
 

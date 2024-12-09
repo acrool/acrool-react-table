@@ -95,12 +95,19 @@ export const WithFieldCSSClass: Story = {
         }
     }
 };
+
 export const WithFieldSort: Story = {
     args: {
         title: {
             ...baseData.title,
             name: {text: 'Name', col: 'auto', isEnableSort: true},
         }
+    }
+};
+
+export const WithBodyTrHover: Story = {
+    args: {
+        isEnableHover: true,
     }
 };
 
@@ -161,25 +168,60 @@ export const WithSingleStickyRight: Story = {
 
 
 
-export const WithMergeField: Story = {
+export const WithTitleColspanField: Story = {
     args: {
         title: {
             ...baseData.title,
-            id: {text: 'This Full Name (Merge Field)',   col: 50,  titleAlign: 'center', dataAlign: 'center', colSpan: 3},
+            id: {text: 'This Full Name (Colspan 3)',   col: 50,  titleAlign: 'center', dataAlign: 'center', colSpan: 3},
         },
-        data: baseData.data.map(row => {
-            return {
-                ...row,
-                field: {
-                    ...row.field,
-                    plus: (args) => <CollapseButton
-                        type="button" onClick={args.collapse}
-                        data-active={args.isActive ? '':undefined}
-                    >
-                        {args.isActive ? '-': '+'}
-                    </CollapseButton>,
-                }
-            };
+    }
+};
+
+
+export const WithBodyColspanField: Story = {
+    args: {
+        data: baseData.data.map((row, idx) => {
+
+            if(idx === 1){
+                return {
+                    ...row,
+                    field: {
+                        ...row.field,
+                        name: {
+                            colSpan: 3,
+                            className: 'justify-content-center',
+                            value: 'Name(ColSpan 3)'
+                        }
+                    }
+                };
+            }
+
+            return row;
+        })
+    }
+};
+
+
+export const WithRowSpanField: Story = {
+    args: {
+        title: {
+            ...baseData.title,
+        },
+        data: baseData.data.map((row, idx) => {
+            if(idx === 1){
+                return {
+                    ...row,
+                    field: {
+                        ...row.field,
+                        name: {
+                            rowSpan: 2,
+                            value: 'Name(RowSpan 2)'
+                        }
+                    }
+                };
+            }
+
+            return row;
         })
     }
 };

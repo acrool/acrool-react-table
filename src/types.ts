@@ -5,6 +5,7 @@ import {IPaginateVisibleProps} from './Paginate/types';
 
 export interface IConfig {
     colSpan?: number,
+    rowSpan?: number,
     dataAlign?: 'left'|'center'|'right',
     dataVertical?: 'top'|'center'|'bottom',
     className?: string,
@@ -143,6 +144,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isVisiblePaginate?: boolean
     isEnableChangePageScrollTop?: boolean
     isEnableDragSortable?: boolean
+    isEnableHover?: boolean
     // isOverflow?: boolean
     isStickyHeader?: boolean
     tableCellMediaSize?: number
