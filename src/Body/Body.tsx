@@ -133,8 +133,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         const stickyLeftConfig = getBodyStickyLeftConfig(title, data);
         const stickyRightConfig = getBodyStickyRightConfig(title, data);
 
-        console.log('rowSpanConfig', rowSpanConfig);
-        // console.log('colSpanConfig', colSpanConfig);
 
         return data?.map((dataRow, index) => {
             if(typeof dataRow?.id === 'undefined'){

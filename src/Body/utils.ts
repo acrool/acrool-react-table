@@ -129,7 +129,6 @@ export const getBodyRowSpanConfig = <K extends TBodyDataFieldKey, I extends TBod
                 const bodyField = dataRow.field[titleKey];
                 const rowSpan = _getBodyRowSpanConfig(bodyField);
 
-                console.log('rowMergeAfterIgnore[titleKey]', rowMergeAfterIgnore[titleKey]);
                 // 被合併忽略
                 if(rowMergeAfterIgnore[titleKey] && rowMergeAfterIgnore[titleKey] > 0){
                     rowMergeAfterIgnore[titleKey] -= 1;

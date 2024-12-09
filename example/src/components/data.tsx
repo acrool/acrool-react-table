@@ -159,7 +159,6 @@ export const tableData = genericsTitleData(
                 {name: 'Withdrawal', amount: `$ ${formatCurrency(row.subAmount)}`},
             ],
             onClickRow: (id, collapse) => {
-                console.log('id', id);
                 collapse();
             },
             field: {
