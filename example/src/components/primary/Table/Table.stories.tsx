@@ -318,3 +318,9 @@ export const WithCell: Story = {
         tableCellMediaSize: 1024,
     }
 };
+
+export const WithHiddenHeader: Story = {
+    args: {
+        isVisibleHeader: false,
+    }
+};

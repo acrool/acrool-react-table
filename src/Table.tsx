@@ -159,10 +159,6 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生表格內容
      */
     const renderHeader = () => {
-        if(!isVisibleHeader){
-            return null;
-        }
-
         return <TableHeader
             title={formatTitle}
             onChangeSortField={handleOnOrderField}

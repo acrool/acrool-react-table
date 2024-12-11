@@ -196,6 +196,11 @@
 /** -------------------------------
  *             Header
  * ------------------------------ */
+
+.root:not([data-header]) thead{
+    visibility: collapse;
+}
+
 .root table {
     thead {
         th{
