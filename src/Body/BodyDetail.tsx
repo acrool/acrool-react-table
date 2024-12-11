@@ -1,5 +1,5 @@
 import {TTableTitle, TBodyDataFieldKey, TBodyDataDetail, TBodyDataField, TCollapseEvent, ETableMode} from '../types';
-import {getCalcStickyLeftStyles, getColSpanStyles, getRowSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles} from '../utils';
 import {objectKeys} from '@acrool/js-utils/object';
 import {
     getFooterClassNameConfig,
@@ -88,8 +88,6 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     // const children = datDetailField?.value;
                     const children = getBodyDetailData(datDetailField);
 
-                    const colSpanStyles = getColSpanStyles(colSpan);
-                    const rowSpanStyles = getRowSpanStyles(rowSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
 
                     const args = {
@@ -101,8 +99,6 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         rowSpan: rowSpan > 1 ? rowSpan: undefined,
                         style: {
-                            ...colSpanStyles,
-                            ...rowSpanStyles,
                             ...stickyLeftStyles,
                         },
                         children: tableMode === ETableMode.cell ?
@@ -136,9 +132,9 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
 
 
     // 單純資料(非列表)
-    const colSpanStyles = getColSpanStyles(objectKeys(title).length);
+    const colSpan = objectKeys(title).length;
     return <tr>
-        <td style={colSpanStyles}>
+        <td colSpan={colSpan}>
             {data as ReactNode}
         </td>
     </tr>;

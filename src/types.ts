@@ -22,7 +22,7 @@ export enum ETableMode {
  * ------------------------------ */
 export type TSizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
 export type TSizeUnitOrNumber = number|`${number}${TSizeUnit}`;
-export type TTitleCol = true|'auto'|TSizeUnitOrNumber|'min-content'|'max-content'|`minmax(${TSizeUnitOrNumber}, ${TSizeUnitOrNumber})`;
+export type TTitleCol = true|'auto'|TSizeUnitOrNumber;
 
 
 export interface ITitleField extends IConfig {

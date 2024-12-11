@@ -5,7 +5,7 @@ import TableHeader from './Header';
 import TableBody from './Body';
 import TableFooter from './Footer';
 import Paginate from './Paginate';
-import {getColSpanStyles, getTemplate} from './utils';
+import {getTemplate} from './utils';
 
 import styles from './styles.module.scss';
 import {useWindowResizeEffect} from './hooks';
@@ -140,10 +140,10 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生沒資料時的顯示
      */
     const renderCustomNoData = () => {
-        const colSpanStyles = getColSpanStyles(objectKeys(title).length);
+        const colSpan = objectKeys(title).length;
         return <tbody className="acrool-react-table__content" data-no-data="">
             <tr>
-                <td style={colSpanStyles}>
+                <td colSpan={colSpan}>
                     {!!renderNoData ?
                         renderNoData : <div className={styles.notData}>
                             <div className={styles.notDataTitle}>Not Found</div>
@@ -177,14 +177,12 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
      * 產生表格內容
      */
     const renderBody = () => {
-
-
         if(!data || data?.length === 0){
             if(isFetching){
-                const colSpanStyle = getColSpanStyles(objectKeys(title).length);
+                const colSpan = objectKeys(title).length;
                 return <tbody className="acrool-react-table__content" data-loading="">
                     <tr>
-                        <td style={colSpanStyle}>{renderFetching}</td>
+                        <td colSpan={colSpan}>{renderFetching}</td>
                     </tr>
                 </tbody>;
             }

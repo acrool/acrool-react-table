@@ -72,12 +72,12 @@
 .root {
     table {
         thead, tbody, tfoot {
-            display: grid;
-            grid-template-columns: var(--grid-template);
-            grid-template-rows: 1fr;
+            //display: grid;
+            //grid-template-columns: var(--grid-template);
+            //grid-template-rows: 1fr;
         }
         tr{
-            display: contents;
+            //display: contents;
         }
     }
 }
@@ -88,21 +88,23 @@
  *             Common
  * ------------------------------ */
 .root table{
+    thead th{
+        min-width: var(--td-width);
+    }
 
     thead th,
     tfoot td,
     tbody td{
-        display: flex;
+        //display: flex;
         align-items: center;
         justify-content: flex-start;
 
         color: var(--text-color);
         font-size: 14px;
 
-
         padding: 0 var(--grid-gap);
-        grid-column: auto / span var(--grid-column-span);
-        grid-row: auto / span var(--grid-row-span);
+        //grid-column: auto / span var(--grid-column-span);
+        //grid-row: auto / span var(--grid-row-span);
 
         //background-color: var(--bg-color);
 
@@ -257,7 +259,7 @@
             &[role="button"] td{
                 cursor: pointer;
             }
-            &[data-dragging] td{
+            &[data-dragging]{
                 z-index: 1;
                 position: relative;
             }
@@ -312,10 +314,10 @@
     }
 
     tbody {
-        display: block;
+        //display: block;
         tr {
 
-            display: block;
+            //display: block;
             margin-top: 1rem;
             height: auto;
             background-color: inherit;
@@ -356,7 +358,7 @@
 
         td {
             background-color: var(--tr-bg-color);
-            display: flex;
+            //display: flex;
             text-align: right;
             margin-left: auto;
             height: var(--cell-line-height, auto);

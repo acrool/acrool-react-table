@@ -11,7 +11,7 @@ import {
     TCollapseEvent, TOnChangeSortable,
     TTableTitle
 } from '../types';
-import {getCalcStickyLeftStyles, getColSpanStyles, getRowSpanStyles} from '../utils';
+import {getCalcStickyLeftStyles} from '../utils';
 import {
     getBodyColSpanConfig,
     getBodyConfig,
@@ -186,9 +186,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
                     const children = getBodyData(field, collapseIds.includes(dataRow.id), collapseEvent);
 
-
-                    const colSpanStyles = getColSpanStyles(colSpan);
-                    const rowSpanStyles = getRowSpanStyles(rowSpan);
                     const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft.widths: stickyRight.widths, fieldConfig.sticky);
 
 
@@ -203,8 +200,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                         colSpan: colSpan > 1 ? colSpan: undefined,
                         rowSpan: rowSpan > 1 ? rowSpan: undefined,
                         style: {
-                            ...colSpanStyles,
-                            ...rowSpanStyles,
                             ...stickyLeftStyles,
                         },
                         children: tableMode === ETableMode.cell ? <>
