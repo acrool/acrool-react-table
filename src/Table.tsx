@@ -40,7 +40,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePaginate = true,
     isEnableChangePageScrollTop = true,
     isEnableDragSortable = false,
-    isEnableHover = false,
+    isEnableHover = true,
     // isOverflow = true,
     isStickyHeader = false,
     tableCellMediaSize,
