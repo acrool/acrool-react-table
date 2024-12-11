@@ -89,7 +89,8 @@
  * ------------------------------ */
 .root table{
     thead th{
-        min-width: var(--td-width);
+        width: var(--td-width);
+        max-width: var(--td-width);
     }
 
     thead th,
