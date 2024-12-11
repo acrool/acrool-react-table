@@ -211,10 +211,11 @@
 
             height: var(--header-line-height, var(--line-height));
 
-            &[data-sort]{
+            .title-sort{
                 cursor: pointer;
                 display: flex;
                 flex-direction: row;
+                align-items: center;
                 gap: 5px;
 
                 .sort-column{

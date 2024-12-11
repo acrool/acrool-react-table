@@ -4,6 +4,7 @@ import styles from '../styles.module.scss';
 import {getCalcStickyLeftStyles, getCol} from '../utils';
 import React from 'react';
 import {getHeaderColSpanConfig, getHeaderStickyLeftConfig, getHeaderStickyRightConfig} from './utils';
+import {Flex} from "@acrool/react-grid";
 
 
 interface IProps<K extends TBodyDataFieldKey> {
@@ -81,10 +82,13 @@ const Header = <K extends TBodyDataFieldKey>({
                         ...getCol(fieldConfig.col),
                         ...stickyLeftStyles,
                     },
-                    children: <>
-                        {fieldConfig.text}
-                        <div className={styles.sortColumn}/>
-                    </>,
+                    children: isEnableSort ?
+                        <div className={styles.titleSort}>
+                            <div>{fieldConfig.text}</div>
+                            <div className={styles.sortColumn}/>
+                        </div>:
+                        fieldConfig.text
+                    ,
                     onClick: isEnableSort ? () => {
                         onChangeSortField({
                             orderField: titleKey,
