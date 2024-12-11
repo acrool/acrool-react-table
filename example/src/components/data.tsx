@@ -4,10 +4,11 @@ import {genericsTitleData} from '@acrool/react-table';
 import {Avatar, Name} from './Common';
 import dayjs from 'dayjs';
 import {mockSort} from './utils';
+import {ReactNode} from "react";
 
 export interface IPaginateData {
     id: number,
-    name: string,
+    name: string|ReactNode,
     email: string,
     role: string,
     isJoined: boolean,
@@ -21,7 +22,7 @@ export const data: IPaginateData[] = [
     {id: 1, name: 'Jack Wu', email: 'jackUu@test.com', role: 'Admin', isJoined: true, createdAt: '2022-12-14 00:12:00',  avatar: asset('/sample/avatar/female-1.jpg'), amount: 200, subAmount: 300},
     {id: 2, name: 'Imagine Chiu', email: 'imagineChiu@test.com', role: 'Guest', isJoined: true, createdAt: '2022-12-15 11:02:00', avatar: asset('/sample/avatar/female-2.jpg'), amount: 99, subAmount: 400},
     {id: 3, name: 'Jason Dinwiddie', email: 'jsonDinwiddie@test.com', role: 'Manage', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-3.jpg'), amount: 880, subAmount: 200},
-    {id: 4, name: 'Gloria Lu', email: 'groriaLu@test.com', role: 'Guest', isJoined: true, createdAt: '2022-12-11 10:12:00', avatar: asset('/sample/avatar/female-4.jpg'), amount: 12300, subAmount: 340},
+    {id: 4, name: <div className="d-flex">Gloria Lu</div>, email: 'groriaLu@test.com', role: 'Guest', isJoined: true, createdAt: '2022-12-11 10:12:00', avatar: asset('/sample/avatar/female-4.jpg'), amount: 12300, subAmount: 340},
 
     {id: 5, name: 'Adam Bolton', email: 'adamBolton@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-5.jpg'), amount: 2500, subAmount: 3020},
     {id: 6, name: 'Stanley McQueen', email: 'stanleyMcQueen@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-6.jpg'), amount: 200, subAmount: 500},

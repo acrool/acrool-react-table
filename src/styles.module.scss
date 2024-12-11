@@ -115,25 +115,25 @@
         }
 
         &[data-align="left"]{
-            justify-content: flex-start;
+            justify-items: flex-start;
             text-align: left;
         }
         &[data-align="center"]{
-            justify-content: center;
+            justify-items: center;
             text-align: center;
         }
         &[data-align="right"]{
-            justify-content: flex-end;
+            justify-items: flex-end;
             text-align: right;
         }
         &[data-vertical="top"]{
-            align-items: flex-start;
+            align-content: flex-start;
         }
         &[data-vertical="center"]{
-            align-items: center;
+            align-content: center;
         }
         &[data-vertical="bottom"]{
-            align-items: flex-end;
+            align-content: flex-end;
         }
     }
 

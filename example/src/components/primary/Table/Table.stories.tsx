@@ -87,6 +87,14 @@ export const WithTitleAlign: Story = {
         }
     }
 };
+export const WithDataAlign: Story = {
+    args: {
+        title: {
+            ...baseData.title,
+            name: {text: 'Name', col: 'auto', dataAlign: 'center'},
+        }
+    }
+};
 export const WithFieldCSSClass: Story = {
     args: {
         title: {
