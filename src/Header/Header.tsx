@@ -4,7 +4,6 @@ import styles from '../styles.module.scss';
 import {getCalcStickyLeftStyles, getCol} from '../utils';
 import React from 'react';
 import {getHeaderColSpanConfig, getHeaderStickyLeftConfig, getHeaderStickyRightConfig} from './utils';
-import {Flex} from "@acrool/react-grid";
 
 
 interface IProps<K extends TBodyDataFieldKey> {
