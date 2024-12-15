@@ -200,6 +200,8 @@
 
 .root:not([data-header]) thead{
     visibility: collapse;
+    height: 0;
+    overflow: -webkit-paged-y;
 }
 
 .root table {
