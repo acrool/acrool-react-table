@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Table, {arrayMove} from '@acrool/react-table';
+import Table, {arrayMove, TOnChangeSortable} from '@acrool/react-table';
 import {baseData, data as initData} from '../../data';
 import {Avatar} from '../../Common';
 import {formatCurrency} from '@acrool/js-utils/number';
@@ -37,11 +37,9 @@ const DndSortTable = () => {
     const [data, setData] = useState<typeof initData>(initData);
 
 
-    const handleOnChangeSortable = (activeId: number, overId: number) => {
+    const handleOnChangeSortable: TOnChangeSortable = (sortableData) => {
         setData(curr => {
-            const oldIndex = curr.findIndex(row => row.id === activeId);
-            const newIndex = curr.findIndex(row => row.id === overId);
-            return arrayMove(data, oldIndex, newIndex);
+            return arrayMove(curr, sortableData.active.index, sortableData.over.index);
         });
     };
 

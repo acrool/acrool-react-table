@@ -112,11 +112,24 @@ export interface IPaginateMeta extends Required<IPage> {
     order?: IOrder,
 }
 
+
+export interface ISortableData {
+    items: string[],
+    active: {
+        index: number
+        id: string,
+    },
+    over: {
+        index: number
+        id: string,
+    },
+}
+
 export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
 
 export type TCollapseEvent = (e: MouseEvent) => void
 
-export type TOnChangeSortable<I = any> = (activeId: I, overId: I) => void;
+export type TOnChangeSortable = (sortableData: ISortableData) => void;
 
 
 /** -------------------------------

@@ -1,4 +1,4 @@
-import React, {Fragment, MouseEvent, ReactNode, useMemo, useState} from 'react';
+import React, {Fragment, MouseEvent, ReactNode, useCallback, useMemo, useState} from 'react';
 import {removeByIndex} from '@acrool/js-utils/array';
 import {objectKeys} from '@acrool/js-utils/object';
 
@@ -31,7 +31,7 @@ import {
     useSensor,
     useSensors
 } from '@dnd-kit/core';
-import {SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
+import {arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
 import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 
 
@@ -116,12 +116,30 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
      * 處理拖動
      * @param event
      */
-    const handleDragEnd = (event: DragEndEvent) => {
+    const handleDragEnd = useCallback((event: DragEndEvent) => {
         const {active, over} = event;
+
+        if(!active.data.current || !over?.data.current) return;
+
+        const items = active.data.current.sortable.items;
+        const activeIndex = active.data.current.sortable.index;
+        const overIndex = over.data.current.sortable.index;
+
         if (onChangeSortable && over && active.id !== over?.id) {
-            onChangeSortable(active.id as I, over.id as I);
+            onChangeSortable({
+                items: arrayMove(items, activeIndex, overIndex),
+                active: {
+                    id: active.id as string,
+                    index: activeIndex,
+                },
+                over: {
+                    id: over.id as string,
+                    index: overIndex,
+                }
+            });
         }
-    };
+
+    }, [onChangeSortable]);
 
     /**
      * 產生表格內容
