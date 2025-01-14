@@ -114,7 +114,6 @@ export interface IPaginateMeta extends Required<IPage> {
 
 
 export interface ISortableData {
-    containerId: string,
     items: string[],
     active: {
         index: number
