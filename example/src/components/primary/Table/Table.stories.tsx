@@ -323,7 +323,7 @@ export const WithPaginate: Story = {
 
 export const WithCell: Story = {
     args: {
-        tableCellMediaSize: 1024,
+        tableCellMediaSize: 9999,
     }
 };
 

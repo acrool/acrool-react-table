@@ -319,14 +319,23 @@
 .root[data-mode="cell"] table{
     display: block;
     border: none;
+    background-color: transparent;
 
     thead,
     tfoot {
         display: none;
     }
 
+    thead th,
+    tfoot td,
+    tbody td {
+        display: flex;
+    }
+
     tbody {
-        //display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
         tr {
 
             //display: block;
