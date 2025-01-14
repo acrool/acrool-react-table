@@ -20,32 +20,24 @@ export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: strin
 
 
     return {
-        '--grid-template': frs,
+        // '--grid-template': frs,
         '--grid-gap': gap
     } as CSSProperties;
 };
 
+export const getCol = (col: TTitleCol) => {
+    if(typeof col === 'number'){
+        return {
+            '--td-width': `${col}px`,
+        };
+    }
 
-/**
- * 產生合併欄位屬性
- * @param colSpan
- */
-export const getColSpanStyles = (colSpan: number) => {
     return {
-        '--grid-column-span': colSpan > 1 ? colSpan: undefined,
-    } as CSSProperties;
+        '--td-width': col ?? undefined,
+    };
+
 };
 
-/**
- * 產生合併欄位屬性
- * @param rowSpan
- */
-export const getRowSpanStyles = (rowSpan: number) => {
-    return {
-        '--grid-row-span': rowSpan > 1 ? rowSpan: undefined,
-        '--body-line-height': rowSpan > 1 ? 'auto': undefined,
-    } as CSSProperties;
-};
 
 
 

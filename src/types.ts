@@ -22,7 +22,7 @@ export enum ETableMode {
  * ------------------------------ */
 export type TSizeUnit = 'px' | '%' | 'em' | 'fr' | 'rem';
 export type TSizeUnitOrNumber = number|`${number}${TSizeUnit}`;
-export type TTitleCol = true|'auto'|TSizeUnitOrNumber|'min-content'|'max-content'|`minmax(${TSizeUnitOrNumber}, ${TSizeUnitOrNumber})`;
+export type TTitleCol = true|'auto'|TSizeUnitOrNumber;
 
 
 export interface ITitleField extends IConfig {
@@ -112,11 +112,25 @@ export interface IPaginateMeta extends Required<IPage> {
     order?: IOrder,
 }
 
+
+export interface ISortableData {
+    containerId: string,
+    items: string[],
+    active: {
+        index: number
+        id: string,
+    },
+    over: {
+        index: number
+        id: string,
+    },
+}
+
 export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
 
 export type TCollapseEvent = (e: MouseEvent) => void
 
-export type TOnChangeSortable<I = any> = (activeId: I, overId: I) => void;
+export type TOnChangeSortable = (sortableData: ISortableData) => void;
 
 
 /** -------------------------------

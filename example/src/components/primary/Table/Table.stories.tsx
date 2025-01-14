@@ -87,11 +87,19 @@ export const WithTitleAlign: Story = {
         }
     }
 };
+export const WithDataAlign: Story = {
+    args: {
+        title: {
+            ...baseData.title,
+            name: {text: 'Name', col: 'auto', dataAlign: 'center'},
+        }
+    }
+};
 export const WithFieldCSSClass: Story = {
     args: {
         title: {
             ...baseData.title,
-            name: {text: 'Name', col: 'auto', className: 'justify-content-end'},
+            name: {text: 'Name', col: 'auto', className: 'text-right'},
         }
     }
 };
@@ -138,7 +146,7 @@ export const WithSingleStickyLeft: Story = {
         style: {maxWidth: '400px', overflow: 'auto'},
         title: {
             ...baseData.title,
-            id: {...baseData.title.id, col: 100, sticky: 'left'},
+            id: {...baseData.title.id, col: 50, sticky: 'left'},
         }
     }
 };
@@ -189,7 +197,7 @@ export const WithBodyColspanField: Story = {
                         ...row.field,
                         name: {
                             colSpan: 3,
-                            className: 'justify-content-center',
+                            className: 'text-center',
                             value: 'Name(ColSpan 3)'
                         }
                     }
@@ -315,6 +323,12 @@ export const WithPaginate: Story = {
 
 export const WithCell: Story = {
     args: {
-        tableCellMediaSize: 1024,
+        tableCellMediaSize: 9999,
+    }
+};
+
+export const WithHiddenHeader: Story = {
+    args: {
+        isVisibleHeader: false,
     }
 };

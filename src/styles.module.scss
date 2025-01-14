@@ -72,12 +72,12 @@
 .root {
     table {
         thead, tbody, tfoot {
-            display: grid;
-            grid-template-columns: var(--grid-template);
-            grid-template-rows: 1fr;
+            //display: grid;
+            //grid-template-columns: var(--grid-template);
+            //grid-template-rows: 1fr;
         }
         tr{
-            display: contents;
+            //display: contents;
         }
     }
 }
@@ -88,21 +88,24 @@
  *             Common
  * ------------------------------ */
 .root table{
+    thead th{
+        width: var(--td-width);
+        max-width: var(--td-width);
+    }
 
     thead th,
     tfoot td,
     tbody td{
-        display: flex;
+        //display: flex;
         align-items: center;
         justify-content: flex-start;
 
         color: var(--text-color);
         font-size: 14px;
 
-
         padding: 0 var(--grid-gap);
-        grid-column: auto / span var(--grid-column-span);
-        grid-row: auto / span var(--grid-row-span);
+        //grid-column: auto / span var(--grid-column-span);
+        //grid-row: auto / span var(--grid-row-span);
 
         //background-color: var(--bg-color);
 
@@ -112,25 +115,25 @@
         }
 
         &[data-align="left"]{
-            justify-content: flex-start;
+            justify-items: flex-start;
             text-align: left;
         }
         &[data-align="center"]{
-            justify-content: center;
+            justify-items: center;
             text-align: center;
         }
         &[data-align="right"]{
-            justify-content: flex-end;
+            justify-items: flex-end;
             text-align: right;
         }
         &[data-vertical="top"]{
-            align-items: flex-start;
+            align-content: flex-start;
         }
         &[data-vertical="center"]{
-            align-items: center;
+            align-content: center;
         }
         &[data-vertical="bottom"]{
-            align-items: flex-end;
+            align-content: flex-end;
         }
     }
 
@@ -194,6 +197,16 @@
 /** -------------------------------
  *             Header
  * ------------------------------ */
+
+.root:not([data-header]) thead{
+    visibility: collapse;
+
+    th{
+        height: 0;
+        overflow: -webkit-paged-y;
+    }
+}
+
 .root table {
     thead {
         th{
@@ -203,10 +216,11 @@
 
             height: var(--header-line-height, var(--line-height));
 
-            &[data-sort]{
+            .title-sort{
                 cursor: pointer;
                 display: flex;
                 flex-direction: row;
+                align-items: center;
                 gap: 5px;
 
                 .sort-column{
@@ -257,7 +271,7 @@
             &[role="button"] td{
                 cursor: pointer;
             }
-            &[data-dragging] td{
+            &[data-dragging]{
                 z-index: 1;
                 position: relative;
             }
@@ -305,17 +319,26 @@
 .root[data-mode="cell"] table{
     display: block;
     border: none;
+    background-color: transparent;
 
     thead,
     tfoot {
         display: none;
     }
 
+    thead th,
+    tfoot td,
+    tbody td {
+        display: flex;
+    }
+
     tbody {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
         tr {
 
-            display: block;
+            //display: block;
             margin-top: 1rem;
             height: auto;
             background-color: inherit;
@@ -356,7 +379,7 @@
 
         td {
             background-color: var(--tr-bg-color);
-            display: flex;
+            //display: flex;
             text-align: right;
             margin-left: auto;
             height: var(--cell-line-height, auto);
