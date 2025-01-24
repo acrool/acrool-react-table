@@ -15,11 +15,10 @@
 }
 
 .acrool-react-table__root table{
-    padding: 10px;
-    row-gap: 6px;
+    padding: 0 10px;
 
-    /*border-collapse: separate;*/
-    /*border-spacing: 0 10px;*/
+    border-collapse: separate;
+    border-spacing: 0 6px;
 }
 
 
