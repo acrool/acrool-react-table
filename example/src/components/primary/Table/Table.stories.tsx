@@ -121,7 +121,8 @@ export const WithBodyTrHover: Story = {
 
 export const WithStickyHeader: Story = {
     args: {
-        style: {maxHeight: '500px', overflow: 'auto'},
+        style: {maxHeight: '500px'},
+        isEnableOverflowY: true,
         isStickyHeader: true,
         title: {
             ...baseData.title,
@@ -131,7 +132,8 @@ export const WithStickyHeader: Story = {
 
 export const WithStickyLeft: Story = {
     args: {
-        style: {maxWidth: '400px', overflow: 'auto'},
+        style: {maxWidth: '400px'},
+        isEnableOverflowX: true,
         title: {
             ...baseData.title,
             id: {...baseData.title.id, sticky: 'left'},
@@ -143,7 +145,8 @@ export const WithStickyLeft: Story = {
 
 export const WithSingleStickyLeft: Story = {
     args: {
-        style: {maxWidth: '400px', overflow: 'auto'},
+        style: {maxWidth: '400px'},
+        isEnableOverflowX: true,
         title: {
             ...baseData.title,
             id: {...baseData.title.id, col: 50, sticky: 'left'},
@@ -155,7 +158,8 @@ export const WithSingleStickyLeft: Story = {
 
 export const WithStickyRight: Story = {
     args: {
-        style: {maxWidth: '400px', overflow: 'auto', border: '1px solid red'},
+        style: {maxWidth: '400px', border: '1px solid red'},
+        isEnableOverflowX: true,
         title: {
             ...baseData.title,
             createdAt: {...baseData.title.createdAt, sticky: 'right'},
@@ -166,7 +170,8 @@ export const WithStickyRight: Story = {
 
 export const WithSingleStickyRight: Story = {
     args: {
-        style: {maxWidth: '400px', overflow: 'auto', border: '1px solid red'},
+        style: {maxWidth: '400px', border: '1px solid red'},
+        isEnableOverflowX: true,
         title: {
             ...baseData.title,
             joined: {...baseData.title.joined, sticky: 'right'},

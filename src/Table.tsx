@@ -36,6 +36,8 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         totalPages: 1,
     },
     paginateMeta,
+    isEnableOverflowX = false,
+    isEnableOverflowY = false,
     isVisibleHeader = true,
     isVisiblePaginate = true,
     isEnableChangePageScrollTop = true,
@@ -278,6 +280,8 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
         data-hover={isEnableHover ? '': undefined}
         data-header={isVisibleHeader ? '': undefined}
         data-footer={!!footer ? '': undefined}
+        data-overflow-x={isEnableOverflowX ? '': undefined}
+        data-overflow-y={isEnableOverflowY ? '': undefined}
         // data-overflow={!!isOverflow ? '': undefined}
         data-fetching={isFetching ? '': undefined}
         ref={tableRef}

@@ -29,6 +29,7 @@
         color: var(--text-color);
         background-color: var(--bg-color);
         border-radius: var(--border-radius);
+        border-color: transparent;
         //overflow: hidden;
         font-size: 13px;
         text-align: left;
@@ -38,6 +39,8 @@
         width: 100%;
         padding: 0;
 
+        border-collapse: separate;
+        border-spacing: 0;
         //border-collapse: collapse;
         //display: grid;
         //grid-template-columns: var(--grid-template);
@@ -141,6 +144,21 @@
 
 
 
+/** -------------------------------
+ *         Overflow
+ * ------------------------------ */
+.root[data-overflow-y] {
+    overflow-y: auto;
+}
+.root[data-overflow-x] {
+    overflow-x: auto;
+    table {
+        min-width: 100%;
+        thead th{
+            min-width: var(--td-width);
+        }
+    }
+}
 
 
 /** -------------------------------
@@ -152,11 +170,16 @@
         position: sticky;
         top: 0;
         z-index: 6!important;
+
+        th{
+            min-width: var(--td-width);
+        }
     }
 
     th, td{
         &[data-sticky="left"] {
             left: var(--sticky-left);
+            min-width: var(--td-width);
 
             &:after{
                 box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.3);
@@ -166,6 +189,7 @@
         }
         &[data-sticky="right"] {
             right: var(--sticky-right);
+            min-width: var(--td-width);
 
             &:after{
                 box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.3);
