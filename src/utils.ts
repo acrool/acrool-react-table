@@ -1,5 +1,5 @@
 import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody, TTitleCol, TBodyDataField} from './types';
-import {CSSProperties} from 'react';
+import {CSSProperties, Ref} from 'react';
 import {objectKeys} from '@acrool/js-utils/object';
 
 
@@ -129,3 +129,42 @@ export const genericsTitleData = <K extends TBodyDataFieldKey, I extends TBodyDa
 export {arrayMove} from '@dnd-kit/sortable';
 
 
+
+
+
+/**
+ * Assign the refs
+ *
+ * <textarea
+ *     {...props}
+ *     ref={node => {
+ *         mainRef.current = node;
+ *         if (typeof ref === 'function') {
+ *             ref(node);
+ *         } else if (ref) {
+ *             ref.current = node;
+ *         }
+ *     }}
+ *     className={clsx(styles.mainTextarea, props.className)}
+ *     aria-multiline="false"
+ *     aria-readonly="false"
+ *     spellCheck="false"
+ * />
+ * @param forwardedRef
+ * @param localRef
+ */
+export const setForwardedRef = <T>(
+    forwardedRef: Ref<T>|undefined,
+    localRef: React.MutableRefObject<T|null>
+) => {
+    return (node: T | null) => {
+        localRef.current = node;
+        if (forwardedRef) {
+            if (typeof forwardedRef === 'function') {
+                forwardedRef(node);
+            } else if (forwardedRef) {
+                (forwardedRef as {current: T|null}).current = node as T|null;
+            }
+        }
+    };
+};

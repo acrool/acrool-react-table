@@ -42,6 +42,7 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     tableMode: ETableMode
     isEnableDragSortable?: boolean
     onChangeSortable?: TOnChangeSortable
+    onHover?: (id: I) => void
 }
 
 

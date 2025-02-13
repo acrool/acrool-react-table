@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useEffect, useRef} from 'react';
 
 import {
     ITableBody,
@@ -9,6 +9,7 @@ import {
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import DragHandle from '../DragHandle';
+import {setForwardedRef} from '../utils';
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     isEnableDragSortable?: boolean
@@ -18,6 +19,9 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     collapseEvent: TCollapseEvent
     // children: ReactNode,
     tds: any[]
+
+    timeout?: number; // 控制滑入觸發的秒數
+    onHover?: (id: I) => void; // 滑入後超過指定秒數觸發的回調
 }
 
 
@@ -31,6 +35,8 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     isEnableDragSortable,
     collapseEvent,
     tds,
+
+    timeout = 1,
 }: IProps<K, I>) => {
     const {
         attributes,
@@ -50,6 +56,41 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     };
 
 
+
+    // 處理Hover事件
+    const trRef = useRef<HTMLTableRowElement | null>(null);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        const trElement = trRef.current;
+        if (!trElement || !dataRow.onHoverRow) return;
+
+        const handleMouseEnter = () => {
+            timerRef.current = setTimeout(() => {
+                if(!dataRow.onHoverRow) return;
+                dataRow.onHoverRow(dataRow.id);
+            }, timeout * 1000);
+        };
+
+        const handleMouseLeave = () => {
+            if (timerRef.current) {
+                clearTimeout(timerRef.current);
+                timerRef.current = null;
+            }
+        };
+
+        trElement.addEventListener('mouseenter', handleMouseEnter);
+        trElement.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            trElement.removeEventListener('mouseenter', handleMouseEnter);
+            trElement.removeEventListener('mouseleave', handleMouseLeave);
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [timeout, dataRow.onHoverRow]);
+
+
+
     /**
      * Render Table td
      */
@@ -61,7 +102,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
 
     return <tr
-        ref={setNodeRef}
+        ref={setForwardedRef(setNodeRef, trRef)}
         style={style}
 
 

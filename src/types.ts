@@ -71,12 +71,14 @@ export type TBodyDataDetail<K extends TBodyDataFieldKey> = {
 
 export type TBodyDataID = string | number;
 export type TOnClickRow = <I extends TBodyDataID>(id: I, collapse: () => void) => void;
+export type TOnHoverRow = <I extends TBodyDataID>(id: I) => void;
 
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     id: I,
     detail?: ReactNode | TBodyDataDetail<K>[],
     disabled?: boolean,
     onClickRow?: TOnClickRow,
+    onHoverRow?: TOnHoverRow,
     field: TBodyDataField<K>
 }
 

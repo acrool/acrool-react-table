@@ -261,7 +261,8 @@ export const WithDetail: Story = {
                 field: {
                     ...row.field,
                     plus: (args) => <CollapseButton
-                        type="button" onClick={args.collapse}
+                        type="button"
+                        onClick={args.collapse}
                         data-active={args.isActive ? '':undefined}
                     >
                         {args.isActive ? '-': '+'}
@@ -280,6 +281,33 @@ export const WithClickRow: Story = {
                 ...row,
                 onClickRow: fn((id, collapse) => {
                     collapse();
+                }),
+                detail: <div>
+                    This is {row.field.name} info
+                </div>,
+                field: {
+                    ...row.field,
+                    plus: (args) => <CollapseButton
+                        type="button" onClick={args.collapse}
+                        data-active={args.isActive ? '':undefined}
+                    >
+                        {args.isActive ? '-': '+'}
+                    </CollapseButton>,
+                }
+            };
+        })
+    }
+};
+
+export const WithHoverRow: Story = {
+    args: {
+        ...baseData,
+        data: baseData.data.map(row => {
+            return {
+                ...row,
+                onHoverRow: fn((id) => {
+                    // collapse();
+                    console.log('id',id);
                 }),
                 detail: <div>
                     This is {row.field.name} info
