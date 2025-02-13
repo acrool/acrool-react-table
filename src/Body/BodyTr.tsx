@@ -106,6 +106,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         style={style}
 
 
+        data-id={dataRow.id}
         data-dragging={isDragging ? '': undefined}
         data-collapse={isCollapse ? '': undefined}
         onClick={(event) => {
