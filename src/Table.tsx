@@ -17,6 +17,7 @@ import {objectKeys} from '@acrool/js-utils/object';
  * Table
  */
 const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
+    id,
     className,
     style,
     isDark,
@@ -275,6 +276,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             {'dark-theme': isDark},
             className,
         )}
+        id={id}
         style={extendStyles}
         data-mode={tableMode}
         data-hover={isEnableHover ? '': undefined}

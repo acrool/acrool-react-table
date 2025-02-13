@@ -79,6 +79,7 @@ export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> 
     disabled?: boolean,
     onClickRow?: TOnClickRow,
     onHoverRow?: TOnHoverRow,
+    onLeaveRow?: TOnHoverRow,
     field: TBodyDataField<K>
 }
 
@@ -138,6 +139,7 @@ export type TOnChangeSortable = (sortableData: ISortableData) => void;
  *             Table
  * ------------------------------ */
 export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey> extends IPaginateVisibleProps {
+    id?: string
     className?: string
     style?: CSS.Properties
     isDark?: boolean

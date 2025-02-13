@@ -60,6 +60,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     // 處理Hover事件
     const trRef = useRef<HTMLTableRowElement | null>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const hoverStatusRef = useRef<boolean>(false);
 
     useEffect(() => {
         const trElement = trRef.current;
@@ -69,6 +70,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             timerRef.current = setTimeout(() => {
                 if(!dataRow.onHoverRow) return;
                 dataRow.onHoverRow(dataRow.id);
+                hoverStatusRef.current = true;
             }, timeout * 1000);
         };
 
@@ -76,7 +78,13 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             if (timerRef.current) {
                 clearTimeout(timerRef.current);
                 timerRef.current = null;
+
+                if(dataRow.onLeaveRow && hoverStatusRef.current){
+                    dataRow.onLeaveRow(dataRow.id);
+                    hoverStatusRef.current = false;
+                }
             }
+
         };
 
         trElement.addEventListener('mouseenter', handleMouseEnter);
