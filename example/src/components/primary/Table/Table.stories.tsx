@@ -309,9 +309,9 @@ export const WithHoverRow: Story = {
                     // collapse();
                     console.log('id',id);
                 }),
-                onLeaveRow: fn((id) => {
+                onLeaveRow: fn((evt) => {
                     // collapse();
-                    console.log('id',id);
+                    console.log('id',evt.target);
                 }),
                 detail: <div>
                     This is {row.field.name} info

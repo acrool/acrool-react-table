@@ -66,7 +66,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
         const trElement = trRef.current;
         if (!trElement || !dataRow.onHoverRow) return;
 
-        const handleMouseEnter = () => {
+        const handleMouseEnter = (evt: MouseEvent) => {
             timerRef.current = setTimeout(() => {
                 if(!dataRow.onHoverRow) return;
                 dataRow.onHoverRow(dataRow.id);
@@ -74,13 +74,13 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             }, timeout * 1000);
         };
 
-        const handleMouseLeave = () => {
+        const handleMouseLeave = (evt: MouseEvent) => {
             if (timerRef.current) {
                 clearTimeout(timerRef.current);
                 timerRef.current = null;
 
                 if(dataRow.onLeaveRow && hoverStatusRef.current){
-                    dataRow.onLeaveRow(dataRow.id);
+                    dataRow.onLeaveRow(evt);
                     hoverStatusRef.current = false;
                 }
             }
