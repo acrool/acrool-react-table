@@ -1,4 +1,4 @@
-import {ReactNode, MouseEvent, MouseEventHandler} from 'react';
+import {ReactNode, MouseEventHandler} from 'react';
 import CSS from 'csstype';
 import {IPaginateVisibleProps} from './Paginate/types';
 
@@ -131,7 +131,7 @@ export interface ISortableData {
 
 export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
 
-export type TCollapseEvent = (e: MouseEvent) => void
+export type TCollapseEvent = (e: React.MouseEvent) => void
 
 export type TOnChangeSortable = (sortableData: ISortableData) => void;
 
