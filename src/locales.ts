@@ -61,7 +61,7 @@ const useLocale = (locale?: string) => {
                 objectKeys(options.args)
                     .forEach(argKey => {
                         if(options.args){
-                            resText = resText.replace(`{${argKey}}`, options.args[argKey]);
+                            resText = resText?.replace(`{${argKey}}`, options.args[argKey]);
                         }
                     });
             }

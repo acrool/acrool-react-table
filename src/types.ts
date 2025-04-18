@@ -1,4 +1,4 @@
-import {ReactNode, MouseEventHandler} from 'react';
+import {ReactNode, MouseEventHandler, JSX} from 'react';
 import CSS from 'csstype';
 import {IPaginateVisibleProps} from './Paginate/types';
 

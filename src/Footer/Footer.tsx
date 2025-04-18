@@ -2,7 +2,7 @@ import {TFooter, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent,
 import {getCalcStickyLeftStyles} from '../utils';
 import {objectKeys} from '@acrool/js-utils/object';
 import {getFooterClassNameConfig, getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
-import React, {ReactNode} from 'react';
+import React, {JSX, ReactNode} from 'react';
 import styles from '../styles.module.scss';
 
 
@@ -88,7 +88,6 @@ const Footer = <K extends TBodyDataFieldKey>({
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
 
                     const args = {
-                        key: `tfootTd_${index}_${titleKey}`,
                         className: getFooterClassNameConfig(footerField),
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
@@ -105,7 +104,10 @@ const Footer = <K extends TBodyDataFieldKey>({
                     };
                     return [
                         ...curr,
-                        <td {...args}/>,
+                        <td
+                            key={`tfootTd_${index}_${titleKey}`}
+                            {...args}
+                        />,
                     ];
                 }, []);
 

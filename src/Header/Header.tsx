@@ -2,7 +2,7 @@ import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, IOrderByType
 import {objectKeys} from '@acrool/js-utils/object';
 import styles from '../styles.module.scss';
 import {getCalcStickyLeftStyles, getCol} from '../utils';
-import React from 'react';
+import React, {JSX} from 'react';
 import {getHeaderColSpanConfig, getHeaderStickyLeftConfig, getHeaderStickyRightConfig} from './utils';
 
 
@@ -65,7 +65,6 @@ const Header = <K extends TBodyDataFieldKey>({
                 const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft.widths: stickyRight.widths, fieldConfig.sticky);
 
                 const args = {
-                    key: `theadTh_${titleKey}`,
                     className: fieldConfig.className,
                     'aria-label': typeof fieldConfig.text === 'string' ? fieldConfig.text: '',
                     'aria-sort': sortType,
@@ -98,6 +97,7 @@ const Header = <K extends TBodyDataFieldKey>({
                 return [
                     ...curr,
                     <th
+                        key={`theadTh_${titleKey}`}
                         {...args}
                     />,
                 ];

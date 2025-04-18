@@ -2,17 +2,24 @@
 # yarn lockfile v1
 
 
-"@acrool/js-utils@^3.2.12", "@acrool/js-utils@^3.2.7":
+"@acrool/js-utils@^3.2.15-alpha.2":
+  version "3.2.15-alpha.2"
+  resolved "https://registry.yarnpkg.com/@acrool/js-utils/-/js-utils-3.2.15-alpha.2.tgz#81c712c6ac33ef2c09c40a475c0ddd34d4bfb16d"
+  integrity sha512-doJWHjAhBQgts1hketnEbpES81VkWk0B4QBqxCZaPh7p1lJ00ffr2AmgYDqQo3ah9F3CWbx+EFWBqKGlmyANnw==
+  dependencies:
+    dayjs "^1.x"
+
+"@acrool/js-utils@^3.2.7":
   version "3.2.12"
   resolved "https://registry.yarnpkg.com/@acrool/js-utils/-/js-utils-3.2.12.tgz#ebab43062442808be9a190ef004c3ea2fa368ce4"
   integrity sha512-G8b/Kf8r+sD2yWW5/tTzD5MA2cpC9caNu35jCp6f97W61aPyOLJIxIdFL29o+DFCMd80IuHhK7hXy3S4VsG6/A==
   dependencies:
     dayjs "^1.x"
 
-"@acrool/react-grid@^5.2.5-alpha.1":
-  version "5.2.5-alpha.1"
-  resolved "https://registry.yarnpkg.com/@acrool/react-grid/-/react-grid-5.2.5-alpha.1.tgz#0e921e23ea63ac419526db40e28043adbe8ceed4"
-  integrity sha512-SVWNxB+3f3st05rEJM/Nm8Z9QOdZdXh5h4RjlisV9IbZ0t0q63/xGTo+EkCGpj3z3EKW9FaNZqOvE9HTtP8T8Q==
+"@acrool/react-grid@^6.0.2-alpha.2":
+  version "6.0.2-alpha.2"
+  resolved "https://registry.yarnpkg.com/@acrool/react-grid/-/react-grid-6.0.2-alpha.2.tgz#89bc71da11be8f56d04008236ff6c5966f10e34d"
+  integrity sha512-1gsVP9AUPc4BeznjSAJVk9qRrihn+7oPayxp+WdKo412I/GPOZ3ag31EU3nOn2lkhmkNHcF2qmvDvhR/Jw4/WA==
 
 "@acrool/react-table@link:..":
   version "0.0.0"
@@ -3074,12 +3081,17 @@ sass@^1.77.1:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
-scheduler@^0.23.0, scheduler@^0.23.2:
+scheduler@^0.23.2:
   version "0.23.2"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.2.tgz#414ba64a3b282892e944cf2108ecc078d115cdc3"
   integrity sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==
   dependencies:
     loose-envify "^1.1.0"
+
+scheduler@^0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
+  integrity sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==
 
 selfsigned@^2.0.1:
   version "2.4.1"

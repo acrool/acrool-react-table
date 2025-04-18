@@ -13,8 +13,8 @@
     "styled-components": "5.3.9"
   },
   "dependencies": {
-    "@acrool/js-utils": "^3.2.12",
-    "@acrool/react-grid": "^5.2.5-alpha.1",
+    "@acrool/js-utils": "^3.2.15-alpha.2",
+    "@acrool/react-grid": "^6.0.2-alpha.2",
     "@acrool/react-table": "link:..",
     "@chromatic-com/storybook": "^3.2.2",
     "@emotion/is-prop-valid": "^1.2.2",

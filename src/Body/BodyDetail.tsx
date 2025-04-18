@@ -7,7 +7,7 @@ import {
     getFooterConfig, getFooterRowSpanConfig,
     getFooterStickyLeftConfig
 } from '../Footer/utils';
-import React, {ReactNode} from 'react';
+import React, {JSX, ReactNode} from 'react';
 import styles from '../styles.module.scss';
 import {isEmpty} from '@acrool/js-utils/equal';
 
@@ -91,7 +91,6 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     const stickyLeftStyles = getCalcStickyLeftStyles(stickyLeft, titleRow.sticky);
 
                     const args = {
-                        key: `tfootTd_${index}_${titleKey}`,
                         className: getFooterClassNameConfig(datDetailField),
                         'data-align': fieldConfig?.dataAlign,
                         'data-vertical': fieldConfig.dataVertical,
@@ -113,7 +112,10 @@ const BodyDetail = <K extends TBodyDataFieldKey>({
                     }
                     return [
                         ...curr,
-                        <td {...args}/>,
+                        <td
+                            key={`tfootTd_${index}_${titleKey}`}
+                            {...args}
+                        />,
                     ];
                 }, []);
 
