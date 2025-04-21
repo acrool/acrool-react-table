@@ -51,8 +51,8 @@
     "release:alpha": "standard-version --prerelease alpha"
   },
   "peerDependencies": {
-    "react": ">=18.3.0 <20.0.0",
-    "react-dom": ">=18.3.0 <20.0.0"
+    "react": ">=18.0.0 <20.0.0",
+    "react-dom": ">=18.0.0 <20.0.0"
   },
   "dependencies": {
     "@acrool/js-utils": "^3.2.7",

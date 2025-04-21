@@ -20,6 +20,7 @@
 
 </div>
 
+`^5.1.12 support react >=18.0.0 <20.0.0`
 
 
 ## Documentation
@@ -32,7 +33,6 @@
 
 ## Features
 
-- Use `React` + `CSS Grid`
 - Easier to use, help memory
 - Separate theme styles, making it easier to customize styles
 - Provide `Cell` Display Mode
