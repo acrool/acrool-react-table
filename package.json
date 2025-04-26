@@ -20,6 +20,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "browser": "./dist/acrool-react-table.es.js",
       "import": "./dist/acrool-react-table.es.js"
     },
