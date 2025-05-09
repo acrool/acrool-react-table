@@ -127,6 +127,7 @@ const BodyTr = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
 
         data-even={isEven ? '': undefined}
         role={dataRow.onClickRow ? 'button': undefined}
+        data-testid={dataRow.onClickRow ? 'expand-trigger' : undefined}
     >
         {isEnableDragSortable &&
             <td data-drag="">
