@@ -24,7 +24,7 @@ describe('Body', () => {
     });
 
     it('點擊明細展開按鈕可顯示明細內容', () => {
-        const dataWithClick: ITableBody<'col1'|'col2', string>[] = data.map(row => ({
+        const dataWithClick: any[] = data.map(row => ({
             ...row,
             onClickRow: (id: string, collapse: () => void) => collapse(),
         }));

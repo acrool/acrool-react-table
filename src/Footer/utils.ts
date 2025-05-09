@@ -25,7 +25,7 @@ export const getFooterConfig = <K extends TBodyDataFieldKey>(titleField: TFooter
  */
 export const getFooterClassNameConfig = <K extends TBodyDataFieldKey>(bodyField: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
-        if('className' in bodyField){
+        if(bodyField && 'className' in bodyField){
             return bodyField.className;
         }
     }
@@ -38,7 +38,7 @@ export const getFooterClassNameConfig = <K extends TBodyDataFieldKey>(bodyField:
  */
 const _getFooterColSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
-        if('colSpan' in bodyField){
+        if(bodyField && 'colSpan' in bodyField){
             return bodyField.colSpan ?? 1;
         }
     }
@@ -51,7 +51,7 @@ const _getFooterColSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyD
  */
 const _getFooterRowSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
-        if('rowSpan' in bodyField){
+        if(bodyField && 'rowSpan' in bodyField){
             return bodyField.rowSpan ?? 1;
         }
     }
