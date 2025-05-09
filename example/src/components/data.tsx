@@ -1,21 +1,22 @@
-import {asset} from '../utils';
 import {formatCurrency} from '@acrool/js-utils/number';
 import {genericsTitleData} from '@acrool/react-table';
-import {Avatar, Name} from './Common';
 import dayjs from 'dayjs';
+import {ReactNode} from 'react';
+
+import {asset} from '../utils';
+import {Avatar, Name} from './Common';
 import {mockSort} from './utils';
-import {ReactNode} from "react";
 
 export interface IPaginateData {
-    id: number,
-    name: string|ReactNode,
-    email: string,
-    role: string,
-    isJoined: boolean,
-    createdAt: string,
-    avatar: string,
-    amount: number,
-    subAmount: number,
+    id: number
+    name: string|ReactNode
+    email: string
+    role: string
+    isJoined: boolean
+    createdAt: string
+    avatar: string
+    amount: number
+    subAmount: number
 }
 
 export const data: IPaginateData[] = [
@@ -27,7 +28,7 @@ export const data: IPaginateData[] = [
     {id: 5, name: 'Adam Bolton', email: 'adamBolton@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-5.jpg'), amount: 2500, subAmount: 3020},
     {id: 6, name: 'Stanley McQueen', email: 'stanleyMcQueen@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-6.jpg'), amount: 200, subAmount: 500},
     {id: 7, name: 'Bryson White', email: 'brysonWhite@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-7.jpg'), amount: 200, subAmount: 310},
-    {id: 8, name: 'Joe Bieber', email: 'joeBieber@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-8.jpg'), amount: 200, subAmount: 400},
+    {id: 8, name: null, email: 'joeBieber@test.com', role: 'Nuller', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-8.jpg'), amount: 200, subAmount: 400},
     {id: 9, name: 'Gabriel Hampden', email: 'sabrielHampden@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-9.jpg'), amount: 200, subAmount: 350},
     {id: 10, name: 'Adrian Huang', email: 'adrianHuang@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-10.jpg'), amount: 200, subAmount: 200},
     {id: 11, name: 'Felix Huang', email: 'felixHuang@test.com', role: 'Guest', isJoined: false, createdAt: '2022-12-12 12:14:00', avatar: asset('/sample/avatar/female-11.jpg'), amount: 2200, subAmount: 600},

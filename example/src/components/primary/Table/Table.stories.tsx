@@ -283,7 +283,7 @@ export const WithClickRow: Story = {
                     collapse();
                 }),
                 detail: <div>
-                    This is {row.field.name} info
+                    This is <>{row.field.name}</> info
                 </div>,
                 field: {
                     ...row.field,
@@ -314,7 +314,7 @@ export const WithHoverRow: Story = {
                     console.log('id',evt.target);
                 }),
                 detail: <div>
-                    This is {row.field.name} info
+                    This is <>{row.field.name}</> info
                 </div>,
                 field: {
                     ...row.field,
