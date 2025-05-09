@@ -1,8 +1,9 @@
-import {IOrder, TOnChangeSortField, TTableTitle, TBodyDataFieldKey, IOrderByType} from '../types';
 import {objectKeys} from '@acrool/js-utils/object';
-import styles from '../styles.module.scss';
-import {getCalcStickyLeftStyles, getCol} from '../utils';
 import React, {JSX} from 'react';
+
+import styles from '../styles.module.scss';
+import {IOrder, IOrderByType,TBodyDataFieldKey, TOnChangeSortField, TTableTitle} from '../types';
+import {getCalcStickyLeftStyles, getCol} from '../utils';
 import {getHeaderColSpanConfig, getHeaderStickyLeftConfig, getHeaderStickyRightConfig} from './utils';
 
 

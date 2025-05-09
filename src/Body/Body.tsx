@@ -1,7 +1,19 @@
-import React, {Fragment, MouseEvent, ReactNode, useCallback, useMemo, useState} from 'react';
 import {removeByIndex} from '@acrool/js-utils/array';
 import {objectKeys} from '@acrool/js-utils/object';
+import {
+    closestCenter,
+    DndContext,
+    DragEndEvent,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors
+} from '@dnd-kit/core';
+import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
+import {arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
+import React, {Fragment, MouseEvent, ReactNode, useCallback, useMemo, useState} from 'react';
 
+import styles from '../styles.module.scss';
 import {
     ETableMode,
     ITableBody,
@@ -12,6 +24,8 @@ import {
     TTableTitle
 } from '../types';
 import {getCalcStickyLeftStyles} from '../utils';
+import BodyDetail from './BodyDetail';
+import BodyTr from './BodyTr';
 import {
     getBodyColSpanConfig,
     getBodyConfig,
@@ -19,20 +33,6 @@ import {
     getBodyStickyLeftConfig,
     getBodyStickyRightConfig
 } from './utils';
-import BodyDetail from './BodyDetail';
-import styles from '../styles.module.scss';
-import BodyTr from './BodyTr';
-import {
-    closestCenter,
-    DndContext,
-    DragEndEvent,
-    KeyboardSensor,
-    PointerSensor,
-    useSensor,
-    useSensors
-} from '@dnd-kit/core';
-import {arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from '@dnd-kit/sortable';
-import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 
 
 

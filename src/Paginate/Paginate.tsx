@@ -1,12 +1,13 @@
-import React, {ReactNode} from 'react';
 import {formatCurrency} from '@acrool/js-utils/number';
-import {AlignCenterIcon} from '../Icon';
-import {IPage, IPaginateInfo} from '../types';
-import Select from './_components/Select';
 import clsx from 'clsx';
+import CSS from 'csstype';
+import React, {ReactNode} from 'react';
+
+import {AlignCenterIcon} from '../Icon';
 import useLocale from '../locales';
 import styles from '../styles.module.scss';
-import CSS from 'csstype';
+import {IPage, IPaginateInfo} from '../types';
+import Select from './_components/Select';
 import {IPaginateVisibleProps} from './types';
 
 
@@ -19,8 +20,8 @@ interface IProps extends IPaginateVisibleProps{
     info?: IPaginateInfo
     onChangePage: (paginateMeta: Required<IPage>) => void
     pageLimitOptions?: number[]
-    nextPageText?: ReactNode,
-    prevPageText?: ReactNode,
+    nextPageText?: ReactNode
+    prevPageText?: ReactNode
 }
 
 

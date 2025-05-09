@@ -1,16 +1,15 @@
+import {objectKeys} from '@acrool/js-utils/object';
+import clsx from 'clsx';
 import React, {CSSProperties, useCallback, useMemo, useRef, useState} from 'react';
 
-import {ETableMode, ITableProps, TBodyDataFieldKey, TBodyDataID, TOnChangePage, TOnChangeSortField} from './types';
-import TableHeader from './Header';
 import TableBody from './Body';
 import TableFooter from './Footer';
-import Paginate from './Paginate';
-import {getTemplate} from './utils';
-
-import styles from './styles.module.scss';
+import TableHeader from './Header';
 import {useWindowResizeEffect} from './hooks';
-import clsx from 'clsx';
-import {objectKeys} from '@acrool/js-utils/object';
+import Paginate from './Paginate';
+import styles from './styles.module.scss';
+import {ETableMode, ITableProps, TBodyDataFieldKey, TBodyDataID, TOnChangePage, TOnChangeSortField} from './types';
+import {getTemplate} from './utils';
 
 
 /**

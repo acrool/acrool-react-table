@@ -1,5 +1,6 @@
-import {ITableBody, TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from '../types';
 import {objectKeys} from '@acrool/js-utils/object';
+
+import {ITableBody, TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from '../types';
 
 
 

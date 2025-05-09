@@ -1,14 +1,14 @@
+import {useSortable} from '@dnd-kit/sortable';
+import {CSS} from '@dnd-kit/utilities';
 import React, {ReactNode, useEffect, useRef} from 'react';
 
+import DragHandle from '../DragHandle';
 import {
     ITableBody,
     TBodyDataFieldKey,
     TBodyDataID,
     TCollapseEvent
 } from '../types';
-import {useSortable} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
-import DragHandle from '../DragHandle';
 import {setForwardedRef} from '../utils';
 
 interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
@@ -20,8 +20,8 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     // children: ReactNode,
     tds: any[]
 
-    timeout?: number; // 控制滑入觸發的秒數
-    onHover?: (id: I) => void; // 滑入後超過指定秒數觸發的回調
+    timeout?: number // 控制滑入觸發的秒數
+    onHover?: (id: I) => void // 滑入後超過指定秒數觸發的回調
 }
 
 

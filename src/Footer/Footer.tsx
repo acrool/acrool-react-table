@@ -1,9 +1,10 @@
-import {TFooter, TTableTitle, TBodyDataFieldKey, TBodyDataField, TCollapseEvent, ETableMode} from '../types';
-import {getCalcStickyLeftStyles} from '../utils';
 import {objectKeys} from '@acrool/js-utils/object';
-import {getFooterClassNameConfig, getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
 import React, {JSX, ReactNode} from 'react';
+
 import styles from '../styles.module.scss';
+import {ETableMode,TBodyDataField, TBodyDataFieldKey, TCollapseEvent, TFooter, TTableTitle} from '../types';
+import {getCalcStickyLeftStyles} from '../utils';
+import {getFooterClassNameConfig, getFooterColSpanConfig, getFooterConfig, getFooterStickyLeftConfig} from './utils';
 
 
 interface IProps <K extends TBodyDataFieldKey>{

@@ -1,6 +1,7 @@
+import {DraggableAttributes} from '@dnd-kit/core';
+
 import styles from '../styles.module.scss';
 import Dragging from './dragging.svg?react';
-import {DraggableAttributes} from '@dnd-kit/core';
 
 
 interface IProps extends DraggableAttributes{

@@ -1,14 +1,15 @@
 import React, {useCallback} from 'react';
-import {IOption} from './types';
+
 import styles from '../../../styles.module.scss';
+import {IOption} from './types';
 
 interface IProps {
-    title?: string;
-    name?: string;
-    value?: string|number;
-    options?: IOption[];
-    disabled?: boolean;
-    onChange?: (value: string) => void;
+    title?: string
+    name?: string
+    value?: string|number
+    options?: IOption[]
+    disabled?: boolean
+    onChange?: (value: string) => void
 }
 
 

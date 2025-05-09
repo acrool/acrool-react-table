@@ -1,3 +1,6 @@
+import {objectKeys} from '@acrool/js-utils/object';
+import {JSX} from 'react';
+
 import {
     ITableBody,
     TBodyDataDetail,
@@ -7,8 +10,6 @@ import {
     TTableTitle,
     TTitleCol
 } from '../types';
-import {objectKeys} from '@acrool/js-utils/object';
-import {JSX} from 'react';
 
 
 

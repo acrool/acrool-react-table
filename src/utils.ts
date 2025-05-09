@@ -1,6 +1,7 @@
-import {TTableTitle, TBodyDataID, TBodyDataFieldKey, ITableBody, TTitleCol, TBodyDataField} from './types';
-import {CSSProperties, Ref} from 'react';
 import {objectKeys} from '@acrool/js-utils/object';
+import {CSSProperties, Ref} from 'react';
+
+import {ITableBody, TBodyDataField,TBodyDataFieldKey, TBodyDataID, TTableTitle, TTitleCol} from './types';
 
 
 export const getTemplate = <D extends string>(titles: TTableTitle<D>, gap: string): CSSProperties => {

@@ -1,14 +1,15 @@
-import {ReactNode, MouseEventHandler, JSX} from 'react';
 import CSS from 'csstype';
+import {JSX,MouseEventHandler, ReactNode} from 'react';
+
 import {IPaginateVisibleProps} from './Paginate/types';
 
 
 export interface IConfig {
-    colSpan?: number,
-    rowSpan?: number,
-    dataAlign?: 'left'|'center'|'right',
-    dataVertical?: 'top'|'center'|'bottom',
-    className?: string,
+    colSpan?: number
+    rowSpan?: number
+    dataAlign?: 'left'|'center'|'right'
+    dataVertical?: 'top'|'center'|'bottom'
+    className?: string
 }
 export type TLineHeight = `${number}${TSizeUnit}`|'auto'
 
@@ -26,13 +27,13 @@ export type TTitleCol = true|'auto'|TSizeUnitOrNumber;
 
 
 export interface ITitleField extends IConfig {
-    className?: string,
-    col: TTitleCol,
-    text?: string|number|ReactNode,
-    titleAlign?: 'left'|'center'|'right',
-    isEnableSort?: boolean,
-    sticky?: 'left'|'right',
-    isHidden?: boolean,
+    className?: string
+    col: TTitleCol
+    text?: string|number|ReactNode
+    titleAlign?: 'left'|'center'|'right'
+    isEnableSort?: boolean
+    sticky?: 'left'|'right'
+    isHidden?: boolean
 }
 
 export type TTableTitle<K extends string> = {
@@ -75,12 +76,12 @@ export type TOnHoverRow = <I extends TBodyDataID>(id: I) => void;
 export type TOnLeaveRow = (evt: MouseEvent) => void;
 
 export interface ITableBody<K extends TBodyDataFieldKey, I extends TBodyDataID> {
-    id: I,
-    detail?: ReactNode | TBodyDataDetail<K>[],
-    disabled?: boolean,
-    onClickRow?: TOnClickRow,
-    onHoverRow?: TOnHoverRow,
-    onLeaveRow?: TOnLeaveRow,
+    id: I
+    detail?: ReactNode | TBodyDataDetail<K>[]
+    disabled?: boolean
+    onClickRow?: TOnClickRow
+    onHoverRow?: TOnHoverRow
+    onLeaveRow?: TOnLeaveRow
     field: TBodyDataField<K>
 }
 
@@ -99,34 +100,34 @@ export type TFooter<K extends TBodyDataFieldKey> = {
  *             Paginate
  * ------------------------------ */
 export interface IPaginateInfo {
-    totalItems: number,
-    totalPages: number,
+    totalItems: number
+    totalPages: number
 }
 
 export interface IPage {
-    currentPage: number,
-    pageLimit?: number,
+    currentPage: number
+    pageLimit?: number
 }
 export interface IOrder {
-    orderField: string,
-    orderBy: string,
+    orderField: string
+    orderBy: string
 }
 
 export interface IPaginateMeta extends Required<IPage> {
-    order?: IOrder,
+    order?: IOrder
 }
 
 
 export interface ISortableData {
-    items: string[],
+    items: string[]
     active: {
-        index: number
+        index: number,
         id: string,
-    },
+    }
     over: {
-        index: number
+        index: number,
         id: string,
-    },
+    }
 }
 
 export type TOnChangePage = (meta: IPaginateMeta, isUsePreMeta?: boolean) => void
