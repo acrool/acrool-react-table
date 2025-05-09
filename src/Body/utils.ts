@@ -49,7 +49,7 @@ export const getBodyDetailConfig = <K extends TBodyDataFieldKey>(titleField?: JS
  */
 const _getBodyColSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
-        if('colSpan' in bodyField){
+        if(bodyField && 'colSpan' in bodyField){
             return bodyField.colSpan ?? 1;
         }
     }
@@ -62,7 +62,7 @@ const _getBodyColSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDat
  */
 const _getBodyRowSpanConfig = <K extends TBodyDataFieldKey>(bodyField?: TBodyDataField<K>[K]) => {
     if(typeof bodyField === 'object'){
-        if('rowSpan' in bodyField){
+        if(bodyField && 'rowSpan' in bodyField){
             return bodyField.rowSpan ?? 1;
         }
     }
