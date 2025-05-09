@@ -30,8 +30,8 @@ jobs:
             - name: Replace local links with actual versions
               run: |
                   sed -i 's#"@acrool/react-table": "link:.."#"@acrool/react-table": "latest"#' package.json
-                  sed -i 's#"react": "link:../node_modules/react"#"react": "^18.0.0"#' package.json
-                  sed -i 's#"react-dom": "link:../node_modules/react-dom"#"react-dom": "^18.0.0"#' package.json
+                  sed -i 's#"react": "link:../node_modules/react"#"react": "^19.1.0"#' package.json
+                  sed -i 's#"react-dom": "link:../node_modules/react-dom"#"react-dom": "^19.1.0"#' package.json
 
             - name: Install dependencies
               run: yarn install
