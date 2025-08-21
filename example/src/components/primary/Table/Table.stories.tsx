@@ -241,6 +241,7 @@ export const WithRowSpanField: Story = {
 
 export const WithDetail: Story = {
     args: {
+        isCollapseDetail: true,
         title: {
             plus: {text: '#', col: 40,   titleAlign: 'center', dataAlign: 'center'},
             ...baseData.title,
@@ -273,7 +274,41 @@ export const WithDetail: Story = {
     }
 };
 
-export const WithClickRow: Story = {
+export const WithDetailClickCol: Story = {
+    args: {
+        title: {
+            plus: {text: '#', col: 40,   titleAlign: 'center', dataAlign: 'center'},
+            ...baseData.title,
+        },
+        data: baseData.data.map(row => {
+            return {
+                ...row,
+                detail:  [
+                    {
+                        plus: {colSpan: 4, className: 'detail-css', value: <div style={{color: '#000', fontWeight: 700}}>Fax</div>},
+                        amount: {dataAlign: 'right', value: 10},
+                    },
+                    {
+                        plus: {colSpan: 4, value: <div style={{color: '#000', fontWeight: 700}}>Total</div>},
+                        amount: {value: calcAmount(paginateData), dataAlign: 'right'},
+                    }
+                ],
+                field: {
+                    ...row.field,
+                    plus: (args) => <CollapseButton
+                        type="button"
+                        onClick={args.collapse}
+                        data-active={args.isActive ? '':undefined}
+                    >
+                        {args.isActive ? '-': '+'}
+                    </CollapseButton>,
+                }
+            };
+        })
+    }
+};
+
+export const WithDetailClickRow: Story = {
     args: {
         ...baseData,
         data: baseData.data.map(row => {

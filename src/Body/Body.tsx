@@ -43,6 +43,7 @@ interface IProps<K extends TBodyDataFieldKey, I extends TBodyDataID> {
     isEnableDragSortable?: boolean
     onChangeSortable?: TOnChangeSortable
     onHover?: (id: I) => void
+    isCollapseDetail?: boolean
 }
 
 
@@ -55,6 +56,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
     tableMode,
     isEnableDragSortable,
     onChangeSortable,
+    isCollapseDetail,
 }: IProps<K, I>) => {
     const items = useMemo<I[]>(() => {
         return data?.map(row => row.id) ?? [];
@@ -164,6 +166,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
             let cellTdIndex = 0;
 
 
+            const isCollapse = isCollapseDetail || collapseIds?.includes(dataRow.id);
 
 
             const titleKeys = objectKeys(title);
@@ -203,7 +206,7 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                     const nthType = cellTdIndex % 2 === 0 ? 'odd': 'even';
 
 
-                    const children = getBodyData(field, collapseIds.includes(dataRow.id), collapseEvent);
+                    const children = getBodyData(field, isCollapse, collapseEvent);
 
                     const stickyLeftStyles = getCalcStickyLeftStyles(fieldConfig.sticky === 'left' ? stickyLeft.widths: stickyRight.widths, fieldConfig.sticky);
 
@@ -234,7 +237,6 @@ const Body = <K extends TBodyDataFieldKey, I extends TBodyDataID>({
                 }, []);
 
 
-            const isCollapse = collapseIds?.includes(dataRow.id);
 
             return (<React.Fragment
                 key={dataRow.id}

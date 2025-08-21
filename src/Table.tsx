@@ -59,6 +59,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
     isVisiblePagePicker = true,
     isVisiblePageLimit = true,
     isVisiblePageInfo = true,
+    isCollapseDetail = false,
 }: ITableProps<I, K>) => {
     const [tableMode, setTableMode] = useState<ETableMode>(ETableMode.table);
 
@@ -192,6 +193,7 @@ const Table = <I extends TBodyDataID, K extends TBodyDataFieldKey>({
             tableMode={tableMode}
             title={title}
             data={data}
+            isCollapseDetail={isCollapseDetail}
             isEnableDragSortable={isEnableDragSortable}
             onChangeSortable={onChangeSortable}
         />;
