@@ -166,6 +166,7 @@ export interface ITableProps<I extends TBodyDataID, K extends TBodyDataFieldKey>
     isEnableChangePageScrollTop?: boolean
     isEnableDragSortable?: boolean
     isEnableHover?: boolean
+    isCollapseDetail?: boolean
     // isOverflow?: boolean
     isStickyHeader?: boolean
     tableCellMediaSize?: number
